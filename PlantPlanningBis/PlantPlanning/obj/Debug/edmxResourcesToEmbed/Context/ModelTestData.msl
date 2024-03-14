@@ -1,0 +1,840 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TestDataModelStoreContainer" CdmEntityContainer="TestDataEntities">
+    <EntitySetMapping Name="NavPurchaseTable">
+      <EntityTypeMapping TypeName="TestDataModel.NavPurchaseTable">
+        <MappingFragment StoreEntitySet="NavPurchaseTable">
+          <ScalarProperty Name="DT" ColumnName="DT" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+          <ScalarProperty Name="Executor" ColumnName="Executor" />
+          <ScalarProperty Name="OrderType" ColumnName="OrderType" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="NextStatus" ColumnName="NextStatus" />
+          <ScalarProperty Name="NessDateOrder" ColumnName="NessDateOrder" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="OrderNymber" ColumnName="OrderNymber" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="Comment1" ColumnName="Comment1" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="FromBalanses" ColumnName="FromBalanses" />
+          <ScalarProperty Name="EdIzm" ColumnName="EdIzm" />
+          <ScalarProperty Name="CFO" ColumnName="CFO" />
+          <ScalarProperty Name="Initiator" ColumnName="Initiator" />
+          <ScalarProperty Name="NumberRowMZZ" ColumnName="NumberRowMZZ" />
+          <ScalarProperty Name="MZP" ColumnName="MZP" />
+          <ScalarProperty Name="StatusMZP" ColumnName="StatusMZP" />
+          <ScalarProperty Name="NumberRowMZP" ColumnName="NumberRowMZP" />
+          <ScalarProperty Name="ContrAgent" ColumnName="ContrAgent" />
+          <ScalarProperty Name="MZPCode" ColumnName="MZPCode" />
+          <ScalarProperty Name="MZPNaim" ColumnName="MZPNaim" />
+          <ScalarProperty Name="MZPQuantity" ColumnName="MZPQuantity" />
+          <ScalarProperty Name="MZPEdIzm" ColumnName="MZPEdIzm" />
+          <ScalarProperty Name="PlanDate" ColumnName="PlanDate" />
+          <ScalarProperty Name="PlanOperDate" ColumnName="PlanOperDate" />
+          <ScalarProperty Name="ENSGroupCode" ColumnName="ENSGroupCode" />
+          <ScalarProperty Name="ENSGroup" ColumnName="ENSGroup" />
+          <ScalarProperty Name="PlanQuantity" ColumnName="PlanQuantity" />
+          <ScalarProperty Name="FactQuantity" ColumnName="FactQuantity" />
+          <ScalarProperty Name="ContrAgentCode" ColumnName="ContrAgentCode" />
+          <ScalarProperty Name="DayToSend" ColumnName="DayToSend" />
+          <ScalarProperty Name="CurrPrice" ColumnName="CurrPrice" />
+          <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+          <ScalarProperty Name="DateCreateMZP" ColumnName="DateCreateMZP" />
+          <ScalarProperty Name="CFOCode" ColumnName="CFOCode" />
+          <ScalarProperty Name="CurrStatusCode" ColumnName="CurrStatusCode" />
+          <ScalarProperty Name="CurrStatus" ColumnName="CurrStatus" />
+          <ScalarProperty Name="NextStatusCode" ColumnName="NextStatusCode" />
+          <ScalarProperty Name="LastStatusDate" ColumnName="LastStatusDate" />
+          <ScalarProperty Name="LastStatusTime" ColumnName="LastStatusTime" />
+          <ScalarProperty Name="DateCreateZZ" ColumnName="DateCreateZZ" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="QuantityKey" ColumnName="QuantityKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemTable">
+      <EntityTypeMapping TypeName="TestDataModel.SystemTable">
+        <MappingFragment StoreEntitySet="SystemTable">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="CompName" ColumnName="CompName" />
+          <ScalarProperty Name="ObjectCode" ColumnName="ObjectCode" />
+          <ScalarProperty Name="CFOCode" ColumnName="CFOCode" />
+          <ScalarProperty Name="CFOSolut" ColumnName="CFOSolut" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tApplication">
+      <EntityTypeMapping TypeName="TestDataModel.tApplication">
+        <MappingFragment StoreEntitySet="tApplication">
+          <ScalarProperty Name="AlterDate" ColumnName="AlterDate" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tColorSelection">
+      <EntityTypeMapping TypeName="TestDataModel.tColorSelection">
+        <MappingFragment StoreEntitySet="tColorSelection">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="SelectedColor" ColumnName="SelectedColor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tExcelData">
+      <EntityTypeMapping TypeName="TestDataModel.tExcelData">
+        <MappingFragment StoreEntitySet="tExcelData">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="LineName" ColumnName="LineName" />
+          <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tPlannedMeatContainers">
+      <EntityTypeMapping TypeName="TestDataModel.tPlannedMeatContainers">
+        <MappingFragment StoreEntitySet="tPlannedMeatContainers">
+          <ScalarProperty Name="DT" ColumnName="DT" />
+          <ScalarProperty Name="AlterDate" ColumnName="AlterDate" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="MaterialPostingGroup" ColumnName="MaterialPostingGroup" />
+          <ScalarProperty Name="LocationCode" ColumnName="LocationCode" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="LotNo" ColumnName="LotNo" />
+          <ScalarProperty Name="LotDescription" ColumnName="LotDescription" />
+          <ScalarProperty Name="ContainerNo" ColumnName="ContainerNo" />
+          <ScalarProperty Name="ExpWeek" ColumnName="ExpWeek" />
+          <ScalarProperty Name="ExpDT" ColumnName="ExpDT" />
+          <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tUserRecordSelected">
+      <EntityTypeMapping TypeName="TestDataModel.tUserRecordSelected">
+        <MappingFragment StoreEntitySet="tUserRecordSelected">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_CurrentComponents" FunctionName="TestDataModel.Store.fn_select_CurrentComponents">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_CurrentComponents_Result">
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="Unit_of_Measure_Code" ColumnName="Unit of Measure Code" />
+          <ScalarProperty Name="Norma" ColumnName="Norma" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_CurrentProduct" FunctionName="TestDataModel.Store.fn_select_CurrentProduct">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_CurrentProduct_Result">
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_CurrentProduct1" FunctionName="TestDataModel.Store.fn_select_CurrentProduct1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_CurrentProduct1_Result">
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="WorkCenter" ColumnName="WorkCenter" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_ExcelData" FunctionName="TestDataModel.Store.fn_select_ExcelData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_ExcelData_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LineName" ColumnName="LineName" />
+          <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_ExcelData1" FunctionName="TestDataModel.Store.fn_select_ExcelData1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_ExcelData1_Result">
+          <ScalarProperty Name="OrderType" ColumnName="OrderType" />
+          <ScalarProperty Name="OrderTypeCode" ColumnName="OrderTypeCode" />
+          <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+          <ScalarProperty Name="Workday" ColumnName="Workday" />
+          <ScalarProperty Name="WorkShift" ColumnName="WorkShift" />
+          <ScalarProperty Name="WorkLine" ColumnName="WorkLine" />
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+          <ScalarProperty Name="ProdOrder" ColumnName="ProdOrder" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_ExcelDataByCodeAndDate" FunctionName="TestDataModel.Store.fn_select_ExcelDataByCodeAndDate">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_ExcelDataByCodeAndDate_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LineName" ColumnName="LineName" />
+          <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_PlannedMainData" FunctionName="TestDataModel.Store.fn_select_PlannedMainData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_PlannedMainData_Result">
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="NavMaterialName" ColumnName="NavMaterialName" />
+          <ScalarProperty Name="MesMaterialName" ColumnName="MesMaterialName" />
+          <ScalarProperty Name="MaterialGroup" ColumnName="MaterialGroup" />
+          <ScalarProperty Name="ItemGroup" ColumnName="ItemGroup" />
+          <ScalarProperty Name="SIGname" ColumnName="SIGname" />
+          <ScalarProperty Name="BaseUnitMeasure" ColumnName="BaseUnitMeasure" />
+          <ScalarProperty Name="ZZ" ColumnName="ZZ" />
+          <ScalarProperty Name="SIGresp" ColumnName="SIGresp" />
+          <ScalarProperty Name="Blocked" ColumnName="Blocked" />
+          <ScalarProperty Name="Multiplicity" ColumnName="Multiplicity" />
+          <ScalarProperty Name="MinTransferDays" ColumnName="MinTransferDays" />
+          <ScalarProperty Name="SafetyStock" ColumnName="SafetyStock" />
+          <ScalarProperty Name="LASTPRODUCER" ColumnName="LASTPRODUCER" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_RecipeByCode" FunctionName="TestDataModel.Store.fn_select_RecipeByCode">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_RecipeByCode_Result">
+          <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+          <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="UnitMeasure" ColumnName="UnitMeasure" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="IPG" ColumnName="IPG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="InsertExcelData" FunctionName="TestDataModel.Store.InsertExcelData" />
+    <FunctionImportMapping FunctionImportName="InsertPlannedMeatContainers" FunctionName="TestDataModel.Store.InsertPlannedMeatContainers" />
+    <FunctionImportMapping FunctionImportName="InsertPurchaseNavTask" FunctionName="TestDataModel.Store.InsertPurchaseNavTask" />
+    <FunctionImportMapping FunctionImportName="InsertStockBalanse" FunctionName="TestDataModel.Store.InsertStockBalanse" />
+    <FunctionImportMapping FunctionImportName="InsertStockBalanse1" FunctionName="TestDataModel.Store.InsertStockBalanse1" />
+    <FunctionImportMapping FunctionImportName="InsertStockBalanseMes" FunctionName="TestDataModel.Store.InsertStockBalanseMes" />
+    <FunctionImportMapping FunctionImportName="InsertStockBalanseMesTask" FunctionName="TestDataModel.Store.InsertStockBalanseMesTask" />
+    <FunctionImportMapping FunctionImportName="InsertStockBalansePlant" FunctionName="TestDataModel.Store.InsertStockBalansePlant" />
+    <FunctionImportMapping FunctionImportName="InsertStockBalansePlantBis" FunctionName="TestDataModel.Store.InsertStockBalansePlantBis" />
+    <FunctionImportMapping FunctionImportName="InsertStockBalansePlantTask" FunctionName="TestDataModel.Store.InsertStockBalansePlantTask" />
+    <FunctionImportMapping FunctionImportName="InsertStockBalanseTask" FunctionName="TestDataModel.Store.InsertStockBalanseTask" />
+    <FunctionImportMapping FunctionImportName="Pr_DeleteUserRecord" FunctionName="TestDataModel.Store.Pr_DeleteUserRecord" />
+    <FunctionImportMapping FunctionImportName="Pr_InsertUserAppData" FunctionName="TestDataModel.Store.Pr_InsertUserAppData" />
+    <FunctionImportMapping FunctionImportName="Pr_InsertUserCompData" FunctionName="TestDataModel.Store.Pr_InsertUserCompData" />
+    <FunctionImportMapping FunctionImportName="Pr_InsertUserRecord" FunctionName="TestDataModel.Store.Pr_InsertUserRecord" />
+    <FunctionImportMapping FunctionImportName="SelectStockBalances" FunctionName="TestDataModel.Store.SelectStockBalances">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.SelectStockBalances_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Storage" ColumnName="Storage" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="MatGroup" ColumnName="MatGroup" />
+          <ScalarProperty Name="LotName" ColumnName="LotName" />
+          <ScalarProperty Name="LotDescription" ColumnName="LotDescription" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="MaterialOwner" ColumnName="MaterialOwner" />
+          <ScalarProperty Name="TestQuality" ColumnName="TestQuality" />
+          <ScalarProperty Name="StorageType" ColumnName="StorageType" />
+          <ScalarProperty Name="TestQualityGr" ColumnName="TestQualityGr" />
+          <ScalarProperty Name="TestOnStorage" ColumnName="TestOnStorage" />
+          <ScalarProperty Name="ProdDate" ColumnName="ProdDate" />
+          <ScalarProperty Name="BBFDate" ColumnName="BBFDate" />
+          <ScalarProperty Name="dpr" ColumnName="dpr" />
+          <ScalarProperty Name="bbf" ColumnName="bbf" />
+          <ScalarProperty Name="difdates" ColumnName="difdates" />
+          <ScalarProperty Name="difcurdates" ColumnName="difcurdates" />
+          <ScalarProperty Name="st" ColumnName="st" />
+          <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectStockBalances1" FunctionName="TestDataModel.Store.SelectStockBalances1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.SelectStockBalances1_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Storage" ColumnName="Storage" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="MatGroup" ColumnName="MatGroup" />
+          <ScalarProperty Name="LotName" ColumnName="LotName" />
+          <ScalarProperty Name="LotDescription" ColumnName="LotDescription" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="MaterialOwner" ColumnName="MaterialOwner" />
+          <ScalarProperty Name="TestQuality" ColumnName="TestQuality" />
+          <ScalarProperty Name="StorageType" ColumnName="StorageType" />
+          <ScalarProperty Name="TestQualityGr" ColumnName="TestQualityGr" />
+          <ScalarProperty Name="TestOnStorage" ColumnName="TestOnStorage" />
+          <ScalarProperty Name="ProdDate" ColumnName="ProdDate" />
+          <ScalarProperty Name="BBFDate" ColumnName="BBFDate" />
+          <ScalarProperty Name="dpr" ColumnName="dpr" />
+          <ScalarProperty Name="bbf" ColumnName="bbf" />
+          <ScalarProperty Name="difdates" ColumnName="difdates" />
+          <ScalarProperty Name="difcurdates" ColumnName="difcurdates" />
+          <ScalarProperty Name="st" ColumnName="st" />
+          <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+          <ScalarProperty Name="DayPeriod" ColumnName="DayPeriod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectStockBalancesPlant" FunctionName="TestDataModel.Store.SelectStockBalancesPlant">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.SelectStockBalancesPlant_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="MaterialLotName" ColumnName="MaterialLotName" />
+          <ScalarProperty Name="ProductionDate" ColumnName="ProductionDate" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+          <ScalarProperty Name="DayPeriod" ColumnName="DayPeriod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectStockBalancesPlant1" FunctionName="TestDataModel.Store.SelectStockBalancesPlant1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.SelectStockBalancesPlant1_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="MaterialLotName" ColumnName="MaterialLotName" />
+          <ScalarProperty Name="ProductionDate" ColumnName="ProductionDate" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="WorkUnitID" ColumnName="WorkUnitID" />
+          <ScalarProperty Name="WorkUnitType" ColumnName="WorkUnitType" />
+          <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+          <ScalarProperty Name="DayPeriod" ColumnName="DayPeriod" />
+          <ScalarProperty Name="LineName" ColumnName="LineName" />
+          <ScalarProperty Name="AlterLineName" ColumnName="AlterLineName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ClearExcelData" FunctionName="TestDataModel.Store.ClearExcelData" />
+    <EntitySetMapping Name="tWorkPlan">
+      <EntityTypeMapping TypeName="TestDataModel.tWorkPlan">
+        <MappingFragment StoreEntitySet="tWorkPlan">
+          <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="PlanName" ColumnName="PlanName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tWorkPlanDates">
+      <EntityTypeMapping TypeName="TestDataModel.tWorkPlanDates">
+        <MappingFragment StoreEntitySet="tWorkPlanDates">
+          <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+          <ScalarProperty Name="owner" ColumnName="owner" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tWorkPlanElement">
+      <EntityTypeMapping TypeName="TestDataModel.tWorkPlanElement">
+        <MappingFragment StoreEntitySet="tWorkPlanElement">
+          <ScalarProperty Name="ProdName" ColumnName="ProdName" />
+          <ScalarProperty Name="ProdQuantity" ColumnName="ProdQuantity" />
+          <ScalarProperty Name="IsRePack" ColumnName="IsRePack" />
+          <ScalarProperty Name="ProdCode" ColumnName="ProdCode" />
+          <ScalarProperty Name="LineName" ColumnName="LineName" />
+          <ScalarProperty Name="owner" ColumnName="owner" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tMappingTable">
+      <EntityTypeMapping TypeName="TestDataModel.tMappingTable">
+        <MappingFragment StoreEntitySet="tMappingTable">
+          <ScalarProperty Name="ResultName" ColumnName="ResultName" />
+          <ScalarProperty Name="LineName" ColumnName="LineName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="pr_DeleteTestData" FunctionName="TestDataModel.Store.pr_DeleteTestData" />
+    <FunctionImportMapping FunctionImportName="pr_InsertTestData" FunctionName="TestDataModel.Store.pr_InsertTestData" />
+    <FunctionImportMapping FunctionImportName="fn_select_RecipesList" FunctionName="TestDataModel.Store.fn_select_RecipesList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_RecipesList_Result">
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+          <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="StockBalancesWithComments">
+      <EntityTypeMapping TypeName="TestDataModel.StockBalancesWithComments">
+        <MappingFragment StoreEntitySet="StockBalancesWithComments">
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="LotNo" ColumnName="LotNo" />
+          <ScalarProperty Name="MatCode" ColumnName="MatCode" />
+          <ScalarProperty Name="DayPeriod" ColumnName="DayPeriod" />
+          <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+          <ScalarProperty Name="st" ColumnName="st" />
+          <ScalarProperty Name="difcurdates" ColumnName="difcurdates" />
+          <ScalarProperty Name="difdates" ColumnName="difdates" />
+          <ScalarProperty Name="bbf" ColumnName="bbf" />
+          <ScalarProperty Name="dpr" ColumnName="dpr" />
+          <ScalarProperty Name="BBFDate" ColumnName="BBFDate" />
+          <ScalarProperty Name="ProdDate" ColumnName="ProdDate" />
+          <ScalarProperty Name="TestOnStorage" ColumnName="TestOnStorage" />
+          <ScalarProperty Name="TestQualityGr" ColumnName="TestQualityGr" />
+          <ScalarProperty Name="StorageType" ColumnName="StorageType" />
+          <ScalarProperty Name="TestQuality" ColumnName="TestQuality" />
+          <ScalarProperty Name="MaterialOwner" ColumnName="MaterialOwner" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="LotDescription" ColumnName="LotDescription" />
+          <ScalarProperty Name="LotName" ColumnName="LotName" />
+          <ScalarProperty Name="MatGroup" ColumnName="MatGroup" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="Storage" ColumnName="Storage" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_StockBalancesWithComments" FunctionName="TestDataModel.Store.fn_select_StockBalancesWithComments">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_StockBalancesWithComments_Result">
+          <ScalarProperty Name="Storage" ColumnName="Storage" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="MatGroup" ColumnName="MatGroup" />
+          <ScalarProperty Name="LotName" ColumnName="LotName" />
+          <ScalarProperty Name="LotDescription" ColumnName="LotDescription" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="MaterialOwner" ColumnName="MaterialOwner" />
+          <ScalarProperty Name="TestQuality" ColumnName="TestQuality" />
+          <ScalarProperty Name="StorageType" ColumnName="StorageType" />
+          <ScalarProperty Name="TestQualityGr" ColumnName="TestQualityGr" />
+          <ScalarProperty Name="TestOnStorage" ColumnName="TestOnStorage" />
+          <ScalarProperty Name="ProdDate" ColumnName="ProdDate" />
+          <ScalarProperty Name="BBFDate" ColumnName="BBFDate" />
+          <ScalarProperty Name="dpr" ColumnName="dpr" />
+          <ScalarProperty Name="bbf" ColumnName="bbf" />
+          <ScalarProperty Name="difdates" ColumnName="difdates" />
+          <ScalarProperty Name="difcurdates" ColumnName="difcurdates" />
+          <ScalarProperty Name="st" ColumnName="st" />
+          <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+          <ScalarProperty Name="DayPeriod" ColumnName="DayPeriod" />
+          <ScalarProperty Name="MatCode" ColumnName="MatCode" />
+          <ScalarProperty Name="LotNo" ColumnName="LotNo" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Pr_UpdateMesArea" FunctionName="TestDataModel.Store.Pr_UpdateMesArea" />
+    <FunctionImportMapping FunctionImportName="Pr_UpdateMesLocation" FunctionName="TestDataModel.Store.Pr_UpdateMesLocation" />
+    <FunctionImportMapping FunctionImportName="fn_select_LaterStorageNames" FunctionName="TestDataModel.Store.fn_select_LaterStorageNames">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_LaterStorageNames_Result">
+          <ScalarProperty Name="NewStorageName" ColumnName="NewStorageName" />
+          <ScalarProperty Name="OldStorageName" ColumnName="OldStorageName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_CurrentProductS" FunctionName="TestDataModel.Store.fn_select_CurrentProductS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_CurrentProductS_Result">
+          <ScalarProperty Name="Prod_No" ColumnName="Prod_No" />
+          <ScalarProperty Name="Prod_Description" ColumnName="Prod_Description" />
+          <ScalarProperty Name="Bom_No" ColumnName="Bom_No" />
+          <ScalarProperty Name="WorkCenter" ColumnName="WorkCenter" />
+          <ScalarProperty Name="Starting_Date" ColumnName="Starting Date" />
+          <ScalarProperty Name="Comp_No" ColumnName="Comp_No" />
+          <ScalarProperty Name="Comp_Description" ColumnName="Comp_Description" />
+          <ScalarProperty Name="Unit_of_Measure_Code" ColumnName="Unit of Measure Code" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Quantity_per" ColumnName="Quantity per" />
+          <ScalarProperty Name="Max__Quantity" ColumnName="Max_ Quantity" />
+          <ScalarProperty Name="Inventory_Posting_Group" ColumnName="Inventory Posting Group" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_ProductionByCode" FunctionName="TestDataModel.Store.fn_select_ProductionByCode">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_ProductionByCode_Result">
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="SystemName" ColumnName="SystemName" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="LotForErp" ColumnName="LotForErp" />
+          <ScalarProperty Name="RawQuant" ColumnName="RawQuant" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Pr_InsertUserAppData1" FunctionName="TestDataModel.Store.Pr_InsertUserAppData1" />
+    <EntitySetMapping Name="tBlockedProduct">
+      <EntityTypeMapping TypeName="TestDataModel.tBlockedProduct">
+        <MappingFragment StoreEntitySet="tBlockedProduct">
+          <ScalarProperty Name="Using" ColumnName="Using" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tBlockedMaterial">
+      <EntityTypeMapping TypeName="TestDataModel.tBlockedMaterial">
+        <MappingFragment StoreEntitySet="tBlockedMaterial">
+          <ScalarProperty Name="Using" ColumnName="Using" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PlanOPZList">
+      <EntityTypeMapping TypeName="TestDataModel.PlanOPZList">
+        <MappingFragment StoreEntitySet="PlanOPZList">
+          <ScalarProperty Name="IsBase" ColumnName="IsBase" />
+          <ScalarProperty Name="MatName" ColumnName="MatName" />
+          <ScalarProperty Name="MatCode" ColumnName="MatCode" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_RecipesBis" FunctionName="TestDataModel.Store.fn_select_RecipesBis">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_RecipesBis_Result">
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+          <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="UnitMeasure" ColumnName="UnitMeasure" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="IPG" ColumnName="IPG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="pr_InsertTestData1" FunctionName="TestDataModel.Store.pr_InsertTestData1" />
+    <FunctionImportMapping FunctionImportName="fn_select_BasicRecipes" FunctionName="TestDataModel.Store.fn_select_BasicRecipes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_BasicRecipes_Result">
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="LineName" ColumnName="LineName" />
+          <ScalarProperty Name="StartingDate" ColumnName="StartingDate" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="UnitMeasure" ColumnName="UnitMeasure" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="IPG" ColumnName="IPG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_Recipes" FunctionName="TestDataModel.Store.fn_select_Recipes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_Recipes_Result">
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="AlterproductCode" ColumnName="AlterproductCode" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+          <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="UnitMeasure" ColumnName="UnitMeasure" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="IPG" ColumnName="IPG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="tComponentException">
+      <EntityTypeMapping TypeName="TestDataModel.tComponentException">
+        <MappingFragment StoreEntitySet="tComponentException">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_RecipesView" FunctionName="TestDataModel.Store.fn_select_RecipesView">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_RecipesView_Result">
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="AlterproductCode" ColumnName="AlterproductCode" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+          <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="UnitMeasure" ColumnName="UnitMeasure" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="IPG" ColumnName="IPG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_CurrentProductView" FunctionName="TestDataModel.Store.fn_select_CurrentProductView">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_CurrentProductView_Result">
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="AlterProductCode" ColumnName="AlterProductCode" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+          <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="UnitMeasure" ColumnName="UnitMeasure" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="IPG" ColumnName="IPG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_RecipesBisView" FunctionName="TestDataModel.Store.fn_select_RecipesBisView">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_RecipesBisView_Result">
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="AlterproductCode" ColumnName="AlterproductCode" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+          <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="UnitMeasure" ColumnName="UnitMeasure" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="IPG" ColumnName="IPG" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="tMercuryRecordSelected">
+      <EntityTypeMapping TypeName="TestDataModel.tMercuryRecordSelected">
+        <MappingFragment StoreEntitySet="tMercuryRecordSelected">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Pr_DeleteMercuryRecord" FunctionName="TestDataModel.Store.Pr_DeleteMercuryRecord" />
+    <FunctionImportMapping FunctionImportName="Pr_InsertMercuryRecord" FunctionName="TestDataModel.Store.Pr_InsertMercuryRecord" />
+    <FunctionImportMapping FunctionImportName="fn_select_ProductionByCodeAndPeriod" FunctionName="TestDataModel.Store.fn_select_ProductionByCodeAndPeriod">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_ProductionByCodeAndPeriod_Result">
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="SystemName" ColumnName="SystemName" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="LotForErp" ColumnName="LotForErp" />
+          <ScalarProperty Name="RawQuant" ColumnName="RawQuant" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="tConsurptionData">
+      <EntityTypeMapping TypeName="TestDataModel.tConsurptionData">
+        <MappingFragment StoreEntitySet="tConsurptionData">
+          <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="JobName" ColumnName="JobName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SelectStockBalancesMes" FunctionName="TestDataModel.Store.SelectStockBalancesMes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.SelectStockBalancesMes_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Storage" ColumnName="Storage" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="MaterialLot" ColumnName="MaterialLot" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+          <ScalarProperty Name="DayPeriod" ColumnName="DayPeriod" />
+          <ScalarProperty Name="ProdDate" ColumnName="ProdDate" />
+          <ScalarProperty Name="BBFDate" ColumnName="BBFDate" />
+          <ScalarProperty Name="TestQuality" ColumnName="TestQuality" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectStockBalancesMes1" FunctionName="TestDataModel.Store.SelectStockBalancesMes1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.SelectStockBalancesMes1_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Storage" ColumnName="Storage" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="MaterialLot" ColumnName="MaterialLot" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+          <ScalarProperty Name="DayPeriod" ColumnName="DayPeriod" />
+          <ScalarProperty Name="ProdDate" ColumnName="ProdDate" />
+          <ScalarProperty Name="BBFDate" ColumnName="BBFDate" />
+          <ScalarProperty Name="TestQuality" ColumnName="TestQuality" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="MesAreas">
+      <EntityTypeMapping TypeName="TestDataModel.MesAreas">
+        <MappingFragment StoreEntitySet="MesAreas">
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MesLocations">
+      <EntityTypeMapping TypeName="TestDataModel.MesLocations">
+        <MappingFragment StoreEntitySet="MesLocations">
+          <ScalarProperty Name="MesLocCyrName" ColumnName="MesLocCyrName" />
+          <ScalarProperty Name="LocationType" ColumnName="LocationType" />
+          <ScalarProperty Name="MesLocationName" ColumnName="MesLocationName" />
+          <ScalarProperty Name="MesLocationID" ColumnName="MesLocationID" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+          <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_LatinStorageNames" FunctionName="TestDataModel.Store.fn_select_LatinStorageNames">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_LatinStorageNames_Result">
+          <ScalarProperty Name="LatStorageName" ColumnName="LatStorageName" />
+          <ScalarProperty Name="CyrStorageName" ColumnName="CyrStorageName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Insert_WorkPlanTableRecord" FunctionName="TestDataModel.Store.Insert_WorkPlanTableRecord" />
+    <FunctionImportMapping FunctionImportName="Modify_WorkPlanTable" FunctionName="TestDataModel.Store.Modify_WorkPlanTable" />
+    <FunctionImportMapping FunctionImportName="Update_WorkPlanTable" FunctionName="TestDataModel.Store.Update_WorkPlanTable" />
+    <FunctionImportMapping FunctionImportName="Insert_WorkPlanTableRecord1" FunctionName="TestDataModel.Store.Insert_WorkPlanTableRecord1" />
+    <FunctionImportMapping FunctionImportName="fn_select_SpicesData" FunctionName="TestDataModel.Store.fn_select_SpicesData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_SpicesData_Result">
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SelectStockBalancesPlant2" FunctionName="TestDataModel.Store.SelectStockBalancesPlant2">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.SelectStockBalancesPlant2_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="MaterialLotName" ColumnName="MaterialLotName" />
+          <ScalarProperty Name="ValidFrom" ColumnName="ValidFrom" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="WorkUnitID" ColumnName="WorkUnitID" />
+          <ScalarProperty Name="WorkUnitType" ColumnName="WorkUnitType" />
+          <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+          <ScalarProperty Name="DayPeriod" ColumnName="DayPeriod" />
+          <ScalarProperty Name="LineName" ColumnName="LineName" />
+          <ScalarProperty Name="AlterLineName" ColumnName="AlterLineName" />
+          <ScalarProperty Name="AlterLotName" ColumnName="AlterLotName" />
+          <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+          <ScalarProperty Name="MaterialGroupID" ColumnName="MaterialGroupID" />
+          <ScalarProperty Name="MaterialTypeID" ColumnName="MaterialTypeID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="pr_GetOPZ" FunctionName="TestDataModel.Store.pr_GetOPZ">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.pr_GetOPZ_Result">
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Pr_DeleteAppRecord" FunctionName="TestDataModel.Store.Pr_DeleteAppRecord" />
+    <FunctionImportMapping FunctionImportName="fn_select_CommentData" FunctionName="TestDataModel.Store.fn_select_CommentData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_CommentData_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="DateRecord" ColumnName="DateRecord" />
+          <ScalarProperty Name="IsActual" ColumnName="IsActual" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_CommentDataID" FunctionName="TestDataModel.Store.fn_select_CommentDataID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.fn_select_CommentDataID_Result">
+          <ScalarProperty Name="IDC" ColumnName="IDC" />
+          <ScalarProperty Name="MaterialCodeC" ColumnName="MaterialCodeC" />
+          <ScalarProperty Name="MaterialNameC" ColumnName="MaterialNameC" />
+          <ScalarProperty Name="DateRecordC" ColumnName="DateRecordC" />
+          <ScalarProperty Name="IsActualC" ColumnName="IsActualC" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="CommentC" ColumnName="CommentC" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="pr_InsertCommentData1" FunctionName="TestDataModel.Store.pr_InsertCommentData1" />
+    <FunctionImportMapping FunctionImportName="pr_GetMercuryComponent" FunctionName="TestDataModel.Store.pr_GetMercuryComponent">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TestDataModel.pr_GetMercuryComponent_Result">
+          <ScalarProperty Name="RPItemNo" ColumnName="RPItemNo" />
+          <ScalarProperty Name="RPName" ColumnName="RPName" />
+          <ScalarProperty Name="RPLotNo" ColumnName="RPLotNo" />
+          <ScalarProperty Name="RPQuantity" ColumnName="RPQuantity" />
+          <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
+          <ScalarProperty Name="MaterialLotID" ColumnName="MaterialLotID" />
+          <ScalarProperty Name="PZ_Qty" ColumnName="PZ Qty" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="BUM" ColumnName="BUM" />
+          <ScalarProperty Name="InventoryPostingGroup" ColumnName="InventoryPostingGroup" />
+          <ScalarProperty Name="MaterialItemNo" ColumnName="MaterialItemNo" />
+          <ScalarProperty Name="MaterialLotNo" ColumnName="MaterialLotNo" />
+          <ScalarProperty Name="MaterialLotDescription" ColumnName="MaterialLotDescription" />
+          <ScalarProperty Name="FreshDate" ColumnName="FreshDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="SubCode" ColumnName="SubCode" />
+          <ScalarProperty Name="Guid" ColumnName="Guid" />
+          <ScalarProperty Name="Uuid" ColumnName="Uuid" />
+          <ScalarProperty Name="Extra_Guid" ColumnName="Extra Guid" />
+          <ScalarProperty Name="Extra_Uuid" ColumnName="Extra Uuid" />
+          <ScalarProperty Name="Extra_Type" ColumnName="Extra Type" />
+          <ScalarProperty Name="Mercury_Type" ColumnName="Mercury Type" />
+          <ScalarProperty Name="Message_Text" ColumnName="Message Text" />
+          <ScalarProperty Name="Request_No_" ColumnName="Request No_" />
+          <ScalarProperty Name="Request_Status" ColumnName="Request Status" />
+          <ScalarProperty Name="VersionStatus" ColumnName="VersionStatus" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ERPIntermediateDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="IfProductionConsumptionPerformances">
+    <Key>
+      <PropertyRef Name="IfProductionConsumptionPerformanceID" />
+      <PropertyRef Name="IfRecordActionID" />
+      <PropertyRef Name="IfRecordStatus" />
+      <PropertyRef Name="IfRecordDateLastProcessed" />
+      <PropertyRef Name="IfRecordProcessedBy" />
+      <PropertyRef Name="IfRecordComments" />
+      <PropertyRef Name="ProductionResponseID" />
+      <PropertyRef Name="ProductionResponseDateCreated" />
+      <PropertyRef Name="ProductionResponseCreatedBy" />
+      <PropertyRef Name="MaterialID" />
+      <PropertyRef Name="MaterialDescription" />
+      <PropertyRef Name="MaterialLotID" />
+      <PropertyRef Name="MaterialLotQuantity" />
+      <PropertyRef Name="MaterialLotUOM" />
+    </Key>
+    <Property Name="IfProductionConsumptionPerformanceID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IfRecordActionID" Type="Int32" Nullable="false" />
+    <Property Name="IfRecordStatus" Type="Int32" Nullable="false" />
+    <Property Name="IfRecordDateLastProcessed" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IfRecordProcessedBy" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IfRecordComments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductionResponseID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductionResponseDateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ProductionResponseCreatedBy" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaterialID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaterialDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaterialLotID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaterialLotQuantity" Type="Double" Nullable="false" />
+    <Property Name="MaterialLotUOM" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ERPIntermediateDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="IfProductionConsumptionPerformances" EntityType="Self.IfProductionConsumptionPerformances" />
+  </EntityContainer>
+</Schema>

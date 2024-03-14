@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OLEG DB.dbo.MesAreas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="MesAreas">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="AreaName" />
+      <PropertyRef Name="IsApproved" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AreaName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="IsApproved" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OLEG DB.dbo.MesLocations' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="MesLocations">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="AreaID" />
+      <PropertyRef Name="LocationName" />
+      <PropertyRef Name="IsApproved" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AreaID" Type="int" Nullable="false" />
+    <Property Name="LocationName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="IsApproved" Type="bit" Nullable="false" />
+    <Property Name="MesLocationID" Type="nvarchar" MaxLength="10" />
+    <Property Name="MesLocationName" Type="nvarchar" MaxLength="150" />
+    <Property Name="LocationType" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'OLEG DB.dbo.PlanOPZList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="MesAreas" EntityType="Self.MesAreas" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [MesAreas].[ID] AS [ID], 
+    [MesAreas].[AreaName] AS [AreaName], 
+    [MesAreas].[IsApproved] AS [IsApproved]
+    FROM [dbo].[MesAreas] AS [MesAreas]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="MesLocations" EntityType="Self.MesLocations" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [MesLocations].[ID] AS [ID], 
+    [MesLocations].[AreaID] AS [AreaID], 
+    [MesLocations].[LocationName] AS [LocationName], 
+    [MesLocations].[IsApproved] AS [IsApproved], 
+    [MesLocations].[MesLocationID] AS [MesLocationID], 
+    [MesLocations].[MesLocationName] AS [MesLocationName], 
+    [MesLocations].[LocationType] AS [LocationType]
+    FROM [dbo].[MesLocations] AS [MesLocations]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

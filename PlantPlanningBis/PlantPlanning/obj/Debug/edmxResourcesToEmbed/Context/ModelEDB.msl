@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EDBModelStoreContainer" CdmEntityContainer="EDBEntities">
+    <EntitySetMapping Name="tJob">
+      <EntityTypeMapping TypeName="EDBModel.tJob">
+        <MappingFragment StoreEntitySet="tJob">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ExternalID" ColumnName="ExternalID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Lot" ColumnName="Lot" />
+          <ScalarProperty Name="SubLot" ColumnName="SubLot" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="PlannedStartDateTime" ColumnName="PlannedStartDateTime" />
+          <ScalarProperty Name="PlannedDurationSeconds" ColumnName="PlannedDurationSeconds" />
+          <ScalarProperty Name="Capture01" ColumnName="Capture01" />
+          <ScalarProperty Name="Capture02" ColumnName="Capture02" />
+          <ScalarProperty Name="Capture03" ColumnName="Capture03" />
+          <ScalarProperty Name="Capture04" ColumnName="Capture04" />
+          <ScalarProperty Name="Capture05" ColumnName="Capture05" />
+          <ScalarProperty Name="Capture06" ColumnName="Capture06" />
+          <ScalarProperty Name="Capture07" ColumnName="Capture07" />
+          <ScalarProperty Name="Capture08" ColumnName="Capture08" />
+          <ScalarProperty Name="Capture09" ColumnName="Capture09" />
+          <ScalarProperty Name="Capture10" ColumnName="Capture10" />
+          <ScalarProperty Name="Capture11" ColumnName="Capture11" />
+          <ScalarProperty Name="Capture12" ColumnName="Capture12" />
+          <ScalarProperty Name="Capture13" ColumnName="Capture13" />
+          <ScalarProperty Name="Capture14" ColumnName="Capture14" />
+          <ScalarProperty Name="Capture15" ColumnName="Capture15" />
+          <ScalarProperty Name="Capture16" ColumnName="Capture16" />
+          <ScalarProperty Name="Capture17" ColumnName="Capture17" />
+          <ScalarProperty Name="Capture18" ColumnName="Capture18" />
+          <ScalarProperty Name="Capture19" ColumnName="Capture19" />
+          <ScalarProperty Name="Capture20" ColumnName="Capture20" />
+          <ScalarProperty Name="UserState" ColumnName="UserState" />
+          <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+          <ScalarProperty Name="UploadedDateTime" ColumnName="UploadedDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tMaterial">
+      <EntityTypeMapping TypeName="EDBModel.tMaterial">
+        <MappingFragment StoreEntitySet="tMaterial">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="MaterialTypeID" ColumnName="MaterialTypeID" />
+          <ScalarProperty Name="MaterialGroupID" ColumnName="MaterialGroupID" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="Units" ColumnName="Units" />
+          <ScalarProperty Name="PlannedSize" ColumnName="PlannedSize" />
+          <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+          <ScalarProperty Name="UploadedDateTime" ColumnName="UploadedDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tMaterialCustomProperty">
+      <EntityTypeMapping TypeName="EDBModel.tMaterialCustomProperty">
+        <MappingFragment StoreEntitySet="tMaterialCustomProperty">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
+          <ScalarProperty Name="CustomPropertyID" ColumnName="CustomPropertyID" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+          <ScalarProperty Name="UploadedDateTime" ColumnName="UploadedDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tMaterialUseActual">
+      <EntityTypeMapping TypeName="EDBModel.tMaterialUseActual">
+        <MappingFragment StoreEntitySet="tMaterialUseActual">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+          <ScalarProperty Name="SystemID" ColumnName="SystemID" />
+          <ScalarProperty Name="BatchStepID" ColumnName="BatchStepID" />
+          <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Lot" ColumnName="Lot" />
+          <ScalarProperty Name="SubLot" ColumnName="SubLot" />
+          <ScalarProperty Name="User" ColumnName="User" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+          <ScalarProperty Name="UploadedDateTime" ColumnName="UploadedDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tProduct">
+      <EntityTypeMapping TypeName="EDBModel.tProduct">
+        <MappingFragment StoreEntitySet="tProduct">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="ProductTypeID" ColumnName="ProductTypeID" />
+          <ScalarProperty Name="ProductSetID" ColumnName="ProductSetID" />
+          <ScalarProperty Name="ProductGroupID" ColumnName="ProductGroupID" />
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="ConsumedMaterialID" ColumnName="ConsumedMaterialID" />
+          <ScalarProperty Name="ProducedMaterialID" ColumnName="ProducedMaterialID" />
+          <ScalarProperty Name="Attribute01" ColumnName="Attribute01" />
+          <ScalarProperty Name="Attribute02" ColumnName="Attribute02" />
+          <ScalarProperty Name="Attribute03" ColumnName="Attribute03" />
+          <ScalarProperty Name="Attribute04" ColumnName="Attribute04" />
+          <ScalarProperty Name="Attribute05" ColumnName="Attribute05" />
+          <ScalarProperty Name="Attribute06" ColumnName="Attribute06" />
+          <ScalarProperty Name="Attribute07" ColumnName="Attribute07" />
+          <ScalarProperty Name="Attribute08" ColumnName="Attribute08" />
+          <ScalarProperty Name="Attribute09" ColumnName="Attribute09" />
+          <ScalarProperty Name="Attribute10" ColumnName="Attribute10" />
+          <ScalarProperty Name="Attribute11" ColumnName="Attribute11" />
+          <ScalarProperty Name="Attribute12" ColumnName="Attribute12" />
+          <ScalarProperty Name="Attribute13" ColumnName="Attribute13" />
+          <ScalarProperty Name="Attribute14" ColumnName="Attribute14" />
+          <ScalarProperty Name="Attribute15" ColumnName="Attribute15" />
+          <ScalarProperty Name="Attribute16" ColumnName="Attribute16" />
+          <ScalarProperty Name="Attribute17" ColumnName="Attribute17" />
+          <ScalarProperty Name="Attribute18" ColumnName="Attribute18" />
+          <ScalarProperty Name="Attribute19" ColumnName="Attribute19" />
+          <ScalarProperty Name="Attribute20" ColumnName="Attribute20" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+          <ScalarProperty Name="ModifiedDateTime" ColumnName="ModifiedDateTime" />
+          <ScalarProperty Name="UploadedDateTime" ColumnName="UploadedDateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionName="EDBModel.Store.fn_select_MaterialUsingByProduct" FunctionImportName="fn_select_MaterialUsingByProduct">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EDBModel.fn_select_MaterialUsingByProduct_Result">
+          <ScalarProperty Name="MainJob" ColumnName="MainJob" />
+          <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+          <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+          <ScalarProperty Name="MaterialQuantity" ColumnName="MaterialQuantity" />
+          <ScalarProperty Name="PCode1" ColumnName="PCode1" />
+          <ScalarProperty Name="PName1" ColumnName="PName1" />
+          <ScalarProperty Name="PlanNumber" ColumnName="PlanNumber" />
+          <ScalarProperty Name="PCode2" ColumnName="PCode2" />
+          <ScalarProperty Name="PName2" ColumnName="PName2" />
+          <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="f_spMaterialLot_GetAllByWarehouseAndZoneFromNav_IT6WithoutComment" FunctionName="EDBModel.Store.f_spMaterialLot_GetAllByWarehouseAndZoneFromNav_IT6WithoutComment">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EDBModel.f_spMaterialLot_GetAllByWarehouseAndZoneFromNav_IT6WithoutComment_Result">
+          <ScalarProperty Name="Склад" ColumnName="Склад" />
+          <ScalarProperty Name="Код" ColumnName="Код" />
+          <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+          <ScalarProperty Name="MatGroup" ColumnName="MatGroup" />
+          <ScalarProperty Name="Лот" ColumnName="Лот" />
+          <ScalarProperty Name="LotDescription" ColumnName="LotDescription" />
+          <ScalarProperty Name="Количество" ColumnName="Количество" />
+          <ScalarProperty Name="Владелец" ColumnName="Владелец" />
+          <ScalarProperty Name="ТестКачества" ColumnName="ТестКачества" />
+          <ScalarProperty Name="ТипСклада" ColumnName="ТипСклада" />
+          <ScalarProperty Name="ТестКачестваГр" ColumnName="ТестКачестваГр" />
+          <ScalarProperty Name="ТестНаСкладе" ColumnName="ТестНаСкладе" />
+          <ScalarProperty Name="ProdDate" ColumnName="ProdDate" />
+          <ScalarProperty Name="BBFDate" ColumnName="BBFDate" />
+          <ScalarProperty Name="dpr" ColumnName="dpr" />
+          <ScalarProperty Name="bbf" ColumnName="bbf" />
+          <ScalarProperty Name="difdates" ColumnName="difdates" />
+          <ScalarProperty Name="difcurdates" ColumnName="difcurdates" />
+          <ScalarProperty Name="st" ColumnName="st" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="f_spMaterialLot_GetAllByWarehouseAndZoneFromNav_IT6WithoutCommentBis" FunctionName="EDBModel.Store.f_spMaterialLot_GetAllByWarehouseAndZoneFromNav_IT6WithoutCommentBis">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EDBModel.f_spMaterialLot_GetAllByWarehouseAndZoneFromNav_IT6WithoutCommentBis_Result">
+          <ScalarProperty Name="Склад" ColumnName="Склад" />
+          <ScalarProperty Name="Код" ColumnName="Код" />
+          <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+          <ScalarProperty Name="MatGroup" ColumnName="MatGroup" />
+          <ScalarProperty Name="Лот" ColumnName="Лот" />
+          <ScalarProperty Name="LotDescription" ColumnName="LotDescription" />
+          <ScalarProperty Name="Количество" ColumnName="Количество" />
+          <ScalarProperty Name="Владелец" ColumnName="Владелец" />
+          <ScalarProperty Name="ТестКачества" ColumnName="ТестКачества" />
+          <ScalarProperty Name="ТипСклада" ColumnName="ТипСклада" />
+          <ScalarProperty Name="ТестКачестваГр" ColumnName="ТестКачестваГр" />
+          <ScalarProperty Name="ТестНаСкладе" ColumnName="ТестНаСкладе" />
+          <ScalarProperty Name="ProdDate" ColumnName="ProdDate" />
+          <ScalarProperty Name="BBFDate" ColumnName="BBFDate" />
+          <ScalarProperty Name="dpr" ColumnName="dpr" />
+          <ScalarProperty Name="bbf" ColumnName="bbf" />
+          <ScalarProperty Name="difdates" ColumnName="difdates" />
+          <ScalarProperty Name="difcurdates" ColumnName="difcurdates" />
+          <ScalarProperty Name="st" ColumnName="st" />
+          <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+          <ScalarProperty Name="Smeene" ColumnName="Smeene" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_PlanDayli" FunctionName="EDBModel.Store.fn_select_PlanDayli">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EDBModel.fn_select_PlanDayli_Result">
+          <ScalarProperty Name="LineName" ColumnName="LineName" />
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="f_spMaterialLot_GetAllByWarehouseAndZoneFromNav_IT6WithoutCommentMody" FunctionName="EDBModel.Store.f_spMaterialLot_GetAllByWarehouseAndZoneFromNav_IT6WithoutCommentMody">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EDBModel.f_spMaterialLot_GetAllByWarehouseAndZoneFromNav_IT6WithoutCommentMody_Result">
+          <ScalarProperty Name="Склад" ColumnName="Склад" />
+          <ScalarProperty Name="Код" ColumnName="Код" />
+          <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+          <ScalarProperty Name="MatGroup" ColumnName="MatGroup" />
+          <ScalarProperty Name="Лот" ColumnName="Лот" />
+          <ScalarProperty Name="LotDescription" ColumnName="LotDescription" />
+          <ScalarProperty Name="Количество" ColumnName="Количество" />
+          <ScalarProperty Name="Владелец" ColumnName="Владелец" />
+          <ScalarProperty Name="ТестКачества" ColumnName="ТестКачества" />
+          <ScalarProperty Name="ТипСклада" ColumnName="ТипСклада" />
+          <ScalarProperty Name="ТестКачестваГр" ColumnName="ТестКачестваГр" />
+          <ScalarProperty Name="ТестНаСкладе" ColumnName="ТестНаСкладе" />
+          <ScalarProperty Name="ProdDate" ColumnName="ProdDate" />
+          <ScalarProperty Name="BBFDate" ColumnName="BBFDate" />
+          <ScalarProperty Name="dpr" ColumnName="dpr" />
+          <ScalarProperty Name="bbf" ColumnName="bbf" />
+          <ScalarProperty Name="difdates" ColumnName="difdates" />
+          <ScalarProperty Name="difcurdates" ColumnName="difcurdates" />
+          <ScalarProperty Name="st" ColumnName="st" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_CurrentMaterials" FunctionName="EDBModel.Store.fn_select_CurrentMaterials">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EDBModel.fn_select_CurrentMaterials_Result">
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="NamerialName" ColumnName="NamerialName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_FactConsurmption" FunctionName="EDBModel.Store.fn_select_FactConsurmption">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EDBModel.fn_select_FactConsurmption_Result">
+          <ScalarProperty Name="JobName" ColumnName="JobName" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_ProdNames" FunctionName="EDBModel.Store.fn_select_ProdNames">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EDBModel.fn_select_ProdNames_Result">
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="pr_GetAlarmWaste" FunctionName="EDBModel.Store.pr_GetAlarmWaste">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EDBModel.pr_GetAlarmWaste_Result">
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ERPIntermediateDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ERPIntermediateDB.Export.IfProductionConsumptionPerformances' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="IfProductionConsumptionPerformances">
+    <Key>
+      <PropertyRef Name="IfProductionConsumptionPerformanceID" />
+      <PropertyRef Name="IfRecordActionID" />
+      <PropertyRef Name="IfRecordStatus" />
+      <PropertyRef Name="IfRecordDateLastProcessed" />
+      <PropertyRef Name="IfRecordProcessedBy" />
+      <PropertyRef Name="IfRecordComments" />
+      <PropertyRef Name="ProductionResponseID" />
+      <PropertyRef Name="ProductionResponseDateCreated" />
+      <PropertyRef Name="ProductionResponseCreatedBy" />
+      <PropertyRef Name="MaterialID" />
+      <PropertyRef Name="MaterialDescription" />
+      <PropertyRef Name="MaterialLotID" />
+      <PropertyRef Name="MaterialLotQuantity" />
+      <PropertyRef Name="MaterialLotUOM" />
+    </Key>
+    <Property Name="IfProductionConsumptionPerformanceID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IfRecordActionID" Type="int" Nullable="false" />
+    <Property Name="IfRecordStatus" Type="int" Nullable="false" />
+    <Property Name="IfRecordDateLastProcessed" Type="datetime" Nullable="false" />
+    <Property Name="IfRecordProcessedBy" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="IfRecordComments" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="ProductionResponseID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ProductionResponseDateCreated" Type="datetime" Nullable="false" />
+    <Property Name="ProductionResponseCreatedBy" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaterialID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="MaterialDescription" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MaterialLotID" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="MaterialLotQuantity" Type="float" Nullable="false" />
+    <Property Name="MaterialLotUOM" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ERPIntermediateDBModelStoreContainer">
+    <EntitySet Name="IfProductionConsumptionPerformances" EntityType="Self.IfProductionConsumptionPerformances" store:Type="Tables" store:Schema="Export">
+      <DefiningQuery>SELECT 
+    [IfProductionConsumptionPerformances].[IfProductionConsumptionPerformanceID] AS [IfProductionConsumptionPerformanceID], 
+    [IfProductionConsumptionPerformances].[IfRecordActionID] AS [IfRecordActionID], 
+    [IfProductionConsumptionPerformances].[IfRecordStatus] AS [IfRecordStatus], 
+    [IfProductionConsumptionPerformances].[IfRecordDateLastProcessed] AS [IfRecordDateLastProcessed], 
+    [IfProductionConsumptionPerformances].[IfRecordProcessedBy] AS [IfRecordProcessedBy], 
+    [IfProductionConsumptionPerformances].[IfRecordComments] AS [IfRecordComments], 
+    [IfProductionConsumptionPerformances].[ProductionResponseID] AS [ProductionResponseID], 
+    [IfProductionConsumptionPerformances].[ProductionResponseDateCreated] AS [ProductionResponseDateCreated], 
+    [IfProductionConsumptionPerformances].[ProductionResponseCreatedBy] AS [ProductionResponseCreatedBy], 
+    [IfProductionConsumptionPerformances].[MaterialID] AS [MaterialID], 
+    [IfProductionConsumptionPerformances].[MaterialDescription] AS [MaterialDescription], 
+    [IfProductionConsumptionPerformances].[MaterialLotID] AS [MaterialLotID], 
+    [IfProductionConsumptionPerformances].[MaterialLotQuantity] AS [MaterialLotQuantity], 
+    [IfProductionConsumptionPerformances].[MaterialLotUOM] AS [MaterialLotUOM]
+    FROM [Export].[IfProductionConsumptionPerformances] AS [IfProductionConsumptionPerformances]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

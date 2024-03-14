@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EquipPerfModelStoreContainer" CdmEntityContainer="EquipPerfEntities">
+    <EntitySetMapping Name="tLineEfficiencyResult">
+      <EntityTypeMapping TypeName="EquipPerfModel.tLineEfficiencyResult">
+        <MappingFragment StoreEntitySet="tLineEfficiencyResult">
+          <ScalarProperty Name="PersQuantity" ColumnName="PersQuantity" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LineEventId" ColumnName="LineEventId" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="ExternalId" ColumnName="ExternalId" />
+          <ScalarProperty Name="LotForErp" ColumnName="LotForErp" />
+          <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+          <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+          <ScalarProperty Name="SystemName" ColumnName="SystemName" />
+          <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ProductSpeed" ColumnName="ProductSpeed" />
+          <ScalarProperty Name="ProductGroup" ColumnName="ProductGroup" />
+          <ScalarProperty Name="ProductionDuration" ColumnName="ProductionDuration" />
+          <ScalarProperty Name="LineEfficiency" ColumnName="LineEfficiency" />
+          <ScalarProperty Name="PrimaryEfficiency" ColumnName="PrimaryEfficiency" />
+          <ScalarProperty Name="SecondaryEfiiciency" ColumnName="SecondaryEfiiciency" />
+          <ScalarProperty Name="TimeLost" ColumnName="TimeLost" />
+          <ScalarProperty Name="TimeLossRegistered" ColumnName="TimeLossRegistered" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tLineEvents">
+      <EntityTypeMapping TypeName="EquipPerfModel.tLineEvents">
+        <MappingFragment StoreEntitySet="tLineEvents">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Job" ColumnName="Job" />
+          <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+          <ScalarProperty Name="Shift" ColumnName="Shift" />
+          <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+          <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+          <ScalarProperty Name="PersonStart" ColumnName="PersonStart" />
+          <ScalarProperty Name="PersonEnd" ColumnName="PersonEnd" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="EventId" ColumnName="EventId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="fn_select_RPSettings" FunctionName="EquipPerfModel.Store.fn_select_RPSettings">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="EquipPerfModel.fn_select_RPSettings_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductGroup" ColumnName="ProductGroup" />
+          <ScalarProperty Name="ProductionLine" ColumnName="ProductionLine" />
+          <ScalarProperty Name="ProductTradeMark" ColumnName="ProductTradeMark" />
+          <ScalarProperty Name="ProductSubGroup" ColumnName="ProductSubGroup" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="tMonitorLineName">
+      <EntityTypeMapping TypeName="EquipPerfModel.tMonitorLineName">
+        <MappingFragment StoreEntitySet="tMonitorLineName">
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductionNumber" ColumnName="ProductionNumber" />
+          <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RPSettings">
+      <EntityTypeMapping TypeName="EquipPerfModel.RPSettings">
+        <MappingFragment StoreEntitySet="RPSettings">
+          <ScalarProperty Name="NewFileData" ColumnName="NewFileData" />
+          <ScalarProperty Name="K" ColumnName="K" />
+          <ScalarProperty Name="BatchSize" ColumnName="BatchSize" />
+          <ScalarProperty Name="PackCoefficient" ColumnName="PackCoefficient" />
+          <ScalarProperty Name="ProductSubGroup" ColumnName="ProductSubGroup" />
+          <ScalarProperty Name="ProductTrademark" ColumnName="ProductTrademark" />
+          <ScalarProperty Name="ProductionLine" ColumnName="ProductionLine" />
+          <ScalarProperty Name="ProductGroup" ColumnName="ProductGroup" />
+          <ScalarProperty Name="ProductSpeed" ColumnName="ProductSpeed" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

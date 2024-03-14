@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EquipPerfModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tLineEfficiencyResult">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LineEventId" Type="Int32" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ExternalId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LotForErp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaterialName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaterialCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SystemName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AreaId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Double" Nullable="false" />
+    <Property Name="ProductSpeed" Type="Double" Nullable="false" />
+    <Property Name="ProductGroup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductionDuration" Type="Double" Nullable="false" />
+    <Property Name="LineEfficiency" Type="Double" Nullable="false" />
+    <Property Name="PrimaryEfficiency" Type="Double" Nullable="false" />
+    <Property Name="SecondaryEfiiciency" Type="Double" Nullable="false" />
+    <Property Name="TimeLost" Type="Double" Nullable="false" />
+    <Property Name="TimeLossRegistered" Type="Double" Nullable="false" />
+    <Property Name="PersQuantity" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tLineEvents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Job" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="AreaId" Type="Int32" Nullable="false" />
+    <Property Name="Shift" Type="Int32" Nullable="false" />
+    <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateEnd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PersonStart" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PersonEnd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+    <Property Name="EventId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="EquipPerfEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tLineEfficiencyResult" EntityType="Self.tLineEfficiencyResult" />
+    <EntitySet Name="tLineEvents" EntityType="Self.tLineEvents" />
+    <FunctionImport Name="fn_select_RPSettings" IsComposable="true" ReturnType="Collection(EquipPerfModel.fn_select_RPSettings_Result)" />
+    <EntitySet Name="tMonitorLineName" EntityType="EquipPerfModel.tMonitorLineName" />
+    <EntitySet Name="RPSettings" EntityType="EquipPerfModel.RPSettings" />
+  </EntityContainer>
+  <ComplexType Name="fn_select_RPSettings_Result">
+    <Property Type="Int64" Name="id" Nullable="true" />
+    <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="ProductGroup" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ProductionLine" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ProductTradeMark" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ProductSubGroup" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <EntityType Name="tMonitorLineName">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LineNumber" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ProductionNumber" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="RPSettings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="ProductName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ProductSpeed" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ProductGroup" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ProductionLine" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ProductTrademark" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ProductSubGroup" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="PackCoefficient" Type="Double" />
+    <Property Name="BatchSize" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="K" Type="Int32" />
+    <Property Name="NewFileData" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ERPIntermediateDBModelStoreContainer" CdmEntityContainer="ERPIntermediateDBEntities">
+    <EntitySetMapping Name="IfProductionConsumptionPerformances">
+      <EntityTypeMapping TypeName="ERPIntermediateDBModel.IfProductionConsumptionPerformances">
+        <MappingFragment StoreEntitySet="IfProductionConsumptionPerformances">
+          <ScalarProperty Name="IfProductionConsumptionPerformanceID" ColumnName="IfProductionConsumptionPerformanceID" />
+          <ScalarProperty Name="IfRecordActionID" ColumnName="IfRecordActionID" />
+          <ScalarProperty Name="IfRecordStatus" ColumnName="IfRecordStatus" />
+          <ScalarProperty Name="IfRecordDateLastProcessed" ColumnName="IfRecordDateLastProcessed" />
+          <ScalarProperty Name="IfRecordProcessedBy" ColumnName="IfRecordProcessedBy" />
+          <ScalarProperty Name="IfRecordComments" ColumnName="IfRecordComments" />
+          <ScalarProperty Name="ProductionResponseID" ColumnName="ProductionResponseID" />
+          <ScalarProperty Name="ProductionResponseDateCreated" ColumnName="ProductionResponseDateCreated" />
+          <ScalarProperty Name="ProductionResponseCreatedBy" ColumnName="ProductionResponseCreatedBy" />
+          <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
+          <ScalarProperty Name="MaterialDescription" ColumnName="MaterialDescription" />
+          <ScalarProperty Name="MaterialLotID" ColumnName="MaterialLotID" />
+          <ScalarProperty Name="MaterialLotQuantity" ColumnName="MaterialLotQuantity" />
+          <ScalarProperty Name="MaterialLotUOM" ColumnName="MaterialLotUOM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

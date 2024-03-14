@@ -1,0 +1,2721 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TestDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TestData.dbo.MesAreas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MesAreas">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="AreaName" />
+            <PropertyRef Name="IsApproved" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AreaName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="IsApproved" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TestData.dbo.MesLocations' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MesLocations">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="AreaID" />
+            <PropertyRef Name="LocationName" />
+            <PropertyRef Name="IsApproved" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AreaID" Type="int" Nullable="false" />
+          <Property Name="LocationName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="IsApproved" Type="bit" Nullable="false" />
+          <Property Name="MesLocationID" Type="int" />
+          <Property Name="MesLocationName" Type="nvarchar" MaxLength="150" />
+          <Property Name="LocationType" Type="nvarchar" MaxLength="50" />
+          <Property Name="MesLocCyrName" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="NavPurchaseTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateWork" Type="datetime" Nullable="false" />
+          <Property Name="Executor" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="OrderType" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="NextStatus" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="NessDateOrder" Type="datetime" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="OrderNymber" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MaterialName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Comment1" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Quantity" Type="float" Nullable="false" />
+          <Property Name="FromBalanses" Type="float" Nullable="false" />
+          <Property Name="EdIzm" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="CFO" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Initiator" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="NumberRowMZZ" Type="bigint" Nullable="false" />
+          <Property Name="MZP" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="StatusMZP" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="NumberRowMZP" Type="bigint" Nullable="false" />
+          <Property Name="ContrAgent" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MZPCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MZPNaim" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MZPQuantity" Type="float" Nullable="false" />
+          <Property Name="MZPEdIzm" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="PlanDate" Type="datetime" Nullable="false" />
+          <Property Name="PlanOperDate" Type="datetime" Nullable="false" />
+          <Property Name="ENSGroupCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ENSGroup" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PlanQuantity" Type="float" Nullable="false" />
+          <Property Name="FactQuantity" Type="float" Nullable="false" />
+          <Property Name="ContrAgentCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DayToSend" Type="int" Nullable="false" />
+          <Property Name="CurrPrice" Type="float" Nullable="false" />
+          <Property Name="CurrencyCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateCreateMZP" Type="datetime" Nullable="false" />
+          <Property Name="CFOCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CurrStatusCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CurrStatus" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="NextStatusCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastStatusDate" Type="datetime" Nullable="false" />
+          <Property Name="LastStatusTime" Type="datetime" Nullable="false" />
+          <Property Name="DateCreateZZ" Type="datetime" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="QuantityKey" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DT" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TestData.dbo.PlanOPZList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PlanOPZList">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="MatCode" />
+            <PropertyRef Name="MatName" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MatCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MatName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsBase" Type="bit" />
+        </EntityType>
+        <EntityType Name="StockBalancesWithComments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Storage" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MaterialName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MatGroup" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LotName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LotDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Quantity" Type="numeric" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="MaterialOwner" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TestQuality" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="StorageType" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TestQualityGr" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="TestOnStorage" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="ProdDate" Type="datetime" Nullable="false" />
+          <Property Name="BBFDate" Type="datetime" Nullable="false" />
+          <Property Name="dpr" Type="int" Nullable="false" />
+          <Property Name="bbf" Type="int" Nullable="false" />
+          <Property Name="difdates" Type="int" Nullable="false" />
+          <Property Name="difcurdates" Type="int" Nullable="false" />
+          <Property Name="st" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="WorkDate" Type="datetime" Nullable="false" />
+          <Property Name="DayPeriod" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MatCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="LotNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SystemTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ObjectCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CFOCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CFOSolut" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tApplication">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateWork" Type="datetime" Nullable="false" />
+          <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Quantity" Type="float" Nullable="false" />
+          <Property Name="AlterDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TestData.dbo.tBlockedMaterial' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tBlockedMaterial">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="ProductCode" />
+            <PropertyRef Name="ProductName" />
+            <PropertyRef Name="Using" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="ProductCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Using" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TestData.dbo.tBlockedProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tBlockedProduct">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="ProductCode" />
+            <PropertyRef Name="ProductName" />
+            <PropertyRef Name="Using" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="ProductCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="Using" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tColorSelection">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Destination" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="SelectedColor" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tComponentException">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tConsurptionData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Quantity" Type="float" Nullable="false" />
+          <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="WorkDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tExcelData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LineName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DateWork" Type="datetime" Nullable="false" />
+          <Property Name="ProductCode" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="ProductQuantity" Type="float" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="tMappingTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LineName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ResultName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tMercuryRecordSelected">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DateWork" Type="datetime" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tPlannedMeatContainers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MaterialName" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="MaterialPostingGroup" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LocationCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Quantity" Type="float" Nullable="false" />
+          <Property Name="LotNo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LotDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ContainerNo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ExpWeek" Type="int" Nullable="false" />
+          <Property Name="ExpDT" Type="datetime" Nullable="false" />
+          <Property Name="DateWork" Type="datetime" Nullable="false" />
+          <Property Name="AlterDate" Type="datetime" />
+          <Property Name="DT" Type="date" />
+        </EntityType>
+        <EntityType Name="tUserRecordSelected">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DateWork" Type="datetime" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tWorkPlan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlanName" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DateWork" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tWorkPlanDates">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="owner" Type="bigint" Nullable="false" />
+          <Property Name="DateWork" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tWorkPlanElement">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="owner" Type="bigint" Nullable="false" />
+          <Property Name="LineName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProdCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsRePack" Type="bit" Nullable="false" />
+          <Property Name="ProdQuantity" Type="float" Nullable="false" />
+          <Property Name="ProdName" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <Function Name="ClearExcelData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="fn_select_BasicRecipes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProdCode" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ProductCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="LineName" Type="nvarchar" MaxLength="100" />
+                <Property Name="StartingDate" Type="datetime" />
+                <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="MaterialName" Type="nvarchar(max)" />
+                <Property Name="UnitMeasure" Type="nvarchar" MaxLength="25" />
+                <Property Name="Quantity" Type="float" />
+                <Property Name="IPG" Type="nvarchar" MaxLength="100" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_CommentData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ID" Type="bigint" />
+                <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="MaterialName" Type="nvarchar" MaxLength="2500" />
+                <Property Name="DateRecord" Type="datetime" />
+                <Property Name="IsActual" Type="bit" />
+                <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+                <Property Name="Comment" Type="nvarchar" MaxLength="3900" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_CommentDataID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="IDC" Type="bigint" />
+                <Property Name="MaterialCodeC" Type="nvarchar" MaxLength="100" />
+                <Property Name="MaterialNameC" Type="nvarchar" MaxLength="2500" />
+                <Property Name="DateRecordC" Type="datetime" />
+                <Property Name="IsActualC" Type="bit" />
+                <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+                <Property Name="CommentC" Type="nvarchar" MaxLength="3900" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_CurrentComponents" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DateWork" Type="datetime" Mode="In" />
+          <Parameter Name="VGP" Type="float" Mode="In" />
+          <Parameter Name="ProductCode" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ProductCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="Unit of Measure Code" Type="nvarchar" MaxLength="10" />
+                <Property Name="Norma" Type="float" />
+                <Property Name="Total" Type="float" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_CurrentProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DateWork" Type="datetime" Mode="In" />
+          <Parameter Name="ProductCode" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ProductCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="Total" Type="float" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_CurrentProduct1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DateWork" Type="datetime" Mode="In" />
+          <Parameter Name="ProductCode" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ProductCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="Total" Type="float" />
+                <Property Name="WorkCenter" Type="nvarchar" MaxLength="100" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_CurrentProductS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductCode" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Prod_No" Type="nvarchar" MaxLength="20" />
+                <Property Name="Prod_Description" Type="nvarchar" MaxLength="150" />
+                <Property Name="Bom_No" Type="nvarchar" MaxLength="20" />
+                <Property Name="WorkCenter" Type="nvarchar" MaxLength="20" />
+                <Property Name="Starting Date" Type="datetime" />
+                <Property Name="Comp_No" Type="nvarchar" MaxLength="20" />
+                <Property Name="Comp_Description" Type="nvarchar" MaxLength="150" />
+                <Property Name="Unit of Measure Code" Type="nvarchar" MaxLength="10" />
+                <Property Name="Quantity" Type="decimal" Precision="12" Scale="6" />
+                <Property Name="Quantity per" Type="decimal" Precision="12" Scale="6" />
+                <Property Name="Max_ Quantity" Type="decimal" Precision="12" Scale="6" />
+                <Property Name="Inventory Posting Group" Type="nvarchar" MaxLength="100" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_CurrentProductView" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductCode" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ProductCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="AlterProductCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="LineNumber" Type="nvarchar" MaxLength="100" />
+                <Property Name="WorkDate" Type="datetime" />
+                <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="MaterialName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="UnitMeasure" Type="nvarchar" MaxLength="50" />
+                <Property Name="Quantity" Type="float" />
+                <Property Name="IPG" Type="nvarchar" MaxLength="100" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_ExcelData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ID" Type="bigint" />
+                <Property Name="LineName" Type="nvarchar" MaxLength="100" />
+                <Property Name="DateWork" Type="datetime" />
+                <Property Name="ProductCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="ProductQuantity" Type="float" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_ExcelData1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dt" Type="datetime" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="OrderType" Type="nvarchar" MaxLength="100" />
+                <Property Name="OrderTypeCode" Type="int" />
+                <Property Name="DateWork" Type="datetime" />
+                <Property Name="Workday" Type="nvarchar" MaxLength="100" />
+                <Property Name="WorkShift" Type="nvarchar" MaxLength="100" />
+                <Property Name="WorkLine" Type="nvarchar" MaxLength="100" />
+                <Property Name="ProductCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="ProductQuantity" Type="float" />
+                <Property Name="ProdOrder" Type="nvarchar" MaxLength="100" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_ExcelDataByCodeAndDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LineName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ProductCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="DateWork" Type="datetime" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ID" Type="bigint" />
+                <Property Name="LineName" Type="nvarchar" MaxLength="100" />
+                <Property Name="DateWork" Type="datetime" />
+                <Property Name="ProductCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="ProductQuantity" Type="float" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_LaterStorageNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="NewStorageName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="OldStorageName" Type="nvarchar" MaxLength="1000" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_LatinStorageNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="LatStorageName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="CyrStorageName" Type="nvarchar" MaxLength="1000" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_PlannedMainData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="MaterialCode" Type="nvarchar" MaxLength="25" />
+                <Property Name="NavMaterialName" Type="nvarchar(max)" />
+                <Property Name="MesMaterialName" Type="nvarchar(max)" />
+                <Property Name="MaterialGroup" Type="nvarchar" MaxLength="100" />
+                <Property Name="ItemGroup" Type="nvarchar" MaxLength="100" />
+                <Property Name="SIGname" Type="nvarchar" MaxLength="100" />
+                <Property Name="BaseUnitMeasure" Type="nvarchar" MaxLength="100" />
+                <Property Name="ZZ" Type="nvarchar" MaxLength="100" />
+                <Property Name="SIGresp" Type="nvarchar" MaxLength="100" />
+                <Property Name="Blocked" Type="bit" />
+                <Property Name="Multiplicity" Type="int" />
+                <Property Name="MinTransferDays" Type="int" />
+                <Property Name="SafetyStock" Type="int" />
+                <Property Name="LASTPRODUCER" Type="nvarchar(max)" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_ProductionByCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="dateStart" Type="datetime" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="StartDate" Type="datetime" />
+                <Property Name="EndDate" Type="datetime" />
+                <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="MaterialName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="SystemName" Type="nvarchar" MaxLength="100" />
+                <Property Name="Quantity" Type="float" />
+                <Property Name="LotForErp" Type="nvarchar" MaxLength="100" />
+                <Property Name="RawQuant" Type="float" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_ProductionByCodeAndPeriod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="dateStart" Type="datetime" Mode="In" />
+          <Parameter Name="dateEnd" Type="datetime" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="StartDate" Type="datetime" />
+                <Property Name="EndDate" Type="datetime" />
+                <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="MaterialName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="SystemName" Type="nvarchar" MaxLength="100" />
+                <Property Name="Quantity" Type="float" />
+                <Property Name="LotForErp" Type="nvarchar" MaxLength="100" />
+                <Property Name="RawQuant" Type="float" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_RecipeByCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductCode" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="LineNumber" Type="nvarchar" MaxLength="100" />
+                <Property Name="WorkDate" Type="datetime" />
+                <Property Name="ProductCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="ProductName" Type="nvarchar(max)" />
+                <Property Name="UnitMeasure" Type="nvarchar" MaxLength="25" />
+                <Property Name="Quantity" Type="float" />
+                <Property Name="IPG" Type="nvarchar" MaxLength="100" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_Recipes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ProductCode" Type="nvarchar" MaxLength="1000" />
+                <Property Name="AlterproductCode" Type="nvarchar" MaxLength="1000" />
+                <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="LineNumber" Type="nvarchar" MaxLength="100" />
+                <Property Name="WorkDate" Type="datetime" />
+                <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="MaterialName" Type="nvarchar(max)" />
+                <Property Name="UnitMeasure" Type="nvarchar" MaxLength="25" />
+                <Property Name="Quantity" Type="float" />
+                <Property Name="IPG" Type="nvarchar" MaxLength="100" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_RecipesBis" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ProductCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="LineNumber" Type="nvarchar" MaxLength="100" />
+                <Property Name="WorkDate" Type="datetime" />
+                <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="MaterialName" Type="nvarchar(max)" />
+                <Property Name="UnitMeasure" Type="nvarchar" MaxLength="25" />
+                <Property Name="Quantity" Type="float" />
+                <Property Name="IPG" Type="nvarchar" MaxLength="100" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_RecipesBisView" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ProductCode" Type="nvarchar" MaxLength="1000" />
+                <Property Name="AlterproductCode" Type="nvarchar" MaxLength="1000" />
+                <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="LineNumber" Type="nvarchar" MaxLength="100" />
+                <Property Name="WorkDate" Type="datetime" />
+                <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="MaterialName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="UnitMeasure" Type="nvarchar" MaxLength="25" />
+                <Property Name="Quantity" Type="float" />
+                <Property Name="IPG" Type="nvarchar" MaxLength="100" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_RecipesList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ProductCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="LineNumber" Type="nvarchar" MaxLength="100" />
+                <Property Name="WorkDate" Type="datetime" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_RecipesView" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ProductCode" Type="nvarchar" MaxLength="1000" />
+                <Property Name="AlterproductCode" Type="nvarchar" MaxLength="1000" />
+                <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="LineNumber" Type="nvarchar" MaxLength="100" />
+                <Property Name="WorkDate" Type="datetime" />
+                <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="MaterialName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="UnitMeasure" Type="nvarchar" MaxLength="25" />
+                <Property Name="Quantity" Type="float" />
+                <Property Name="IPG" Type="nvarchar" MaxLength="100" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_SpicesData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="ProductCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_select_StockBalancesWithComments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Storage" Type="nvarchar" MaxLength="100" />
+                <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="MaterialName" Type="nvarchar" MaxLength="1000" />
+                <Property Name="MatGroup" Type="nvarchar" MaxLength="100" />
+                <Property Name="LotName" Type="nvarchar" MaxLength="100" />
+                <Property Name="LotDescription" Type="nvarchar" MaxLength="1000" />
+                <Property Name="Quantity" Type="float" />
+                <Property Name="MaterialOwner" Type="nvarchar" MaxLength="100" />
+                <Property Name="TestQuality" Type="nvarchar" MaxLength="100" />
+                <Property Name="StorageType" Type="nvarchar" MaxLength="100" />
+                <Property Name="TestQualityGr" Type="nvarchar" MaxLength="100" />
+                <Property Name="TestOnStorage" Type="nvarchar" MaxLength="250" />
+                <Property Name="ProdDate" Type="datetime" />
+                <Property Name="BBFDate" Type="datetime" />
+                <Property Name="dpr" Type="int" />
+                <Property Name="bbf" Type="int" />
+                <Property Name="difdates" Type="int" />
+                <Property Name="difcurdates" Type="int" />
+                <Property Name="st" Type="nvarchar" MaxLength="10" />
+                <Property Name="WorkDate" Type="datetime" />
+                <Property Name="DayPeriod" Type="nvarchar" MaxLength="100" />
+                <Property Name="MatCode" Type="nvarchar" MaxLength="100" />
+                <Property Name="LotNo" Type="nvarchar" MaxLength="100" />
+                <Property Name="Comment" Type="nvarchar(max)" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="Insert_WorkPlanTableRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="datework" Type="datetime" Mode="In" />
+          <Parameter Name="LineName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ProdCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="quantity" Type="float" Mode="In" />
+        </Function>
+        <Function Name="Insert_WorkPlanTableRecord1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="datework" Type="datetime" Mode="In" />
+          <Parameter Name="LineName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ProdCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="Group" Type="nvarchar" Mode="In" />
+          <Parameter Name="quantity" Type="float" Mode="In" />
+        </Function>
+        <Function Name="InsertExcelData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="bigint" Mode="In" />
+          <Parameter Name="LineName" Type="nvarchar" Mode="In" />
+          <Parameter Name="DateWork" Type="datetime" Mode="In" />
+          <Parameter Name="ProductCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="ProductQuantity" Type="float" Mode="In" />
+        </Function>
+        <Function Name="InsertPlannedMeatContainers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="InsertPurchaseNavTask" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="InsertStockBalanse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Storage" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaterialCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaterialName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="MatGroup" Type="nvarchar" Mode="In" />
+          <Parameter Name="LotName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LotDescription" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Quantity" Type="numeric" Mode="In" />
+          <Parameter Name="MaterialOwner" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="TestQuality" Type="nvarchar" Mode="In" />
+          <Parameter Name="StorageType" Type="nvarchar" Mode="In" />
+          <Parameter Name="TestQualityGt" Type="nvarchar" Mode="In" />
+          <Parameter Name="TestOnStorage" Type="nvarchar" Mode="In" />
+          <Parameter Name="ProdDate" Type="datetime" Mode="In" />
+          <Parameter Name="BBFDate" Type="datetime" Mode="In" />
+          <Parameter Name="dpr" Type="int" Mode="In" />
+          <Parameter Name="bbf" Type="int" Mode="In" />
+          <Parameter Name="difdates" Type="int" Mode="In" />
+          <Parameter Name="difcurdates" Type="int" Mode="In" />
+          <Parameter Name="st" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="InsertStockBalanse1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Storage" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaterialCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaterialName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="MatGroup" Type="nvarchar" Mode="In" />
+          <Parameter Name="LotName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LotDescription" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Quantity" Type="numeric" Mode="In" />
+          <Parameter Name="MaterialOwner" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="TestQuality" Type="nvarchar" Mode="In" />
+          <Parameter Name="StorageType" Type="nvarchar" Mode="In" />
+          <Parameter Name="TestQualityGt" Type="nvarchar" Mode="In" />
+          <Parameter Name="TestOnStorage" Type="nvarchar" Mode="In" />
+          <Parameter Name="ProdDate" Type="datetime" Mode="In" />
+          <Parameter Name="BBFDate" Type="datetime" Mode="In" />
+          <Parameter Name="dpr" Type="int" Mode="In" />
+          <Parameter Name="bbf" Type="int" Mode="In" />
+          <Parameter Name="difdates" Type="int" Mode="In" />
+          <Parameter Name="difcurdates" Type="int" Mode="In" />
+          <Parameter Name="st" Type="nvarchar" Mode="In" />
+          <Parameter Name="period" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="InsertStockBalanseMes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Storage" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaterialCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaterialName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="MaterialLot" Type="nvarchar" Mode="In" />
+          <Parameter Name="Quantity" Type="float" Mode="In" />
+          <Parameter Name="Owner" Type="nvarchar" Mode="In" />
+          <Parameter Name="period" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="InsertStockBalanseMesTask" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="InsertStockBalansePlant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaterialCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaterialName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="MaterialLotName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ProdDate" Type="datetime" Mode="In" />
+          <Parameter Name="Quantity" Type="float" Mode="In" />
+          <Parameter Name="period" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="InsertStockBalansePlantBis" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaterialCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="MaterialName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="MaterialLotName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ProdDate" Type="datetime" Mode="In" />
+          <Parameter Name="Quantity" Type="float" Mode="In" />
+          <Parameter Name="period" Type="bit" Mode="In" />
+          <Parameter Name="WorkUnitID" Type="int" Mode="In" />
+          <Parameter Name="WorkUnitType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsertStockBalansePlantTask" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="InsertStockBalanseTask" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Modify_WorkPlanTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Pr_DeleteAppRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="Pr_DeleteMercuryRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaterialCode" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="pr_DeleteTestData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="Pr_DeleteUserRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaterialCode" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="pr_GetMercuryComponent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="pr_GetOPZ" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="datetime" Mode="In" />
+          <Parameter Name="end" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="pr_InsertCommentData1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="bigint" Mode="In" />
+          <Parameter Name="Code" Type="nvarchar" Mode="In" />
+          <Parameter Name="Naim" Type="nvarchar" Mode="In" />
+          <Parameter Name="Active" Type="bit" Mode="In" />
+          <Parameter Name="Comment" Type="nvarchar" Mode="In" />
+          <Parameter Name="userName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Pr_InsertMercuryRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaterialCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="pr_InsertTestData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="bigint" Mode="In" />
+          <Parameter Name="Code" Type="nvarchar" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="pr_InsertTestData1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="bigint" Mode="In" />
+          <Parameter Name="Code" Type="nvarchar" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Res" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="Pr_InsertUserAppData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DateWork" Type="datetime" Mode="In" />
+          <Parameter Name="MaterialCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="Quantity" Type="float" Mode="In" />
+        </Function>
+        <Function Name="Pr_InsertUserAppData1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DateWork" Type="datetime" Mode="In" />
+          <Parameter Name="AlterWork" Type="datetime" Mode="In" />
+          <Parameter Name="MaterialCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="Quantity" Type="float" Mode="In" />
+        </Function>
+        <Function Name="Pr_InsertUserCompData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="bigint" Mode="In" />
+          <Parameter Name="CompName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="ObjectCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="CFOCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="CFOSolut" Type="nvarchar" Mode="In" />
+          <Parameter Name="Address" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="Pr_InsertUserRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaterialCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="Pr_UpdateMesArea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="bigint" Mode="In" />
+          <Parameter Name="fl" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="Pr_UpdateMesLocation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="bigint" Mode="In" />
+          <Parameter Name="fl" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="SelectStockBalances" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SelectStockBalances1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SelectStockBalancesMes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SelectStockBalancesMes1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SelectStockBalancesPlant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SelectStockBalancesPlant1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SelectStockBalancesPlant2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Update_WorkPlanTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="TestDataModelStoreContainer">
+          <EntitySet Name="NavPurchaseTable" EntityType="Self.NavPurchaseTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockBalancesWithComments" EntityType="Self.StockBalancesWithComments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SystemTable" EntityType="Self.SystemTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tApplication" EntityType="Self.tApplication" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tColorSelection" EntityType="Self.tColorSelection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tComponentException" EntityType="Self.tComponentException" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tConsurptionData" EntityType="Self.tConsurptionData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tExcelData" EntityType="Self.tExcelData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tMappingTable" EntityType="Self.tMappingTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tMercuryRecordSelected" EntityType="Self.tMercuryRecordSelected" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tPlannedMeatContainers" EntityType="Self.tPlannedMeatContainers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tUserRecordSelected" EntityType="Self.tUserRecordSelected" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tWorkPlan" EntityType="Self.tWorkPlan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tWorkPlanDates" EntityType="Self.tWorkPlanDates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tWorkPlanElement" EntityType="Self.tWorkPlanElement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MesAreas" EntityType="Self.MesAreas" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MesAreas].[ID] AS [ID], 
+    [MesAreas].[AreaName] AS [AreaName], 
+    [MesAreas].[IsApproved] AS [IsApproved]
+    FROM [dbo].[MesAreas] AS [MesAreas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MesLocations" EntityType="Self.MesLocations" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MesLocations].[ID] AS [ID], 
+    [MesLocations].[AreaID] AS [AreaID], 
+    [MesLocations].[LocationName] AS [LocationName], 
+    [MesLocations].[IsApproved] AS [IsApproved], 
+    [MesLocations].[MesLocationID] AS [MesLocationID], 
+    [MesLocations].[MesLocationName] AS [MesLocationName], 
+    [MesLocations].[LocationType] AS [LocationType], 
+    [MesLocations].[MesLocCyrName] AS [MesLocCyrName]
+    FROM [dbo].[MesLocations] AS [MesLocations]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PlanOPZList" EntityType="Self.PlanOPZList" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PlanOPZList].[ID] AS [ID], 
+    [PlanOPZList].[MatCode] AS [MatCode], 
+    [PlanOPZList].[MatName] AS [MatName], 
+    [PlanOPZList].[IsBase] AS [IsBase]
+    FROM [dbo].[PlanOPZList] AS [PlanOPZList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tBlockedMaterial" EntityType="Self.tBlockedMaterial" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tBlockedMaterial].[id] AS [id], 
+    [tBlockedMaterial].[ProductCode] AS [ProductCode], 
+    [tBlockedMaterial].[ProductName] AS [ProductName], 
+    [tBlockedMaterial].[Using] AS [Using]
+    FROM [dbo].[tBlockedMaterial] AS [tBlockedMaterial]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tBlockedProduct" EntityType="Self.tBlockedProduct" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tBlockedProduct].[id] AS [id], 
+    [tBlockedProduct].[ProductCode] AS [ProductCode], 
+    [tBlockedProduct].[ProductName] AS [ProductName], 
+    [tBlockedProduct].[Using] AS [Using]
+    FROM [dbo].[tBlockedProduct] AS [tBlockedProduct]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="NavPurchaseTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateWork" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Executor" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OrderType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NextStatus" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NessDateOrder" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OrderNymber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaterialCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaterialName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quantity" Type="Double" Nullable="false" />
+          <Property Name="FromBalanses" Type="Double" Nullable="false" />
+          <Property Name="EdIzm" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CFO" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Initiator" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumberRowMZZ" Type="Int64" Nullable="false" />
+          <Property Name="MZP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StatusMZP" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumberRowMZP" Type="Int64" Nullable="false" />
+          <Property Name="ContrAgent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MZPCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MZPNaim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MZPQuantity" Type="Double" Nullable="false" />
+          <Property Name="MZPEdIzm" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PlanDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PlanOperDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ENSGroupCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ENSGroup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PlanQuantity" Type="Double" Nullable="false" />
+          <Property Name="FactQuantity" Type="Double" Nullable="false" />
+          <Property Name="ContrAgentCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DayToSend" Type="Int32" Nullable="false" />
+          <Property Name="CurrPrice" Type="Double" Nullable="false" />
+          <Property Name="CurrencyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateCreateMZP" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CFOCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CurrStatusCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CurrStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NextStatusCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastStatusDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastStatusTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateCreateZZ" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="QuantityKey" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DT" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="SystemTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ObjectCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CFOCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CFOSolut" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tApplication">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateWork" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MaterialCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quantity" Type="Double" Nullable="false" />
+          <Property Name="AlterDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tColorSelection">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Destination" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SelectedColor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tExcelData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LineName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateWork" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ProductCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductQuantity" Type="Double" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tPlannedMeatContainers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaterialCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaterialName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaterialPostingGroup" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LocationCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quantity" Type="Double" Nullable="false" />
+          <Property Name="LotNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LotDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContainerNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ExpWeek" Type="Int32" Nullable="false" />
+          <Property Name="ExpDT" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateWork" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AlterDate" Type="DateTime" Precision="3" />
+          <Property Name="DT" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="tUserRecordSelected">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaterialCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateWork" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="TestDataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="NavPurchaseTable" EntityType="Self.NavPurchaseTable" />
+          <EntitySet Name="SystemTable" EntityType="Self.SystemTable" />
+          <EntitySet Name="tApplication" EntityType="Self.tApplication" />
+          <EntitySet Name="tColorSelection" EntityType="Self.tColorSelection" />
+          <EntitySet Name="tExcelData" EntityType="Self.tExcelData" />
+          <EntitySet Name="tPlannedMeatContainers" EntityType="Self.tPlannedMeatContainers" />
+          <EntitySet Name="tUserRecordSelected" EntityType="Self.tUserRecordSelected" />
+          <FunctionImport Name="fn_select_CurrentComponents" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_CurrentComponents_Result)">
+            <Parameter Name="DateWork" Mode="In" Type="DateTime" />
+            <Parameter Name="VGP" Mode="In" Type="Double" />
+            <Parameter Name="ProductCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fn_select_CurrentProduct" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_CurrentProduct_Result)">
+            <Parameter Name="DateWork" Mode="In" Type="DateTime" />
+            <Parameter Name="ProductCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fn_select_CurrentProduct1" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_CurrentProduct1_Result)">
+            <Parameter Name="DateWork" Mode="In" Type="DateTime" />
+            <Parameter Name="ProductCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fn_select_ExcelData" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_ExcelData_Result)" />
+          <FunctionImport Name="fn_select_ExcelData1" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_ExcelData1_Result)">
+          <Parameter Name="dt" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="fn_select_ExcelDataByCodeAndDate" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_ExcelDataByCodeAndDate_Result)">
+            <Parameter Name="LineName" Mode="In" Type="String" />
+            <Parameter Name="ProductCode" Mode="In" Type="String" />
+            <Parameter Name="DateWork" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="fn_select_PlannedMainData" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_PlannedMainData_Result)" />
+          <FunctionImport Name="fn_select_RecipeByCode" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_RecipeByCode_Result)">
+          <Parameter Name="ProductCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertExcelData">
+            <Parameter Name="ID" Mode="In" Type="Int64" />
+            <Parameter Name="LineName" Mode="In" Type="String" />
+            <Parameter Name="DateWork" Mode="In" Type="DateTime" />
+            <Parameter Name="ProductCode" Mode="In" Type="String" />
+            <Parameter Name="ProductQuantity" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="InsertPlannedMeatContainers" />
+          <FunctionImport Name="InsertPurchaseNavTask" />
+          <FunctionImport Name="InsertStockBalanse">
+            <Parameter Name="Storage" Mode="In" Type="String" />
+            <Parameter Name="MaterialCode" Mode="In" Type="String" />
+            <Parameter Name="MaterialName" Mode="In" Type="String" />
+            <Parameter Name="MatGroup" Mode="In" Type="String" />
+            <Parameter Name="LotName" Mode="In" Type="String" />
+            <Parameter Name="LotDescription" Mode="In" Type="String" />
+            <Parameter Name="Quantity" Mode="In" Type="Decimal" />
+            <Parameter Name="MaterialOwner" Mode="In" Type="String" />
+            <Parameter Name="TestQuality" Mode="In" Type="String" />
+            <Parameter Name="StorageType" Mode="In" Type="String" />
+            <Parameter Name="TestQualityGt" Mode="In" Type="String" />
+            <Parameter Name="TestOnStorage" Mode="In" Type="String" />
+            <Parameter Name="ProdDate" Mode="In" Type="DateTime" />
+            <Parameter Name="BBFDate" Mode="In" Type="DateTime" />
+            <Parameter Name="dpr" Mode="In" Type="Int32" />
+            <Parameter Name="bbf" Mode="In" Type="Int32" />
+            <Parameter Name="difdates" Mode="In" Type="Int32" />
+            <Parameter Name="difcurdates" Mode="In" Type="Int32" />
+            <Parameter Name="st" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="InsertStockBalanse1">
+            <Parameter Name="Storage" Mode="In" Type="String" />
+            <Parameter Name="MaterialCode" Mode="In" Type="String" />
+            <Parameter Name="MaterialName" Mode="In" Type="String" />
+            <Parameter Name="MatGroup" Mode="In" Type="String" />
+            <Parameter Name="LotName" Mode="In" Type="String" />
+            <Parameter Name="LotDescription" Mode="In" Type="String" />
+            <Parameter Name="Quantity" Mode="In" Type="Decimal" />
+            <Parameter Name="MaterialOwner" Mode="In" Type="String" />
+            <Parameter Name="TestQuality" Mode="In" Type="String" />
+            <Parameter Name="StorageType" Mode="In" Type="String" />
+            <Parameter Name="TestQualityGt" Mode="In" Type="String" />
+            <Parameter Name="TestOnStorage" Mode="In" Type="String" />
+            <Parameter Name="ProdDate" Mode="In" Type="DateTime" />
+            <Parameter Name="BBFDate" Mode="In" Type="DateTime" />
+            <Parameter Name="dpr" Mode="In" Type="Int32" />
+            <Parameter Name="bbf" Mode="In" Type="Int32" />
+            <Parameter Name="difdates" Mode="In" Type="Int32" />
+            <Parameter Name="difcurdates" Mode="In" Type="Int32" />
+            <Parameter Name="st" Mode="In" Type="String" />
+            <Parameter Name="period" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="InsertStockBalanseMes">
+            <Parameter Name="Storage" Mode="In" Type="String" />
+            <Parameter Name="MaterialCode" Mode="In" Type="String" />
+            <Parameter Name="MaterialName" Mode="In" Type="String" />
+            <Parameter Name="MaterialLot" Mode="In" Type="String" />
+            <Parameter Name="Quantity" Mode="In" Type="Double" />
+            <Parameter Name="Owner" Mode="In" Type="String" />
+            <Parameter Name="period" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="InsertStockBalanseMesTask" />
+          <FunctionImport Name="InsertStockBalansePlant">
+            <Parameter Name="MaterialCode" Mode="In" Type="String" />
+            <Parameter Name="MaterialName" Mode="In" Type="String" />
+            <Parameter Name="MaterialLotName" Mode="In" Type="String" />
+            <Parameter Name="ProdDate" Mode="In" Type="DateTime" />
+            <Parameter Name="Quantity" Mode="In" Type="Double" />
+            <Parameter Name="period" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="InsertStockBalansePlantBis">
+            <Parameter Name="MaterialCode" Mode="In" Type="String" />
+            <Parameter Name="MaterialName" Mode="In" Type="String" />
+            <Parameter Name="MaterialLotName" Mode="In" Type="String" />
+            <Parameter Name="ProdDate" Mode="In" Type="DateTime" />
+            <Parameter Name="Quantity" Mode="In" Type="Double" />
+            <Parameter Name="period" Mode="In" Type="Boolean" />
+            <Parameter Name="WorkUnitID" Mode="In" Type="Int32" />
+            <Parameter Name="WorkUnitType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsertStockBalansePlantTask" />
+          <FunctionImport Name="InsertStockBalanseTask" />
+          <FunctionImport Name="Pr_DeleteUserRecord">
+          <Parameter Name="MaterialCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Pr_InsertUserAppData">
+            <Parameter Name="DateWork" Mode="In" Type="DateTime" />
+            <Parameter Name="MaterialCode" Mode="In" Type="String" />
+            <Parameter Name="Quantity" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="Pr_InsertUserCompData">
+            <Parameter Name="id" Mode="In" Type="Int64" />
+            <Parameter Name="CompName" Mode="In" Type="String" />
+            <Parameter Name="ObjectCode" Mode="In" Type="String" />
+            <Parameter Name="CFOCode" Mode="In" Type="String" />
+            <Parameter Name="CFOSolut" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Pr_InsertUserRecord">
+            <Parameter Name="MaterialCode" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SelectStockBalances" ReturnType="Collection(TestDataModel.SelectStockBalances_Result)" />
+          <FunctionImport Name="SelectStockBalances1" ReturnType="Collection(TestDataModel.SelectStockBalances1_Result)" />
+          <FunctionImport Name="SelectStockBalancesPlant" ReturnType="Collection(TestDataModel.SelectStockBalancesPlant_Result)" />
+          <FunctionImport Name="SelectStockBalancesPlant1" ReturnType="Collection(TestDataModel.SelectStockBalancesPlant1_Result)" />
+          <FunctionImport Name="ClearExcelData" />
+          <EntitySet Name="tWorkPlan" EntityType="TestDataModel.tWorkPlan" />
+          <EntitySet Name="tWorkPlanDates" EntityType="TestDataModel.tWorkPlanDates" />
+          <EntitySet Name="tWorkPlanElement" EntityType="TestDataModel.tWorkPlanElement" />
+          <EntitySet Name="tMappingTable" EntityType="TestDataModel.tMappingTable" />
+          <FunctionImport Name="pr_DeleteTestData">
+          <Parameter Name="ID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="pr_InsertTestData">
+            <Parameter Name="ID" Mode="In" Type="Int64" />
+            <Parameter Name="Code" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fn_select_RecipesList" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_RecipesList_Result)" />
+          <EntitySet Name="StockBalancesWithComments" EntityType="TestDataModel.StockBalancesWithComments" />
+          <FunctionImport Name="fn_select_StockBalancesWithComments" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_StockBalancesWithComments_Result)" />
+          <FunctionImport Name="Pr_UpdateMesArea">
+            <Parameter Name="ID" Mode="In" Type="Int64" />
+            <Parameter Name="fl" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="Pr_UpdateMesLocation">
+            <Parameter Name="ID" Mode="In" Type="Int64" />
+            <Parameter Name="fl" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="fn_select_LaterStorageNames" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_LaterStorageNames_Result)" />
+          <FunctionImport Name="fn_select_CurrentProductS" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_CurrentProductS_Result)">
+          <Parameter Name="ProductCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fn_select_ProductionByCode" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_ProductionByCode_Result)">
+            <Parameter Name="ProductCode" Mode="In" Type="String" />
+            <Parameter Name="dateStart" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Pr_InsertUserAppData1">
+            <Parameter Name="DateWork" Mode="In" Type="DateTime" />
+            <Parameter Name="AlterWork" Mode="In" Type="DateTime" />
+            <Parameter Name="MaterialCode" Mode="In" Type="String" />
+            <Parameter Name="Quantity" Mode="In" Type="Double" />
+          </FunctionImport>
+          <EntitySet Name="tBlockedProduct" EntityType="TestDataModel.tBlockedProduct" />
+          <EntitySet Name="tBlockedMaterial" EntityType="TestDataModel.tBlockedMaterial" />
+          <EntitySet Name="PlanOPZList" EntityType="TestDataModel.PlanOPZList" />
+          <FunctionImport Name="fn_select_RecipesBis" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_RecipesBis_Result)" />
+          <FunctionImport Name="pr_InsertTestData1">
+            <Parameter Name="ID" Mode="In" Type="Int64" />
+            <Parameter Name="Code" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Res" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="fn_select_BasicRecipes" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_BasicRecipes_Result)">
+          <Parameter Name="ProdCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fn_select_Recipes" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_Recipes_Result)" />
+          <EntitySet Name="tComponentException" EntityType="TestDataModel.tComponentException" />
+          <FunctionImport Name="fn_select_RecipesView" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_RecipesView_Result)" />
+          <FunctionImport Name="fn_select_CurrentProductView" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_CurrentProductView_Result)">
+          <Parameter Name="ProductCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fn_select_RecipesBisView" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_RecipesBisView_Result)" />
+          <EntitySet Name="tMercuryRecordSelected" EntityType="TestDataModel.tMercuryRecordSelected" />
+          <FunctionImport Name="Pr_DeleteMercuryRecord">
+          <Parameter Name="MaterialCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Pr_InsertMercuryRecord">
+            <Parameter Name="MaterialCode" Mode="In" Type="String" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="fn_select_ProductionByCodeAndPeriod" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_ProductionByCodeAndPeriod_Result)">
+            <Parameter Name="ProductCode" Mode="In" Type="String" />
+            <Parameter Name="dateStart" Mode="In" Type="DateTime" />
+            <Parameter Name="dateEnd" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="tConsurptionData" EntityType="TestDataModel.tConsurptionData" />
+          <FunctionImport Name="SelectStockBalancesMes" ReturnType="Collection(TestDataModel.SelectStockBalancesMes_Result)" />
+          <FunctionImport Name="SelectStockBalancesMes1" ReturnType="Collection(TestDataModel.SelectStockBalancesMes1_Result)" />
+          <EntitySet Name="MesAreas" EntityType="TestDataModel.MesAreas" />
+          <EntitySet Name="MesLocations" EntityType="TestDataModel.MesLocations" />
+          <FunctionImport Name="fn_select_LatinStorageNames" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_LatinStorageNames_Result)" />
+          <FunctionImport Name="Insert_WorkPlanTableRecord">
+            <Parameter Name="datework" Mode="In" Type="DateTime" />
+            <Parameter Name="LineName" Mode="In" Type="String" />
+            <Parameter Name="ProdCode" Mode="In" Type="String" />
+            <Parameter Name="quantity" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="Modify_WorkPlanTable" />
+          <FunctionImport Name="Update_WorkPlanTable" />
+          <FunctionImport Name="Insert_WorkPlanTableRecord1">
+            <Parameter Name="datework" Mode="In" Type="DateTime" />
+            <Parameter Name="LineName" Mode="In" Type="String" />
+            <Parameter Name="ProdCode" Mode="In" Type="String" />
+            <Parameter Name="Group" Mode="In" Type="String" />
+            <Parameter Name="quantity" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="fn_select_SpicesData" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_SpicesData_Result)" />
+          <FunctionImport Name="SelectStockBalancesPlant2" ReturnType="Collection(TestDataModel.SelectStockBalancesPlant2_Result)" />
+          <FunctionImport Name="pr_GetOPZ" ReturnType="Collection(TestDataModel.pr_GetOPZ_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Pr_DeleteAppRecord">
+          <Parameter Name="ID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="fn_select_CommentData" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_CommentData_Result)" />
+          <FunctionImport Name="fn_select_CommentDataID" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_CommentDataID_Result)">
+          <Parameter Name="Code" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pr_InsertCommentData1">
+            <Parameter Name="ID" Mode="In" Type="Int64" />
+            <Parameter Name="Code" Mode="In" Type="String" />
+            <Parameter Name="Naim" Mode="In" Type="String" />
+            <Parameter Name="Active" Mode="In" Type="Boolean" />
+            <Parameter Name="Comment" Mode="In" Type="String" />
+            <Parameter Name="userName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pr_GetMercuryComponent" ReturnType="Collection(TestDataModel.pr_GetMercuryComponent_Result)" />
+        </EntityContainer>
+        <ComplexType Name="fn_select_CurrentComponents_Result">
+          <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="Unit_of_Measure_Code" Nullable="true" MaxLength="10" />
+          <Property Type="Double" Name="Norma" Nullable="true" />
+          <Property Type="Double" Name="Total" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="fn_select_CurrentProduct_Result">
+          <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+          <Property Type="Double" Name="Total" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="fn_select_CurrentProduct1_Result">
+          <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+          <Property Type="Double" Name="Total" Nullable="true" />
+          <Property Type="String" Name="WorkCenter" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="fn_select_ExcelData_Result">
+          <Property Type="Int64" Name="ID" Nullable="true" />
+          <Property Type="String" Name="LineName" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="DateWork" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+          <Property Type="Double" Name="ProductQuantity" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="fn_select_ExcelData1_Result">
+          <Property Type="String" Name="OrderType" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="OrderTypeCode" Nullable="true" />
+          <Property Type="DateTime" Name="DateWork" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Workday" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="WorkShift" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="WorkLine" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+          <Property Type="Double" Name="ProductQuantity" Nullable="true" />
+          <Property Type="String" Name="ProdOrder" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="fn_select_ExcelDataByCodeAndDate_Result">
+          <Property Type="Int64" Name="ID" Nullable="true" />
+          <Property Type="String" Name="LineName" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="DateWork" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+          <Property Type="Double" Name="ProductQuantity" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="fn_select_PlannedMainData_Result">
+          <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="NavMaterialName" Nullable="true" />
+          <Property Type="String" Name="MesMaterialName" Nullable="true" />
+          <Property Type="String" Name="MaterialGroup" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ItemGroup" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SIGname" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BaseUnitMeasure" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ZZ" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SIGresp" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="Blocked" Nullable="true" />
+          <Property Type="Int32" Name="Multiplicity" Nullable="true" />
+          <Property Type="Int32" Name="MinTransferDays" Nullable="true" />
+          <Property Type="Int32" Name="SafetyStock" Nullable="true" />
+          <Property Type="String" Name="LASTPRODUCER" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="fn_select_RecipeByCode_Result">
+          <Property Type="String" Name="LineNumber" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="WorkDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProductName" Nullable="true" />
+          <Property Type="String" Name="UnitMeasure" Nullable="true" MaxLength="25" />
+          <Property Type="Double" Name="Quantity" Nullable="true" />
+          <Property Type="String" Name="IPG" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SelectStockBalances_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="String" Name="Storage" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MaterialCode" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MaterialName" Nullable="false" />
+          <Property Type="String" Name="MatGroup" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="LotName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="LotDescription" Nullable="false" />
+          <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="MaterialOwner" Nullable="false" />
+          <Property Type="String" Name="TestQuality" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="StorageType" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="TestQualityGr" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="TestOnStorage" Nullable="false" MaxLength="250" />
+          <Property Type="DateTime" Name="ProdDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="BBFDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="dpr" Nullable="false" />
+          <Property Type="Int32" Name="bbf" Nullable="false" />
+          <Property Type="Int32" Name="difdates" Nullable="false" />
+          <Property Type="Int32" Name="difcurdates" Nullable="false" />
+          <Property Type="String" Name="st" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="WorkDate" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SelectStockBalances1_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="String" Name="Storage" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MaterialCode" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MaterialName" Nullable="false" />
+          <Property Type="String" Name="MatGroup" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="LotName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="LotDescription" Nullable="false" />
+          <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="MaterialOwner" Nullable="false" />
+          <Property Type="String" Name="TestQuality" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="StorageType" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="TestQualityGr" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="TestOnStorage" Nullable="false" MaxLength="250" />
+          <Property Type="DateTime" Name="ProdDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="BBFDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="dpr" Nullable="false" />
+          <Property Type="Int32" Name="bbf" Nullable="false" />
+          <Property Type="Int32" Name="difdates" Nullable="false" />
+          <Property Type="Int32" Name="difcurdates" Nullable="false" />
+          <Property Type="String" Name="st" Nullable="false" MaxLength="10" />
+          <Property Type="DateTime" Name="WorkDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="DayPeriod" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SelectStockBalancesPlant_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="String" Name="MaterialCode" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MaterialName" Nullable="false" />
+          <Property Type="String" Name="MaterialLotName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="ProductionDate" Nullable="false" Precision="23" />
+          <Property Type="Double" Name="Quantity" Nullable="false" />
+          <Property Type="DateTime" Name="WorkDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="DayPeriod" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SelectStockBalancesPlant1_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="String" Name="MaterialCode" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MaterialName" Nullable="false" />
+          <Property Type="String" Name="MaterialLotName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="ProductionDate" Nullable="false" Precision="23" />
+          <Property Type="Double" Name="Quantity" Nullable="false" />
+          <Property Type="Int32" Name="WorkUnitID" Nullable="false" />
+          <Property Type="Int32" Name="WorkUnitType" Nullable="false" />
+          <Property Type="DateTime" Name="WorkDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="DayPeriod" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LineName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="AlterLineName" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="tWorkPlan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlanName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateWork" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tWorkPlanDates">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="owner" Type="Int64" Nullable="false" />
+          <Property Name="DateWork" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="tWorkPlanElement">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="owner" Type="Int64" Nullable="false" />
+          <Property Name="LineName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ProdCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsRePack" Type="Boolean" Nullable="false" />
+          <Property Name="ProdQuantity" Type="Double" Nullable="false" />
+          <Property Name="ProdName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tMappingTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LineName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ResultName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="fn_select_RecipesList_Result">
+          <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="LineNumber" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="WorkDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <EntityType Name="StockBalancesWithComments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Storage" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MaterialCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MaterialName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MatGroup" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LotName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LotDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
+          <Property Name="MaterialOwner" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TestQuality" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StorageType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TestQualityGr" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TestOnStorage" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ProdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BBFDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dpr" Type="Int32" Nullable="false" />
+          <Property Name="bbf" Type="Int32" Nullable="false" />
+          <Property Name="difdates" Type="Int32" Nullable="false" />
+          <Property Name="difcurdates" Type="Int32" Nullable="false" />
+          <Property Name="st" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="WorkDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DayPeriod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MatCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LotNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="fn_select_StockBalancesWithComments_Result">
+          <Property Type="String" Name="Storage" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MaterialName" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="MatGroup" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="LotName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="LotDescription" Nullable="true" MaxLength="1000" />
+          <Property Type="Double" Name="Quantity" Nullable="true" />
+          <Property Type="String" Name="MaterialOwner" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TestQuality" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="StorageType" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TestQualityGr" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TestOnStorage" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="ProdDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="BBFDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="dpr" Nullable="true" />
+          <Property Type="Int32" Name="bbf" Nullable="true" />
+          <Property Type="Int32" Name="difdates" Nullable="true" />
+          <Property Type="Int32" Name="difcurdates" Nullable="true" />
+          <Property Type="String" Name="st" Nullable="true" MaxLength="10" />
+          <Property Type="DateTime" Name="WorkDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="DayPeriod" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MatCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="LotNo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Comment" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="fn_select_LaterStorageNames_Result">
+          <Property Type="String" Name="NewStorageName" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="OldStorageName" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="fn_select_CurrentProductS_Result">
+          <Property Type="String" Name="Prod_No" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Prod_Description" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Bom_No" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="WorkCenter" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="Starting_Date" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Comp_No" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Comp_Description" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Unit_of_Measure_Code" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="12" Scale="6" />
+          <Property Type="Decimal" Name="Quantity_per" Nullable="true" Precision="12" Scale="6" />
+          <Property Type="Decimal" Name="Max__Quantity" Nullable="true" Precision="12" Scale="6" />
+          <Property Type="String" Name="Inventory_Posting_Group" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="fn_select_ProductionByCode_Result">
+          <Property Type="DateTime" Name="StartDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MaterialName" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="SystemName" Nullable="true" MaxLength="100" />
+          <Property Type="Double" Name="Quantity" Nullable="true" />
+          <Property Type="String" Name="LotForErp" Nullable="true" MaxLength="100" />
+          <Property Type="Double" Name="RawQuant" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="tBlockedProduct">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="ProductCode" />
+            <PropertyRef Name="ProductName" />
+            <PropertyRef Name="Using" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Using" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tBlockedMaterial">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="ProductCode" />
+            <PropertyRef Name="ProductName" />
+            <PropertyRef Name="Using" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Using" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PlanOPZList">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="MatCode" />
+            <PropertyRef Name="MatName" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MatCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MatName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsBase" Type="Boolean" />
+        </EntityType>
+        <ComplexType Name="fn_select_RecipesBis_Result">
+          <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="LineNumber" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="WorkDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MaterialName" Nullable="true" />
+          <Property Type="String" Name="UnitMeasure" Nullable="true" MaxLength="25" />
+          <Property Type="Double" Name="Quantity" Nullable="true" />
+          <Property Type="String" Name="IPG" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="fn_select_BasicRecipes_Result">
+          <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="LineName" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="StartingDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MaterialName" Nullable="true" />
+          <Property Type="String" Name="UnitMeasure" Nullable="true" MaxLength="25" />
+          <Property Type="Double" Name="Quantity" Nullable="true" />
+          <Property Type="String" Name="IPG" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="fn_select_Recipes_Result">
+          <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AlterproductCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="LineNumber" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="WorkDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MaterialName" Nullable="true" />
+          <Property Type="String" Name="UnitMeasure" Nullable="true" MaxLength="25" />
+          <Property Type="Double" Name="Quantity" Nullable="true" />
+          <Property Type="String" Name="IPG" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="tComponentException">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <ComplexType Name="fn_select_RecipesView_Result">
+          <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="AlterproductCode" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="LineNumber" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="WorkDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MaterialName" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="UnitMeasure" Nullable="true" MaxLength="25" />
+          <Property Type="Double" Name="Quantity" Nullable="true" />
+          <Property Type="String" Name="IPG" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="fn_select_CurrentProductView_Result">
+          <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="AlterProductCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="LineNumber" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="WorkDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MaterialName" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="UnitMeasure" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="Quantity" Nullable="true" />
+          <Property Type="String" Name="IPG" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="fn_select_RecipesBisView_Result">
+          <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="AlterproductCode" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="LineNumber" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="WorkDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MaterialName" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="UnitMeasure" Nullable="true" MaxLength="25" />
+          <Property Type="Double" Name="Quantity" Nullable="true" />
+          <Property Type="String" Name="IPG" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="tMercuryRecordSelected">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaterialCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateWork" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="fn_select_ProductionByCodeAndPeriod_Result">
+          <Property Type="DateTime" Name="StartDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MaterialName" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="SystemName" Nullable="true" MaxLength="100" />
+          <Property Type="Double" Name="Quantity" Nullable="true" />
+          <Property Type="String" Name="LotForErp" Nullable="true" MaxLength="100" />
+          <Property Type="Double" Name="RawQuant" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="tConsurptionData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Double" Nullable="false" />
+          <Property Name="MaterialCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="WorkDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <ComplexType Name="SelectStockBalancesMes_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="String" Name="Storage" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MaterialCode" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MaterialName" Nullable="false" />
+          <Property Type="String" Name="MaterialLot" Nullable="false" MaxLength="100" />
+          <Property Type="Double" Name="Quantity" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="WorkDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="DayPeriod" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="ProdDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="BBFDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="TestQuality" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SelectStockBalancesMes1_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="String" Name="Storage" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MaterialCode" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MaterialName" Nullable="false" />
+          <Property Type="String" Name="MaterialLot" Nullable="false" MaxLength="100" />
+          <Property Type="Double" Name="Quantity" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="WorkDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="DayPeriod" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="ProdDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="BBFDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="TestQuality" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="MesAreas">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="AreaName" />
+            <PropertyRef Name="IsApproved" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AreaName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MesLocations">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="AreaID" />
+            <PropertyRef Name="LocationName" />
+            <PropertyRef Name="IsApproved" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AreaID" Type="Int32" Nullable="false" />
+          <Property Name="LocationName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+          <Property Name="MesLocationID" Type="Int32" />
+          <Property Name="MesLocationName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="LocationType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MesLocCyrName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="fn_select_LatinStorageNames_Result">
+          <Property Type="String" Name="LatStorageName" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="CyrStorageName" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="fn_select_SpicesData_Result">
+          <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="SelectStockBalancesPlant2_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="String" Name="MaterialCode" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="MaterialName" Nullable="false" />
+          <Property Type="String" Name="MaterialLotName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="ValidFrom" Nullable="false" Precision="23" />
+          <Property Type="Double" Name="Quantity" Nullable="false" />
+          <Property Type="Int32" Name="WorkUnitID" Nullable="false" />
+          <Property Type="Int32" Name="WorkUnitType" Nullable="false" />
+          <Property Type="DateTime" Name="WorkDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="DayPeriod" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LineName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="AlterLineName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="AlterLotName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="ValidTo" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="MaterialGroupID" Nullable="false" />
+          <Property Type="Int32" Name="MaterialTypeID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="pr_GetOPZ_Result">
+          <Property Type="String" Name="MaterialCode" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="150" />
+          <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="38" Scale="20" />
+        </ComplexType>
+        <ComplexType Name="fn_select_CommentData_Result">
+          <Property Type="Int64" Name="ID" Nullable="true" />
+          <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MaterialName" Nullable="true" MaxLength="2500" />
+          <Property Type="DateTime" Name="DateRecord" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IsActual" Nullable="true" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Comment" Nullable="true" MaxLength="256" />
+        </ComplexType>
+        <ComplexType Name="fn_select_CommentDataID_Result">
+          <Property Type="Int64" Name="IDC" Nullable="true" />
+          <Property Type="String" Name="MaterialCodeC" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="MaterialNameC" Nullable="true" MaxLength="2500" />
+          <Property Type="DateTime" Name="DateRecordC" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IsActualC" Nullable="true" />
+          <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CommentC" Nullable="true" MaxLength="256" />
+        </ComplexType>
+        <ComplexType Name="pr_GetMercuryComponent_Result">
+          <Property Type="String" Name="RPItemNo" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="RPName" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="RPLotNo" Nullable="false" MaxLength="20" />
+          <Property Type="Decimal" Name="RPQuantity" Nullable="true" Precision="38" Scale="20" />
+          <Property Type="String" Name="MaterialID" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="MaterialLotID" Nullable="false" MaxLength="20" />
+          <Property Type="Decimal" Name="PZ_Qty" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="String" Name="MaterialName" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="BUM" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="InventoryPostingGroup" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="MaterialItemNo" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="MaterialLotNo" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="MaterialLotDescription" Nullable="false" MaxLength="150" />
+          <Property Type="DateTime" Name="FreshDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="EndDate" Nullable="false" Precision="23" />
+          <Property Type="Binary" Name="timestamp" Nullable="false" MaxLength="8" />
+          <Property Type="Int32" Name="Type" Nullable="false" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="SubCode" Nullable="false" MaxLength="20" />
+          <Property Type="Guid" Name="Guid" Nullable="false" />
+          <Property Type="Guid" Name="Uuid" Nullable="false" />
+          <Property Type="Guid" Name="Extra_Guid" Nullable="false" />
+          <Property Type="Guid" Name="Extra_Uuid" Nullable="false" />
+          <Property Type="Int32" Name="Extra_Type" Nullable="false" />
+          <Property Type="Int32" Name="Mercury_Type" Nullable="false" />
+          <Property Type="String" Name="Message_Text" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="Request_No_" Nullable="false" />
+          <Property Type="Int32" Name="Request_Status" Nullable="false" />
+          <Property Type="String" Name="VersionStatus" Nullable="false" MaxLength="10" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TestDataModelStoreContainer" CdmEntityContainer="TestDataEntities">
+          <EntitySetMapping Name="NavPurchaseTable">
+            <EntityTypeMapping TypeName="TestDataModel.NavPurchaseTable">
+              <MappingFragment StoreEntitySet="NavPurchaseTable">
+                <ScalarProperty Name="DT" ColumnName="DT" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+                <ScalarProperty Name="Executor" ColumnName="Executor" />
+                <ScalarProperty Name="OrderType" ColumnName="OrderType" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="NextStatus" ColumnName="NextStatus" />
+                <ScalarProperty Name="NessDateOrder" ColumnName="NessDateOrder" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="OrderNymber" ColumnName="OrderNymber" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="Comment1" ColumnName="Comment1" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="FromBalanses" ColumnName="FromBalanses" />
+                <ScalarProperty Name="EdIzm" ColumnName="EdIzm" />
+                <ScalarProperty Name="CFO" ColumnName="CFO" />
+                <ScalarProperty Name="Initiator" ColumnName="Initiator" />
+                <ScalarProperty Name="NumberRowMZZ" ColumnName="NumberRowMZZ" />
+                <ScalarProperty Name="MZP" ColumnName="MZP" />
+                <ScalarProperty Name="StatusMZP" ColumnName="StatusMZP" />
+                <ScalarProperty Name="NumberRowMZP" ColumnName="NumberRowMZP" />
+                <ScalarProperty Name="ContrAgent" ColumnName="ContrAgent" />
+                <ScalarProperty Name="MZPCode" ColumnName="MZPCode" />
+                <ScalarProperty Name="MZPNaim" ColumnName="MZPNaim" />
+                <ScalarProperty Name="MZPQuantity" ColumnName="MZPQuantity" />
+                <ScalarProperty Name="MZPEdIzm" ColumnName="MZPEdIzm" />
+                <ScalarProperty Name="PlanDate" ColumnName="PlanDate" />
+                <ScalarProperty Name="PlanOperDate" ColumnName="PlanOperDate" />
+                <ScalarProperty Name="ENSGroupCode" ColumnName="ENSGroupCode" />
+                <ScalarProperty Name="ENSGroup" ColumnName="ENSGroup" />
+                <ScalarProperty Name="PlanQuantity" ColumnName="PlanQuantity" />
+                <ScalarProperty Name="FactQuantity" ColumnName="FactQuantity" />
+                <ScalarProperty Name="ContrAgentCode" ColumnName="ContrAgentCode" />
+                <ScalarProperty Name="DayToSend" ColumnName="DayToSend" />
+                <ScalarProperty Name="CurrPrice" ColumnName="CurrPrice" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="DateCreateMZP" ColumnName="DateCreateMZP" />
+                <ScalarProperty Name="CFOCode" ColumnName="CFOCode" />
+                <ScalarProperty Name="CurrStatusCode" ColumnName="CurrStatusCode" />
+                <ScalarProperty Name="CurrStatus" ColumnName="CurrStatus" />
+                <ScalarProperty Name="NextStatusCode" ColumnName="NextStatusCode" />
+                <ScalarProperty Name="LastStatusDate" ColumnName="LastStatusDate" />
+                <ScalarProperty Name="LastStatusTime" ColumnName="LastStatusTime" />
+                <ScalarProperty Name="DateCreateZZ" ColumnName="DateCreateZZ" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="QuantityKey" ColumnName="QuantityKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemTable">
+            <EntityTypeMapping TypeName="TestDataModel.SystemTable">
+              <MappingFragment StoreEntitySet="SystemTable">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="CompName" ColumnName="CompName" />
+                <ScalarProperty Name="ObjectCode" ColumnName="ObjectCode" />
+                <ScalarProperty Name="CFOCode" ColumnName="CFOCode" />
+                <ScalarProperty Name="CFOSolut" ColumnName="CFOSolut" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tApplication">
+            <EntityTypeMapping TypeName="TestDataModel.tApplication">
+              <MappingFragment StoreEntitySet="tApplication">
+                <ScalarProperty Name="AlterDate" ColumnName="AlterDate" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tColorSelection">
+            <EntityTypeMapping TypeName="TestDataModel.tColorSelection">
+              <MappingFragment StoreEntitySet="tColorSelection">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="SelectedColor" ColumnName="SelectedColor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tExcelData">
+            <EntityTypeMapping TypeName="TestDataModel.tExcelData">
+              <MappingFragment StoreEntitySet="tExcelData">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="LineName" ColumnName="LineName" />
+                <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tPlannedMeatContainers">
+            <EntityTypeMapping TypeName="TestDataModel.tPlannedMeatContainers">
+              <MappingFragment StoreEntitySet="tPlannedMeatContainers">
+                <ScalarProperty Name="DT" ColumnName="DT" />
+                <ScalarProperty Name="AlterDate" ColumnName="AlterDate" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="MaterialPostingGroup" ColumnName="MaterialPostingGroup" />
+                <ScalarProperty Name="LocationCode" ColumnName="LocationCode" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="LotNo" ColumnName="LotNo" />
+                <ScalarProperty Name="LotDescription" ColumnName="LotDescription" />
+                <ScalarProperty Name="ContainerNo" ColumnName="ContainerNo" />
+                <ScalarProperty Name="ExpWeek" ColumnName="ExpWeek" />
+                <ScalarProperty Name="ExpDT" ColumnName="ExpDT" />
+                <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tUserRecordSelected">
+            <EntityTypeMapping TypeName="TestDataModel.tUserRecordSelected">
+              <MappingFragment StoreEntitySet="tUserRecordSelected">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="fn_select_CurrentComponents" FunctionName="TestDataModel.Store.fn_select_CurrentComponents">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_CurrentComponents_Result">
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Unit_of_Measure_Code" ColumnName="Unit of Measure Code" />
+                <ScalarProperty Name="Norma" ColumnName="Norma" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fn_select_CurrentProduct" FunctionName="TestDataModel.Store.fn_select_CurrentProduct">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_CurrentProduct_Result">
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fn_select_CurrentProduct1" FunctionName="TestDataModel.Store.fn_select_CurrentProduct1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_CurrentProduct1_Result">
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="WorkCenter" ColumnName="WorkCenter" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fn_select_ExcelData" FunctionName="TestDataModel.Store.fn_select_ExcelData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_ExcelData_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LineName" ColumnName="LineName" />
+                <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fn_select_ExcelData1" FunctionName="TestDataModel.Store.fn_select_ExcelData1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_ExcelData1_Result">
+                <ScalarProperty Name="OrderType" ColumnName="OrderType" />
+                <ScalarProperty Name="OrderTypeCode" ColumnName="OrderTypeCode" />
+                <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+                <ScalarProperty Name="Workday" ColumnName="Workday" />
+                <ScalarProperty Name="WorkShift" ColumnName="WorkShift" />
+                <ScalarProperty Name="WorkLine" ColumnName="WorkLine" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+                <ScalarProperty Name="ProdOrder" ColumnName="ProdOrder" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fn_select_ExcelDataByCodeAndDate" FunctionName="TestDataModel.Store.fn_select_ExcelDataByCodeAndDate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_ExcelDataByCodeAndDate_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LineName" ColumnName="LineName" />
+                <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fn_select_PlannedMainData" FunctionName="TestDataModel.Store.fn_select_PlannedMainData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_PlannedMainData_Result">
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="NavMaterialName" ColumnName="NavMaterialName" />
+                <ScalarProperty Name="MesMaterialName" ColumnName="MesMaterialName" />
+                <ScalarProperty Name="MaterialGroup" ColumnName="MaterialGroup" />
+                <ScalarProperty Name="ItemGroup" ColumnName="ItemGroup" />
+                <ScalarProperty Name="SIGname" ColumnName="SIGname" />
+                <ScalarProperty Name="BaseUnitMeasure" ColumnName="BaseUnitMeasure" />
+                <ScalarProperty Name="ZZ" ColumnName="ZZ" />
+                <ScalarProperty Name="SIGresp" ColumnName="SIGresp" />
+                <ScalarProperty Name="Blocked" ColumnName="Blocked" />
+                <ScalarProperty Name="Multiplicity" ColumnName="Multiplicity" />
+                <ScalarProperty Name="MinTransferDays" ColumnName="MinTransferDays" />
+                <ScalarProperty Name="SafetyStock" ColumnName="SafetyStock" />
+                <ScalarProperty Name="LASTPRODUCER" ColumnName="LASTPRODUCER" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fn_select_RecipeByCode" FunctionName="TestDataModel.Store.fn_select_RecipeByCode">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_RecipeByCode_Result">
+                <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+                <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="UnitMeasure" ColumnName="UnitMeasure" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="IPG" ColumnName="IPG" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InsertExcelData" FunctionName="TestDataModel.Store.InsertExcelData" />
+          <FunctionImportMapping FunctionImportName="InsertPlannedMeatContainers" FunctionName="TestDataModel.Store.InsertPlannedMeatContainers" />
+          <FunctionImportMapping FunctionImportName="InsertPurchaseNavTask" FunctionName="TestDataModel.Store.InsertPurchaseNavTask" />
+          <FunctionImportMapping FunctionImportName="InsertStockBalanse" FunctionName="TestDataModel.Store.InsertStockBalanse" />
+          <FunctionImportMapping FunctionImportName="InsertStockBalanse1" FunctionName="TestDataModel.Store.InsertStockBalanse1" />
+          <FunctionImportMapping FunctionImportName="InsertStockBalanseMes" FunctionName="TestDataModel.Store.InsertStockBalanseMes" />
+          <FunctionImportMapping FunctionImportName="InsertStockBalanseMesTask" FunctionName="TestDataModel.Store.InsertStockBalanseMesTask" />
+          <FunctionImportMapping FunctionImportName="InsertStockBalansePlant" FunctionName="TestDataModel.Store.InsertStockBalansePlant" />
+          <FunctionImportMapping FunctionImportName="InsertStockBalansePlantBis" FunctionName="TestDataModel.Store.InsertStockBalansePlantBis" />
+          <FunctionImportMapping FunctionImportName="InsertStockBalansePlantTask" FunctionName="TestDataModel.Store.InsertStockBalansePlantTask" />
+          <FunctionImportMapping FunctionImportName="InsertStockBalanseTask" FunctionName="TestDataModel.Store.InsertStockBalanseTask" />
+          <FunctionImportMapping FunctionImportName="Pr_DeleteUserRecord" FunctionName="TestDataModel.Store.Pr_DeleteUserRecord" />
+          <FunctionImportMapping FunctionImportName="Pr_InsertUserAppData" FunctionName="TestDataModel.Store.Pr_InsertUserAppData" />
+          <FunctionImportMapping FunctionImportName="Pr_InsertUserCompData" FunctionName="TestDataModel.Store.Pr_InsertUserCompData" />
+          <FunctionImportMapping FunctionImportName="Pr_InsertUserRecord" FunctionName="TestDataModel.Store.Pr_InsertUserRecord" />
+          <FunctionImportMapping FunctionImportName="SelectStockBalances" FunctionName="TestDataModel.Store.SelectStockBalances">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.SelectStockBalances_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Storage" ColumnName="Storage" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="MatGroup" ColumnName="MatGroup" />
+                <ScalarProperty Name="LotName" ColumnName="LotName" />
+                <ScalarProperty Name="LotDescription" ColumnName="LotDescription" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MaterialOwner" ColumnName="MaterialOwner" />
+                <ScalarProperty Name="TestQuality" ColumnName="TestQuality" />
+                <ScalarProperty Name="StorageType" ColumnName="StorageType" />
+                <ScalarProperty Name="TestQualityGr" ColumnName="TestQualityGr" />
+                <ScalarProperty Name="TestOnStorage" ColumnName="TestOnStorage" />
+                <ScalarProperty Name="ProdDate" ColumnName="ProdDate" />
+                <ScalarProperty Name="BBFDate" ColumnName="BBFDate" />
+                <ScalarProperty Name="dpr" ColumnName="dpr" />
+                <ScalarProperty Name="bbf" ColumnName="bbf" />
+                <ScalarProperty Name="difdates" ColumnName="difdates" />
+                <ScalarProperty Name="difcurdates" ColumnName="difcurdates" />
+                <ScalarProperty Name="st" ColumnName="st" />
+                <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectStockBalances1" FunctionName="TestDataModel.Store.SelectStockBalances1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.SelectStockBalances1_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Storage" ColumnName="Storage" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="MatGroup" ColumnName="MatGroup" />
+                <ScalarProperty Name="LotName" ColumnName="LotName" />
+                <ScalarProperty Name="LotDescription" ColumnName="LotDescription" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MaterialOwner" ColumnName="MaterialOwner" />
+                <ScalarProperty Name="TestQuality" ColumnName="TestQuality" />
+                <ScalarProperty Name="StorageType" ColumnName="StorageType" />
+                <ScalarProperty Name="TestQualityGr" ColumnName="TestQualityGr" />
+                <ScalarProperty Name="TestOnStorage" ColumnName="TestOnStorage" />
+                <ScalarProperty Name="ProdDate" ColumnName="ProdDate" />
+                <ScalarProperty Name="BBFDate" ColumnName="BBFDate" />
+                <ScalarProperty Name="dpr" ColumnName="dpr" />
+                <ScalarProperty Name="bbf" ColumnName="bbf" />
+                <ScalarProperty Name="difdates" ColumnName="difdates" />
+                <ScalarProperty Name="difcurdates" ColumnName="difcurdates" />
+                <ScalarProperty Name="st" ColumnName="st" />
+                <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+                <ScalarProperty Name="DayPeriod" ColumnName="DayPeriod" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectStockBalancesPlant" FunctionName="TestDataModel.Store.SelectStockBalancesPlant">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.SelectStockBalancesPlant_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="MaterialLotName" ColumnName="MaterialLotName" />
+                <ScalarProperty Name="ProductionDate" ColumnName="ProductionDate" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+                <ScalarProperty Name="DayPeriod" ColumnName="DayPeriod" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectStockBalancesPlant1" FunctionName="TestDataModel.Store.SelectStockBalancesPlant1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.SelectStockBalancesPlant1_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="MaterialLotName" ColumnName="MaterialLotName" />
+                <ScalarProperty Name="ProductionDate" ColumnName="ProductionDate" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="WorkUnitID" ColumnName="WorkUnitID" />
+                <ScalarProperty Name="WorkUnitType" ColumnName="WorkUnitType" />
+                <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+                <ScalarProperty Name="DayPeriod" ColumnName="DayPeriod" />
+                <ScalarProperty Name="LineName" ColumnName="LineName" />
+                <ScalarProperty Name="AlterLineName" ColumnName="AlterLineName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ClearExcelData" FunctionName="TestDataModel.Store.ClearExcelData" />
+          <EntitySetMapping Name="tWorkPlan">
+            <EntityTypeMapping TypeName="TestDataModel.tWorkPlan">
+              <MappingFragment StoreEntitySet="tWorkPlan">
+                <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PlanName" ColumnName="PlanName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tWorkPlanDates">
+            <EntityTypeMapping TypeName="TestDataModel.tWorkPlanDates">
+              <MappingFragment StoreEntitySet="tWorkPlanDates">
+                <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+                <ScalarProperty Name="owner" ColumnName="owner" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tWorkPlanElement">
+            <EntityTypeMapping TypeName="TestDataModel.tWorkPlanElement">
+              <MappingFragment StoreEntitySet="tWorkPlanElement">
+                <ScalarProperty Name="ProdName" ColumnName="ProdName" />
+                <ScalarProperty Name="ProdQuantity" ColumnName="ProdQuantity" />
+                <ScalarProperty Name="IsRePack" ColumnName="IsRePack" />
+                <ScalarProperty Name="ProdCode" ColumnName="ProdCode" />
+                <ScalarProperty Name="LineName" ColumnName="LineName" />
+                <ScalarProperty Name="owner" ColumnName="owner" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tMappingTable">
+            <EntityTypeMapping TypeName="TestDataModel.tMappingTable">
+              <MappingFragment StoreEntitySet="tMappingTable">
+                <ScalarProperty Name="ResultName" ColumnName="ResultName" />
+                <ScalarProperty Name="LineName" ColumnName="LineName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="pr_DeleteTestData" FunctionName="TestDataModel.Store.pr_DeleteTestData" />
+          <FunctionImportMapping FunctionImportName="pr_InsertTestData" FunctionName="TestDataModel.Store.pr_InsertTestData" />
+          <FunctionImportMapping FunctionImportName="fn_select_RecipesList" FunctionName="TestDataModel.Store.fn_select_RecipesList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_RecipesList_Result">
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+                <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="StockBalancesWithComments">
+            <EntityTypeMapping TypeName="TestDataModel.StockBalancesWithComments">
+              <MappingFragment StoreEntitySet="StockBalancesWithComments">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="LotNo" ColumnName="LotNo" />
+                <ScalarProperty Name="MatCode" ColumnName="MatCode" />
+                <ScalarProperty Name="DayPeriod" ColumnName="DayPeriod" />
+                <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+                <ScalarProperty Name="st" ColumnName="st" />
+                <ScalarProperty Name="difcurdates" ColumnName="difcurdates" />
+                <ScalarProperty Name="difdates" ColumnName="difdates" />
+                <ScalarProperty Name="bbf" ColumnName="bbf" />
+                <ScalarProperty Name="dpr" ColumnName="dpr" />
+                <ScalarProperty Name="BBFDate" ColumnName="BBFDate" />
+                <ScalarProperty Name="ProdDate" ColumnName="ProdDate" />
+                <ScalarProperty Name="TestOnStorage" ColumnName="TestOnStorage" />
+                <ScalarProperty Name="TestQualityGr" ColumnName="TestQualityGr" />
+                <ScalarProperty Name="StorageType" ColumnName="StorageType" />
+                <ScalarProperty Name="TestQuality" ColumnName="TestQuality" />
+                <ScalarProperty Name="MaterialOwner" ColumnName="MaterialOwner" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="LotDescription" ColumnName="LotDescription" />
+                <ScalarProperty Name="LotName" ColumnName="LotName" />
+                <ScalarProperty Name="MatGroup" ColumnName="MatGroup" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="Storage" ColumnName="Storage" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="fn_select_StockBalancesWithComments" FunctionName="TestDataModel.Store.fn_select_StockBalancesWithComments">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_StockBalancesWithComments_Result">
+                <ScalarProperty Name="Storage" ColumnName="Storage" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="MatGroup" ColumnName="MatGroup" />
+                <ScalarProperty Name="LotName" ColumnName="LotName" />
+                <ScalarProperty Name="LotDescription" ColumnName="LotDescription" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="MaterialOwner" ColumnName="MaterialOwner" />
+                <ScalarProperty Name="TestQuality" ColumnName="TestQuality" />
+                <ScalarProperty Name="StorageType" ColumnName="StorageType" />
+                <ScalarProperty Name="TestQualityGr" ColumnName="TestQualityGr" />
+                <ScalarProperty Name="TestOnStorage" ColumnName="TestOnStorage" />
+                <ScalarProperty Name="ProdDate" ColumnName="ProdDate" />
+                <ScalarProperty Name="BBFDate" ColumnName="BBFDate" />
+                <ScalarProperty Name="dpr" ColumnName="dpr" />
+                <ScalarProperty Name="bbf" ColumnName="bbf" />
+                <ScalarProperty Name="difdates" ColumnName="difdates" />
+                <ScalarProperty Name="difcurdates" ColumnName="difcurdates" />
+                <ScalarProperty Name="st" ColumnName="st" />
+                <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+                <ScalarProperty Name="DayPeriod" ColumnName="DayPeriod" />
+                <ScalarProperty Name="MatCode" ColumnName="MatCode" />
+                <ScalarProperty Name="LotNo" ColumnName="LotNo" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Pr_UpdateMesArea" FunctionName="TestDataModel.Store.Pr_UpdateMesArea" />
+          <FunctionImportMapping FunctionImportName="Pr_UpdateMesLocation" FunctionName="TestDataModel.Store.Pr_UpdateMesLocation" />
+          <FunctionImportMapping FunctionImportName="fn_select_LaterStorageNames" FunctionName="TestDataModel.Store.fn_select_LaterStorageNames">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_LaterStorageNames_Result">
+                <ScalarProperty Name="NewStorageName" ColumnName="NewStorageName" />
+                <ScalarProperty Name="OldStorageName" ColumnName="OldStorageName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fn_select_CurrentProductS" FunctionName="TestDataModel.Store.fn_select_CurrentProductS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_CurrentProductS_Result">
+                <ScalarProperty Name="Prod_No" ColumnName="Prod_No" />
+                <ScalarProperty Name="Prod_Description" ColumnName="Prod_Description" />
+                <ScalarProperty Name="Bom_No" ColumnName="Bom_No" />
+                <ScalarProperty Name="WorkCenter" ColumnName="WorkCenter" />
+                <ScalarProperty Name="Starting_Date" ColumnName="Starting Date" />
+                <ScalarProperty Name="Comp_No" ColumnName="Comp_No" />
+                <ScalarProperty Name="Comp_Description" ColumnName="Comp_Description" />
+                <ScalarProperty Name="Unit_of_Measure_Code" ColumnName="Unit of Measure Code" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Quantity_per" ColumnName="Quantity per" />
+                <ScalarProperty Name="Max__Quantity" ColumnName="Max_ Quantity" />
+                <ScalarProperty Name="Inventory_Posting_Group" ColumnName="Inventory Posting Group" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fn_select_ProductionByCode" FunctionName="TestDataModel.Store.fn_select_ProductionByCode">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_ProductionByCode_Result">
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="SystemName" ColumnName="SystemName" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="LotForErp" ColumnName="LotForErp" />
+                <ScalarProperty Name="RawQuant" ColumnName="RawQuant" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Pr_InsertUserAppData1" FunctionName="TestDataModel.Store.Pr_InsertUserAppData1" />
+          <EntitySetMapping Name="tBlockedProduct">
+            <EntityTypeMapping TypeName="TestDataModel.tBlockedProduct">
+              <MappingFragment StoreEntitySet="tBlockedProduct">
+                <ScalarProperty Name="Using" ColumnName="Using" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tBlockedMaterial">
+            <EntityTypeMapping TypeName="TestDataModel.tBlockedMaterial">
+              <MappingFragment StoreEntitySet="tBlockedMaterial">
+                <ScalarProperty Name="Using" ColumnName="Using" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlanOPZList">
+            <EntityTypeMapping TypeName="TestDataModel.PlanOPZList">
+              <MappingFragment StoreEntitySet="PlanOPZList">
+                <ScalarProperty Name="IsBase" ColumnName="IsBase" />
+                <ScalarProperty Name="MatName" ColumnName="MatName" />
+                <ScalarProperty Name="MatCode" ColumnName="MatCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="fn_select_RecipesBis" FunctionName="TestDataModel.Store.fn_select_RecipesBis">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_RecipesBis_Result">
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+                <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="UnitMeasure" ColumnName="UnitMeasure" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="IPG" ColumnName="IPG" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pr_InsertTestData1" FunctionName="TestDataModel.Store.pr_InsertTestData1" />
+          <FunctionImportMapping FunctionImportName="fn_select_BasicRecipes" FunctionName="TestDataModel.Store.fn_select_BasicRecipes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_BasicRecipes_Result">
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="LineName" ColumnName="LineName" />
+                <ScalarProperty Name="StartingDate" ColumnName="StartingDate" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="UnitMeasure" ColumnName="UnitMeasure" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="IPG" ColumnName="IPG" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fn_select_Recipes" FunctionName="TestDataModel.Store.fn_select_Recipes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_Recipes_Result">
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="AlterproductCode" ColumnName="AlterproductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+                <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="UnitMeasure" ColumnName="UnitMeasure" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="IPG" ColumnName="IPG" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tComponentException">
+            <EntityTypeMapping TypeName="TestDataModel.tComponentException">
+              <MappingFragment StoreEntitySet="tComponentException">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="fn_select_RecipesView" FunctionName="TestDataModel.Store.fn_select_RecipesView">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_RecipesView_Result">
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="AlterproductCode" ColumnName="AlterproductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+                <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="UnitMeasure" ColumnName="UnitMeasure" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="IPG" ColumnName="IPG" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fn_select_CurrentProductView" FunctionName="TestDataModel.Store.fn_select_CurrentProductView">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_CurrentProductView_Result">
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="AlterProductCode" ColumnName="AlterProductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+                <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="UnitMeasure" ColumnName="UnitMeasure" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="IPG" ColumnName="IPG" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fn_select_RecipesBisView" FunctionName="TestDataModel.Store.fn_select_RecipesBisView">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_RecipesBisView_Result">
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="AlterproductCode" ColumnName="AlterproductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+                <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="UnitMeasure" ColumnName="UnitMeasure" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="IPG" ColumnName="IPG" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tMercuryRecordSelected">
+            <EntityTypeMapping TypeName="TestDataModel.tMercuryRecordSelected">
+              <MappingFragment StoreEntitySet="tMercuryRecordSelected">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DateWork" ColumnName="DateWork" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Pr_DeleteMercuryRecord" FunctionName="TestDataModel.Store.Pr_DeleteMercuryRecord" />
+          <FunctionImportMapping FunctionImportName="Pr_InsertMercuryRecord" FunctionName="TestDataModel.Store.Pr_InsertMercuryRecord" />
+          <FunctionImportMapping FunctionImportName="fn_select_ProductionByCodeAndPeriod" FunctionName="TestDataModel.Store.fn_select_ProductionByCodeAndPeriod">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_ProductionByCodeAndPeriod_Result">
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="SystemName" ColumnName="SystemName" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="LotForErp" ColumnName="LotForErp" />
+                <ScalarProperty Name="RawQuant" ColumnName="RawQuant" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tConsurptionData">
+            <EntityTypeMapping TypeName="TestDataModel.tConsurptionData">
+              <MappingFragment StoreEntitySet="tConsurptionData">
+                <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="JobName" ColumnName="JobName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SelectStockBalancesMes" FunctionName="TestDataModel.Store.SelectStockBalancesMes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.SelectStockBalancesMes_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Storage" ColumnName="Storage" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="MaterialLot" ColumnName="MaterialLot" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+                <ScalarProperty Name="DayPeriod" ColumnName="DayPeriod" />
+                <ScalarProperty Name="ProdDate" ColumnName="ProdDate" />
+                <ScalarProperty Name="BBFDate" ColumnName="BBFDate" />
+                <ScalarProperty Name="TestQuality" ColumnName="TestQuality" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectStockBalancesMes1" FunctionName="TestDataModel.Store.SelectStockBalancesMes1">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.SelectStockBalancesMes1_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Storage" ColumnName="Storage" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="MaterialLot" ColumnName="MaterialLot" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+                <ScalarProperty Name="DayPeriod" ColumnName="DayPeriod" />
+                <ScalarProperty Name="ProdDate" ColumnName="ProdDate" />
+                <ScalarProperty Name="BBFDate" ColumnName="BBFDate" />
+                <ScalarProperty Name="TestQuality" ColumnName="TestQuality" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="MesAreas">
+            <EntityTypeMapping TypeName="TestDataModel.MesAreas">
+              <MappingFragment StoreEntitySet="MesAreas">
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="AreaName" ColumnName="AreaName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MesLocations">
+            <EntityTypeMapping TypeName="TestDataModel.MesLocations">
+              <MappingFragment StoreEntitySet="MesLocations">
+                <ScalarProperty Name="MesLocCyrName" ColumnName="MesLocCyrName" />
+                <ScalarProperty Name="LocationType" ColumnName="LocationType" />
+                <ScalarProperty Name="MesLocationName" ColumnName="MesLocationName" />
+                <ScalarProperty Name="MesLocationID" ColumnName="MesLocationID" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="AreaID" ColumnName="AreaID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="fn_select_LatinStorageNames" FunctionName="TestDataModel.Store.fn_select_LatinStorageNames">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_LatinStorageNames_Result">
+                <ScalarProperty Name="LatStorageName" ColumnName="LatStorageName" />
+                <ScalarProperty Name="CyrStorageName" ColumnName="CyrStorageName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Insert_WorkPlanTableRecord" FunctionName="TestDataModel.Store.Insert_WorkPlanTableRecord" />
+          <FunctionImportMapping FunctionImportName="Modify_WorkPlanTable" FunctionName="TestDataModel.Store.Modify_WorkPlanTable" />
+          <FunctionImportMapping FunctionImportName="Update_WorkPlanTable" FunctionName="TestDataModel.Store.Update_WorkPlanTable" />
+          <FunctionImportMapping FunctionImportName="Insert_WorkPlanTableRecord1" FunctionName="TestDataModel.Store.Insert_WorkPlanTableRecord1" />
+          <FunctionImportMapping FunctionImportName="fn_select_SpicesData" FunctionName="TestDataModel.Store.fn_select_SpicesData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_SpicesData_Result">
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectStockBalancesPlant2" FunctionName="TestDataModel.Store.SelectStockBalancesPlant2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.SelectStockBalancesPlant2_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="MaterialLotName" ColumnName="MaterialLotName" />
+                <ScalarProperty Name="ValidFrom" ColumnName="ValidFrom" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="WorkUnitID" ColumnName="WorkUnitID" />
+                <ScalarProperty Name="WorkUnitType" ColumnName="WorkUnitType" />
+                <ScalarProperty Name="WorkDate" ColumnName="WorkDate" />
+                <ScalarProperty Name="DayPeriod" ColumnName="DayPeriod" />
+                <ScalarProperty Name="LineName" ColumnName="LineName" />
+                <ScalarProperty Name="AlterLineName" ColumnName="AlterLineName" />
+                <ScalarProperty Name="AlterLotName" ColumnName="AlterLotName" />
+                <ScalarProperty Name="ValidTo" ColumnName="ValidTo" />
+                <ScalarProperty Name="MaterialGroupID" ColumnName="MaterialGroupID" />
+                <ScalarProperty Name="MaterialTypeID" ColumnName="MaterialTypeID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pr_GetOPZ" FunctionName="TestDataModel.Store.pr_GetOPZ">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.pr_GetOPZ_Result">
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Pr_DeleteAppRecord" FunctionName="TestDataModel.Store.Pr_DeleteAppRecord" />
+          <FunctionImportMapping FunctionImportName="fn_select_CommentData" FunctionName="TestDataModel.Store.fn_select_CommentData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_CommentData_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MaterialCode" ColumnName="MaterialCode" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="DateRecord" ColumnName="DateRecord" />
+                <ScalarProperty Name="IsActual" ColumnName="IsActual" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="fn_select_CommentDataID" FunctionName="TestDataModel.Store.fn_select_CommentDataID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.fn_select_CommentDataID_Result">
+                <ScalarProperty Name="IDC" ColumnName="IDC" />
+                <ScalarProperty Name="MaterialCodeC" ColumnName="MaterialCodeC" />
+                <ScalarProperty Name="MaterialNameC" ColumnName="MaterialNameC" />
+                <ScalarProperty Name="DateRecordC" ColumnName="DateRecordC" />
+                <ScalarProperty Name="IsActualC" ColumnName="IsActualC" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="CommentC" ColumnName="CommentC" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pr_InsertCommentData1" FunctionName="TestDataModel.Store.pr_InsertCommentData1" />
+          <FunctionImportMapping FunctionImportName="pr_GetMercuryComponent" FunctionName="TestDataModel.Store.pr_GetMercuryComponent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestDataModel.pr_GetMercuryComponent_Result">
+                <ScalarProperty Name="RPItemNo" ColumnName="RPItemNo" />
+                <ScalarProperty Name="RPName" ColumnName="RPName" />
+                <ScalarProperty Name="RPLotNo" ColumnName="RPLotNo" />
+                <ScalarProperty Name="RPQuantity" ColumnName="RPQuantity" />
+                <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
+                <ScalarProperty Name="MaterialLotID" ColumnName="MaterialLotID" />
+                <ScalarProperty Name="PZ_Qty" ColumnName="PZ Qty" />
+                <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
+                <ScalarProperty Name="BUM" ColumnName="BUM" />
+                <ScalarProperty Name="InventoryPostingGroup" ColumnName="InventoryPostingGroup" />
+                <ScalarProperty Name="MaterialItemNo" ColumnName="MaterialItemNo" />
+                <ScalarProperty Name="MaterialLotNo" ColumnName="MaterialLotNo" />
+                <ScalarProperty Name="MaterialLotDescription" ColumnName="MaterialLotDescription" />
+                <ScalarProperty Name="FreshDate" ColumnName="FreshDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="SubCode" ColumnName="SubCode" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="Uuid" ColumnName="Uuid" />
+                <ScalarProperty Name="Extra_Guid" ColumnName="Extra Guid" />
+                <ScalarProperty Name="Extra_Uuid" ColumnName="Extra Uuid" />
+                <ScalarProperty Name="Extra_Type" ColumnName="Extra Type" />
+                <ScalarProperty Name="Mercury_Type" ColumnName="Mercury Type" />
+                <ScalarProperty Name="Message_Text" ColumnName="Message Text" />
+                <ScalarProperty Name="Request_No_" ColumnName="Request No_" />
+                <ScalarProperty Name="Request_Status" ColumnName="Request Status" />
+                <ScalarProperty Name="VersionStatus" ColumnName="VersionStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

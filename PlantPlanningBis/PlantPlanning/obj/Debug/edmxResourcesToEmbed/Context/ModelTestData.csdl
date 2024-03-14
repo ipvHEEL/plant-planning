@@ -1,0 +1,924 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TestDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="NavPurchaseTable">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateWork" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Executor" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OrderType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NextStatus" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NessDateOrder" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OrderNymber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaterialCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaterialName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Quantity" Type="Double" Nullable="false" />
+    <Property Name="FromBalanses" Type="Double" Nullable="false" />
+    <Property Name="EdIzm" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CFO" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Initiator" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NumberRowMZZ" Type="Int64" Nullable="false" />
+    <Property Name="MZP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusMZP" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NumberRowMZP" Type="Int64" Nullable="false" />
+    <Property Name="ContrAgent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MZPCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MZPNaim" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MZPQuantity" Type="Double" Nullable="false" />
+    <Property Name="MZPEdIzm" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PlanDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PlanOperDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ENSGroupCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ENSGroup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PlanQuantity" Type="Double" Nullable="false" />
+    <Property Name="FactQuantity" Type="Double" Nullable="false" />
+    <Property Name="ContrAgentCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DayToSend" Type="Int32" Nullable="false" />
+    <Property Name="CurrPrice" Type="Double" Nullable="false" />
+    <Property Name="CurrencyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateCreateMZP" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CFOCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CurrStatusCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CurrStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NextStatusCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastStatusDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastStatusTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateCreateZZ" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="QuantityKey" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DT" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="SystemTable">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ObjectCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CFOCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CFOSolut" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tApplication">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateWork" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MaterialCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Quantity" Type="Double" Nullable="false" />
+    <Property Name="AlterDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tColorSelection">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Destination" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SelectedColor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tExcelData">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LineName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateWork" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ProductCode" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductQuantity" Type="Double" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tPlannedMeatContainers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaterialCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaterialName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaterialPostingGroup" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LocationCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Quantity" Type="Double" Nullable="false" />
+    <Property Name="LotNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LotDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContainerNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ExpWeek" Type="Int32" Nullable="false" />
+    <Property Name="ExpDT" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateWork" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AlterDate" Type="DateTime" Precision="3" />
+    <Property Name="DT" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="tUserRecordSelected">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaterialCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateWork" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="TestDataEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="NavPurchaseTable" EntityType="Self.NavPurchaseTable" />
+    <EntitySet Name="SystemTable" EntityType="Self.SystemTable" />
+    <EntitySet Name="tApplication" EntityType="Self.tApplication" />
+    <EntitySet Name="tColorSelection" EntityType="Self.tColorSelection" />
+    <EntitySet Name="tExcelData" EntityType="Self.tExcelData" />
+    <EntitySet Name="tPlannedMeatContainers" EntityType="Self.tPlannedMeatContainers" />
+    <EntitySet Name="tUserRecordSelected" EntityType="Self.tUserRecordSelected" />
+    <FunctionImport Name="fn_select_CurrentComponents" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_CurrentComponents_Result)">
+      <Parameter Name="DateWork" Mode="In" Type="DateTime" />
+      <Parameter Name="VGP" Mode="In" Type="Double" />
+      <Parameter Name="ProductCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="fn_select_CurrentProduct" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_CurrentProduct_Result)">
+      <Parameter Name="DateWork" Mode="In" Type="DateTime" />
+      <Parameter Name="ProductCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="fn_select_CurrentProduct1" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_CurrentProduct1_Result)">
+      <Parameter Name="DateWork" Mode="In" Type="DateTime" />
+      <Parameter Name="ProductCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="fn_select_ExcelData" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_ExcelData_Result)" />
+    <FunctionImport Name="fn_select_ExcelData1" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_ExcelData1_Result)">
+      <Parameter Name="dt" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="fn_select_ExcelDataByCodeAndDate" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_ExcelDataByCodeAndDate_Result)">
+      <Parameter Name="LineName" Mode="In" Type="String" />
+      <Parameter Name="ProductCode" Mode="In" Type="String" />
+      <Parameter Name="DateWork" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="fn_select_PlannedMainData" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_PlannedMainData_Result)" />
+    <FunctionImport Name="fn_select_RecipeByCode" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_RecipeByCode_Result)">
+      <Parameter Name="ProductCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertExcelData">
+      <Parameter Name="ID" Mode="In" Type="Int64" />
+      <Parameter Name="LineName" Mode="In" Type="String" />
+      <Parameter Name="DateWork" Mode="In" Type="DateTime" />
+      <Parameter Name="ProductCode" Mode="In" Type="String" />
+      <Parameter Name="ProductQuantity" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="InsertPlannedMeatContainers" />
+    <FunctionImport Name="InsertPurchaseNavTask" />
+    <FunctionImport Name="InsertStockBalanse">
+      <Parameter Name="Storage" Mode="In" Type="String" />
+      <Parameter Name="MaterialCode" Mode="In" Type="String" />
+      <Parameter Name="MaterialName" Mode="In" Type="String" />
+      <Parameter Name="MatGroup" Mode="In" Type="String" />
+      <Parameter Name="LotName" Mode="In" Type="String" />
+      <Parameter Name="LotDescription" Mode="In" Type="String" />
+      <Parameter Name="Quantity" Mode="In" Type="Decimal" />
+      <Parameter Name="MaterialOwner" Mode="In" Type="String" />
+      <Parameter Name="TestQuality" Mode="In" Type="String" />
+      <Parameter Name="StorageType" Mode="In" Type="String" />
+      <Parameter Name="TestQualityGt" Mode="In" Type="String" />
+      <Parameter Name="TestOnStorage" Mode="In" Type="String" />
+      <Parameter Name="ProdDate" Mode="In" Type="DateTime" />
+      <Parameter Name="BBFDate" Mode="In" Type="DateTime" />
+      <Parameter Name="dpr" Mode="In" Type="Int32" />
+      <Parameter Name="bbf" Mode="In" Type="Int32" />
+      <Parameter Name="difdates" Mode="In" Type="Int32" />
+      <Parameter Name="difcurdates" Mode="In" Type="Int32" />
+      <Parameter Name="st" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertStockBalanse1">
+      <Parameter Name="Storage" Mode="In" Type="String" />
+      <Parameter Name="MaterialCode" Mode="In" Type="String" />
+      <Parameter Name="MaterialName" Mode="In" Type="String" />
+      <Parameter Name="MatGroup" Mode="In" Type="String" />
+      <Parameter Name="LotName" Mode="In" Type="String" />
+      <Parameter Name="LotDescription" Mode="In" Type="String" />
+      <Parameter Name="Quantity" Mode="In" Type="Decimal" />
+      <Parameter Name="MaterialOwner" Mode="In" Type="String" />
+      <Parameter Name="TestQuality" Mode="In" Type="String" />
+      <Parameter Name="StorageType" Mode="In" Type="String" />
+      <Parameter Name="TestQualityGt" Mode="In" Type="String" />
+      <Parameter Name="TestOnStorage" Mode="In" Type="String" />
+      <Parameter Name="ProdDate" Mode="In" Type="DateTime" />
+      <Parameter Name="BBFDate" Mode="In" Type="DateTime" />
+      <Parameter Name="dpr" Mode="In" Type="Int32" />
+      <Parameter Name="bbf" Mode="In" Type="Int32" />
+      <Parameter Name="difdates" Mode="In" Type="Int32" />
+      <Parameter Name="difcurdates" Mode="In" Type="Int32" />
+      <Parameter Name="st" Mode="In" Type="String" />
+      <Parameter Name="period" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="InsertStockBalanseMes">
+      <Parameter Name="Storage" Mode="In" Type="String" />
+      <Parameter Name="MaterialCode" Mode="In" Type="String" />
+      <Parameter Name="MaterialName" Mode="In" Type="String" />
+      <Parameter Name="MaterialLot" Mode="In" Type="String" />
+      <Parameter Name="Quantity" Mode="In" Type="Double" />
+      <Parameter Name="Owner" Mode="In" Type="String" />
+      <Parameter Name="period" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="InsertStockBalanseMesTask" />
+    <FunctionImport Name="InsertStockBalansePlant">
+      <Parameter Name="MaterialCode" Mode="In" Type="String" />
+      <Parameter Name="MaterialName" Mode="In" Type="String" />
+      <Parameter Name="MaterialLotName" Mode="In" Type="String" />
+      <Parameter Name="ProdDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Quantity" Mode="In" Type="Double" />
+      <Parameter Name="period" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="InsertStockBalansePlantBis">
+      <Parameter Name="MaterialCode" Mode="In" Type="String" />
+      <Parameter Name="MaterialName" Mode="In" Type="String" />
+      <Parameter Name="MaterialLotName" Mode="In" Type="String" />
+      <Parameter Name="ProdDate" Mode="In" Type="DateTime" />
+      <Parameter Name="Quantity" Mode="In" Type="Double" />
+      <Parameter Name="period" Mode="In" Type="Boolean" />
+      <Parameter Name="WorkUnitID" Mode="In" Type="Int32" />
+      <Parameter Name="WorkUnitType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="InsertStockBalansePlantTask" />
+    <FunctionImport Name="InsertStockBalanseTask" />
+    <FunctionImport Name="Pr_DeleteUserRecord">
+      <Parameter Name="MaterialCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Pr_InsertUserAppData">
+      <Parameter Name="DateWork" Mode="In" Type="DateTime" />
+      <Parameter Name="MaterialCode" Mode="In" Type="String" />
+      <Parameter Name="Quantity" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="Pr_InsertUserCompData">
+      <Parameter Name="id" Mode="In" Type="Int64" />
+      <Parameter Name="CompName" Mode="In" Type="String" />
+      <Parameter Name="ObjectCode" Mode="In" Type="String" />
+      <Parameter Name="CFOCode" Mode="In" Type="String" />
+      <Parameter Name="CFOSolut" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Pr_InsertUserRecord">
+      <Parameter Name="MaterialCode" Mode="In" Type="String" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SelectStockBalances" ReturnType="Collection(TestDataModel.SelectStockBalances_Result)" />
+    <FunctionImport Name="SelectStockBalances1" ReturnType="Collection(TestDataModel.SelectStockBalances1_Result)" />
+    <FunctionImport Name="SelectStockBalancesPlant" ReturnType="Collection(TestDataModel.SelectStockBalancesPlant_Result)" />
+    <FunctionImport Name="SelectStockBalancesPlant1" ReturnType="Collection(TestDataModel.SelectStockBalancesPlant1_Result)" />
+    <FunctionImport Name="ClearExcelData" />
+    <EntitySet Name="tWorkPlan" EntityType="TestDataModel.tWorkPlan" />
+    <EntitySet Name="tWorkPlanDates" EntityType="TestDataModel.tWorkPlanDates" />
+    <EntitySet Name="tWorkPlanElement" EntityType="TestDataModel.tWorkPlanElement" />
+    <EntitySet Name="tMappingTable" EntityType="TestDataModel.tMappingTable" />
+    <FunctionImport Name="pr_DeleteTestData">
+      <Parameter Name="ID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="pr_InsertTestData">
+      <Parameter Name="ID" Mode="In" Type="Int64" />
+      <Parameter Name="Code" Mode="In" Type="String" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="fn_select_RecipesList" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_RecipesList_Result)" />
+    <EntitySet Name="StockBalancesWithComments" EntityType="TestDataModel.StockBalancesWithComments" />
+    <FunctionImport Name="fn_select_StockBalancesWithComments" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_StockBalancesWithComments_Result)" />
+    <FunctionImport Name="Pr_UpdateMesArea">
+      <Parameter Name="ID" Mode="In" Type="Int64" />
+      <Parameter Name="fl" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="Pr_UpdateMesLocation">
+      <Parameter Name="ID" Mode="In" Type="Int64" />
+      <Parameter Name="fl" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="fn_select_LaterStorageNames" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_LaterStorageNames_Result)" />
+    <FunctionImport Name="fn_select_CurrentProductS" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_CurrentProductS_Result)">
+      <Parameter Name="ProductCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="fn_select_ProductionByCode" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_ProductionByCode_Result)">
+      <Parameter Name="ProductCode" Mode="In" Type="String" />
+      <Parameter Name="dateStart" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="Pr_InsertUserAppData1">
+      <Parameter Name="DateWork" Mode="In" Type="DateTime" />
+      <Parameter Name="AlterWork" Mode="In" Type="DateTime" />
+      <Parameter Name="MaterialCode" Mode="In" Type="String" />
+      <Parameter Name="Quantity" Mode="In" Type="Double" />
+    </FunctionImport>
+    <EntitySet Name="tBlockedProduct" EntityType="TestDataModel.tBlockedProduct" />
+    <EntitySet Name="tBlockedMaterial" EntityType="TestDataModel.tBlockedMaterial" />
+    <EntitySet Name="PlanOPZList" EntityType="TestDataModel.PlanOPZList" />
+    <FunctionImport Name="fn_select_RecipesBis" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_RecipesBis_Result)" />
+    <FunctionImport Name="pr_InsertTestData1">
+      <Parameter Name="ID" Mode="In" Type="Int64" />
+      <Parameter Name="Code" Mode="In" Type="String" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Res" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="fn_select_BasicRecipes" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_BasicRecipes_Result)">
+      <Parameter Name="ProdCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="fn_select_Recipes" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_Recipes_Result)" />
+    <EntitySet Name="tComponentException" EntityType="TestDataModel.tComponentException" />
+    <FunctionImport Name="fn_select_RecipesView" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_RecipesView_Result)" />
+    <FunctionImport Name="fn_select_CurrentProductView" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_CurrentProductView_Result)">
+      <Parameter Name="ProductCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="fn_select_RecipesBisView" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_RecipesBisView_Result)" />
+    <EntitySet Name="tMercuryRecordSelected" EntityType="TestDataModel.tMercuryRecordSelected" />
+    <FunctionImport Name="Pr_DeleteMercuryRecord">
+      <Parameter Name="MaterialCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Pr_InsertMercuryRecord">
+      <Parameter Name="MaterialCode" Mode="In" Type="String" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="fn_select_ProductionByCodeAndPeriod" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_ProductionByCodeAndPeriod_Result)">
+      <Parameter Name="ProductCode" Mode="In" Type="String" />
+      <Parameter Name="dateStart" Mode="In" Type="DateTime" />
+      <Parameter Name="dateEnd" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <EntitySet Name="tConsurptionData" EntityType="TestDataModel.tConsurptionData" />
+    <FunctionImport Name="SelectStockBalancesMes" ReturnType="Collection(TestDataModel.SelectStockBalancesMes_Result)" />
+    <FunctionImport Name="SelectStockBalancesMes1" ReturnType="Collection(TestDataModel.SelectStockBalancesMes1_Result)" />
+    <EntitySet Name="MesAreas" EntityType="TestDataModel.MesAreas" />
+    <EntitySet Name="MesLocations" EntityType="TestDataModel.MesLocations" />
+    <FunctionImport Name="fn_select_LatinStorageNames" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_LatinStorageNames_Result)" />
+    <FunctionImport Name="Insert_WorkPlanTableRecord">
+      <Parameter Name="datework" Mode="In" Type="DateTime" />
+      <Parameter Name="LineName" Mode="In" Type="String" />
+      <Parameter Name="ProdCode" Mode="In" Type="String" />
+      <Parameter Name="quantity" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="Modify_WorkPlanTable" />
+    <FunctionImport Name="Update_WorkPlanTable" />
+    <FunctionImport Name="Insert_WorkPlanTableRecord1">
+      <Parameter Name="datework" Mode="In" Type="DateTime" />
+      <Parameter Name="LineName" Mode="In" Type="String" />
+      <Parameter Name="ProdCode" Mode="In" Type="String" />
+      <Parameter Name="Group" Mode="In" Type="String" />
+      <Parameter Name="quantity" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="fn_select_SpicesData" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_SpicesData_Result)" />
+    <FunctionImport Name="SelectStockBalancesPlant2" ReturnType="Collection(TestDataModel.SelectStockBalancesPlant2_Result)" />
+    <FunctionImport Name="pr_GetOPZ" ReturnType="Collection(TestDataModel.pr_GetOPZ_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="Pr_DeleteAppRecord">
+      <Parameter Name="ID" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="fn_select_CommentData" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_CommentData_Result)" />
+    <FunctionImport Name="fn_select_CommentDataID" IsComposable="true" ReturnType="Collection(TestDataModel.fn_select_CommentDataID_Result)">
+      <Parameter Name="Code" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="pr_InsertCommentData1">
+      <Parameter Name="ID" Mode="In" Type="Int64" />
+      <Parameter Name="Code" Mode="In" Type="String" />
+      <Parameter Name="Naim" Mode="In" Type="String" />
+      <Parameter Name="Active" Mode="In" Type="Boolean" />
+      <Parameter Name="Comment" Mode="In" Type="String" />
+      <Parameter Name="userName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="pr_GetMercuryComponent" ReturnType="Collection(TestDataModel.pr_GetMercuryComponent_Result)" />
+  </EntityContainer>
+  <ComplexType Name="fn_select_CurrentComponents_Result">
+    <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="Unit_of_Measure_Code" Nullable="true" MaxLength="10" />
+    <Property Type="Double" Name="Norma" Nullable="true" />
+    <Property Type="Double" Name="Total" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="fn_select_CurrentProduct_Result">
+    <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+    <Property Type="Double" Name="Total" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="fn_select_CurrentProduct1_Result">
+    <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+    <Property Type="Double" Name="Total" Nullable="true" />
+    <Property Type="String" Name="WorkCenter" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="fn_select_ExcelData_Result">
+    <Property Type="Int64" Name="ID" Nullable="true" />
+    <Property Type="String" Name="LineName" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="DateWork" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+    <Property Type="Double" Name="ProductQuantity" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="fn_select_ExcelData1_Result">
+    <Property Type="String" Name="OrderType" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="OrderTypeCode" Nullable="true" />
+    <Property Type="DateTime" Name="DateWork" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Workday" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="WorkShift" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="WorkLine" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+    <Property Type="Double" Name="ProductQuantity" Nullable="true" />
+    <Property Type="String" Name="ProdOrder" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="fn_select_ExcelDataByCodeAndDate_Result">
+    <Property Type="Int64" Name="ID" Nullable="true" />
+    <Property Type="String" Name="LineName" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="DateWork" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+    <Property Type="Double" Name="ProductQuantity" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="fn_select_PlannedMainData_Result">
+    <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="25" />
+    <Property Type="String" Name="NavMaterialName" Nullable="true" />
+    <Property Type="String" Name="MesMaterialName" Nullable="true" />
+    <Property Type="String" Name="MaterialGroup" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ItemGroup" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="SIGname" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="BaseUnitMeasure" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ZZ" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="SIGresp" Nullable="true" MaxLength="100" />
+    <Property Type="Boolean" Name="Blocked" Nullable="true" />
+    <Property Type="Int32" Name="Multiplicity" Nullable="true" />
+    <Property Type="Int32" Name="MinTransferDays" Nullable="true" />
+    <Property Type="Int32" Name="SafetyStock" Nullable="true" />
+    <Property Type="String" Name="LASTPRODUCER" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="fn_select_RecipeByCode_Result">
+    <Property Type="String" Name="LineNumber" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="WorkDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ProductName" Nullable="true" />
+    <Property Type="String" Name="UnitMeasure" Nullable="true" MaxLength="25" />
+    <Property Type="Double" Name="Quantity" Nullable="true" />
+    <Property Type="String" Name="IPG" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="SelectStockBalances_Result">
+    <Property Type="Int64" Name="id" Nullable="false" />
+    <Property Type="String" Name="Storage" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MaterialCode" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MaterialName" Nullable="false" />
+    <Property Type="String" Name="MatGroup" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="LotName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="LotDescription" Nullable="false" />
+    <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="MaterialOwner" Nullable="false" />
+    <Property Type="String" Name="TestQuality" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="StorageType" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="TestQualityGr" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="TestOnStorage" Nullable="false" MaxLength="250" />
+    <Property Type="DateTime" Name="ProdDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="BBFDate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="dpr" Nullable="false" />
+    <Property Type="Int32" Name="bbf" Nullable="false" />
+    <Property Type="Int32" Name="difdates" Nullable="false" />
+    <Property Type="Int32" Name="difcurdates" Nullable="false" />
+    <Property Type="String" Name="st" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="WorkDate" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="SelectStockBalances1_Result">
+    <Property Type="Int64" Name="id" Nullable="false" />
+    <Property Type="String" Name="Storage" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MaterialCode" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MaterialName" Nullable="false" />
+    <Property Type="String" Name="MatGroup" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="LotName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="LotDescription" Nullable="false" />
+    <Property Type="Decimal" Name="Quantity" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="MaterialOwner" Nullable="false" />
+    <Property Type="String" Name="TestQuality" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="StorageType" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="TestQualityGr" Nullable="false" MaxLength="200" />
+    <Property Type="String" Name="TestOnStorage" Nullable="false" MaxLength="250" />
+    <Property Type="DateTime" Name="ProdDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="BBFDate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="dpr" Nullable="false" />
+    <Property Type="Int32" Name="bbf" Nullable="false" />
+    <Property Type="Int32" Name="difdates" Nullable="false" />
+    <Property Type="Int32" Name="difcurdates" Nullable="false" />
+    <Property Type="String" Name="st" Nullable="false" MaxLength="10" />
+    <Property Type="DateTime" Name="WorkDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="DayPeriod" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SelectStockBalancesPlant_Result">
+    <Property Type="Int64" Name="id" Nullable="false" />
+    <Property Type="String" Name="MaterialCode" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MaterialName" Nullable="false" />
+    <Property Type="String" Name="MaterialLotName" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="ProductionDate" Nullable="false" Precision="23" />
+    <Property Type="Double" Name="Quantity" Nullable="false" />
+    <Property Type="DateTime" Name="WorkDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="DayPeriod" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="SelectStockBalancesPlant1_Result">
+    <Property Type="Int64" Name="id" Nullable="false" />
+    <Property Type="String" Name="MaterialCode" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MaterialName" Nullable="false" />
+    <Property Type="String" Name="MaterialLotName" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="ProductionDate" Nullable="false" Precision="23" />
+    <Property Type="Double" Name="Quantity" Nullable="false" />
+    <Property Type="Int32" Name="WorkUnitID" Nullable="false" />
+    <Property Type="Int32" Name="WorkUnitType" Nullable="false" />
+    <Property Type="DateTime" Name="WorkDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="DayPeriod" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="LineName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="AlterLineName" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <EntityType Name="tWorkPlan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlanName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DateWork" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tWorkPlanDates">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="owner" Type="Int64" Nullable="false" />
+    <Property Name="DateWork" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tWorkPlanElement">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="owner" Type="Int64" Nullable="false" />
+    <Property Name="LineName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ProdCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsRePack" Type="Boolean" Nullable="false" />
+    <Property Name="ProdQuantity" Type="Double" Nullable="false" />
+    <Property Name="ProdName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tMappingTable">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LineName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ResultName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="fn_select_RecipesList_Result">
+    <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="LineNumber" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="WorkDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <EntityType Name="StockBalancesWithComments">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Storage" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MaterialCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MaterialName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MatGroup" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LotName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LotDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
+    <Property Name="MaterialOwner" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TestQuality" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="StorageType" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="TestQualityGr" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="TestOnStorage" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ProdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="BBFDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dpr" Type="Int32" Nullable="false" />
+    <Property Name="bbf" Type="Int32" Nullable="false" />
+    <Property Name="difdates" Type="Int32" Nullable="false" />
+    <Property Name="difcurdates" Type="Int32" Nullable="false" />
+    <Property Name="st" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="WorkDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DayPeriod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MatCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LotNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="fn_select_StockBalancesWithComments_Result">
+    <Property Type="String" Name="Storage" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MaterialName" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="MatGroup" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="LotName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="LotDescription" Nullable="true" MaxLength="1000" />
+    <Property Type="Double" Name="Quantity" Nullable="true" />
+    <Property Type="String" Name="MaterialOwner" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="TestQuality" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="StorageType" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="TestQualityGr" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="TestOnStorage" Nullable="true" MaxLength="250" />
+    <Property Type="DateTime" Name="ProdDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="BBFDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="dpr" Nullable="true" />
+    <Property Type="Int32" Name="bbf" Nullable="true" />
+    <Property Type="Int32" Name="difdates" Nullable="true" />
+    <Property Type="Int32" Name="difcurdates" Nullable="true" />
+    <Property Type="String" Name="st" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="WorkDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="DayPeriod" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MatCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="LotNo" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Comment" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="fn_select_LaterStorageNames_Result">
+    <Property Type="String" Name="NewStorageName" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="OldStorageName" Nullable="true" MaxLength="1000" />
+  </ComplexType>
+  <ComplexType Name="fn_select_CurrentProductS_Result">
+    <Property Type="String" Name="Prod_No" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Prod_Description" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Bom_No" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="WorkCenter" Nullable="true" MaxLength="20" />
+    <Property Type="DateTime" Name="Starting_Date" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Comp_No" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Comp_Description" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="Unit_of_Measure_Code" Nullable="true" MaxLength="10" />
+    <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="12" Scale="6" />
+    <Property Type="Decimal" Name="Quantity_per" Nullable="true" Precision="12" Scale="6" />
+    <Property Type="Decimal" Name="Max__Quantity" Nullable="true" Precision="12" Scale="6" />
+    <Property Type="String" Name="Inventory_Posting_Group" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="fn_select_ProductionByCode_Result">
+    <Property Type="DateTime" Name="StartDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MaterialName" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="SystemName" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="Quantity" Nullable="true" />
+    <Property Type="String" Name="LotForErp" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="RawQuant" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="tBlockedProduct">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="ProductCode" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="Using" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" />
+    <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Using" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tBlockedMaterial">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="ProductCode" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="Using" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" />
+    <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Using" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PlanOPZList">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="MatCode" />
+      <PropertyRef Name="MatName" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MatCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MatName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsBase" Type="Boolean" />
+  </EntityType>
+  <ComplexType Name="fn_select_RecipesBis_Result">
+    <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="LineNumber" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="WorkDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MaterialName" Nullable="true" />
+    <Property Type="String" Name="UnitMeasure" Nullable="true" MaxLength="25" />
+    <Property Type="Double" Name="Quantity" Nullable="true" />
+    <Property Type="String" Name="IPG" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="fn_select_BasicRecipes_Result">
+    <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="LineName" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="StartingDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MaterialName" Nullable="true" />
+    <Property Type="String" Name="UnitMeasure" Nullable="true" MaxLength="25" />
+    <Property Type="Double" Name="Quantity" Nullable="true" />
+    <Property Type="String" Name="IPG" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="fn_select_Recipes_Result">
+    <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="AlterproductCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="LineNumber" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="WorkDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MaterialName" Nullable="true" />
+    <Property Type="String" Name="UnitMeasure" Nullable="true" MaxLength="25" />
+    <Property Type="Double" Name="Quantity" Nullable="true" />
+    <Property Type="String" Name="IPG" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <EntityType Name="tComponentException">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ProductName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <ComplexType Name="fn_select_RecipesView_Result">
+    <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="AlterproductCode" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="LineNumber" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="WorkDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MaterialName" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="UnitMeasure" Nullable="true" MaxLength="25" />
+    <Property Type="Double" Name="Quantity" Nullable="true" />
+    <Property Type="String" Name="IPG" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="fn_select_CurrentProductView_Result">
+    <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="AlterProductCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="LineNumber" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="WorkDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MaterialName" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="UnitMeasure" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="Quantity" Nullable="true" />
+    <Property Type="String" Name="IPG" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="fn_select_RecipesBisView_Result">
+    <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="AlterproductCode" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="LineNumber" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="WorkDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MaterialName" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="UnitMeasure" Nullable="true" MaxLength="25" />
+    <Property Type="Double" Name="Quantity" Nullable="true" />
+    <Property Type="String" Name="IPG" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <EntityType Name="tMercuryRecordSelected">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaterialCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DateWork" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="fn_select_ProductionByCodeAndPeriod_Result">
+    <Property Type="DateTime" Name="StartDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MaterialName" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="SystemName" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="Quantity" Nullable="true" />
+    <Property Type="String" Name="LotForErp" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="RawQuant" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="tConsurptionData">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Quantity" Type="Double" Nullable="false" />
+    <Property Name="MaterialCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="WorkDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <ComplexType Name="SelectStockBalancesMes_Result">
+    <Property Type="Int64" Name="id" Nullable="false" />
+    <Property Type="String" Name="Storage" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MaterialCode" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MaterialName" Nullable="false" />
+    <Property Type="String" Name="MaterialLot" Nullable="false" MaxLength="100" />
+    <Property Type="Double" Name="Quantity" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="WorkDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="DayPeriod" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="ProdDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="BBFDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="TestQuality" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="SelectStockBalancesMes1_Result">
+    <Property Type="Int64" Name="id" Nullable="false" />
+    <Property Type="String" Name="Storage" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MaterialCode" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MaterialName" Nullable="false" />
+    <Property Type="String" Name="MaterialLot" Nullable="false" MaxLength="100" />
+    <Property Type="Double" Name="Quantity" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="WorkDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="DayPeriod" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="ProdDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="BBFDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="TestQuality" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <EntityType Name="MesAreas">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="AreaName" />
+      <PropertyRef Name="IsApproved" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AreaName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MesLocations">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="AreaID" />
+      <PropertyRef Name="LocationName" />
+      <PropertyRef Name="IsApproved" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AreaID" Type="Int32" Nullable="false" />
+    <Property Name="LocationName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="IsApproved" Type="Boolean" Nullable="false" />
+    <Property Name="MesLocationID" Type="Int32" />
+    <Property Name="MesLocationName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="LocationType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MesLocCyrName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="fn_select_LatinStorageNames_Result">
+    <Property Type="String" Name="LatStorageName" Nullable="true" MaxLength="1000" />
+    <Property Type="String" Name="CyrStorageName" Nullable="true" MaxLength="1000" />
+  </ComplexType>
+  <ComplexType Name="fn_select_SpicesData_Result">
+    <Property Type="String" Name="ProductCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ProductName" Nullable="true" MaxLength="1000" />
+  </ComplexType>
+  <ComplexType Name="SelectStockBalancesPlant2_Result">
+    <Property Type="Int64" Name="id" Nullable="false" />
+    <Property Type="String" Name="MaterialCode" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="MaterialName" Nullable="false" />
+    <Property Type="String" Name="MaterialLotName" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="ValidFrom" Nullable="false" Precision="23" />
+    <Property Type="Double" Name="Quantity" Nullable="false" />
+    <Property Type="Int32" Name="WorkUnitID" Nullable="false" />
+    <Property Type="Int32" Name="WorkUnitType" Nullable="false" />
+    <Property Type="DateTime" Name="WorkDate" Nullable="false" Precision="23" />
+    <Property Type="String" Name="DayPeriod" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="LineName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="AlterLineName" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="AlterLotName" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="ValidTo" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="MaterialGroupID" Nullable="false" />
+    <Property Type="Int32" Name="MaterialTypeID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="pr_GetOPZ_Result">
+    <Property Type="String" Name="MaterialCode" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="Description" Nullable="false" MaxLength="150" />
+    <Property Type="Decimal" Name="Quantity" Nullable="true" Precision="38" Scale="20" />
+  </ComplexType>
+  <ComplexType Name="fn_select_CommentData_Result">
+    <Property Type="Int64" Name="ID" Nullable="true" />
+    <Property Type="String" Name="MaterialCode" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MaterialName" Nullable="true" MaxLength="2500" />
+    <Property Type="DateTime" Name="DateRecord" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="IsActual" Nullable="true" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Comment" Nullable="true" MaxLength="256" />
+  </ComplexType>
+  <ComplexType Name="fn_select_CommentDataID_Result">
+    <Property Type="Int64" Name="IDC" Nullable="true" />
+    <Property Type="String" Name="MaterialCodeC" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="MaterialNameC" Nullable="true" MaxLength="2500" />
+    <Property Type="DateTime" Name="DateRecordC" Nullable="true" Precision="23" />
+    <Property Type="Boolean" Name="IsActualC" Nullable="true" />
+    <Property Type="String" Name="UserName" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="CommentC" Nullable="true" MaxLength="256" />
+  </ComplexType>
+  <ComplexType Name="pr_GetMercuryComponent_Result">
+    <Property Type="String" Name="RPItemNo" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="RPName" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="RPLotNo" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="RPQuantity" Nullable="true" Precision="38" Scale="20" />
+    <Property Type="String" Name="MaterialID" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="MaterialLotID" Nullable="false" MaxLength="20" />
+    <Property Type="Decimal" Name="PZ_Qty" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="String" Name="MaterialName" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="BUM" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="InventoryPostingGroup" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="MaterialItemNo" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="MaterialLotNo" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="MaterialLotDescription" Nullable="false" MaxLength="150" />
+    <Property Type="DateTime" Name="FreshDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="EndDate" Nullable="false" Precision="23" />
+    <Property Type="Binary" Name="timestamp" Nullable="false" MaxLength="8" />
+    <Property Type="Int32" Name="Type" Nullable="false" />
+    <Property Type="String" Name="Code" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="SubCode" Nullable="false" MaxLength="20" />
+    <Property Type="Guid" Name="Guid" Nullable="false" />
+    <Property Type="Guid" Name="Uuid" Nullable="false" />
+    <Property Type="Guid" Name="Extra_Guid" Nullable="false" />
+    <Property Type="Guid" Name="Extra_Uuid" Nullable="false" />
+    <Property Type="Int32" Name="Extra_Type" Nullable="false" />
+    <Property Type="Int32" Name="Mercury_Type" Nullable="false" />
+    <Property Type="String" Name="Message_Text" Nullable="false" MaxLength="150" />
+    <Property Type="Int32" Name="Request_No_" Nullable="false" />
+    <Property Type="Int32" Name="Request_Status" Nullable="false" />
+    <Property Type="String" Name="VersionStatus" Nullable="false" MaxLength="10" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tJob">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ExternalID" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="Lot" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="SubLot" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="PlannedStartDateTime" Type="datetime" />
+    <Property Name="PlannedDurationSeconds" Type="int" />
+    <Property Name="Capture01" Type="nvarchar" MaxLength="200" />
+    <Property Name="Capture02" Type="nvarchar" MaxLength="200" />
+    <Property Name="Capture03" Type="nvarchar" MaxLength="200" />
+    <Property Name="Capture04" Type="nvarchar" MaxLength="200" />
+    <Property Name="Capture05" Type="nvarchar" MaxLength="200" />
+    <Property Name="Capture06" Type="nvarchar" MaxLength="200" />
+    <Property Name="Capture07" Type="nvarchar" MaxLength="200" />
+    <Property Name="Capture08" Type="nvarchar" MaxLength="200" />
+    <Property Name="Capture09" Type="nvarchar" MaxLength="200" />
+    <Property Name="Capture10" Type="nvarchar" MaxLength="200" />
+    <Property Name="Capture11" Type="nvarchar" MaxLength="200" />
+    <Property Name="Capture12" Type="nvarchar" MaxLength="200" />
+    <Property Name="Capture13" Type="nvarchar" MaxLength="200" />
+    <Property Name="Capture14" Type="nvarchar" MaxLength="200" />
+    <Property Name="Capture15" Type="nvarchar" MaxLength="200" />
+    <Property Name="Capture16" Type="nvarchar" MaxLength="200" />
+    <Property Name="Capture17" Type="nvarchar" MaxLength="200" />
+    <Property Name="Capture18" Type="nvarchar" MaxLength="200" />
+    <Property Name="Capture19" Type="nvarchar" MaxLength="200" />
+    <Property Name="Capture20" Type="nvarchar" MaxLength="200" />
+    <Property Name="UserState" Type="int" Nullable="false" />
+    <Property Name="ModifiedDateTime" Type="datetime" />
+    <Property Name="UploadedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tMaterial">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="MaterialTypeID" Type="int" />
+    <Property Name="MaterialGroupID" Type="int" Nullable="false" />
+    <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Units" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="PlannedSize" Type="float" Nullable="false" />
+    <Property Name="ModifiedDateTime" Type="datetime" />
+    <Property Name="UploadedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tMaterialCustomProperty">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="MaterialID" Type="int" Nullable="false" />
+    <Property Name="CustomPropertyID" Type="int" Nullable="false" />
+    <Property Name="Value" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="ModifiedDateTime" Type="datetime" />
+    <Property Name="UploadedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tMaterialUseActual">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="JobID" Type="int" Nullable="false" />
+    <Property Name="SystemID" Type="int" Nullable="false" />
+    <Property Name="BatchStepID" Type="int" />
+    <Property Name="MaterialID" Type="int" Nullable="false" />
+    <Property Name="DateTime" Type="datetime" Nullable="false" />
+    <Property Name="Quantity" Type="float" Nullable="false" />
+    <Property Name="Lot" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="SubLot" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="User" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="ModifiedDateTime" Type="datetime" />
+    <Property Name="UploadedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tProduct">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="ProductTypeID" Type="int" />
+    <Property Name="ProductSetID" Type="int" Nullable="false" />
+    <Property Name="ProductGroupID" Type="int" />
+    <Property Name="ProductCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ConsumedMaterialID" Type="int" />
+    <Property Name="ProducedMaterialID" Type="int" />
+    <Property Name="Attribute01" Type="nvarchar" MaxLength="200" />
+    <Property Name="Attribute02" Type="nvarchar" MaxLength="200" />
+    <Property Name="Attribute03" Type="nvarchar" MaxLength="200" />
+    <Property Name="Attribute04" Type="nvarchar" MaxLength="200" />
+    <Property Name="Attribute05" Type="nvarchar" MaxLength="200" />
+    <Property Name="Attribute06" Type="nvarchar" MaxLength="200" />
+    <Property Name="Attribute07" Type="nvarchar" MaxLength="200" />
+    <Property Name="Attribute08" Type="nvarchar" MaxLength="200" />
+    <Property Name="Attribute09" Type="nvarchar" MaxLength="200" />
+    <Property Name="Attribute10" Type="nvarchar" MaxLength="200" />
+    <Property Name="Attribute11" Type="nvarchar" MaxLength="200" />
+    <Property Name="Attribute12" Type="nvarchar" MaxLength="200" />
+    <Property Name="Attribute13" Type="nvarchar" MaxLength="200" />
+    <Property Name="Attribute14" Type="nvarchar" MaxLength="200" />
+    <Property Name="Attribute15" Type="nvarchar" MaxLength="200" />
+    <Property Name="Attribute16" Type="nvarchar" MaxLength="200" />
+    <Property Name="Attribute17" Type="nvarchar" MaxLength="200" />
+    <Property Name="Attribute18" Type="nvarchar" MaxLength="200" />
+    <Property Name="Attribute19" Type="nvarchar" MaxLength="200" />
+    <Property Name="Attribute20" Type="nvarchar" MaxLength="200" />
+    <Property Name="Color" Type="int" />
+    <Property Name="DisplayOrder" Type="int" Nullable="false" />
+    <Property Name="Enabled" Type="bit" Nullable="false" />
+    <Property Name="ModifiedDateTime" Type="datetime" />
+    <Property Name="UploadedDateTime" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_tMaterialCustomProperty_tMaterial">
+    <End Role="tMaterial" Type="Self.tMaterial" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tMaterialCustomProperty" Type="Self.tMaterialCustomProperty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMaterial">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tMaterialCustomProperty">
+        <PropertyRef Name="MaterialID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="f_spMaterialLot_GetAllByWarehouseAndZoneFromNav_IT6WithoutComment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="act" StoreFunctionName="_spMaterialLot_GetAllByWarehouseAndZoneFromNav_IT6WithoutComment" />
+  <Function Name="f_spMaterialLot_GetAllByWarehouseAndZoneFromNav_IT6WithoutCommentBis" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="act" StoreFunctionName="_spMaterialLot_GetAllByWarehouseAndZoneFromNav_IT6WithoutCommentBis" />
+  <Function Name="f_spMaterialLot_GetAllByWarehouseAndZoneFromNav_IT6WithoutCommentMody" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="act" StoreFunctionName="_spMaterialLot_GetAllByWarehouseAndZoneFromNav_IT6WithoutCommentMody" />
+  <Function Name="pr_GetAlarmWaste" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="act" />
+  <Function Name="fn_select_CurrentMaterials" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DateTime" Type="datetime" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="JobID" Type="bigint" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="MaterialID" Type="bigint" />
+          <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="NamerialName" Type="nvarchar" MaxLength="1000" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_select_FactConsurmption" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="JobName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_select_MaterialUsingByProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="dateStart" Type="datetime" Mode="In" />
+    <Parameter Name="DateEnd" Type="datetime" Mode="In" />
+    <Parameter Name="MaterialCode" Type="nvarchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="MainJob" Type="bigint" />
+          <Property Name="DateStart" Type="datetime" />
+          <Property Name="DateEnd" Type="datetime" />
+          <Property Name="MaterialQuantity" Type="float" />
+          <Property Name="PCode1" Type="nvarchar" MaxLength="100" />
+          <Property Name="PName1" Type="nvarchar" MaxLength="1000" />
+          <Property Name="PlanNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="PCode2" Type="nvarchar" MaxLength="100" />
+          <Property Name="PName2" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ProductQuantity" Type="float" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_select_PlanDayli" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DateTime" Type="datetime" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="LineName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="Quantity" Type="float" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_select_ProdNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="MaterialName" Type="nvarchar" MaxLength="1000" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <EntityContainer Name="EDBModelStoreContainer">
+    <EntitySet Name="tJob" EntityType="Self.tJob" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tMaterial" EntityType="Self.tMaterial" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tMaterialCustomProperty" EntityType="Self.tMaterialCustomProperty" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tMaterialUseActual" EntityType="Self.tMaterialUseActual" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tProduct" EntityType="Self.tProduct" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tMaterialCustomProperty_tMaterial" Association="Self.FK_tMaterialCustomProperty_tMaterial">
+      <End Role="tMaterial" EntitySet="tMaterial" />
+      <End Role="tMaterialCustomProperty" EntitySet="tMaterialCustomProperty" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
