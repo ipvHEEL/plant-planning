@@ -90,6 +90,7 @@ namespace PlantPlanning
         public FormMain()
         {
             InitializeComponent();
+            LoadFlag = true;
             System.Threading.Thread thread = new System.Threading.Thread(WaitingShowForm);
             thread.Start();
            
@@ -127,9 +128,11 @@ namespace PlantPlanning
             LoadRecipes();
             GetStorageList();
             LoadData();
-          //  ControlAlarmWaste();
-   
-            sFm.timer1.Enabled = false;
+            LoadFlag = false;
+            //  ControlAlarmWaste();
+
+            // sFm.timer1.Enabled = false;
+            Thread.Sleep(200);
             thread.Abort();
             Cursor = Cursors.Default;
             this.BringToFront();
@@ -172,10 +175,12 @@ namespace PlantPlanning
             sFm = new ShowForm();
             sFm.ShowDialog();
 
-            while (1 == 1)
+            while (LoadFlag == true)
             { 
                 Thread.Sleep(100);
             }
+
+            sFm.Close();
         }
 
         public void GetStorageList()
@@ -449,7 +454,10 @@ namespace PlantPlanning
             }
             catch (Exception xx)
             {
+                LoadFlag = false;
+                Thread.Sleep(200);
                 MessageBox.Show("Нет связи с сервером SQL80"+System.Environment.NewLine+"Приложение будет закрыто", "Собщение системы");
+                
                 this.Close();
             }
             OPRRec = OPRRec.Where(x => OprComp.Contains(x.ProductCode)).ToList();
@@ -594,6 +602,8 @@ namespace PlantPlanning
             }
             catch (Exception xx)
             {
+                LoadFlag = false;
+                Thread.Sleep(200);
                 MessageBox.Show("Нет связи с сервером SQL80" + System.Environment.NewLine + "Приложение будет закрыто", "Собщение системы");
                 this.Close();
             }

@@ -20,6 +20,7 @@ namespace PlantPlanning.Context
         public EDBEntities()
             : base("name=EDBEntities")
         {
+            this.Database.CommandTimeout = 600;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -20,6 +20,7 @@ namespace PlantPlanning.Context
         public TestDataEntities()
             : base("name=TestDataEntities")
         {
+            this.Database.CommandTimeout = 600;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -43,7 +43,6 @@ C:\MyProgramms\PlantPlanningBis2\PlantPlanningBis\PlantPlanning\obj\Debug\PlantP
 C:\MyProgramms\PlantPlanningBis2\PlantPlanningBis\PlantPlanning\obj\Debug\PlantPlanning.FormCommdet.resources
 C:\MyProgramms\PlantPlanningBis2\PlantPlanningBis\PlantPlanning\obj\Debug\PlantPlanning.FormComment.resources
 C:\MyProgramms\PlantPlanningBis2\PlantPlanningBis\PlantPlanning\obj\Debug\PlantPlanning.MercuryForm.resources
-E:\MyProgramms\PlantPlanningBis2\PlantPlanningBis\PlantPlanning\obj\Debug\PlantPlanningBis2.csprojAssemblyReference.cache
 E:\MyProgramms\PlantPlanningBis2\PlantPlanningBis\PlantPlanning\obj\Debug\PlantPlanningBis2.csproj.ResolveComReference.cache
 E:\MyProgramms\PlantPlanningBis2\PlantPlanningBis\PlantPlanning\obj\Debug\PlantPlanning.ConsurmptionForm.resources
 E:\MyProgramms\PlantPlanningBis2\PlantPlanningBis\PlantPlanning\obj\Debug\PlantPlanning.FormAddCard.resources

@@ -350,9 +350,9 @@ namespace PlantPlanning
                 }
             }
 
-            //plANT 7 (335, 336, 338, 346, 349, 375)
+            //plANT 7 (335, 336, 338, 346, 349, 375, 400)
             sbpNonZero = sbp.Where(x => (x.MaterialGroupID == 7) && 
-                ((x.MaterialTypeID == 335) || (x.MaterialTypeID == 336) || (x.MaterialTypeID == 338) || (x.MaterialTypeID == 346) || (x.MaterialTypeID == 359) || (x.MaterialTypeID == 375))).ToList();
+                ((x.MaterialTypeID == 335) || (x.MaterialTypeID == 336) || (x.MaterialTypeID == 338) || (x.MaterialTypeID == 346) || (x.MaterialTypeID == 359) || (x.MaterialTypeID == 375) || (x.MaterialTypeID == 400))).ToList();
 
             PlanDataList = sbpNonZero.Select(x => x.MaterialCode).Distinct().ToList();
 
@@ -1115,11 +1115,14 @@ namespace PlantPlanning
                       select d).ToList();
             //строки для сетки
             foreach (var ml in CFMList)
-            {                
-                ml.Value_ = ml.CurrentConsumption + ml.RawNav1 + ml.RawStorageList.Sum(x => x.Quantity) + ml.RawEnterpriseList.Sum(x => x.Quantity);
+            {
+                ml.Value_ = ml.CurrentConsumption + ml.RawNav1 + ml.RawStorage + ml.RawEnterprise;
+                ml.ValueUD = ml.CurrentConsumption + ml.RawNav1 + ml.RawStorageUD + ml.RawEnterpriseUD;
+
+               /* ml.Value_ = ml.CurrentConsumption + ml.RawNav1 + ml.RawStorageList.Sum(x => x.Quantity) + ml.RawEnterpriseList.Sum(x => x.Quantity);
                 ml.ValueUD = ml.CurrentConsumption + ml.RawNav1
                          + ml.RawStorageList.Where(x => x.BBFDate >= DateTime.Today.Date).Sum(x => x.Quantity)
-                         + ml.RawEnterpriseList.Where(x => x.BBFDate >= DateTime.Today.Date).Sum(x => x.Quantity);  //исключить просрочку
+                         + ml.RawEnterpriseList.Where(x => x.BBFDate >= DateTime.Today.Date).Sum(x => x.Quantity);*/  //исключить просрочку
 
                 sVal = ml.MaterialCode + RowSplitter + ml.MaterialName + RowSplitter +
                       ml.MaterialGroup + RowSplitter + ml.MaterialMultiplyString + RowSplitter +
