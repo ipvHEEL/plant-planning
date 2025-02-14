@@ -1,0 +1,742 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WorkPlanDataRawFKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'WorkPlanDataRawFK.dbo.MesAreas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="MesAreas">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="AreaID" />
+      <PropertyRef Name="AreaName" />
+      <PropertyRef Name="IsApproved" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AreaID" Type="int" Nullable="false" />
+    <Property Name="AreaName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="IsApproved" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'WorkPlanDataRawFK.dbo.MesLocations' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="MesLocations">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="AreaID" />
+      <PropertyRef Name="LocationName" />
+      <PropertyRef Name="IsApproved" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AreaID" Type="int" Nullable="false" />
+    <Property Name="LocationName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="IsApproved" Type="bit" Nullable="false" />
+    <Property Name="MesLocationID" Type="int" />
+    <Property Name="MesLocationName" Type="nvarchar" MaxLength="150" />
+    <Property Name="LocationType" Type="nvarchar" MaxLength="50" />
+    <Property Name="MesLocCyrName" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="NavPurchaseTable">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateWork" Type="datetime" Nullable="false" />
+    <Property Name="Executor" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="OrderType" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="NextStatus" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="NessDateOrder" Type="datetime" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OrderNymber" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MaterialName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Comment1" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Quantity" Type="float" Nullable="false" />
+    <Property Name="FromBalanses" Type="float" Nullable="false" />
+    <Property Name="EdIzm" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="CFO" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Initiator" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="NumberRowMZZ" Type="bigint" Nullable="false" />
+    <Property Name="MZP" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="StatusMZP" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="NumberRowMZP" Type="bigint" Nullable="false" />
+    <Property Name="ContrAgent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MZPCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MZPNaim" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MZPQuantity" Type="float" Nullable="false" />
+    <Property Name="MZPEdIzm" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="PlanDate" Type="datetime" Nullable="false" />
+    <Property Name="PlanOperDate" Type="datetime" Nullable="false" />
+    <Property Name="ENSGroupCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ENSGroup" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PlanQuantity" Type="float" Nullable="false" />
+    <Property Name="FactQuantity" Type="float" Nullable="false" />
+    <Property Name="ContrAgentCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DayToSend" Type="int" Nullable="false" />
+    <Property Name="CurrPrice" Type="float" Nullable="false" />
+    <Property Name="CurrencyCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateCreateMZP" Type="datetime" Nullable="false" />
+    <Property Name="CFOCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CurrStatusCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CurrStatus" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NextStatusCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LastStatusDate" Type="datetime" Nullable="false" />
+    <Property Name="LastStatusTime" Type="datetime" Nullable="false" />
+    <Property Name="DateCreateZZ" Type="datetime" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="QuantityKey" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DT" Type="date" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'WorkPlanDataRawFK.dbo.PlanOPZList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="PlanOPZList">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="MatCode" />
+      <PropertyRef Name="MatName" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MatCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MatName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsBase" Type="bit" />
+  </EntityType>
+  <EntityType Name="RPSettings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductCode" Type="nvarchar" MaxLength="25" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+    <Property Name="ProductSpeed" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="ProductGroup" Type="nvarchar" MaxLength="1000" />
+    <Property Name="ProductionLine" Type="nvarchar" MaxLength="100" />
+    <Property Name="ProductTrademark" Type="nvarchar" MaxLength="1000" />
+    <Property Name="ProductSubGroup" Type="nvarchar" MaxLength="1000" />
+    <Property Name="PackCoefficient" Type="float" />
+    <Property Name="BatchSize" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="K" Type="int" />
+    <Property Name="NewFileData" Type="nvarchar" MaxLength="100" />
+    <Property Name="ReplaceGroup" Type="nvarchar" MaxLength="1000" />
+    <Property Name="ReprocessGroup" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="StockBalances">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StorageID" Type="int" Nullable="false" />
+    <Property Name="Storage" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MaterialName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MatGroup" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MatGroupName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MatGroupAlter" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="LotName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LotDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Quantity" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaterialOwner" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TestQuality" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="StorageType" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="TestQualityGr" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="TestOnStorage" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="ProdDate" Type="datetime" Nullable="false" />
+    <Property Name="BBFDate" Type="datetime" Nullable="false" />
+    <Property Name="dpr" Type="int" Nullable="false" />
+    <Property Name="bbf" Type="int" Nullable="false" />
+    <Property Name="difdates" Type="int" Nullable="false" />
+    <Property Name="difcurdates" Type="int" Nullable="false" />
+    <Property Name="st" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="WorkDate" Type="datetime" Nullable="false" />
+    <Property Name="DayPeriod" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DT" Type="date" />
+  </EntityType>
+  <EntityType Name="StockBalancesMes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StorageID" Type="int" Nullable="false" />
+    <Property Name="Storage" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MaterialName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MatGroup" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MatGroupName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MatGroupAlter" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="LotName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LotDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Quantity" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaterialOwner" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TestQuality" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="StorageType" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="TestQualityGr" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="TestOnStorage" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="ProdDate" Type="datetime" Nullable="false" />
+    <Property Name="BBFDate" Type="datetime" Nullable="false" />
+    <Property Name="dpr" Type="int" Nullable="false" />
+    <Property Name="bbf" Type="int" Nullable="false" />
+    <Property Name="difdates" Type="int" Nullable="false" />
+    <Property Name="difcurdates" Type="int" Nullable="false" />
+    <Property Name="st" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="WorkDate" Type="datetime" Nullable="false" />
+    <Property Name="DayPeriod" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DT" Type="date" />
+  </EntityType>
+  <EntityType Name="StockBalancesPlant">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StorageID" Type="int" Nullable="false" />
+    <Property Name="Storage" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MaterialName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MatGroup" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MatGroupName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MatGroupAlter" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="LotName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LotDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Quantity" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaterialOwner" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TestQuality" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="StorageType" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="TestQualityGr" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="TestOnStorage" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="ProdDate" Type="datetime" Nullable="false" />
+    <Property Name="BBFDate" Type="datetime" Nullable="false" />
+    <Property Name="dpr" Type="int" Nullable="false" />
+    <Property Name="bbf" Type="int" Nullable="false" />
+    <Property Name="difdates" Type="int" Nullable="false" />
+    <Property Name="difcurdates" Type="int" Nullable="false" />
+    <Property Name="st" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="WorkDate" Type="datetime" Nullable="false" />
+    <Property Name="DayPeriod" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DT" Type="date" />
+  </EntityType>
+  <EntityType Name="StockBalancesWithComments">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Storage" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MaterialName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MatGroup" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LotName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LotDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Quantity" Type="numeric" Precision="18" Scale="6" Nullable="false" />
+    <Property Name="MaterialOwner" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TestQuality" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="StorageType" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="TestQualityGr" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="TestOnStorage" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="ProdDate" Type="datetime" Nullable="false" />
+    <Property Name="BBFDate" Type="datetime" Nullable="false" />
+    <Property Name="dpr" Type="int" Nullable="false" />
+    <Property Name="bbf" Type="int" Nullable="false" />
+    <Property Name="difdates" Type="int" Nullable="false" />
+    <Property Name="difcurdates" Type="int" Nullable="false" />
+    <Property Name="st" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="WorkDate" Type="datetime" Nullable="false" />
+    <Property Name="DayPeriod" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MatCode" Type="nvarchar" MaxLength="100" />
+    <Property Name="LotNo" Type="nvarchar" MaxLength="100" />
+    <Property Name="Comment" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="SystemTable">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ObjectCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CFOCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CFOSolut" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tApplication">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateWork" Type="datetime" Nullable="false" />
+    <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Quantity" Type="float" Nullable="false" />
+    <Property Name="AlterDate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'WorkPlanDataRawFK.dbo.tBlockedMaterial' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tBlockedMaterial">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="ProductCode" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="Using" />
+    </Key>
+    <Property Name="id" Type="bigint" Nullable="false" />
+    <Property Name="ProductCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="Using" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'WorkPlanDataRawFK.dbo.tBlockedProduct' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tBlockedProduct">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="ProductCode" />
+      <PropertyRef Name="ProductName" />
+      <PropertyRef Name="Using" />
+    </Key>
+    <Property Name="id" Type="bigint" Nullable="false" />
+    <Property Name="ProductCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="Using" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tColorSelection">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Destination" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="SelectedColor" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tComponentException">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tConsurptionData">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Quantity" Type="float" Nullable="false" />
+    <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="WorkDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'WorkPlanDataRawFK.dbo.tLines' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tLines">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="LineCode" />
+      <PropertyRef Name="LineName" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LineCode" Type="int" Nullable="false" />
+    <Property Name="LineName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="tMaterial">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="MaterialTypeID" Type="int" />
+    <Property Name="MaterialGroupID" Type="int" Nullable="false" />
+    <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Units" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="PlannedSize" Type="float" Nullable="false" />
+    <Property Name="ModifiedDateTime" Type="datetime" />
+    <Property Name="UploadedDateTime" Type="datetime" />
+    <Property Name="deliveryfrequency" Type="int" />
+    <Property Name="delivmindays" Type="int" />
+    <Property Name="insurancestock" Type="int" />
+    <Property Name="lastsender" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tMercuryRecordSelected">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DateWork" Type="datetime" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tPlannedMeatContainers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MaterialName" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="MaterialPostingGroup" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LocationCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Quantity" Type="float" Nullable="false" />
+    <Property Name="LotNo" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LotDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ContainerNo" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ExpWeek" Type="int" Nullable="false" />
+    <Property Name="ExpDT" Type="datetime" Nullable="false" />
+    <Property Name="DateWork" Type="datetime" Nullable="false" />
+    <Property Name="AlterDate" Type="datetime" />
+    <Property Name="DT" Type="date" />
+  </EntityType>
+  <EntityType Name="tUserRecordSelected">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DateWork" Type="datetime" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tWorkPlan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlanName" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DateWork" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tWorkPlanDates">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="owner" Type="bigint" Nullable="false" />
+    <Property Name="DateWork" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tWorkPlanElement">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="owner" Type="bigint" Nullable="false" />
+    <Property Name="LineName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ProdCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsRePack" Type="bit" Nullable="false" />
+    <Property Name="ProdQuantity" Type="float" Nullable="false" />
+    <Property Name="ProdName" Type="nvarchar" MaxLength="1000" Nullable="false" />
+  </EntityType>
+  <Function Name="fn_Get_ConsurmptionData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="id" Type="bigint" />
+          <Property Name="JobName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="WorkDate" Type="datetime" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_select_CommentData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="ID" Type="bigint" />
+          <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="MaterialName" Type="nvarchar" MaxLength="2500" />
+          <Property Name="DateRecord" Type="datetime" />
+          <Property Name="IsActual" Type="bit" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="3900" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_select_CommentDataID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Code" Type="nvarchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="IDC" Type="bigint" />
+          <Property Name="MaterialCodeC" Type="nvarchar" MaxLength="100" />
+          <Property Name="MaterialNameC" Type="nvarchar" MaxLength="2500" />
+          <Property Name="DateRecordC" Type="datetime" />
+          <Property Name="IsActualC" Type="bit" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="CommentC" Type="nvarchar" MaxLength="3900" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_select_PlannedMainData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="MaterialCode" Type="nvarchar" MaxLength="25" />
+          <Property Name="NavMaterialName" Type="nvarchar(max)" />
+          <Property Name="MesMaterialName" Type="nvarchar(max)" />
+          <Property Name="MaterialGroup" Type="nvarchar" MaxLength="100" />
+          <Property Name="ItemGroup" Type="nvarchar" MaxLength="100" />
+          <Property Name="SIGname" Type="nvarchar" MaxLength="100" />
+          <Property Name="BaseUnitMeasure" Type="nvarchar" MaxLength="100" />
+          <Property Name="ZZ" Type="nvarchar" MaxLength="100" />
+          <Property Name="SIGresp" Type="nvarchar" MaxLength="100" />
+          <Property Name="Blocked" Type="bit" />
+          <Property Name="Multiplicity" Type="int" />
+          <Property Name="MinTransferDays" Type="int" />
+          <Property Name="SafetyStock" Type="int" />
+          <Property Name="LASTPRODUCER" Type="nvarchar(max)" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_select_ProductionByCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProductCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="dateStart" Type="datetime" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="MaterialName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="SystemName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="LotForErp" Type="nvarchar" MaxLength="100" />
+          <Property Name="RawQuant" Type="float" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_select_RecipesBisView" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="ProductCode" Type="nvarchar" MaxLength="1000" />
+          <Property Name="AlterproductCode" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="LineNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="WorkDate" Type="datetime" />
+          <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="MaterialName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="UnitMeasure" Type="nvarchar" MaxLength="25" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="IPG" Type="nvarchar" MaxLength="100" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_select_RecipesView" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="ProductCode" Type="nvarchar" MaxLength="1000" />
+          <Property Name="AlterProductCode" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="LineNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="WorkDate" Type="datetime" />
+          <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="MaterialName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="UnitMeasure" Type="nvarchar" MaxLength="25" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="IPG" Type="nvarchar" MaxLength="100" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_select_RPSettings" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="id" Type="bigint" />
+          <Property Name="ProductCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ProductGroup" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductionLine" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductTradeMark" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductSubGroup" Type="nvarchar" MaxLength="100" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_select_RPSettingsByCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProdCode" Type="nvarchar" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="ProductCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_select_StockBalancesWithComments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Storage" Type="nvarchar" MaxLength="100" />
+          <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="MaterialName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="MatGroup" Type="nvarchar" MaxLength="100" />
+          <Property Name="LotName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LotDescription" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="MaterialOwner" Type="nvarchar" MaxLength="100" />
+          <Property Name="TestQuality" Type="nvarchar" MaxLength="100" />
+          <Property Name="StorageType" Type="nvarchar" MaxLength="100" />
+          <Property Name="TestQualityGr" Type="nvarchar" MaxLength="100" />
+          <Property Name="TestOnStorage" Type="nvarchar" MaxLength="250" />
+          <Property Name="ProdDate" Type="datetime" />
+          <Property Name="BBFDate" Type="datetime" />
+          <Property Name="dpr" Type="int" />
+          <Property Name="bbf" Type="int" />
+          <Property Name="difdates" Type="int" />
+          <Property Name="difcurdates" Type="int" />
+          <Property Name="st" Type="nvarchar" MaxLength="10" />
+          <Property Name="WorkDate" Type="datetime" />
+          <Property Name="DayPeriod" Type="nvarchar" MaxLength="100" />
+          <Property Name="MatCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="LotNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="Insert_WorkPlanTableRecord1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="datework" Type="datetime" Mode="In" />
+    <Parameter Name="LineName" Type="nvarchar" Mode="In" />
+    <Parameter Name="ProdCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="Group" Type="nvarchar" Mode="In" />
+    <Parameter Name="quantity" Type="float" Mode="In" />
+  </Function>
+  <Function Name="Pr_DeleteAppRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="Pr_DeleteMercuryRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaterialCode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="pr_DeleteTestData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="Pr_DeleteUserRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaterialCode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="pr_GetAlarmWaste" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="pr_GetOPZ" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="start" Type="datetime" Mode="In" />
+    <Parameter Name="end" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="pr_InsertCommentData1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="bigint" Mode="In" />
+    <Parameter Name="Code" Type="nvarchar" Mode="In" />
+    <Parameter Name="Naim" Type="nvarchar" Mode="In" />
+    <Parameter Name="Active" Type="bit" Mode="In" />
+    <Parameter Name="Comment" Type="nvarchar" Mode="In" />
+    <Parameter Name="userName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Pr_InsertMercuryRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaterialCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="pr_InsertTestData1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="bigint" Mode="In" />
+    <Parameter Name="Code" Type="nvarchar" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="Res" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="Pr_InsertUserAppData1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DateWork" Type="datetime" Mode="In" />
+    <Parameter Name="AlterWork" Type="datetime" Mode="In" />
+    <Parameter Name="MaterialCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="Quantity" Type="float" Mode="In" />
+  </Function>
+  <Function Name="Pr_InsertUserCompData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="bigint" Mode="In" />
+    <Parameter Name="CompName" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="ObjectCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="CFOCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="CFOSolut" Type="nvarchar" Mode="In" />
+    <Parameter Name="Address" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Pr_InsertUserRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaterialCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Pr_UpdateMesArea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="bigint" Mode="In" />
+    <Parameter Name="fl" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="Pr_UpdateMesLocation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="bigint" Mode="In" />
+    <Parameter Name="fl" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="SelectStockBalances1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SelectStockBalancesMes1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SelectStockBalancesPlant2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="Update_WorkPlanTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="WorkPlanDataRawFKModelStoreContainer">
+    <EntitySet Name="NavPurchaseTable" EntityType="Self.NavPurchaseTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RPSettings" EntityType="Self.RPSettings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StockBalances" EntityType="Self.StockBalances" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StockBalancesMes" EntityType="Self.StockBalancesMes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StockBalancesPlant" EntityType="Self.StockBalancesPlant" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StockBalancesWithComments" EntityType="Self.StockBalancesWithComments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SystemTable" EntityType="Self.SystemTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tApplication" EntityType="Self.tApplication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tColorSelection" EntityType="Self.tColorSelection" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tComponentException" EntityType="Self.tComponentException" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tConsurptionData" EntityType="Self.tConsurptionData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tMaterial" EntityType="Self.tMaterial" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tMercuryRecordSelected" EntityType="Self.tMercuryRecordSelected" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tPlannedMeatContainers" EntityType="Self.tPlannedMeatContainers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tUserRecordSelected" EntityType="Self.tUserRecordSelected" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tWorkPlan" EntityType="Self.tWorkPlan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tWorkPlanDates" EntityType="Self.tWorkPlanDates" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tWorkPlanElement" EntityType="Self.tWorkPlanElement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MesAreas" EntityType="Self.MesAreas" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [MesAreas].[ID] AS [ID], 
+    [MesAreas].[AreaID] AS [AreaID], 
+    [MesAreas].[AreaName] AS [AreaName], 
+    [MesAreas].[IsApproved] AS [IsApproved]
+    FROM [dbo].[MesAreas] AS [MesAreas]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="MesLocations" EntityType="Self.MesLocations" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [MesLocations].[ID] AS [ID], 
+    [MesLocations].[AreaID] AS [AreaID], 
+    [MesLocations].[LocationName] AS [LocationName], 
+    [MesLocations].[IsApproved] AS [IsApproved], 
+    [MesLocations].[MesLocationID] AS [MesLocationID], 
+    [MesLocations].[MesLocationName] AS [MesLocationName], 
+    [MesLocations].[LocationType] AS [LocationType], 
+    [MesLocations].[MesLocCyrName] AS [MesLocCyrName]
+    FROM [dbo].[MesLocations] AS [MesLocations]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="PlanOPZList" EntityType="Self.PlanOPZList" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [PlanOPZList].[ID] AS [ID], 
+    [PlanOPZList].[MatCode] AS [MatCode], 
+    [PlanOPZList].[MatName] AS [MatName], 
+    [PlanOPZList].[IsBase] AS [IsBase]
+    FROM [dbo].[PlanOPZList] AS [PlanOPZList]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tBlockedMaterial" EntityType="Self.tBlockedMaterial" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tBlockedMaterial].[id] AS [id], 
+    [tBlockedMaterial].[ProductCode] AS [ProductCode], 
+    [tBlockedMaterial].[ProductName] AS [ProductName], 
+    [tBlockedMaterial].[Using] AS [Using]
+    FROM [dbo].[tBlockedMaterial] AS [tBlockedMaterial]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tBlockedProduct" EntityType="Self.tBlockedProduct" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tBlockedProduct].[id] AS [id], 
+    [tBlockedProduct].[ProductCode] AS [ProductCode], 
+    [tBlockedProduct].[ProductName] AS [ProductName], 
+    [tBlockedProduct].[Using] AS [Using]
+    FROM [dbo].[tBlockedProduct] AS [tBlockedProduct]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tLines" EntityType="Self.tLines" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tLines].[id] AS [id], 
+    [tLines].[LineCode] AS [LineCode], 
+    [tLines].[LineName] AS [LineName], 
+    [tLines].[Comment] AS [Comment]
+    FROM [dbo].[tLines] AS [tLines]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
