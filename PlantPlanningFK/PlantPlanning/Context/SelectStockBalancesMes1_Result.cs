@@ -18,7 +18,8 @@ namespace PlantPlanning.Context
         public string MaterialCode { get; set; }
         public string MaterialName { get; set; }
         public string LotName { get; set; }
-        public decimal Quantity { get; set; }
+        public string LotDescription { get; set; }
+        public Nullable<decimal> Quantity { get; set; }
         public string MaterialOwner { get; set; }
         public System.DateTime WorkDate { get; set; }
         public string DayPeriod { get; set; }

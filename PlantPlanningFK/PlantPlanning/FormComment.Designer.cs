@@ -42,7 +42,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new DBDataGridView();      //System.Windows.Forms.DataGridView();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.button9 = new System.Windows.Forms.Button();
             this.textBoxFilterNaim = new System.Windows.Forms.TextBox();
@@ -237,7 +237,7 @@
             this.MaximizeBox = false;
             this.Name = "FormComment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormComment";
+            this.Text = "Комментарии";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormComment_FormClosed);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -262,7 +262,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private /*System.Windows.Forms.DataGridView*/  DBDataGridView dataGridView1;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
         public System.Windows.Forms.Button button9;
         private System.Windows.Forms.TextBox textBoxFilterNaim;

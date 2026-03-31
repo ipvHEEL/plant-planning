@@ -38,6 +38,7 @@ namespace PlantPlanning
         public List<string> CFMListGoldens;
 
         public List<UserSelectedCell> USCList;
+        List<DateTime> DList;
 
         string CurrCode = "";
 
@@ -63,6 +64,15 @@ namespace PlantPlanning
 
             USCList = new List<UserSelectedCell>();
 
+            DList = new List<DateTime>();
+            DList = fm.ExcelDataList.Select(x => x.DateWork).ToList();
+            DList = DList.Distinct().OrderBy(x => x.Date).ToList();
+
+            dtpFact1.Value = DateTime.Today.Date.AddMonths(-1);
+            dtpFact2.Value = DateTime.Today.Date.AddMonths(1);
+            dtpPlan1.Value = DateTime.Today.Date.AddMonths(-1);
+            dtpPlan2.Value = DateTime.Today.Date.AddMonths(1);
+
             LoadData();
             ShowData();
             //  DrawDGV();
@@ -82,6 +92,7 @@ namespace PlantPlanning
             button1_e.BackColor = Color.LightGreen;    //Color.Lime;
             button1_f.BackColor = Color.RosyBrown;
             button1_g.BackColor = Color.MistyRose;
+            button1_h.BackColor = Color.Tan;
 
             List<string> MatCodeList = cf.FilteredMaterialDataOut.Select(x => x.ProductCode).ToList();
             MaterialData = new List<DailyResult>();
@@ -130,7 +141,7 @@ namespace PlantPlanning
             }
 
             CFMListGold = new List<string>();
-            CFMListGray = new List<string>();
+         //   CFMListGray = new List<string>();
             CFMListLine = new List<Colorres>(); //[
             CFMListPink = new List<string>();//[
             CFMListPlus = new List<Colorres>(); //+
@@ -189,6 +200,8 @@ namespace PlantPlanning
                     dt1.Columns.Add("Дефицит на " + dt.ToString("dd.MM.yyyy"));
                 }
             }
+
+            dt1.Columns.Add("MatStatus");
             dt1.Columns.Add("Zerrrro");
 
             MaterialData = CFMList.Select(x => new DailyResult
@@ -209,191 +222,540 @@ namespace PlantPlanning
 
                 for (int j = 0; j < cf.WorkMonthList.Count; j++)
                 {
-                    if ((Math.Abs(CFMList[i].OutList[j].Quantity) <= 1) && (Math.Abs(CFMList[i].OutList[j].Quantity) > 0))
+                    if (Math.Abs(CFMList[i].OutList[j].Quantity) >= 100)
+                    {
+                        sVal = sVal + CFMList[i].OutList[j].Quantity.ToString("N0") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].OutList[j].Quantity) >= 10 && Math.Abs(CFMList[i].OutList[j].Quantity) < 100)
+                    {
+                        sVal = sVal + CFMList[i].OutList[j].Quantity.ToString("N1") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].OutList[j].Quantity) >= 1 && Math.Abs(CFMList[i].OutList[j].Quantity) < 10)
+                    {
+                        sVal = sVal + CFMList[i].OutList[j].Quantity.ToString("N2") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].OutList[j].Quantity) > 0)
+                    {
+                        sVal = sVal + CFMList[i].OutList[j].Quantity.ToString("N3") + RowSplitter;
+                    }
+                    else
+                    {
+                        sVal = sVal + "" + RowSplitter;
+                    }
+
+                    /*if ((Math.Abs(CFMList[i].OutList[j].Quantity) <= 1) && (Math.Abs(CFMList[i].OutList[j].Quantity) > 0))
                     {
                         sVal = sVal + CFMList[i].OutList[j].Quantity.ToString("N1") + RowSplitter;
                     }
                     else
                     {
                         sVal = sVal + CFMList[i].OutList[j].Quantity.ToString("N0") + RowSplitter;
-                    }
+                    }*/
                 }
 
-                if ((Math.Abs(CFMList[i].CurrentConsumption) <= 1) && (Math.Abs(CFMList[i].CurrentConsumption) > 0))  //8
-                {
-                    sVal = sVal + CFMList[i].CurrentConsumption.ToString("N1") + RowSplitter;
-                }
-                else
+                if (Math.Abs(CFMList[i].CurrentConsumption) >= 100)
                 {
                     sVal = sVal + CFMList[i].CurrentConsumption.ToString("N0") + RowSplitter;
                 }
+                else if (Math.Abs(CFMList[i].CurrentConsumption) >= 10 && Math.Abs(CFMList[i].CurrentConsumption) < 100)
+                {
+                    sVal = sVal + CFMList[i].CurrentConsumption.ToString("N1") + RowSplitter;
+                }
+                else if (Math.Abs(CFMList[i].CurrentConsumption) >= 1 && Math.Abs(CFMList[i].CurrentConsumption) < 10)
+                {
+                    sVal = sVal + CFMList[i].CurrentConsumption.ToString("N2") + RowSplitter;
+                }
+                else if (Math.Abs(CFMList[i].CurrentConsumption) >0)
+                {
+                    sVal = sVal + CFMList[i].CurrentConsumption.ToString("N3") + RowSplitter;
+                }
+                else
+                {
+                    sVal = sVal + "" + RowSplitter;
+                }
+
+                    /*if ((Math.Abs(CFMList[i].CurrentConsumption) <= 1) && (Math.Abs(CFMList[i].CurrentConsumption) > 0))  //8
+                    {
+                        sVal = sVal + CFMList[i].CurrentConsumption.ToString("N1") + RowSplitter;
+                    }
+                    else
+                    {
+                        sVal = sVal + CFMList[i].CurrentConsumption.ToString("N0") + RowSplitter;
+                    }*/
 
                 if (cbMaterialDelay.Checked == false)
                 {
-                    if ((Math.Abs(CFMList[i].RawStorage) <= 1) && (Math.Abs(CFMList[i].RawStorage) > 0))  //9
+                    if (Math.Abs(CFMList[i].RawStorage) >= 100)
+                    {
+                        sVal = sVal + CFMList[i].RawStorage.ToString("N0") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].RawStorage) >= 10 && Math.Abs(CFMList[i].RawStorage) < 100)
+                    {
+                        sVal = sVal + CFMList[i].RawStorage.ToString("N1") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].RawStorage) >= 1 && Math.Abs(CFMList[i].RawStorage) < 10)
+                    {
+                        sVal = sVal + CFMList[i].RawStorage.ToString("N2") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].RawStorage) >0)
+                    {
+                        sVal = sVal + CFMList[i].RawStorage.ToString("N3") + RowSplitter;
+                    }
+                    else
+                    {
+                        sVal = sVal + "" + RowSplitter;
+                    }
+
+                    /*if ((Math.Abs(CFMList[i].RawStorage) <= 1) && (Math.Abs(CFMList[i].RawStorage) > 0))  //9
                     {
                         sVal = sVal + CFMList[i].RawStorage.ToString("N1") + RowSplitter;
                     }
                     else
                     {
                         sVal = sVal + CFMList[i].RawStorage.ToString("N0") + RowSplitter;
+                    }*/
+
+                    if (Math.Abs(CFMList[i].RawEnterprise) >= 100)
+                    {
+                        sVal = sVal + CFMList[i].RawEnterprise.ToString("N0") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].RawEnterprise) >= 10 && Math.Abs(CFMList[i].RawEnterprise) < 100)
+                    {
+                        sVal = sVal + CFMList[i].RawEnterprise.ToString("N1") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].RawEnterprise) >= 1 && Math.Abs(CFMList[i].RawEnterprise) < 10)
+                    {
+                        sVal = sVal + CFMList[i].RawEnterprise.ToString("N2") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].RawEnterprise) >0)
+                    {
+                        sVal = sVal + CFMList[i].RawEnterprise.ToString("N3") + RowSplitter;
+                    }
+                    else
+                    {
+                        sVal = sVal + "" + RowSplitter;
                     }
 
-                    if ((Math.Abs(CFMList[i].RawEnterprise) <= 1) && (Math.Abs(CFMList[i].RawEnterprise) > 0))  //10
+                    /*if ((Math.Abs(CFMList[i].RawEnterprise) <= 1) && (Math.Abs(CFMList[i].RawEnterprise) > 0))  //10
                     {
                         sVal = sVal + CFMList[i].RawEnterprise.ToString("N1") + RowSplitter;
                     }
                     else
                     {
                         sVal = sVal + CFMList[i].RawEnterprise.ToString("N0") + RowSplitter;
+                    }*/
+
+                    if (Math.Abs(CFMList[i].RawNav1) >= 100)
+                    {
+                        sVal = sVal + CFMList[i].RawNav1.ToString("N0") + RowSplitter; // + " (";
+                    }
+                    else if (Math.Abs(CFMList[i].RawNav1) >= 10 && Math.Abs(CFMList[i].RawNav1) < 100)
+                    {
+                        sVal = sVal + CFMList[i].RawNav1.ToString("N1") + RowSplitter; // + " (";
+                    }
+                    else if (Math.Abs(CFMList[i].RawNav1) >= 1 && Math.Abs(CFMList[i].RawNav1) < 10)
+                    {
+                        sVal = sVal + CFMList[i].RawNav1.ToString("N2") + RowSplitter; // + " (";
+                    }
+                    else if (CFMList[i].RawNav1 != 0)
+                    {
+                        sVal = sVal + CFMList[i].RawNav1.ToString("N3") + RowSplitter; // + " (";
+                    }
+                    else
+                    {
+                        sVal = sVal + "" + RowSplitter;
                     }
 
-                    if ((Math.Abs(CFMList[i].RawNav1) <= 1) && (Math.Abs(CFMList[i].RawNav1) > 0))  //11
+                    /*if ((Math.Abs(CFMList[i].RawNav1) <= 1) && (Math.Abs(CFMList[i].RawNav1) > 0))  //11
                     {
                         sVal = sVal + CFMList[i].RawNav1.ToString("N1") + RowSplitter; //+ " (";
                     }
                     else
                     {
                         sVal = sVal + CFMList[i].RawNav1.ToString("N0") + RowSplitter; // + " (";
+                    }*/
+
+                    if (Math.Abs(CFMList[i].RawNav2) >= 100)
+                    {
+                        sVal = sVal + CFMList[i].RawNav2.ToString("N0") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].RawNav2) >= 10 && Math.Abs(CFMList[i].RawNav2) < 100)
+                    {
+                        sVal = sVal + CFMList[i].RawNav2.ToString("N1") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].RawNav2) >= 1 && Math.Abs(CFMList[i].RawNav2) < 10)
+                    {
+                        sVal = sVal + CFMList[i].RawNav2.ToString("N2") + RowSplitter;
+                    }
+                    else if (CFMList[i].RawNav2 != 0)
+                    {
+                        sVal = sVal + CFMList[i].RawNav2.ToString("N3") + RowSplitter;
+                    }
+                    else
+                    {
+                        sVal = sVal + "" + RowSplitter;
                     }
 
-                    if ((Math.Abs(CFMList[i].RawNav2) <= 1) && (Math.Abs(CFMList[i].RawNav2) > 0))  //12
+                    /*if ((Math.Abs(CFMList[i].RawNav2) <= 1) && (Math.Abs(CFMList[i].RawNav2) > 0))  //12
                     {
                         sVal = sVal + CFMList[i].RawNav2.ToString("N1")  + RowSplitter;  //+ ") "
                     }
                     else
                     {
                         sVal = sVal + CFMList[i].RawNav2.ToString("N0")  + RowSplitter;
+                    }*/
+
+                    if (Math.Abs(CFMList[i].RawMesOut1) >= 100)
+                    {
+                        sVal = sVal + CFMList[i].RawMesOut1.ToString("N0") + RowSplitter; //+ " (";
+                    }
+                    else if (Math.Abs(CFMList[i].RawMesOut1) >= 10 && Math.Abs(CFMList[i].RawMesOut1) < 100)
+                    {
+                        sVal = sVal + CFMList[i].RawMesOut1.ToString("N1") + RowSplitter; //+ " (";
+                    }
+                    else if (Math.Abs(CFMList[i].RawMesOut1) >= 1 && Math.Abs(CFMList[i].RawMesOut1) < 10)
+                    {
+                        sVal = sVal + CFMList[i].RawMesOut1.ToString("N2") + RowSplitter; //+ " (";
+                    }
+                    else if (CFMList[i].RawMesOut1 !=0)
+                    {
+                        sVal = sVal + CFMList[i].RawMesOut1.ToString("N3") + RowSplitter; //+ " (";
+                    }
+                    else
+                    {
+                        sVal = sVal + "" + RowSplitter;
                     }
 
-                    if ((Math.Abs(CFMList[i].RawMesOut1) <= 1) && (Math.Abs(CFMList[i].RawMesOut1) > 0))  //13
+                    /*if ((Math.Abs(CFMList[i].RawMesOut1) <= 1) && (Math.Abs(CFMList[i].RawMesOut1) > 0))  //13
                     {
                         sVal = sVal + CFMList[i].RawMesOut1.ToString("N1") + RowSplitter;// + ") ";
                     }
                     else
                     {
                         sVal = sVal + CFMList[i].RawMesOut1.ToString("N0") + RowSplitter; //+ " (";
+                    }*/
+
+                    if (Math.Abs(CFMList[i].RawMesOut2) >= 100)
+                    {
+                        sVal = sVal + CFMList[i].RawMesOut2.ToString("N0") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].RawMesOut2) >= 10 && Math.Abs(CFMList[i].RawMesOut2) < 100)
+                    {
+                        sVal = sVal + CFMList[i].RawMesOut2.ToString("N1") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].RawMesOut2) >= 1 && Math.Abs(CFMList[i].RawMesOut2) < 10)
+                    {
+                        sVal = sVal + CFMList[i].RawMesOut2.ToString("N2") + RowSplitter;
+                    }
+                    else if (CFMList[i].RawMesOut2 != 0)
+                    {
+                        sVal = sVal + CFMList[i].RawMesOut2.ToString("N3") + RowSplitter;
+                    }
+                    else
+                    {
+                        sVal = sVal + "" + RowSplitter;
                     }
 
-                    if ((Math.Abs(CFMList[i].RawMesOut2) <= 1) && (Math.Abs(CFMList[i].RawMesOut2) > 0))  //14
+                    /*if ((Math.Abs(CFMList[i].RawMesOut2) <= 1) && (Math.Abs(CFMList[i].RawMesOut2) > 0))  //14
                     {
                         sVal = sVal + CFMList[i].RawMesOut2.ToString("N1") + RowSplitter;  // + ")" 
                     }
                     else
                     {
                         sVal = sVal + CFMList[i].RawMesOut2.ToString("N0") + RowSplitter;
+                    }*/
+
+                    if (Math.Abs(CFMList[i].OldTaskNav)  >= 100)
+                    {
+                        sVal = sVal + CFMList[i].OldTaskNav.ToString("N0") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].OldTaskNav) >= 10 && Math.Abs(CFMList[i].OldTaskNav) < 100)
+                    { 
+                        sVal = sVal + CFMList[i].OldTaskNav.ToString("N1") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].OldTaskNav) >=1 && Math.Abs(CFMList[i].OldTaskNav) < 10)
+                    {
+                        sVal = sVal + CFMList[i].OldTaskNav.ToString("N2") + RowSplitter;
+                    }
+                    else if (CFMList[i].OldTaskNav != 0)
+                    {
+                        sVal = sVal + CFMList[i].OldTaskNav.ToString("N3") + RowSplitter;
+                    }
+                    else
+                    {
+                        sVal = sVal + "" + RowSplitter;
                     }
 
-                    if ((Math.Abs(CFMList[i].OldTaskNav) <= 1) && (Math.Abs(CFMList[i].OldTaskNav) > 0)) //15
+                    /*if ((Math.Abs(CFMList[i].OldTaskNav) <= 1) && (Math.Abs(CFMList[i].OldTaskNav) > 0)) //15
                     {
                         sVal = sVal + CFMList[i].OldTaskNav.ToString("N1") + RowSplitter;   //0-15
                     }
                     else
                     {
                         sVal = sVal + CFMList[i].OldTaskNav.ToString("N0") + RowSplitter;    
-                    }
+                    }*/
                 }
                 else
                 {
-                    if ((Math.Abs(CFMList[i].RawStorageUD) <= 1) && (Math.Abs(CFMList[i].RawStorageUD) > 0))
+                    if (Math.Abs(CFMList[i].RawStorageUD) >= 100)
+                    {
+                        sVal = sVal + CFMList[i].RawStorageUD.ToString("N0") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].RawStorageUD) >= 10 && Math.Abs(CFMList[i].RawStorageUD) < 100)
+                    {
+                        sVal = sVal + CFMList[i].RawStorageUD.ToString("N1") + RowSplitter;
+                    }
+                    if (Math.Abs(CFMList[i].RawStorageUD) >= 1 && Math.Abs(CFMList[i].RawStorageUD) < 10)
+                    {
+                        sVal = sVal + CFMList[i].RawStorageUD.ToString("N2") + RowSplitter;
+                    }
+                    else if (CFMList[i].RawStorageUD != 0)
+                    {
+                        sVal = sVal + CFMList[i].RawStorageUD.ToString("N3") + RowSplitter;
+                    }
+                    else
+                    {
+                        sVal = sVal + "" + RowSplitter;
+                    }
+
+                   /* if ((Math.Abs(CFMList[i].RawStorageUD) <= 1) && (Math.Abs(CFMList[i].RawStorageUD) > 0))
                     {
                         sVal = sVal + CFMList[i].RawStorageUD.ToString("N1") + RowSplitter;
                     }
                     else
                     {
                         sVal = sVal + CFMList[i].RawStorageUD.ToString("N0") + RowSplitter;
+                    }*/
+
+                    if (Math.Abs(CFMList[i].RawEnterpriseUD) >= 100)
+                    {
+                        sVal = sVal + CFMList[i].RawEnterpriseUD.ToString("N0") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].RawEnterpriseUD) >= 10 && Math.Abs(CFMList[i].RawEnterpriseUD) < 100)
+                    {
+                        sVal = sVal + CFMList[i].RawEnterpriseUD.ToString("N1") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].RawEnterpriseUD) >= 1 && Math.Abs(CFMList[i].RawEnterpriseUD) < 10)
+                    {
+                        sVal = sVal + CFMList[i].RawEnterpriseUD.ToString("N2") + RowSplitter;
+                    }
+                    else if (CFMList[i].RawEnterpriseUD != 0)
+                    {
+                        sVal = sVal + CFMList[i].RawEnterpriseUD.ToString("N3") + RowSplitter;
+                    }
+                    else
+                    {
+                        sVal = sVal + "" + RowSplitter;
                     }
 
-                    if ((Math.Abs(CFMList[i].RawEnterpriseUD) <= 1) && (Math.Abs(CFMList[i].RawEnterpriseUD) > 0))
+                    /*if ((Math.Abs(CFMList[i].RawEnterpriseUD) <= 1) && (Math.Abs(CFMList[i].RawEnterpriseUD) > 0))
                     {
                         sVal = sVal + CFMList[i].RawEnterpriseUD.ToString("N1") + RowSplitter;
                     }
                     else
                     {
                         sVal = sVal + CFMList[i].RawEnterpriseUD.ToString("N0") + RowSplitter;
+                    }*/
+
+                    if (Math.Abs(CFMList[i].RawNav1UD) >= 100)
+                    {
+                        sVal = sVal + CFMList[i].RawNav1UD.ToString("N0") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].RawNav1UD) >= 10 && Math.Abs(CFMList[i].RawNav1UD) < 100)
+                    {
+                        sVal = sVal + CFMList[i].RawNav1UD.ToString("N1") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].RawNav1UD) >= 1 && Math.Abs(CFMList[i].RawNav1UD) <10)
+                    {
+                        sVal = sVal + CFMList[i].RawNav1UD.ToString("N2") + RowSplitter;
+                    }
+                    else if (CFMList[i].RawNav1UD != 0)
+                    {
+                        sVal = sVal + CFMList[i].RawNav1UD.ToString("N3") + RowSplitter;
+                    }                    
+                    else
+                    {
+                        sVal = sVal + "" + RowSplitter;
                     }
 
-                    if ((Math.Abs(CFMList[i].RawNav1UD) <= 1) && (Math.Abs(CFMList[i].RawNav1UD) > 0))
+                    /*if ((Math.Abs(CFMList[i].RawNav1UD) <= 1) && (Math.Abs(CFMList[i].RawNav1UD) > 0))
                     {
                         sVal = sVal + CFMList[i].RawNav1UD.ToString("N1") + RowSplitter;
                     }
                     else
                     {
                         sVal = sVal + CFMList[i].RawNav1UD.ToString("N0") + RowSplitter;
+                    }*/
+
+                    if (Math.Abs(CFMList[i].RawNav2UD) >= 100)
+                    {
+                        sVal = sVal + CFMList[i].RawNav2UD.ToString("N0") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].RawNav2UD) >= 10 && Math.Abs(CFMList[i].RawNav2UD) < 100)
+                    {
+                        sVal = sVal + CFMList[i].RawNav2UD.ToString("N1") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].RawNav2UD) >= 1 && Math.Abs(CFMList[i].RawNav2UD) < 10)
+                    {
+                        sVal = sVal + CFMList[i].RawNav2UD.ToString("N2") + RowSplitter;
+                    }
+                    else if (CFMList[i].RawNav2UD != 0)
+                    {
+                        sVal = sVal + CFMList[i].RawNav2UD.ToString("N3") + RowSplitter;
+                    }
+                    else
+                    {
+                        sVal = sVal + "" + RowSplitter;
                     }
 
-                    if ((Math.Abs(CFMList[i].RawNav2UD) <= 1) && (Math.Abs(CFMList[i].RawNav2UD) > 0))
+                    /*if ((Math.Abs(CFMList[i].RawNav2UD) <= 1) && (Math.Abs(CFMList[i].RawNav2UD) > 0))
                     {
                         sVal = sVal + CFMList[i].RawNav2UD.ToString("N1") + RowSplitter;
                     }
                     else
                     {
                         sVal = sVal + CFMList[i].RawNav2UD.ToString("N0") + RowSplitter;
-                    }
+                    }*/
 
-                    if ((Math.Abs(CFMList[i].RawMesOut2UD) <= 1) && (Math.Abs(CFMList[i].RawMesOut2UD) > 0))
-                    {
-                        sVal = sVal + CFMList[i].RawMesOut2UD.ToString("N1") + RowSplitter;
-                    }
-                    else
-                    {
-                        sVal = sVal + CFMList[i].RawMesOut2UD.ToString("N0") + RowSplitter;
-                    }
-
-                    if ((Math.Abs(CFMList[i].RawMesOut1UD) <= 1) && (Math.Abs(CFMList[i].RawMesOut1UD) > 0))
-                    {
-                        sVal = sVal + CFMList[i].RawMesOut1UD.ToString("N1") + +RowSplitter;
-                    }
-                    else
+                    if (Math.Abs(CFMList[i].RawMesOut1UD) >= 100)
                     {
                         sVal = sVal + CFMList[i].RawMesOut1UD.ToString("N0") + RowSplitter;
                     }
+                    else if (Math.Abs(CFMList[i].RawMesOut1UD) >= 10 && Math.Abs(CFMList[i].RawMesOut1UD) < 100)
+                    {
+                        sVal = sVal + CFMList[i].RawMesOut1UD.ToString("N1") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].RawMesOut1UD) >= 1 && Math.Abs(CFMList[i].RawMesOut1UD) < 10)
+                    {
+                        sVal = sVal + CFMList[i].RawMesOut1UD.ToString("N2") + RowSplitter;
+                    }
+                    else if (CFMList[i].RawMesOut1UD != 0)
+                    {
+                        sVal = sVal + CFMList[i].RawMesOut1UD.ToString("N3") + RowSplitter;
+                    }
+                    else
+                    {
+                        sVal = sVal + "" + RowSplitter;
+                    }
 
-                    if ((Math.Abs(CFMList[i].OldTaskNavUD) <= 1) && (Math.Abs(CFMList[i].OldTaskNavUD) > 0))
+                        /*if ((Math.Abs(CFMList[i].RawMesOut1UD) <= 1) && (Math.Abs(CFMList[i].RawMesOut1UD) > 0))
+                        {
+                            sVal = sVal + CFMList[i].RawMesOut1UD.ToString("N1") + +RowSplitter;
+                        }
+                        else
+                        {
+                            sVal = sVal + CFMList[i].RawMesOut1UD.ToString("N0") + RowSplitter;
+                        }*/
+
+                    if (Math.Abs(CFMList[i].RawMesOut2UD) >= 100)
+                    {
+                        sVal = sVal + CFMList[i].RawMesOut2UD.ToString("N0") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].RawMesOut2UD) >= 10 && Math.Abs(CFMList[i].RawMesOut2UD) < 100)
+                    {
+                        sVal = sVal + CFMList[i].RawMesOut2UD.ToString("N1") + RowSplitter;
+                    }
+                    else if (Math.Abs(CFMList[i].RawMesOut2UD) >= 1 && Math.Abs(CFMList[i].RawMesOut2UD) < 10)
+                    {
+                        sVal = sVal + CFMList[i].RawMesOut2UD.ToString("N2") + RowSplitter;
+                    }
+                    else if (CFMList[i].RawMesOut2UD != 0)
+                    {
+                        sVal = sVal + CFMList[i].RawMesOut2UD.ToString("N3") + RowSplitter;
+                    }
+                    else
+                    {
+                        sVal = sVal + "" + RowSplitter;
+                    }
+
+                    /*  if ((Math.Abs(CFMList[i].RawMesOut2UD) <= 1) && (Math.Abs(CFMList[i].RawMesOut2UD) > 0))
+                  {
+                      sVal = sVal + CFMList[i].RawMesOut2UD.ToString("N1") + RowSplitter;
+                  }
+                  else
+                  {
+                      sVal = sVal + CFMList[i].RawMesOut2UD.ToString("N0") + RowSplitter;
+                  }*/
+
+                    if (Math.Abs(CFMList[i].OldTaskNavUD) >= 100)
+                    {
+                        sVal = sVal + CFMList[i].OldTaskNavUD.ToString("N0") + RowSplitter;   //0-15
+                    }
+                    else if (Math.Abs(CFMList[i].OldTaskNavUD) >= 10 && Math.Abs(CFMList[i].OldTaskNavUD) < 100)
+                    {
+                        sVal = sVal + CFMList[i].OldTaskNavUD.ToString("N1") + RowSplitter;   //0-15
+                    }
+                    else if (Math.Abs(CFMList[i].OldTaskNavUD) >= 1 && Math.Abs(CFMList[i].OldTaskNavUD) < 10)
+                    {
+                        sVal = sVal + CFMList[i].OldTaskNavUD.ToString("N2") + RowSplitter;   //0-15
+                    }
+                    else if (CFMList[i].OldTaskNavUD != 0)
+                    {
+                        sVal = sVal + CFMList[i].OldTaskNavUD.ToString("N3") + RowSplitter;   //0-15
+                    }
+                    else
+                    {
+                        sVal = sVal + "" + RowSplitter;
+                    }
+
+                    /*if ((Math.Abs(CFMList[i].OldTaskNavUD) <= 1) && (Math.Abs(CFMList[i].OldTaskNavUD) > 0))
                     {
                         sVal = sVal + CFMList[i].OldTaskNavUD.ToString("N1") + RowSplitter;   //0-15
                     }
                     else
                     {
                         sVal = sVal + CFMList[i].OldTaskNavUD.ToString("N0") + RowSplitter;   //0-15
-                    }
+                    }*/
 
                 }
-
-                if ((CFMList[i].WaitingDaysString == "") || (CFMList[i].MaterialMultiplyString == ""))
-                {
-                    CFMListGray.Add(CFMList[i].MaterialCode);
-                }
-
+                
                 if (cbViews.Text == "Остаток")  //cf.
                 {
                     Value = CFMList[i].CurrentConsumption + CFMList[i].RawNav1;
 
                     if (cbMaterialDelay.Checked == false)
                     {
-                        foreach (var sl in CFMList[i].RawStorageList)
+                        // foreach (var sl in CFMList[i].RawStorageListAlter)
+                        // {
+                        if (cbRawEnterprise.Checked == true)
                         {
-                            Value = Value + sl.Quantity;
+                            Value = Value + CFMList[i].ValueEnterp;
+                        }
+                        else
+                        {
+                            Value = Value + CFMList[i].Value_;
                         }
 
-                    /*    foreach (var el in CFMList[i].RawEnterpriseList)
+                     //   Value = Value + CFMList[i].RawStorageListAlter.Sum(x => x.Quantity);
+                       // }
+
+                    /*    foreach (var el in CFMList[i].RawEnterpriseListAlter)
                         {
                             Value = Value + el.Quantity;
                         }*/
                     }
                     else
                     {
-                        foreach (var sl in CFMList[i].RawStorageList.Where(x => x.BBFDate >= DateTime.Today.Date).ToList())
+                        if (cbRawEnterprise.Checked == true)
                         {
-                            Value = Value + sl.Quantity;
+                            Value = Value + CFMList[i].ValueEnterpUD;
+                        }
+                        else
+                        {
+                            Value = Value + CFMList[i].ValueUD;
                         }
 
-                       /* foreach (var el in CFMList[i].RawEnterpriseList.Where(x => x.BBFDate >= DateTime.Today.Date).ToList())
+                        /*foreach (var sl in CFMList[i].RawStorageListAlter.Where(x => x.BBFDate >= DateTime.Today.Date).ToList())
                         {
-                            Value = Value + el.Quantity;
+                            Value = Value + sl.Quantity;
                         }*/
-                    }
 
+                        /* foreach (var el in CFMList[i].RawEnterpriseListAlter.Where(x => x.BBFDate >= DateTime.Today.Date).ToList())
+                         {
+                             Value = Value + el.Quantity;
+                         }*/
+                    }
+ 
                     Cols = 16 + cf.WorkMonthList.Count;
                     var cListData = fm.ContList.Where(x => (x.MaterialCode == CFMList[i].MaterialCode)).ToList();
                     var xlData = cf.XLDataList.Where(x => x.ProdCode == CFMList[i].MaterialCode).ToList();
@@ -401,17 +763,33 @@ namespace PlantPlanning
 
                     var adata = AppList.Where(x => x.MaterialCode == CFMList[i].MaterialCode).ToList();    // fm.tdb.tApplication.Where(x => x.MaterialCode == CFMList[i].MaterialCode).ToList();       // cf.AppList.Where(x => x.MaterialCode == CFMList[i].MaterialCode).ToList();
 
-                    foreach (DateTime dt in DTList1)
+                  //  foreach (DateTime dt in DTList1)
+                  for (int y = 0; y<DTList1.Count; y++)
                     {
                         //income
                         double T2 = 0;
                         double T1 = 0;
+
+                        DateTime dt = DTList1[y];
+                        DateTime dtl;
+
+                        if (y + 1 < DTList1.Count)
+                        {
+                            dtl = DTList1[y + 1];
+                        }
+                        else
+                        {
+                            dtl = DTList1.Last().AddYears(1);
+                        }
+
+                        var Delta = (dtl - dt).TotalDays;
 
                         var FDTList = DTList1.Where(x => (x.Month == dt.Month) && (x.Year == dt.Year)).ToList();
 
                         if (cbUseMaterialPlanning.Checked == true)
                         {
                             List<Raws> tData2 = new List<Raws>();
+                            List<Raws> tData22 = new List<Raws>();
 
                             if (cbAddDay.Checked == false)
                             {
@@ -422,17 +800,18 @@ namespace PlantPlanning
                                 tData2 = CFMList[i].TaskNavList2.Where(x => x.AddDate == dt).ToList();
                             }
 
-                            if ((dt.Day == 1) && (FDTList.Count == 1) && (tData2.Count == 0))
+                            if  (Delta >1)    //((dt.Day == 1) && (FDTList.Count == 1) && (tData2.Count == 0))
                             {
-                                tData2 = CFMList[i].TaskNavList2.Where(x => x.AlterDate == dt).ToList();
+                                tData22 = CFMList[i].TaskNavList2.Where(x => x.AlterDate > dt && x.AlterDate <dtl).ToList();
                             }
 
-                            foreach (var td2 in tData2)
-                            {
-                                T2 = T2 + td2.Quantity;
-                            }
+                            //  foreach (var td2 in tData2)
+                            //  {
+                            T2 = T2 + tData2.Sum(x => x.Quantity) + tData22.Sum(x => x.Quantity);
+                          //  }
 
                             List<tPlannedMeatContainers> Cdata = new List<tPlannedMeatContainers>();
+                            List<tPlannedMeatContainers> Cdata1 = new List<tPlannedMeatContainers>();
 
                             if (cbAddDay.Checked == false)
                             {
@@ -443,15 +822,15 @@ namespace PlantPlanning
                                 Cdata = cListData.Where(x => x.ExpDT.Date.AddDays(1) == dt.Date).ToList();       //fm.ContList.Where(x => (x.MaterialCode == CFMList[i].MaterialCode) && (x.ExpDT.Date.AddDays(1) == dt.Date)).ToList();
                             }
 
-                            if ((dt.Day == 1) && (FDTList.Count == 1) && (Cdata.Count == 0))
+                            if      (Delta >1)    //((dt.Day == 1) && (FDTList.Count == 1) && (Cdata.Count == 0))
                             {
-                                Cdata = cListData.Where(x => ((DateTime)x.AlterDate).Date == dt.Date).ToList();     //fm.ContList.Where(x => (x.MaterialCode == CFMList[i].MaterialCode) && (((DateTime)x.AlterDate).Date == dt.Date)).ToList();
+                                Cdata1 = cListData.Where(x => ((DateTime)x.AlterDate).Date > dt.Date && ((DateTime)x.AlterDate).Date < dtl).ToList();     //fm.ContList.Where(x => (x.MaterialCode == CFMList[i].MaterialCode) && (((DateTime)x.AlterDate).Date == dt.Date)).ToList();
                             }
 
-                            foreach (var cd in Cdata)
-                            {
-                                T2 = T2 + cd.Quantity;
-                            }
+                            //    foreach (var cd in Cdata)
+                            //    {
+                            T2 = T2 + Cdata.Sum(x => x.Quantity) + Cdata1.Sum(x => x.Quantity);
+                        //    }
 
                             if (T2 > 0)
                             {
@@ -470,6 +849,7 @@ namespace PlantPlanning
 
                             //ask in progress
                             List<Raws> tData1 = new List<Raws>();
+                            List<Raws> tDataA = new List<Raws>();
 
                             if (cbAddDay.Checked == false)
                             {
@@ -480,15 +860,15 @@ namespace PlantPlanning
                                 tData1 = CFMList[i].TaskNavList1.Where(x => x.AddDate == dt).ToList();
                             }
 
-                            if ((dt.Day == 1) && (FDTList.Count == 1) && (tData1.Count == 0))
+                            if  (Delta> 1)    //((dt.Day == 1) && (FDTList.Count == 1) && (tData1.Count == 0))
                             {
-                                tData1 = CFMList[i].TaskNavList1.Where(x => x.AlterDate == dt).ToList();
+                                tDataA = CFMList[i].TaskNavList1.Where(x => x.AlterDate > dt && x.AlterDate < dtl).ToList();
                             }
 
-                            foreach (var td1 in tData1)
-                            {
-                                T1 = T1 + td1.Quantity;
-                            }
+                            // foreach (var td1 in tData1)
+                            // {
+                            T1 = T1 + tData1.Sum(x => x.Quantity) + tDataA.Sum(x => x.Quantity);
+                         //   }
 
                             if (T1 > 0)
                             {
@@ -510,10 +890,10 @@ namespace PlantPlanning
                         if (cbUsingMaterial.Checked == true)
                         {
                             var dll = xlData.Where(x => x.DateWork.Date == dt).ToList();     // cf.XLDataList.Where(x => (x.ProdCode == CFMList[i].MaterialCode) && (x.DateWork.Date == dt)).ToList();
-                            foreach (var dl in dll)
-                            {
-                                Value = Value - dl.Quantity;
-                            }
+                                                                                             //    foreach (var dl in dll)
+                                                                                             //    {
+                            Value = Value - dll.Sum(x => x.Quantity);
+                        //    }
                         }
 
                         //future planning Asks
@@ -525,25 +905,26 @@ namespace PlantPlanning
                             //    if (adata.Count > 0)
                          //   {
                               var  bdata = adata.Where(x => x.DateWork.Date == dt.Date).ToList();
+                        List<tApplication> bdata1 = new List<tApplication>();
 
-                                if ((bdata.Count == 0) && (FDTList.Count == 1) && (dt.Day == 1))
-                                {
-                                  //  adata = cf.AppList;
-                                  //  adata = adata.Where(x => x.MaterialCode == CFMList[i].MaterialCode).ToList();
-                                    bdata = adata.Where(x => (DateTime)x.AlterDate == dt.Date).ToList();
-                                }
+                        if (Delta > 1)           //((bdata.Count == 0) && (FDTList.Count == 1) && (dt.Day == 1))
+                        {
+                            //  adata = cf.AppList;
+                            //  adata = adata.Where(x => x.MaterialCode == CFMList[i].MaterialCode).ToList();
+                            bdata1 = adata.Where(x => (DateTime)x.AlterDate > dt.Date && (DateTime)x.AlterDate < dtl).ToList();
+                        }
 
-                                foreach (var ad in bdata)
-                                {
-                                    Q = Q + ad.Quantity;
-                                }
+                        //  foreach (var ad in bdata)
+                        //  {
+                        Q = Q + bdata.Sum(x => x.Quantity) + bdata1.Sum(x => x.Quantity);
+                        //  }
 
-                                USCList.Add(new UserSelectedCell
-                                {
-                                    RowIndex = i,
-                                    ColIndex = Cols,
-                                    Quantity = Q
-                                });
+                        USCList.Add(new UserSelectedCell
+                        {
+                            RowIndex = i,
+                            ColIndex = Cols,
+                            Quantity = Q
+                        });
                                 //  Value = Value + Q;
                         //    }
                       //  }
@@ -598,25 +979,66 @@ namespace PlantPlanning
                             }
                         }
 
-                        if ((Math.Abs(Value) <= 1) && (Value != 0))
+                        if (Math.Abs(Value) >= 100)
+                        {
+                            sVal = sVal + Value.ToString("N0") + " ";
+                        }
+                        else if (Math.Abs(Value) >= 10 && Math.Abs(Value) < 100)
+                        {
+                            sVal = sVal + Value.ToString("N1") + " ";
+                        }
+                        else if (Math.Abs(Value) >= 1 && Math.Abs(Value) < 10)
+                        {
+                            sVal = sVal + Value.ToString("N2") + " ";
+                        }
+                        else if (Value != 0)
+                        {
+                            sVal = sVal + Value.ToString("N3") + " ";
+                        }
+                        else
+                        {
+                           // sVal = sVal + "" + RowSplitter;
+                        }
+
+                        /*if ((Math.Abs(Value) <= 1) && (Value != 0))
                         {
                             sVal = sVal + Value.ToString("N1") + " ";
                         }
                         else
                         {
                             sVal = sVal + Value.ToString("N0") + " ";
-                        }
+                        }*/
 
                         if (T2 != 0)
                         {
-                            if ((Math.Abs(T2) <= 1) && (T2 != 0))
+                            if (Math.Abs(T2) >= 100)
+                            {
+                                sVal = sVal + " (" + T2.ToString("N0") + ") ";
+                            }
+                            else if (Math.Abs(T2) >= 10 && Math.Abs(T2) < 100)
+                            {
+                                sVal = sVal + " (" + T2.ToString("N1") + ") ";
+                            }
+                            else if (Math.Abs(T2) >= 1 && Math.Abs(T2) < 10)
+                            {
+                                sVal = sVal + " (" + T2.ToString("N2") + ") ";
+                            }
+                            else if (T2 != 0)
+                            {
+                                sVal = sVal + " (" + T2.ToString("N3") + ") ";
+                            }
+                            else
+                            {                            }
+
+                            /*if ((Math.Abs(T2) <= 1) && (T2 != 0))
                             {
                                 sVal = sVal + " (" + T2.ToString("N1") + ") ";
                             }
                             else
                             {
                                 sVal = sVal + " (" + T2.ToString("N0") + ") ";
-                            }
+                            }*/
+                            
                             if (!CFMListGreen.Contains(CFMList[i].MaterialCode))  //+
                             {
                                 CFMListGreen.Add(CFMList[i].MaterialCode);
@@ -650,14 +1072,31 @@ namespace PlantPlanning
 
                         if (T1 != 0)
                         {
-                            if ((Math.Abs(T1) <= 1) && (T1 != 0))
+                            if (Math.Abs(T1) >= 100)
+                            {
+                                sVal = sVal + " [" + T1.ToString("N0") + "] ";
+                            }
+                            else if (Math.Abs(T1) >= 10 && Math.Abs(T1) < 100)
+                            {
+                                sVal = sVal + " [" + T1.ToString("N1") + "] ";
+                            }
+                            else if (Math.Abs(T1) >= 1 && Math.Abs(T1) < 10)
+                            {
+                                sVal = sVal + " [" + T1.ToString("N2") + "] ";
+                            }
+                            else if (T1 != 0)
+                            {
+                                sVal = sVal + " [" + T1.ToString("N3") + "] ";
+                            }
+                            
+                            /*if ((Math.Abs(T1) <= 1) && (T1 != 0))
                             {
                                 sVal = sVal + " [" + T1.ToString("N1") + "] ";
                             }
                             else
                             {
                                 sVal = sVal + " [" + T1.ToString("N0") + "] ";
-                            }
+                            }*/
 
                             if (!CFMListPink.Contains(CFMList[i].MaterialCode))  //[
                             {
@@ -727,21 +1166,42 @@ namespace PlantPlanning
                         {
                             //Q = 0;
                             bdata = adata.Where(x => x.DateWork.Date == dt.Date).ToList();
-                            if ((bdata.Count == 0) && (FDTList.Count == 1) && (dt.Day == 1))
+                            List<tApplication> bData1 = new List<tApplication>();
+
+                            if (Delta > 1)     //((bdata.Count == 0) && (FDTList.Count == 1) && (dt.Day == 1))
                             {
-                                bdata = adata.Where(x => (DateTime)x.AlterDate == dt.Date).ToList();
+                                bData1 = adata.Where(x => (DateTime)x.AlterDate > dt.Date && (DateTime)x.AlterDate < dtl.Date).ToList();
                             }
+
+                            bdata.AddRange(bData1);
 
                             foreach (var b in bdata)
                             {
-                                if ((Math.Abs(b.Quantity) <= 1) && (b.Quantity != 0))
+                                if (Math.Abs(b.Quantity) >= 100)
+                                {
+                                    sVal = sVal + " {" + b.Quantity.ToString("N0") + "} ";
+                                }
+                                else if (Math.Abs(b.Quantity) >= 10 && Math.Abs(b.Quantity) < 100)
+                                {
+                                    sVal = sVal + " {" + b.Quantity.ToString("N1") + "} ";
+                                }
+                                else if (Math.Abs(b.Quantity) >= 1 && Math.Abs(b.Quantity) < 10)
+                                {
+                                    sVal = sVal + " {" + b.Quantity.ToString("N2") + "} ";
+                                }
+                                else if (b.Quantity != 0)
+                                {
+                                    sVal = sVal + " {" + b.Quantity.ToString("N3") + "} ";
+                                }
+
+                               /* if ((Math.Abs(b.Quantity) <= 1) && (b.Quantity != 0))
                                 {
                                     sVal = sVal + " {" + b.Quantity.ToString("N1") + "} ";
                                 }
                                 else
                                 {
                                     sVal = sVal + " {" + b.Quantity.ToString("N0") + "} ";
-                                }
+                                }*/
                             }
                         }
 
@@ -753,29 +1213,45 @@ namespace PlantPlanning
                 {
                     var xlData = cf.XLDataList.Where(x => x.ProdCode == CFMList[i].MaterialCode).ToList();
 
-                    foreach (DateTime dt in DTList1)
+                    for (int y = 0; y<DTList1.Count; y++)        //  foreach (DateTime dt in DTList1)
                     {
+                        DateTime dt = DTList1[y];
+
                         var xlD = xlData.Where(x => x.DateWork.Date == dt).ToList();
 
                         if (xlD.Count > 0)
                         {
                             double summ = xlD.Sum(x => x.Quantity);
-                            /*if ((Math.Abs(xlD[0].Quantity) <= 1) && (xlD[0].Quantity != 0))
+    
+                            if (Math.Abs(summ) >= 100)
                             {
-                                sVal = sVal + xlD[0].Quantity.ToString("N1") + RowSplitter;
+                                sVal = sVal + summ.ToString("N0") + RowSplitter;
+                            }
+                            else if (Math.Abs(summ) >= 10 && Math.Abs(summ) < 100)
+                            {
+                                sVal = sVal + summ.ToString("N1") + RowSplitter;
+                            }
+                            else if (Math.Abs(summ) >= 1 && Math.Abs(summ) < 10)
+                            {
+                                sVal = sVal + summ.ToString("N2") + RowSplitter;
+                            }
+                            else if (summ != 0)
+                            {
+                                sVal = sVal + summ.ToString("N3") + RowSplitter;
                             }
                             else
                             {
-                                sVal = sVal + xlD[0].Quantity.ToString("N0") + RowSplitter;
-                            }*/
-                            if ((Math.Abs(summ) <= 1) && (summ != 0))
+                                sVal = sVal = "" + RowSplitter;
+                            }
+
+                            /*if ((Math.Abs(summ) <= 1) && (summ != 0))
                             {
                                 sVal = sVal + summ.ToString("N1") + RowSplitter;
                             }
                             else
                             {
                                 sVal = sVal + summ.ToString("N0") + RowSplitter;
-                            }
+                            }*/
                         }
                         else
                         {
@@ -789,27 +1265,46 @@ namespace PlantPlanning
 
                     if (cbMaterialDelay.Checked == false)
                     {
-                        foreach (var sl in CFMList[i].RawStorageList)
+                        if (cbRawEnterprise.Checked == true)
                         {
-                            Value = Value + sl.Quantity;
+                            Value = Value + CFMList[i].ValueEnterp;
+                        }
+                        else
+                        {
+                            Value = Value + CFMList[i].Value_;
                         }
 
-                       /* foreach (var el in CFMList[i].RawEnterpriseList)
+                        /*foreach (var sl in CFMList[i].RawStorageListAlter)
                         {
-                            Value = Value + el.Quantity;
+                            Value = Value + sl.Quantity;
                         }*/
+
+                        /* foreach (var el in CFMList[i].RawEnterpriseListAlter)
+                         {
+                             Value = Value + el.Quantity;
+                         }*/
                     }
                     else
                     {
-                        foreach (var sl in CFMList[i].RawStorageList.Where(x => x.BBFDate >= DateTime.Today.Date).ToList())
+                        if (cbRawEnterprise.Checked == true)
                         {
-                            Value = Value + sl.Quantity;
+                            Value = Value + CFMList[i].ValueEnterpUD;
+                        }
+                        else
+                        {
+                            Value = Value + CFMList[i].ValueUD;
                         }
 
-                       /* foreach (var el in CFMList[i].RawEnterpriseList.Where(x => x.BBFDate >= DateTime.Today.Date).ToList())
-                        {
-                            Value = Value + el.Quantity;
-                        }*/
+
+                        /* foreach (var sl in CFMList[i].RawStorageListAlter.Where(x => x.BBFDate >= DateTime.Today.Date).ToList())
+                         {
+                             Value = Value + sl.Quantity;
+                         }*/
+
+                        /* foreach (var el in CFMList[i].RawEnterpriseListAlter.Where(x => x.BBFDate >= DateTime.Today.Date).ToList())
+                         {
+                             Value = Value + el.Quantity;
+                         }*/
                     }
 
                     Cols = 16 + cf.WorkMonthList.Count;
@@ -817,8 +1312,22 @@ namespace PlantPlanning
                     var xlData = cf.XLDataList.Where(x => x.ProdCode == CFMList[i].MaterialCode).ToList();
                     var adata = fm.tdb.tApplication.Where(x => x.MaterialCode == CFMList[i].MaterialCode).ToList(); // cf.AppList.Where(x => x.MaterialCode == CFMList[i].MaterialCode).ToList();
 
-                    foreach (DateTime dt in DTList1)
+                     for (int y = 0; y<DTList1.Count; y++)       // foreach (DateTime dt in DTList1)
                     {
+                        DateTime dt = DTList1[y];
+                        DateTime dtl;
+
+                        if ((y+1) < DTList1.Count)
+                        {
+                            dtl = DTList1[y + 1];
+                        }
+                        else
+                        {
+                            dtl = DTList1.Last().AddYears(1);
+                        }
+
+                        var Delta = (dtl - dt).TotalDays;
+
                         var FDTList = DTList1.Where(x => (x.Month == dt.Month) && (x.Year == dt.Year)).ToList();
                         //income
                         List<Raws> tData2 = new List<Raws>();
@@ -832,17 +1341,19 @@ namespace PlantPlanning
                         }
 
                         double T2 = 0;
-                        if ((dt.Day == 1) && (FDTList.Count == 1) && (tData2.Count == 0))
+                        List<Raws> tDataA = new List<Raws>();
+                        if (Delta > 1)     //((dt.Day == 1) && (FDTList.Count == 1) && (tData2.Count == 0))
                         {
                             tData2 = CFMList[i].TaskNavList2.Where(x => x.AlterDate == dt).ToList();
                         }
 
-                        foreach (var td2 in tData2)
-                        {
-                            T2 = T2 + td2.Quantity;
-                        }
+                        //   foreach (var td2 in tData2)
+                        //   {
+                        T2 = T2 + tData2.Sum(x => x.Quantity) + tDataA.Sum(x => x.Quantity);
+                     //   }
 
                         List<tPlannedMeatContainers> Cdata = new List<tPlannedMeatContainers>();
+                        List<tPlannedMeatContainers> Cdata1 = new List<tPlannedMeatContainers>();
 
                         if (cbAddDay.Checked == false)
                         {
@@ -853,15 +1364,15 @@ namespace PlantPlanning
                             Cdata = cListData.Where(x => x.ExpDT.Date.AddDays(1) == dt.Date).ToList();      //fm.ContList.Where(x => (x.MaterialCode == CFMList[i].MaterialCode) && (x.ExpDT.Date.AddDays(1) == dt.Date)).ToList();
                         }
 
-                        if ((dt.Day == 1) && (FDTList.Count == 1) && (Cdata.Count == 0))
+                        if  (Delta > 1)        //((dt.Day == 1) && (FDTList.Count == 1) && (Cdata.Count == 0))
                         {
-                            Cdata = cListData.Where(x => ((DateTime)x.AlterDate).Date == dt.Date).ToList();     //fm.ContList.Where(x => (x.MaterialCode == CFMList[i].MaterialCode) && (((DateTime)x.AlterDate).Date == dt.Date)).ToList();
+                            Cdata1 = cListData.Where(x => ((DateTime)x.AlterDate).Date > dt.Date && ((DateTime)x.AlterDate).Date < dtl).ToList();     //fm.ContList.Where(x => (x.MaterialCode == CFMList[i].MaterialCode) && (((DateTime)x.AlterDate).Date == dt.Date)).ToList();
                         }
 
-                        foreach (var cd in Cdata)
-                        {
-                            T2 = T2 + cd.Quantity;
-                        }
+                        //  foreach (var cd in Cdata)
+                        //  {
+                        T2 = T2 + Cdata.Sum(x => x.Quantity) + Cdata1.Sum(x => x.Quantity);
+                     //   }
 
                         if (T2 > 0)
                         {
@@ -880,6 +1391,7 @@ namespace PlantPlanning
 
                         //ask in progress
                         List<Raws> tData1 = new List<Raws>();
+                        List<Raws> tData11 = new List<Raws>();
 
                         if (cbAddDay.Checked == false)
                         {
@@ -891,15 +1403,15 @@ namespace PlantPlanning
                         }
                         double T1 = 0;
 
-                        if ((dt.Day == 1) && (FDTList.Count == 1) && (tData1.Count == 0))
+                        if (Delta > 1)         //((dt.Day == 1) && (FDTList.Count == 1) && (tData1.Count == 0))
                         {
-                            tData1 = CFMList[i].TaskNavList1.Where(x => x.AlterDate == dt).ToList();
+                            tData11 = CFMList[i].TaskNavList1.Where(x => x.AlterDate > dt && x.AlterDate < dtl).ToList();
                         }
 
-                        foreach (var td1 in tData1)
-                        {
-                            T1 = T1 + td1.Quantity;
-                        }
+                        //  foreach (var td1 in tData1)
+                        //  {
+                        T1 = T1 + tData1.Sum(x => x.Quantity);
+                      //  }
 
                         if (T1 > 0)
                         {
@@ -918,10 +1430,10 @@ namespace PlantPlanning
 
                         //credit
                         var dll = xlData.Where(x => x.DateWork.Date == dt).ToList();    // cf.XLDataList.Where(x => (x.ProdCode == CFMList[i].MaterialCode) && (x.DateWork.Date == dt)).ToList();
-                        foreach (var dl in dll)
-                        {
-                            Value = Value - dl.Quantity;
-                        }
+                                                                                        // foreach (var dl in dll)
+                                                                                        // {
+                        Value = Value - dll.Sum(x => x.Quantity);
+                       // }
 
                         //future planning Asks
                         double Q = 0;
@@ -932,18 +1444,19 @@ namespace PlantPlanning
                             //    if (adata.Count > 0)
                             {
                                 var bdata = adata.Where(x => x.DateWork.Date == dt.Date).ToList();
+                                List<tApplication> bData1 = new List<tApplication>();
 
-                                if ((bdata.Count == 0) && (FDTList.Count == 1) && (dt.Day == 1))
+                                if   (Delta > 1)       //((bdata.Count == 0) && (FDTList.Count == 1) && (dt.Day == 1))
                                 {
                                    // adata = cf.AppList;
                                    // adata = adata.Where(x => x.MaterialCode == CFMList[i].MaterialCode).ToList();
-                                    bdata = adata.Where(x => (DateTime)x.AlterDate == dt.Date).ToList();
+                                    bData1 = adata.Where(x => (DateTime)x.AlterDate > dt.Date && (DateTime)x.AlterDate < dtl.Date).ToList();
                                 }
 
-                                foreach (var ad in bdata)
-                                {
-                                    Q = Q + ad.Quantity;
-                                }
+                                //  foreach (var ad in bdata)
+                                //  {
+                                Q = Q + bdata.Sum(x => x.Quantity) + bData1.Sum(x => x.Quantity);
+                              //  }
 
                                 USCList.Add(new UserSelectedCell
                                 {
@@ -1004,14 +1517,31 @@ namespace PlantPlanning
                                 }
                             }
 
-                            if ((Math.Abs(Value) <= 1) && (Value != 0))
+                            if (Math.Abs(Value) >= 100)
+                            {
+                                sVal = sVal + Value.ToString("N0") + " ";
+                            }
+                            else if (Math.Abs(Value) >= 10 && Math.Abs(Value) < 100)
+                            {
+                                sVal = sVal + Value.ToString("N1") + " ";
+                            }
+                            else if (Math.Abs(Value) >= 1 && Math.Abs(Value) < 10)
+                            {
+                                sVal = sVal + Value.ToString("N2") + " ";
+                            }
+                            else if (Value != 0)
+                            {
+                                sVal = sVal + Value.ToString("N3") + " ";
+                            }
+
+                            /*if ((Math.Abs(Value) <= 1) && (Value != 0))
                             {
                                 sVal = sVal + Value.ToString("N1") + " ";
                             }
                             else
                             {
                                 sVal = sVal + Value.ToString("N0") + " ";
-                            }
+                            }*/
                         }
 
                         sVal = sVal + "" + RowSplitter;
@@ -1019,6 +1549,7 @@ namespace PlantPlanning
                     }
                 }
 
+                sVal = sVal + CFMList[i].MaterialStatus.ToString() + RowSplitter;
                 NewString = sVal.Split(RowSplitter);
                 dt1.Rows.Add(NewString);
             }
@@ -1037,7 +1568,9 @@ namespace PlantPlanning
             dataGridViewMain.Columns[5].Width = 50;
             dataGridViewMain.Columns[6].Width = 100;
             dataGridViewMain.Columns[7].Width = 100;
+
             dataGridViewMain.Columns[dataGridViewMain.ColumnCount - 1].Visible = false;
+            dataGridViewMain.Columns[dataGridViewMain.ColumnCount - 2].Visible = false;
 
             for (int i = 8; i < 15; i++)
             {
@@ -1164,10 +1697,14 @@ namespace PlantPlanning
                 }
 
                 var cfm1 = CFMList.Where(x => x.MaterialCode == ProductCode).ToList();
+                dtpFact1.Value = DateTime.Today.Date.AddMonths(-1);
+                dtpFact2.Value = DateTime.Today.Date.AddMonths(1);
+                dtpPlan1.Value = DateTime.Today.Date.AddMonths(-1);
+                dtpPlan2.Value = DateTime.Today.Date.AddMonths(1);
 
-                List<DateTime> DList = new List<DateTime>();
+                /*List<DateTime> DList = new List<DateTime>();
                 DList = fm.ExcelDataList.Select(x => x.DateWork).ToList();
-                DList = DList.Distinct().OrderBy(x => x.Date).ToList();
+                DList = DList.Distinct().OrderBy(x => x.Date).ToList();*/
 
                 DateTime StartDate1;
                 DateTime EndDate1;
@@ -1184,7 +1721,7 @@ namespace PlantPlanning
                 }
 
                 var CurProduct = fm.lRec.Where(x => x.MaterialCode == ProductCode).ToList();
-                DDList = DList.Where(x => x.Date >= DateTime.Today.Date.AddDays(-100)).OrderBy(x => x.Date).ToList();
+                CurProduct.AddRange(fm.lRec1.Where(x => x.MaterialCode == ProductCode).ToList());
 
                 if (CurrCode == ProductCode)
                 {  // показать остатки - потребление  в меню
@@ -1204,179 +1741,15 @@ namespace PlantPlanning
                     {
                         case 1:
                             dgvPlanned.Rows.Clear();
-                            dataString = new string[] { "", "", "", "", "", "", "Данный компонент используется в:" };
-                            dgvPlanned.Rows.Add(dataString);
-                            var E1 = fm.ExcelDataList.Where(x => DDList.Contains(x.DateWork) && x.Quantity != 0).ToList();
+                          //  DDList = DList.Where(x => x.Date >= dtpPlan1.Value.Date && x.Date <= dtpPlan2.Value.Date).OrderBy(x => x.Date).ToList();
 
-                            for (int i=0; i<DDList.Count; i++) //  foreach (DateTime dt1 in DDList)   //DList
-                            {
-                                //planned
-                                //  if (dt1 >= DateTime.Today.Date)
-                                {
-                                    fl = dataGridViewMain.Rows[RowInd].Cells[2].Value.ToString().ToLower() == "тара" ? true : false;  //Cells["Класс материала"]
-                                    var ELDListDate = E1.Where(x => (x.DateWork == DDList[i])).ToList();  // fm.ExcelDataList.Where(x => (x.DateWork == DDList[i]) && (x.Quantity > 0)).ToList();    // XLDataList.Where(x => (x.DateWork == CurrDate) && (x.Quantity > 0)).ToList();  //dt1
-
-                                     for (int j=0; j<ELDListDate.Count; j++)   //foreach (var ELD in ELDListDate)
-                                    {
-                                        var CP = CurProduct.Where(x => (x.ProductCode == ELDListDate[j].ProdCode) && (x.LineNumber == ELDListDate[j].Line) && (x.WorkDate <= DDList[i])).ToList();  //(x.Prod_No == ELD.ProdCode) && (x.WorkCenter == ELD.Line)
-                                        fn_select_RecipesView_Result SRR;
-                                        try
-                                        {
-                                            //  CP = CP.Where(x => x.WorkDate <= dt1).OrderByDescending(x => x.WorkDate).ToList();
-                                            SRR = CP.OrderByDescending(x => x.WorkDate).First();      // CP = CP.Where(x => x.WorkDate <= dt1).OrderByDescending(x => x.WorkDate).ToList();  //x.Starting_Date
-                                        }
-                                        catch (Exception xx)
-                                        {
-                                            SRR = null;
-                                        }
-
-                                        if (SRR != null)    // (CP.Count > 0)
-                                        {
-                                            //раскрутка рецептуры в обратном направлении! Продукт-Линия-совпадает ли дата?
-                                            var PRL = fm.ProdRecipeList.Where(x => x.ProductCode == ELDListDate[j].ProdCodeStr).ToList();
-                                            if (PRL.Count > 0)
-                                            {
-                                                var LL = PRL[0].RecLineList.Where(x => x.LineNumber == ELDListDate[j].Line).ToList();
-                                                if (LL.Count > 0)
-                                                {
-                                                    var DL = LL[0].RecList.Where(x => x.WorkDateStart <= DDList[i]).OrderByDescending(x => x.WorkDateStart).ToList();  //CurrDate
-                                                    if (DL.Count > 0)
-                                                    {
-                                                        if (DL[0].WorkDateStart <= SRR.WorkDate)
-                                                        {
-                                                            if (ELDListDate[j].RePack == true)
-                                                            {
-                                                                if (fl == true)
-                                                                {
-                                                                    if ((double)SRR.Quantity > 0)
-                                                                    {
-                                                                        dataString = new string[] {
-                                                                    DDList[i].ToString("dd.MM.yyyy"),  //  CurrDate
-                                                                    ELDListDate[j].Line,
-                                                                    ELDListDate[j].Quantity.ToString("N0"),
-                                                                    ((double) SRR.Quantity*1000).ToString("N0"),   //CP[0].Quantity
-                                                                    (((double) SRR.Quantity) * ELDListDate[j].Quantity).ToString("N0"),
-                                                                    ELDListDate[j].ProdCodeStr,
-                                                                    ELDListDate[j].AlterProdName
-                                                            };
-
-                                                                        dgvPlanned.Rows.Add(dataString);
-                                                                    }
-                                                                }
-                                                            }
-                                                            else
-                                                            {
-                                                                if ((double)SRR.Quantity > 0)
-                                                                {
-                                                                    dataString = new string[] {
-                                                                DDList[i].ToString("dd.MM.yyyy"),
-                                                               ELDListDate[j].Line,
-                                                                ELDListDate[j].Quantity.ToString("N0"),
-                                                                ((double) SRR.Quantity*1000).ToString("N0"),
-                                                                (((double) SRR.Quantity) * ELDListDate[j].Quantity).ToString("N0"),
-                                                                ELDListDate[j].ProdCodeStr,
-                                                                ELDListDate[j].AlterProdName
-                                                            };
-
-                                                                    dgvPlanned.Rows.Add(dataString);
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    foreach (DataGridViewRow r in dgvPlanned.Rows)
-                                    {
-                                        if (r.Cells[0].Value.ToString() != "")
-                                        {
-                                            r.Cells[0].ToolTipText = "Количество: " + r.Cells[3].Value.ToString() + "; Норма на тонну: " + r.Cells[4].Value.ToString() + " Итого расход: " + r.Cells[5].Value.ToString();
-                                            r.Cells[1].ToolTipText = "Количество: " + r.Cells[3].Value.ToString() + "; Норма на тонну: " + r.Cells[4].Value.ToString() + " Итого расход: " + r.Cells[5].Value.ToString();
-                                            r.Cells[2].ToolTipText = "Количество: " + r.Cells[3].Value.ToString() + "; Норма на тонну: " + r.Cells[4].Value.ToString() + " Итого расход: " + r.Cells[5].Value.ToString();
-                                            r.Cells[3].ToolTipText = "Количество: " + r.Cells[3].Value.ToString() + "; Норма на тонну: " + r.Cells[4].Value.ToString() + " Итого расход: " + r.Cells[5].Value.ToString();
-                                        }
-                                    }
-                                    ELDListDate = null;
-                                }                       // dt1
-                            }  //foreach
-
+                            UsingComponentPlan(ProductCode, DList, CurProduct);
                             break;
                         case 0:
-
                             dgvFactis.Rows.Clear();
-                            dataString = new string[] { "", "", "", "", "", "", "Данный компонент используется в:" };
-                            dgvFactis.Rows.Add(dataString);
-                            {
-                                try
-                                {
-                                    StartDate1 = DList.Min();
-                                    EndDate1 = DList.Max();
-                                }
-                                catch (Exception xx)
-                                {
-                                    StartDate1 = DateTime.Today.Date;
-                                    EndDate1 = StartDate1.AddDays(1);
-                                }
+                          //  DDList = DList.Where(x => x.Date >= dtpFact1.Value.Date && x.Date <= dtpFact2.Value.Date).OrderBy(x => x.Date).ToList();
 
-                                fl = dataGridViewMain.CurrentRow.Cells[2].Value.ToString().ToLower() == "тара" ? true : false;
-                                //  var MuaSection = fm.MUAList.Where(x => (x.DateTime >= DateStart) && (x.DateTime < DateEnd)).ToList();    
-
-                                var FactData = fm.tdb.fn_select_ProductionByCode(ProductCode, StartDate1).OrderBy(x => x.LotForErp).ToList();      //   DateTime.Today.Date.AddYears(-2)               //fm.edb.fn_select_MaterialUsingByProduct(StartDate1, EndDate1, ProductCode).OrderBy(x => x.DateStart).ToList();
-
-                                List<string> LotForErp = FactData.Select(x => x.LotForErp).Distinct().ToList();
-                                List<fn_select_ProductionByCode_Result> FactData1 = new List<fn_select_ProductionByCode_Result>();
-
-                                foreach (string lfe in LotForErp)
-                                {
-                                    var fd = FactData.Where(x => x.LotForErp == lfe).ToList();
-
-                                    if (fd.Count > 0)
-                                    {
-                                        var fd1 = fd[0];
-
-                                        for (int i = 1; i < fd.Count; i++)
-                                        {
-                                            fd1.Quantity = fd1.Quantity + fd[i].Quantity;
-                                            fd1.RawQuant = fd1.RawQuant + fd[i].RawQuant;
-                                        }
-                                        fd1.EndDate = fd[fd.Count - 1].EndDate;
-                                    }
-                                }
-
-                                foreach (var f in FactData)
-                                {
-                                    // if (f.DateStart >= DateStart)
-                                    {
-                                        dataString = new string[]
-                                        {
-                                    ((double)f.RawQuant).ToString("N3"),
-                                    ((DateTime)f.StartDate).ToString("dd.MM.yyyy HH;mm"),
-                                    ((DateTime)f.EndDate).ToString("dd.MM.yyyy HH:mm"),
-                                    f.LotForErp,
-                                    ((double)f.Quantity).ToString("N2"),
-                                    f.MaterialCode,
-                                    f.SystemName+" "+ f.MaterialName
-                                        };
-
-                                        dgvFactis.Rows.Add(dataString);
-                                    }
-                                }
-
-                                foreach (DataGridViewRow r in dgvFactis.Rows)
-                                {
-                                    if (r.Cells[0].Value.ToString() != "")
-                                    {
-                                        r.Cells[0].ToolTipText = "Произведено: " + r.Cells[4].Value.ToString() + "; Итого расход: " + r.Cells[0].Value.ToString();
-                                        r.Cells[1].ToolTipText = "Произведено: " + r.Cells[4].Value.ToString() + "; Итого расход: " + r.Cells[0].Value.ToString();
-                                        r.Cells[2].ToolTipText = "Произведено: " + r.Cells[4].Value.ToString() + "; Итого расход: " + r.Cells[0].Value.ToString();
-                                        r.Cells[3].ToolTipText = "Произведено: " + r.Cells[4].Value.ToString() + "; Итого расход: " + r.Cells[0].Value.ToString();
-                                    }
-                                }
-
-                                FactData = null;
-                            }  //fact
+                            UsingComponentFact( ProductCode,  DList);
                             break;
                         case 2:
                             dgvRecipes.Rows.Clear();
@@ -1420,7 +1793,7 @@ namespace PlantPlanning
                             dgvUsing.Rows.Clear();
                             {
                               //  var LR = fm.lRec1.Where(x => x.MaterialCode == ProductCode).ToList();
-                                List<fn_select_RecipesView_Result> LResult = new List<fn_select_RecipesView_Result>();
+                                List<PR_GetRecipesDataMainProductBis_Result> LResult = new List<PR_GetRecipesDataMainProductBis_Result>();
                                 List<string> Slist = CurProduct.Select(x => x.LineNumber).Distinct().ToList();
 
                                 foreach (var s in Slist)
@@ -1454,7 +1827,7 @@ namespace PlantPlanning
                                             ((DateTime)lr.WorkDate).ToString("yyyy-MM-dd"),
                                              lr.LineNumber,
                                             ((double)lr.Quantity).ToString("N6"),
-                                            ((double)(Q/lr.Quantity)).ToString("N2"),
+                                            ((double)((decimal)Q/(decimal)lr.Quantity)).ToString("N2"),
                                              lr.ProductCode,
                                             lr.ProductName
                                         };
@@ -1507,7 +1880,7 @@ namespace PlantPlanning
 
                     {  //и для складов
                         //storages
-                        var ListAA = cfm1[0].RawStorageList;
+                        var ListAA = cfm1[0].RawStorageListAlter;
 
                         if (cbMaterialDelay.Checked == false)
                         {
@@ -1562,11 +1935,31 @@ namespace PlantPlanning
 
                             foreach (var aa in ListAA.OrderBy(x => x.BBFDate))
                             {
+                                string DString = aa.ProdDate.ToString("dd.MM.yyyy") + @"/" + aa.BBFDate.ToString("dd.MM.yyyy") + @"/" + aa.TestQuality;
+                                string Vstring = "";
+
+                                if (Math.Abs(aa.Quantity) >= 100)
+                                {
+                                    Vstring = aa.Quantity.ToString("N0");
+                                }
+                                else if (Math.Abs(aa.Quantity) >= 10 && Math.Abs(aa.Quantity) < 100)
+                                {
+                                    Vstring = aa.Quantity.ToString("N1");
+                                }
+                                else if (Math.Abs(aa.Quantity) >= 1 && Math.Abs(aa.Quantity) < 10)
+                                {
+                                    Vstring = aa.Quantity.ToString("N2");
+                                }
+                                else
+                                {
+                                    Vstring = aa.Quantity.ToString("N3");
+                                }
+
                                 dataString = new string[]
                                  {
                                     aa.Storage,
-                                    aa.LotName,
-                                    aa.Quantity.ToString("N1"),
+                                    DString,    //  aa.LotName,
+                                    Vstring,        // aa.Quantity.ToString("N1"),
                                     aa.ProdDate.ToString("dd.MM.yyyy") ,    //ss.ValidFrom.ToString("dd.MM.yyyy"),
                                     aa.BBFDate.ToString("dd.MM.yyyy"),    // ss.ValidTo.ToString("dd.MM.yyyy"),
                                     aa.Color            //ss.Status
@@ -1576,11 +1969,31 @@ namespace PlantPlanning
 
                             if (ListAA.Count > 1)
                             {
+                                string Vstring = "";
+                                double Q = ListAA.Sum(x => x.Quantity);
+
+                                if (Math.Abs(Q) >= 100)
+                                {
+                                    Vstring = Q.ToString("N0");
+                                }
+                                else if (Math.Abs(Q) >= 10 && Math.Abs(Q) < 100)
+                                {
+                                    Vstring = Q.ToString("N1");
+                                }
+                                else if (Math.Abs(Q) >= 1 && Math.Abs(Q) < 10)
+                                {
+                                    Vstring = Q.ToString("N2");
+                                }
+                                else
+                                {
+                                    Vstring = Q.ToString("N3");
+                                }
+
                                 dataString = new string[]
                                 {
                                 "",
                                 "Итого остатки:",
-                                ListAA.Sum(x=>x.Quantity).ToString("N1"),
+                                Vstring ,        //ListAA.Sum(x=>x.Quantity).ToString("N1"),
                                 "",
                                 "",
                                 ""
@@ -1603,7 +2016,7 @@ namespace PlantPlanning
                         //plant
                         if (cfm1.Count > 0)
                         {
-                            var EL = cfm1[0].RawEnterpriseList;
+                            var EL = cfm1[0].RawEnterpriseListAlter;
 
                             if (cbMaterialDelay.Checked == false)
                             {
@@ -1658,28 +2071,68 @@ namespace PlantPlanning
 
                                 foreach (var el in EL.OrderBy(x => x.BBFDate))
                                 {
+                                    string DString = el.ProdDate.ToString("dd.MM.yyyy") + @"/" + el.BBFDate.ToString("dd.MM.yyyy") + @"/" + el.TestQuality;
+                                    string Vstring = "";
+
+                                    if (Math.Abs(el.Quantity) >= 100)
+                                    {
+                                        Vstring = el.Quantity.ToString("N0");
+                                    }
+                                    else if (Math.Abs(el.Quantity) >= 10 && Math.Abs(el.Quantity) < 100)
+                                    {
+                                        Vstring = el.Quantity.ToString("N1");
+                                    }
+                                    else if (Math.Abs(el.Quantity) >= 1 && Math.Abs(el.Quantity) <10)
+                                    {
+                                        Vstring = el.Quantity.ToString("N2");
+                                    }
+                                    else
+                                    {
+                                        Vstring = el.Quantity.ToString("N3");
+                                    }
+
                                     dataString = new string[]
                                      {
-                                    el.Storage,
-                                    el.LotName,
-                                    el.Quantity.ToString("N1"),
-                                    el.ProdDate.ToString("dd.MM.yyyy") ,    //ss.ValidFrom.ToString("dd.MM.yyyy"),
-                                    el.BBFDate.ToString("dd.MM.yyyy"),    // ss.ValidTo.ToString("dd.MM.yyyy"),
-                                    el.Color            //ss.Status
+                                        el.Storage,
+                                        DString,    //el.LotName,
+                                        Vstring,        //el.Quantity.ToString("N1"),
+                                        el.ProdDate.ToString("dd.MM.yyyy") ,    //ss.ValidFrom.ToString("dd.MM.yyyy"),
+                                        el.BBFDate.ToString("dd.MM.yyyy"),    // ss.ValidTo.ToString("dd.MM.yyyy"),
+                                        el.Color            //ss.Status
                                      };
                                     dgvStorages.Rows.Add(dataString);
                                 }
 
                                 if (EL.Count > 1)
                                 {
+                                    string Vstring = "";
+                                    double Q = EL.Sum(x => x.Quantity);
+
+                                    if (Math.Abs(Q) >= 100)
+                                    {
+                                        Vstring = Q.ToString("N0");
+                                    }
+                                    else if (Math.Abs(Q) >= 10 && Math.Abs(Q ) < 100)
+                                    {
+                                        Vstring = Q.ToString("N1");
+                                    }
+                                    else if (Math.Abs(Q) >= 1 && Math.Abs(Q) < 10)
+                                    {
+                                        Vstring = Q.ToString("N2");
+                                    }
+                                    else
+                                    {
+                                        Vstring = Q.ToString("N3");
+                                    }
+
                                     dataString = new string[]
                                     {
-                                "",
-                                "Итого остатки:",
-                                EL.Sum(x=>x.Quantity).ToString("N1"),
-                                 "",
-                                 "",
-                                 ""
+                                        "",
+                                        "Итого остатки:",
+                                        Vstring,        // EL.Sum(x=>x.Quantity).ToString("N1"),
+                                        "",
+                                        "",
+                                        ""
                                     };
                                     dgvStorages.Rows.Add(dataString);
                                 }
@@ -1778,7 +2231,7 @@ namespace PlantPlanning
                                  {
                                     s.OrderNymber,
                                     s.PlanOperDate.ToString("dd.MM.yyyy")+" "+s.Initiator+" "+s.StatusMZP,
-                                    (s.PlanQuantity-s.FactQuantity).ToString("N1"),   //FactQuantity   
+                                    s.PlanQuantity.ToString("N1"),   //   (s.PlanQuantity-s.FactQuantity).ToString("N1"),  
                                     s.PlanOperDate.ToString("dd.MM.yyyy"),
                                     s.PlanOperDate.ToString("dd.MM.yyyy"),
                                     State
@@ -1790,12 +2243,12 @@ namespace PlantPlanning
                             {
                                 dataString = new string[]
                                 {
-                            "",
-                            "ИТОГО:",
-                            sListA.Sum(x=>x.PlanQuantity-x.FactQuantity).ToString("N1"),
-                            "",
-                            "",
-                            ""
+                                    "",
+                                    "ИТОГО:",
+                                    sListA.Sum(x=>x.PlanQuantity-x.FactQuantity).ToString("N1"),
+                                    "",
+                                    "",
+                                    ""
                                 };
                                 dgvStorages.Rows.Add(dataString);
                             }
@@ -1856,7 +2309,7 @@ namespace PlantPlanning
                                  {
                                     s.MZP.Trim()==""? s.OrderNymber:  s.OrderNymber+"/"+s.MZP,
                                     s.PlanOperDate.ToString("dd.MM.yyyy")+" "+s.Initiator+" "+s.StatusMZP,
-                                    (s.PlanQuantity-s.FactQuantity).ToString("N1"),  //FactQuantity    
+                                    s.PlanQuantity.ToString("N1"),             //(s.PlanQuantity-s.FactQuantity).ToString("N1"),  //FactQuantity    
                                     s.PlanOperDate.ToString("dd.MM.yyyy"),
                                     s.PlanOperDate.ToString("dd.MM.yyyy"),
                                     State
@@ -1868,12 +2321,12 @@ namespace PlantPlanning
                             {
                                 dataString = new string[]
                                 {
-                            "",
-                            "ИТОГО:",
-                            sListBB.Sum(x=>x.PlanQuantity-x.FactQuantity).ToString("N1"),
-                            "",
-                            "",
-                            ""
+                                    "",
+                                    "ИТОГО:",
+                                    sListBB.Sum(x=>x.PlanQuantity-x.FactQuantity).ToString("N1"),
+                                    "",
+                                    "",
+                                    ""
                                 };
                                 dgvStorages.Rows.Add(dataString);
                             }
@@ -1928,21 +2381,37 @@ namespace PlantPlanning
                             CurrDate = DateTime.Today.Date;
                         }
 
-
                         var ExData = cf.XLDataList.Where(x => (x.ProdCode == cf.UserSelectedCode) && (x.DateWork == CurrDate)).ToList(); //fm.ExcelList.Where(x => (x.ProductCode == UserSelectedCode) && (x.DateWork == dt)).ToList();
 
                         foreach (var ed in ExData)
                         {
-                            //  foreach (var xd in ed.EDList)
+                            string VS = "";
+                            
+                            if (Math.Abs( ed.Quantity) >= 100)
                             {
-                                LName = ed.Quantity.ToString("N1") + " => " + ed.Line;
+                                VS = ed.Quantity.ToString("N0");
+                            }
+                            else if (Math.Abs(ed.Quantity) >= 10 && Math.Abs(ed.Quantity) < 100)
+                            {
+                                VS = ed.Quantity.ToString("N1");
+                            }
+                            else if (Math.Abs(ed.Quantity) >= 1 && Math.Abs(ed.Quantity) < 10)
+                            {
+                                VS = ed.Quantity.ToString("N2");
+                            }
+                            else
+                            {
+                                VS = ed.Quantity.ToString("N3");
+                            }
+
+                                LName = VS + " => " + ed.Line;
                                 if (ed.RePack == true)
                                 {
                                     LName = LName + " П/УП";
                                 }
 
                                 contextMenuStripData.Items.Add(LName);
-                            }
+                            
                         }
 
                         if (ExData.Count > 1)
@@ -1968,7 +2437,7 @@ namespace PlantPlanning
                     }
                     else if (e.ColumnIndex == (9 + Offset))
                     {
-                        var ListAA = cfm1[0].RawStorageList;
+                        var ListAA = cfm1[0].RawStorageListAlter;
 
                         if (cbMaterialDelay.Checked == true)
                         {
@@ -1977,7 +2446,7 @@ namespace PlantPlanning
 
                         foreach (var sml in ListAA.OrderBy(x => x.ProdDate)) //sbrMesList)
                         {
-                            m1 = new ToolStripMenuItem(sml.Storage + " [" + sml.LotName + "] => " + sml.Quantity.ToString("N1"));
+                            m1 = new ToolStripMenuItem(sml.Storage + " [" + sml.LotName + @"/" + sml.LotDescr + @"/" + sml.TestQuality + "] => " + sml.Quantity.ToString("N1"));
                             m1.ToolTipText = "Выпущен: " + sml.ProdDate.ToString("dd.MM.yyyy") + "; Годен до: " + sml.BBFDate.ToString("dd.MM.yyyy"); // +"; К-во: "+sml.Count.ToString();
                             try
                             {
@@ -1995,7 +2464,7 @@ namespace PlantPlanning
                     {
                         if (cfm1.Count > 0)
                         {
-                            var EL = cfm1[0].RawEnterpriseList;
+                            var EL = cfm1[0].RawEnterpriseListAlter;
 
                             if (cbMaterialDelay.Checked == false)
                             {
@@ -2008,7 +2477,7 @@ namespace PlantPlanning
 
                             foreach (var el in EL.OrderBy(x => x.ProdDate))
                             {
-                                ToolStripMenuItem m2 = new ToolStripMenuItem(el.Storage + " [" + el.LotName + "] => " + el.Quantity.ToString("N1"));
+                                ToolStripMenuItem m2 = new ToolStripMenuItem(el.Storage + " [" + el.LotName + @"/" + el.LotDescr + @"/" + el.TestQuality + "] => " + el.Quantity.ToString("N1"));
                                 //      m2.ToolTipText = "Количество записей: " + sl1.Count.ToString();
                                 m2.ToolTipText = "Выпущен: " + el.ProdDate.ToString("dd.MM.yyyy") + "; Годен до: " + el.BBFDate.ToString("dd.MM.yyyy");
                                 try
@@ -2226,12 +2695,12 @@ namespace PlantPlanning
 
                     Value = CFMList[i].CurrentConsumption;
 
-                    foreach (var sl in CFMList[i].RawStorageList)
+                    foreach (var sl in CFMList[i].RawStorageListAlter)
                     {
                         Value = Value + sl.Quantity;
                     }
 
-                  /*  foreach (var el in CFMList[i].RawEnterpriseList)
+                  /*  foreach (var el in CFMList[i].RawEnterpriseListAlter)
                     {
                         Value = Value + el.Quantity;
                     }*/
@@ -2253,30 +2722,48 @@ namespace PlantPlanning
 
                     for (int j = 0; j < DTList1.Count; j++)
                     {
+                        DateTime dt = DTList1[j];
+                        DateTime dtl;
+
+                        if (j + 1 <DTList1.Count)
+                        {
+                            dtl = DTList1[j + 1];
+                        }
+                        else
+                        {
+                            dtl = DTList1.Last().AddYears(1);
+                        }
+
+                        var Delta = (dtl - dt).TotalDays;
+
                         T2 = 0;
-                        var FDTList = DTList1.Where(x => (x.Month == DTList1[j].Month) && (x.Year == DTList1[j].Year)).ToList();
+                        var FDTList = DTList1.Where(x => (x.Month == dt.Month) && (x.Year == dt.Year)).ToList();
                         //income
-                        var tData2 = CFMList[i].TaskNavList2.Where(x => x.BBFDate == DTList1[j].Date).ToList();
-                        if ((DTList1[j].Day == 1) && (FDTList.Count == 1) && (tData2.Count == 0))
+                        var tData2 = CFMList[i].TaskNavList2.Where(x => x.BBFDate == dt.Date).ToList();
+                        List<Raws> tData22 = new List<Raws>();
+
+                        if  (Delta > 1)        //((DTList1[j].Day == 1) && (FDTList.Count == 1) && (tData2.Count == 0))
                         {
-                            tData2 = CFMList[i].TaskNavList2.Where(x => x.AlterDate == DTList1[j]).ToList();
+                            tData22 = CFMList[i].TaskNavList2.Where(x => x.AlterDate > dt && x.AlterDate < dtl).ToList();
                         }
 
-                        foreach (var td2 in tData2)
+                        //  foreach (var td2 in tData2)
+                        //  {
+                        T2 = T2 + tData2.Sum(x => x.Quantity) + tData22.Sum(x => x.Quantity);
+                      //  }
+
+                        var Cdata = CD.Where(x => x.ExpDT.Date == dt.Date).ToList();      //fm.ContList.Where(x => (x.MaterialCode == CFMList[i].MaterialCode) && (x.ExpDT.Date == DTList1[j].Date)).ToList();
+                        List<tPlannedMeatContainers> cData1 = new List<tPlannedMeatContainers>();
+
+                        if  (Delta > 1)    //((DTList1[j].Day == 1) && (FDTList.Count == 1) && (Cdata.Count == 0))
                         {
-                            T2 = T2 + td2.Quantity;
+                            cData1 = CD.Where(x => ((DateTime)x.AlterDate).Date > dt.Date && ((DateTime)x.AlterDate).Date < dtl.Date).ToList();   //fm.ContList.Where(x => (x.MaterialCode == CFMList[i].MaterialCode) && (((DateTime)x.AlterDate).Date == DTList1[j].Date)).ToList();
                         }
 
-                        var Cdata = CD.Where(x => x.ExpDT.Date == DTList1[j].Date).ToList();     //fm.ContList.Where(x => (x.MaterialCode == CFMList[i].MaterialCode) && (x.ExpDT.Date == DTList1[j].Date)).ToList();
-                        if ((DTList1[j].Day == 1) && (FDTList.Count == 1) && (Cdata.Count == 0))
-                        {
-                            Cdata = CD.Where(x => ((DateTime)x.AlterDate).Date == DTList1[j].Date).ToList();   //fm.ContList.Where(x => (x.MaterialCode == CFMList[i].MaterialCode) && (((DateTime)x.AlterDate).Date == DTList1[j].Date)).ToList();
-                        }
-
-                        foreach (var cd in Cdata)
-                        {
-                            T2 = T2 + cd.Quantity;
-                        }
+                        //  foreach (var cd in Cdata)
+                        //  {
+                        T2 = T2 + Cdata.Sum(x => x.Quantity) + cData1.Sum(x => x.Quantity);
+                      //  }
 
                         if (T2>0)
                         {
@@ -2287,38 +2774,43 @@ namespace PlantPlanning
                         }
                         Value = Value + T2;
                         //ask in progress
-                        var tData1 = CFMList[i].TaskNavList1.Where(x => x.BBFDate == DTList1[j].Date).ToList();
-                        if ((DTList1[j].Day == 1) && (FDTList.Count == 1) && (tData1.Count == 0))
+                        var tData1 = CFMList[i].TaskNavList1.Where(x => x.BBFDate == dt.Date).ToList();
+                        List<Raws> tDataA = new List<Raws>();
+
+                        if  (Delta > 1)    //((DTList1[j].Day == 1) && (FDTList.Count == 1) && (tData1.Count == 0))
                         {
-                            tData1 = CFMList[i].TaskNavList1.Where(x => x.AlterDate == DTList1[j]).ToList();
+                            tDataA = CFMList[i].TaskNavList1.Where(x => x.AlterDate > dt && x.AlterDate < dtl.Date).ToList();
                         }
 
                         T1 = 0;
-                        foreach (var td1 in tData1)
-                        {
-                            T1 = T1 + td1.Quantity;
-                        }
+                        //  foreach (var td1 in tData1)
+                        //  {
+                        T1 = T1 + tData1.Sum(x => x.Quantity) + tDataA.Sum(x => x.Quantity);
+                      //  }
                        // Value = Value + T1;
+
                         //credit
-                        var dll = DL.Where(x => x.DateWork.Date == DTList1[j].Date).ToList();   // cf.XLDataList.Where(x => (x.ProdCode == CFMList[i].MaterialCode) && (x.DateWork.Date == DTList1[j].Date)).ToList();
+                        var dll = DL.Where(x => x.DateWork.Date == dt.Date).ToList();   // cf.XLDataList.Where(x => (x.ProdCode == CFMList[i].MaterialCode) && (x.DateWork.Date == DTList1[j].Date)).ToList();
                         foreach (var dl in dll)
                         {
                             Value = Value - dl.Quantity;
                         }
 
                         Q = 0;
-                        var bdata = adata.Where(x => x.DateWork.Date == DTList1[j].Date).ToList();    //cf.AppList.Where(x => (x.MaterialCode == CFMList[i].MaterialCode) && (x.DateWork.Date == DTList1[j].Date)).ToList();
-                        if ((bdata.Count == 0) && (FDTList.Count == 1) && (DTList1[j].Day == 1))
+                        var bdata = adata.Where(x => x.DateWork.Date == dt.Date).ToList();    //cf.AppList.Where(x => (x.MaterialCode == CFMList[i].MaterialCode) && (x.DateWork.Date == DTList1[j].Date)).ToList();
+                        List<tApplication> bData1 = new List<tApplication>();
+
+                        if  (Delta > 1)    //((bdata.Count == 0) && (FDTList.Count == 1) && (DTList1[j].Day == 1))
                         {
-                           // adata = cf.AppList;
-                           // adata = adata.Where(x => x.MaterialCode == CFMList[i].MaterialCode).ToList();
-                            bdata = adata.Where(x => (DateTime)x.AlterDate == DTList1[j].Date).ToList();
+                            // adata = cf.AppList;
+                            // adata = adata.Where(x => x.MaterialCode == CFMList[i].MaterialCode).ToList();
+                            bData1 = adata.Where(x => (DateTime)x.AlterDate > dt.Date && (DateTime)x.AlterDate < dtl.Date).ToList();
                         }
 
-                        foreach (var ad in bdata)
-                        {
-                            Q = Q + ad.Quantity;
-                        }
+                        //  foreach (var ad in bdata)
+                        //  {
+                        Q = Q + bdata.Sum(x => x.Quantity) + bData1.Sum(x => x.Quantity);
+                      //  }
 
                        /* if (Value < 0)
                         {
@@ -2416,12 +2908,12 @@ namespace PlantPlanning
 
                     Value = CFMList[i].CurrentConsumption;
 
-                    foreach (var sl in CFMList[i].RawStorageList)
+                    foreach (var sl in CFMList[i].RawStorageListAlter)
                     {
                         Value = Value + sl.Quantity;
                     }
 
-                /*    foreach (var el in CFMList[i].RawEnterpriseList)
+                /*    foreach (var el in CFMList[i].RawEnterpriseListAlter)
                     {
                         Value = Value + el.Quantity;
                     }*/
@@ -2508,12 +3000,12 @@ namespace PlantPlanning
 
                     Value = CFMList[i].CurrentConsumption;
 
-                    foreach (var sl in CFMList[i].RawStorageList)
+                    foreach (var sl in CFMList[i].RawStorageListAlter)
                     {
                         Value = Value + sl.Quantity;
                     }
 
-                  /*  foreach (var el in CFMList[i].RawEnterpriseList)
+                  /*  foreach (var el in CFMList[i].RawEnterpriseListAlter)
                     {
                         Value = Value + el.Quantity;
                     }*/
@@ -2530,30 +3022,48 @@ namespace PlantPlanning
 
                     for (int j = 0; j < DTList1.Count; j++)
                     {
+                        DateTime dt = DTList1[j];
+                        DateTime dtl;
+
+                        if (j+1 <DTList1.Count)
+                        {
+                            dtl = DTList1[j + 1];
+                        }
+                        else
+                        {
+                            dtl = DTList1.Last().AddYears(1);
+                        }
+
+                        var Delta = (dtl - dt).TotalDays;
+
                         T2 = 0;
-                        var FDTList = DTList1.Where(x => (x.Month == DTList1[j].Month) && (x.Year == DTList1[j].Year)).ToList();
+                        var FDTList = DTList1.Where(x => (x.Month == dt.Month) && (x.Year == dt.Year)).ToList();
                         //income
-                        var tData2 = CFMList[i].TaskNavList2.Where(x => x.BBFDate == DTList1[j].Date).ToList();
-                        if ((DTList1[j].Day == 1) && (FDTList.Count == 1) && (tData2.Count == 0))
+                        var tData2 = CFMList[i].TaskNavList2.Where(x => x.BBFDate == dt.Date).ToList();
+                        List<Raws> tData22 = new List<Raws>();
+
+                        if  (Delta > 1)    //((DTList1[j].Day == 1) && (FDTList.Count == 1) && (tData2.Count == 0))
                         {
-                            tData2 = CFMList[i].TaskNavList2.Where(x => x.AlterDate == DTList1[j]).ToList();
+                            tData22 = CFMList[i].TaskNavList2.Where(x => x.AlterDate > dt && x.AlterDate < dtl).ToList();
                         }
 
-                        foreach (var td2 in tData2)
+                        //  foreach (var td2 in tData2)
+                        //  {
+                        T2 = T2 + tData2.Sum(x => x.Quantity) + tData22.Sum(x => x.Quantity);
+                      //  }
+
+                        var Cdata = fm.ContList.Where(x => (x.MaterialCode == CFMList[i].MaterialCode) && (x.ExpDT.Date == dt.Date)).ToList();
+                        List<tPlannedMeatContainers> Cdata1 = new List<tPlannedMeatContainers>();
+
+                        if   (Delta > 1)   //((DTList1[j].Day == 1) && (FDTList.Count == 1) && (Cdata.Count == 0))
                         {
-                            T2 = T2 + td2.Quantity;
+                            Cdata1 = fm.ContList.Where(x => (x.MaterialCode == CFMList[i].MaterialCode) && ((DateTime)x.AlterDate).Date > dt.Date && ((DateTime)x.AlterDate).Date < dtl.Date).ToList();
                         }
 
-                        var Cdata = fm.ContList.Where(x => (x.MaterialCode == CFMList[i].MaterialCode) && (x.ExpDT.Date == DTList1[j].Date)).ToList();
-                        if ((DTList1[j].Day == 1) && (FDTList.Count == 1) && (Cdata.Count == 0))
-                        {
-                            Cdata = fm.ContList.Where(x => (x.MaterialCode == CFMList[i].MaterialCode) && (((DateTime)x.AlterDate).Date == DTList1[j].Date)).ToList();
-                        }
-
-                        foreach (var cd in Cdata)
-                        {
-                            T2 = T2 + cd.Quantity;
-                        }
+                        //   foreach (var cd in Cdata)
+                        //   {
+                        T2 = T2 + Cdata.Sum(x => x.Quantity) + Cdata1.Sum(x => x.Quantity);
+                     //   }
 
                         if (T2 > 0)
                         {
@@ -2565,17 +3075,19 @@ namespace PlantPlanning
                         Value = Value + T2;
 
                         //ask in progress
-                        var tData1 = CFMList[i].TaskNavList1.Where(x => x.BBFDate == DTList1[j].Date).ToList();
-                        if ((DTList1[j].Day == 1) && (FDTList.Count == 1) && (tData1.Count == 0))
+                        var tData1 = CFMList[i].TaskNavList1.Where(x => x.BBFDate == dt.Date).ToList();
+                        List<Raws> tDataA = new List<Raws>();
+
+                        if  (Delta > 1)  //  ((DTList1[j].Day == 1) && (FDTList.Count == 1) && (tData1.Count == 0))
                         {
-                            tData1 = CFMList[i].TaskNavList1.Where(x => x.AlterDate == DTList1[j]).ToList();
+                            tDataA = CFMList[i].TaskNavList1.Where(x => x.AlterDate > dt && x.AlterDate < dtl).ToList();
                         }
 
                         T1 = 0;
-                        foreach (var td1 in tData1)
-                        {
-                            T1 = T1 + td1.Quantity;
-                        }
+                        // foreach (var td1 in tData1)
+                        // {
+                        T1 = T1 + tData1.Sum(x => x.Quantity) + tDataA.Sum(x => x.Quantity);
+                       // }
                       //  Value = Value + T1;
 
                         //credit
@@ -2859,42 +3371,170 @@ namespace PlantPlanning
             Int32 Offset = cf.WorkMonthList.Count;
             //cells values
             Font f1 = new Font(dataGridViewMain.DefaultCellStyle.Font, FontStyle.Bold);
+            int Selector = dataGridViewMain.ColumnCount - 2;
             //1-2 cells
             for (int j = 0; j < CFMList.Count; j++)
             {
-                string PC = dataGridViewMain.Rows[j].Cells[0].Value.ToString();   // CFMList[j].MaterialCode;
+                string PC = dataGridViewMain.Rows[j].Cells[0].Value.ToString();   //dataGridViewMain.Rows[j].Cells[0].Value.ToString();   CFMList[j].MaterialCode
+                string MatStat = dataGridViewMain.Rows[j].Cells[Selector].Value.ToString();
+                var cfm = CFMList.Where(x => x.MaterialCode == PC).First();
 
-                if (cf.URSCodeList.Contains(PC))                 //(dataGridViewMain.Rows[j].Cells["Код материала"].Value.ToString().ToLower() == URSList[i].MaterialCode.ToLower())
+                switch (MatStat)
                 {
-                    dataGridViewMain.Rows[j].Cells[0].Style.BackColor = cf.SColor;
-                    dataGridViewMain.Rows[j].Cells[1].Style.BackColor = cf.SColor;
+                    case ("-1"):
+                        try
+                        {
+                            dataGridViewMain.Rows[j].Cells[0].Style.BackColor = Color.Aqua;
+                            dataGridViewMain.Rows[j].Cells[1].Style.BackColor = Color.Aqua;
+                        }
+                        catch (Exception xx)
+                        { }
+                        break;
+
+                    case "0":
+                        try
+                        {
+                            dataGridViewMain.Rows[j].Cells[0].Style.BackColor = Color.Lavender;
+                            dataGridViewMain.Rows[j].Cells[1].Style.BackColor = Color.Lavender;
+                        }
+                        catch (Exception xx)
+                        { }
+                        break;
+
+                    case "1":
+                        try
+                        {
+                            dataGridViewMain.Rows[j].Cells[0].Style.BackColor = cf.SColor;
+                            dataGridViewMain.Rows[j].Cells[1].Style.BackColor = cf.SColor;
+                        }
+                        catch (Exception xx)
+                        { }
+                        break;
+
+                    case "2":
+                        try
+                        {
+                            dataGridViewMain.Rows[j].Cells[0].Style.BackColor = cf.MColor;
+                            dataGridViewMain.Rows[j].Cells[1].Style.BackColor = cf.MColor;
+                        }
+                        catch (Exception xx)
+                        { }
+                        break;
+
+                    case "3":
+                        try
+                        {
+                            dataGridViewMain.Rows[j].Cells[0].Style.BackColor = Color.LightCyan; //  .SteelBlue;
+                            dataGridViewMain.Rows[j].Cells[1].Style.BackColor = Color.LightCyan;
+                        }
+                        catch (Exception xx)
+                        { }
+                        break;
+
+                    case "4":
+                        if (cfm.MaterialGroup != "ГП") //(CFMBool[j] == false) 
+                        {
+                            try
+                            {
+                                dataGridViewMain.Rows[j].Cells[0].Style.BackColor = Color.LightYellow;   //.Gold;
+                                dataGridViewMain.Rows[j].Cells[1].Style.BackColor = Color.LightYellow;   //.Gold;                             
+                            }
+                            catch (Exception xx)
+                            { }
+                        }
+                        break;
+
+                    case "5":
+                        try
+                        {
+                            dataGridViewMain.Rows[j].Cells[0].Style.BackColor = Color.Tan; //  
+                            dataGridViewMain.Rows[j].Cells[1].Style.BackColor = Color.Tan;
+                        }
+                        catch (Exception xx)
+                        { }
+                        break;
+
+                    case "6":
+                        try
+                        {
+                            dataGridViewMain.Rows[j].Cells[0].Style.BackColor = Color.LightGreen;   //.Lime;
+                            dataGridViewMain.Rows[j].Cells[1].Style.BackColor = Color.LightGreen;
+                        }
+                        catch (Exception xx)
+                        { }
+                        break;
+
+                    case "7":
+                        try
+                        {
+                            dataGridViewMain.Rows[j].Cells[0].Style.BackColor = Color.MistyRose;   //.Rose;
+                            dataGridViewMain.Rows[j].Cells[1].Style.BackColor = Color.MistyRose;
+                        }
+                        catch (Exception xx)
+                        { }
+                        break;
+
+                    case "8":
+                        if (cfm.MaterialGroup != "ГП")
+                        {
+                            try
+                            {
+                                dataGridViewMain.Rows[j].Cells[0].Style.BackColor = Color.LightGray;  //DarkGray
+                                dataGridViewMain.Rows[j].Cells[1].Style.BackColor = Color.LightGray;
+                            }
+                            catch (Exception xx)
+                            { }
+                        }
+                        break;
+
+                    case "9":
+                        try
+                        {
+                            dataGridViewMain.Rows[j].Cells[0].Style.BackColor = Color.Thistle;
+                            dataGridViewMain.Rows[j].Cells[1].Style.BackColor = Color.Thistle;
+                        }
+                        catch (Exception xx)
+                        { }
+                        break;
+
+                    default:
+                        break;
                 }
-                else if (cf.URMCodeList.Contains(PC))
-                {
-                    dataGridViewMain.Rows[j].Cells[0].Style.BackColor = cf.MColor;
-                    dataGridViewMain.Rows[j].Cells[1].Style.BackColor = cf.MColor;
-                }
-                else if (fm.OPRList.Contains(PC))
-                {
-                    dataGridViewMain.Rows[j].Cells[0].Style.BackColor = Color.LightCyan;
-                    dataGridViewMain.Rows[j].Cells[1].Style.BackColor = Color.LightCyan;
-                }
-                else if (CFMListGold.Contains(PC))  //cf.
-                {
-                    if (CFMList[j].MaterialGroup != "ГП") //(CFMBool[j] == false) 
-                    {
-                        dataGridViewMain.Rows[j].Cells[0].Style.BackColor = Color.LightYellow;
-                        dataGridViewMain.Rows[j].Cells[1].Style.BackColor = Color.LightYellow;  //Gold
-                    }
-                }
-                else if (CFMListGray.Contains(PC))  //cf.
-                {
-                    if (CFMList[j].MaterialGroup != "ГП")
-                    {
-                        dataGridViewMain.Rows[j].Cells[0].Style.BackColor = Color.LightGray;   //.DarkGray;
-                        dataGridViewMain.Rows[j].Cells[1].Style.BackColor = Color.LightGray;
-                    }
-                }
+
+
+                /* string PC = dataGridViewMain.Rows[j].Cells[0].Value.ToString();   // CFMList[j].MaterialCode;
+
+                 if (cf.URSCodeList.Contains(PC))                 //(dataGridViewMain.Rows[j].Cells["Код материала"].Value.ToString().ToLower() == URSList[i].MaterialCode.ToLower())
+                 {
+                     dataGridViewMain.Rows[j].Cells[0].Style.BackColor = cf.SColor;
+                     dataGridViewMain.Rows[j].Cells[1].Style.BackColor = cf.SColor;
+                 }
+                 else if (cf.URMCodeList.Contains(PC))
+                 {
+                     dataGridViewMain.Rows[j].Cells[0].Style.BackColor = cf.MColor;
+                     dataGridViewMain.Rows[j].Cells[1].Style.BackColor = cf.MColor;
+                 }
+                 else if (fm.OPRList.Contains(PC))
+                 {
+                     dataGridViewMain.Rows[j].Cells[0].Style.BackColor = Color.LightCyan;
+                     dataGridViewMain.Rows[j].Cells[1].Style.BackColor = Color.LightCyan;
+                 }
+                 else if (CFMListGold.Contains(PC))  //cf.
+                 {
+                     if (CFMList[j].MaterialGroup != "ГП") //(CFMBool[j] == false) 
+                     {
+                         dataGridViewMain.Rows[j].Cells[0].Style.BackColor = Color.LightYellow;
+                         dataGridViewMain.Rows[j].Cells[1].Style.BackColor = Color.LightYellow;  //Gold
+                     }
+                 }
+                 else if (CFMListGray.Contains(PC))  //cf.
+                 {
+                     if (CFMList[j].MaterialGroup != "ГП")
+                     {
+                         dataGridViewMain.Rows[j].Cells[0].Style.BackColor = Color.LightGray;   //.DarkGray;
+                         dataGridViewMain.Rows[j].Cells[1].Style.BackColor = Color.LightGray;
+                     }
+                 }*/
 
                 if (CFMListRed.Contains(PC)) //-  cf.
                 {
@@ -2970,10 +3610,20 @@ namespace PlantPlanning
                     }
                 }
 
-                if (cf.TaskList.Contains(PC))
+                if (cf.CFMListTan.Contains(PC))
                 {
-                    dataGridViewMain.Rows[j].Cells[0].Style.BackColor = Color.LightGreen;
-                    dataGridViewMain.Rows[j].Cells[1].Style.BackColor = Color.LightGreen;
+                    dataGridViewMain.Rows[j].Cells[0].Style.BackColor = Color.Tan; //  
+                    dataGridViewMain.Rows[j].Cells[1].Style.BackColor = Color.Tan;
+                }
+                else if (cf.TaskList.Contains(PC))
+                {
+                    try
+                    {
+                        dataGridViewMain.Rows[j].Cells[0].Style.BackColor = Color.LightGreen;   //.Lime;
+                        dataGridViewMain.Rows[j].Cells[1].Style.BackColor = Color.LightGreen;
+                    }
+                    catch (Exception xx)
+                    { }
                 }
                 else if (cf.MesList.Contains(PC))
                 {
@@ -2981,11 +3631,10 @@ namespace PlantPlanning
                     dataGridViewMain.Rows[j].Cells[1].Style.BackColor = Color.MistyRose;
                 }
 
-
                 //9/10 color
                 try
                 {
-                    var cfm = CFMList.Where(x => x.MaterialCode == PC).First();
+                  //  var cfm = CFMList.Where(x => x.MaterialCode == PC).First();
                     if (cf.cbMaterialDelay.Checked == false)
                     {
                         dataGridViewMain.Rows[j].Cells[9 + Offset].Style.ForeColor = Color.FromName(cfm.Color1);
@@ -3015,9 +3664,10 @@ namespace PlantPlanning
 
             Cursor = Cursors.WaitCursor;
 
-            List<DateTime> DList = new List<DateTime>();
+            /*List<DateTime> DList = new List<DateTime>();
             DList = fm.ExcelDataList.Select(x => x.DateWork).ToList();
-            DList = DList.Distinct().OrderBy(x => x.Date).ToList();
+            DList = DList.Distinct().OrderBy(x => x.Date).ToList();*/
+
             string ProductCode = dataGridViewMain.Rows[RowInd].Cells[0].Value.ToString().Trim();
             double Quantity = 0;
             DateTime DateStart;
@@ -3051,7 +3701,8 @@ namespace PlantPlanning
             }
 
             var CurProduct = fm.lRec.Where(x => x.MaterialCode == ProductCode).ToList();
-            List<DateTime> DDList = DList.Where(x => x.Date >= DateTime.Today.Date.AddDays(-100)).OrderBy(x => x.Date).ToList();
+            CurProduct.AddRange(fm.lRec1.Where(x => x.MaterialCode == ProductCode).ToList());
+       //     List<DateTime> DDList = DList.Where(x => x.Date >= DateTime.Today.Date.AddDays(-100)).OrderBy(x => x.Date).ToList();
 
             switch (tabControl2.SelectedIndex)
             {
@@ -3059,180 +3710,17 @@ namespace PlantPlanning
                     if (dgvPlanned.RowCount <= 1)
                     {
                         dgvPlanned.Rows.Clear();
-                        dataString = new string[] { "", "", "", "", "", "", "Данный компонент используется в:" };
-                        dgvPlanned.Rows.Add(dataString);
-                        var E1 = fm.ExcelDataList.Where(x => DDList.Contains(x.DateWork) && x.Quantity != 0).ToList();
 
-                        for (int i=0; i<DDList.Count; i++)  // foreach (DateTime dt1 in DDList)   //DList
-                        {
-                            //planned
-                            //  if (dt1 >= DateTime.Today.Date)
-                            {
-                                fl = dataGridViewMain.Rows[RowInd].Cells[2].Value.ToString().ToLower() == "тара" ? true : false;  //Cells["Класс материала"]
-                                var ELDListDate = E1.Where(x => (x.DateWork == DDList[i])).ToList();   //fm.ExcelDataList.Where(x => (x.DateWork == dt1) && (x.Quantity > 0)).ToList();    // XLDataList.Where(x => (x.DateWork == CurrDate) && (x.Quantity > 0)).ToList();  //dt1
-
-                                 for (int j=0; j< ELDListDate.Count; j++)   // foreach (var ELD in ELDListDate)
-                                {
-                                    var CP = CurProduct.Where(x => (x.ProductCode == ELDListDate[j].ProdCode) && (x.LineNumber == ELDListDate[j].Line) && (x.WorkDate <= DDList[i])).ToList();  //(x.Prod_No == ELD.ProdCode) && (x.WorkCenter == ELD.Line)
-                                    fn_select_RecipesView_Result SRR;
-                                    try
-                                    {
-                                        //  CP = CP.Where(x => x.WorkDate <= dt1).OrderByDescending(x => x.WorkDate).ToList();
-                                        SRR = CP.OrderByDescending(x => x.WorkDate).First();      // CP = CP.Where(x => x.WorkDate <= dt1).OrderByDescending(x => x.WorkDate).ToList();  //x.Starting_Date
-                                    }
-                                    catch (Exception xx)
-                                    {
-                                        SRR = null;
-                                    }
-
-                                    if (SRR != null)    // (CP.Count > 0)
-                                    {
-                                        //раскрутка рецептуры в обратном направлении! Продукт-Линия-совпадает ли дата?
-                                        var PRL = fm.ProdRecipeList.Where(x => x.ProductCode == ELDListDate[j].ProdCodeStr).ToList();
-                                        if (PRL.Count > 0)
-                                        {
-                                            var LL = PRL[0].RecLineList.Where(x => x.LineNumber == ELDListDate[j].Line).ToList();
-                                            if (LL.Count > 0)
-                                            {
-                                                var DL = LL[0].RecList.Where(x => x.WorkDateStart <= DDList[i]).OrderByDescending(x => x.WorkDateStart).ToList();  //CurrDate
-                                                if (DL.Count > 0)
-                                                {
-                                                    if (DL[0].WorkDateStart == SRR.WorkDate)
-                                                    {
-                                                        if (ELDListDate[j].RePack == true)
-                                                        {
-                                                            if (fl == true)
-                                                            {
-                                                                if ((double)SRR.Quantity > 0)
-                                                                {
-                                                                    dataString = new string[] {
-                                                                    DDList[i].ToString("dd.MM.yyyy"),  //  CurrDate
-                                                                    ELDListDate[j].Line,
-                                                                    ELDListDate[j].Quantity.ToString("N0"),
-                                                                    ((double) SRR.Quantity*1000).ToString("N0"),   //CP[0].Quantity
-                                                                    (((double) SRR.Quantity) * ELDListDate[j].Quantity).ToString("N0"),
-                                                                    ELDListDate[j].ProdCodeStr,
-                                                                    ELDListDate[j].AlterProdName
-                                                                    };
-
-                                                                    dgvPlanned.Rows.Add(dataString);
-                                                                }
-                                                            }
-                                                        }
-                                                        else
-                                                        {
-                                                            if ((double)SRR.Quantity > 0)
-                                                            {
-                                                                dataString = new string[] {
-                                                                DDList[i].ToString("dd.MM.yyyy"),
-                                                                ELDListDate[j].Line,
-                                                               ELDListDate[j].Quantity.ToString("N0"),
-                                                                ((double) SRR.Quantity*1000).ToString("N0"),
-                                                                (((double) SRR.Quantity) * ELDListDate[j].Quantity).ToString("N0"),
-                                                               ELDListDate[j].ProdCodeStr,
-                                                               ELDListDate[j].AlterProdName
-                                                                };
-
-                                                                dgvPlanned.Rows.Add(dataString);
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
-                                foreach (DataGridViewRow r in dgvPlanned.Rows)
-                                {
-                                    if (r.Cells[0].Value.ToString() != "")
-                                    {
-                                        r.Cells[0].ToolTipText = "Количество: " + r.Cells[3].Value.ToString() + "; Норма на тонну: " + r.Cells[4].Value.ToString() + " Итого расход: " + r.Cells[5].Value.ToString();
-                                        r.Cells[1].ToolTipText = "Количество: " + r.Cells[3].Value.ToString() + "; Норма на тонну: " + r.Cells[4].Value.ToString() + " Итого расход: " + r.Cells[5].Value.ToString();
-                                        r.Cells[2].ToolTipText = "Количество: " + r.Cells[3].Value.ToString() + "; Норма на тонну: " + r.Cells[4].Value.ToString() + " Итого расход: " + r.Cells[5].Value.ToString();
-                                        r.Cells[3].ToolTipText = "Количество: " + r.Cells[3].Value.ToString() + "; Норма на тонну: " + r.Cells[4].Value.ToString() + " Итого расход: " + r.Cells[5].Value.ToString();
-                                    }
-                                }
-                                ELDListDate = null;
-                            }                       // dt1
-                        }  //foreach
+                     //   List<DateTime> DDList = DList.Where(x => x.Date >= dtpPlan1.Value.Date && x.Date <= dtpPlan2.Value.Date).OrderBy(x => x.Date).ToList();
+                        UsingComponentPlan( ProductCode,  DList,  CurProduct);
                     }
                     break;
                 case 0:
                     if (dgvFactis.RowCount <= 1)
                     {
                         dgvFactis.Rows.Clear();
-                        dataString = new string[] { "", "", "", "", "", "", "Данный компонент используется в:" };
-                        dgvFactis.Rows.Add(dataString);
-                        {
-                            try
-                            {
-                                StartDate1 = DList.Min();
-                                EndDate1 = DList.Max();
-                            }
-                            catch (Exception xx)
-                            {
-                                StartDate1 = DateTime.Today.Date;
-                                EndDate1 = StartDate1.AddDays(1);
-                            }
-
-                            fl = dataGridViewMain.CurrentRow.Cells[2].Value.ToString().ToLower() == "тара" ? true : false;
-                            //  var MuaSection = fm.MUAList.Where(x => (x.DateTime >= DateStart) && (x.DateTime < DateEnd)).ToList();    
-
-                            var FactData = fm.tdb.fn_select_ProductionByCode(ProductCode, StartDate1).OrderBy(x => x.LotForErp).ToList();      //   DateTime.Today.Date.AddYears(-2)               //fm.edb.fn_select_MaterialUsingByProduct(StartDate1, EndDate1, ProductCode).OrderBy(x => x.DateStart).ToList();
-
-                            List<string> LotForErp = FactData.Select(x => x.LotForErp).Distinct().ToList();
-                            List<fn_select_ProductionByCode_Result> FactData1 = new List<fn_select_ProductionByCode_Result>();
-
-                            foreach (string lfe in LotForErp)
-                            {
-                                var fd = FactData.Where(x => x.LotForErp == lfe).ToList();
-
-                                if (fd.Count > 0)
-                                {
-                                    var fd1 = fd[0];
-
-                                    for (int i = 1; i < fd.Count; i++)
-                                    {
-                                        fd1.Quantity = fd1.Quantity + fd[i].Quantity;
-                                        fd1.RawQuant = fd1.RawQuant + fd[i].RawQuant;
-                                    }
-                                    fd1.EndDate = fd[fd.Count - 1].EndDate;
-                                }
-                            }
-
-                            foreach (var f in FactData)
-                            {
-                                // if (f.DateStart >= DateStart)
-                                {
-                                    dataString = new string[]
-                                    {
-                                    ((double)f.RawQuant).ToString("N3"),
-                                    ((DateTime)f.StartDate).ToString("dd.MM.yyyy HH;mm"),
-                                    ((DateTime)f.EndDate).ToString("dd.MM.yyyy HH:mm"),
-                                    f.LotForErp,
-                                    ((double)f.Quantity).ToString("N2"),
-                                    f.MaterialCode,
-                                    f.SystemName+" "+ f.MaterialName
-                                    };
-
-                                    dgvFactis.Rows.Add(dataString);
-                                }
-                            }
-
-                            foreach (DataGridViewRow r in dgvFactis.Rows)
-                            {
-                                if (r.Cells[0].Value.ToString() != "")
-                                {
-                                    r.Cells[0].ToolTipText = "Произведено: " + r.Cells[4].Value.ToString() + "; Итого расход: " + r.Cells[0].Value.ToString();
-                                    r.Cells[1].ToolTipText = "Произведено: " + r.Cells[4].Value.ToString() + "; Итого расход: " + r.Cells[0].Value.ToString();
-                                    r.Cells[2].ToolTipText = "Произведено: " + r.Cells[4].Value.ToString() + "; Итого расход: " + r.Cells[0].Value.ToString();
-                                    r.Cells[3].ToolTipText = "Произведено: " + r.Cells[4].Value.ToString() + "; Итого расход: " + r.Cells[0].Value.ToString();
-                                }
-                            }
-
-                            FactData = null;
-                        }  //fact
+                     //   List<DateTime> DDList = DList.Where(x => x.Date >= dtpFact1.Value.Date && x.Date <= dtpFact2.Value.Date).OrderBy(x => x.Date).ToList();
+                        UsingComponentFact(ProductCode, DList);
                     }
                     break;
                 case 2:
@@ -3280,7 +3768,7 @@ namespace PlantPlanning
                     if (dgvUsing.RowCount <= 1)
                     {
                       //  var LR = fm.lRec1.Where(x => x.MaterialCode == ProductCode).ToList();
-                        List<fn_select_RecipesView_Result> LResult = new List<fn_select_RecipesView_Result>();
+                        List<PR_GetRecipesDataMainProductBis_Result> LResult = new List<PR_GetRecipesDataMainProductBis_Result>();
                         List<string> Slist = CurProduct.Select(x => x.LineNumber).Distinct().ToList();
 
                         foreach (var s in Slist)
@@ -3314,7 +3802,7 @@ namespace PlantPlanning
                                     ((DateTime)lr.WorkDate).ToString("yyyy-MM-dd"),
                                     lr.LineNumber,
                                     ((double)lr.Quantity).ToString("N6"),
-                                    ((double)(Q/lr.Quantity)).ToString("N2"),
+                                    ((double)((decimal)Q/(decimal)lr.Quantity)).ToString("N2"),
                                     lr.ProductCode,
                                     lr.ProductName
                                 };
@@ -3365,6 +3853,277 @@ namespace PlantPlanning
                     break;
             }//switch
             Cursor = Cursors.Default;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewMain.CurrentRow != null)
+            {
+                dgvPlanned.Rows.Clear();
+
+                string ProductCode = dataGridViewMain.CurrentRow.Cells[0].Value.ToString().Trim();
+                var CurProduct = fm.lRec.Where(x => x.MaterialCode == ProductCode).ToList();
+                List<DateTime> DDList = DList.Where(x => x.Date >= dtpPlan1.Value.Date && x.Date <= dtpPlan2.Value.Date).OrderBy(x => x.Date).ToList();
+
+                UsingComponentPlan(ProductCode, DDList, CurProduct);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewMain.CurrentRow != null)
+            {
+                dgvFactis.Rows.Clear();
+
+                string ProductCode = dataGridViewMain.CurrentRow.Cells[0].Value.ToString().Trim();
+                List<DateTime>  DDList = DList.Where(x => x.Date >= dtpFact1.Value.Date && x.Date <= dtpFact2.Value.Date).OrderBy(x => x.Date).ToList();
+
+                UsingComponentFact(ProductCode, DDList);
+            }
+        }
+
+        private void UsingComponentPlan(string ProductCode, List<DateTime> DDList, List<PR_GetRecipesDataMainProductBis_Result> CurProduct)
+        {
+            Cursor = Cursors.WaitCursor;
+
+            string[] dataString = new string[] { "", "", "", "", "", "", "Данный компонент используется в:" };
+            dgvPlanned.Rows.Add(dataString);
+            DateTime DT = DateTime.Today.Date;
+
+            var E1 =cf.XLDataList.Where(x => x.ProdCode == ProductCode && x.DateWork > DT).OrderBy(x => x.DateWork).ThenBy(x => x.Line).ThenBy(x => x.ProdCode).ThenBy(x => x.ProdName).ToList();
+            double Summ = 0;
+            double PSumm = 0;
+
+            for (int i = 0; i < E1.Count; i++)
+            {
+                string PC = E1[i].ParentCode;
+                string MC = E1[i].ProdCode;
+                string LineName = E1[i].Line;
+                DT = E1[i].DateWork;
+               // double PVal = 0;
+
+                var CP = CurProduct.Where(x => x.MaterialCode == MC && x.ProductCode == PC).ToList();   //Norma!  && x.LineNumber == LineName
+
+                if (CP.Count > 0)
+                {
+                    var EE =cf.XLDataList.Where(x => x.ProdCode == PC && x.DateWork == DT).ToList();
+
+                    if (EE.Count > 0)
+                    {
+                        dataString = new string[]
+                        {
+                            E1[i].DateWork.ToString("dd.MM.yyyy"),
+                            E1[i].Line,
+                            EE[0].Quantity.ToString("N2"),
+                            ((double)CP[0].Quantity*1000).ToString("N3"),
+                            E1[i].Quantity.ToString("N3"),
+                            EE[0].ProdCode,
+                            EE[0].ProdName
+                        };
+
+                        dgvPlanned.Rows.Add(dataString);
+
+                        Summ = Summ + E1[i].Quantity;
+                        PSumm = PSumm + EE[0].Quantity;
+                    }
+
+                    var EEE = fm.ExcelDataList.Where(x => x.ProdCode == PC && x.DateWork == DT).ToList();
+
+                    if (EEE.Count > 0)
+                    {
+                        dataString = new string[]                    {
+                            E1[i].DateWork.ToString("dd.MM.yyyy"),
+                            E1[i].Line,
+                            EEE[0].Quantity.ToString("N2"),
+                            ((double)CP[0].Quantity*1000).ToString("N3"),
+                            E1[i].Quantity.ToString("N3"),
+                            EEE[0].ProdCode,
+                            EEE[0].ProdName
+                        };
+
+                        dgvPlanned.Rows.Add(dataString);
+
+                        Summ = Summ + E1[i].Quantity;
+                        PSumm = PSumm + EEE[0].Quantity;
+                    }
+                }
+            }
+
+            if (dgvPlanned.RowCount > 1)
+            {
+                dataString = new string[]
+                    {
+                       "",
+                       "ИТОГО:",
+                        PSumm.ToString("N2"),
+                        "",
+                        Summ.ToString("N3"),
+                        ""
+                    };
+
+                dgvPlanned.Rows.Add(dataString);
+            }
+
+            foreach (DataGridViewRow r in dgvPlanned.Rows)
+            {
+                if (r.Cells[0].Value.ToString() != "")
+                {
+                    r.Cells[0].ToolTipText = "Количество: " + r.Cells[2].Value.ToString() + "; Норма на тонну: " + r.Cells[3].Value.ToString() + " Итого расход: " + r.Cells[4].Value.ToString();
+                    r.Cells[1].ToolTipText = "Количество: " + r.Cells[2].Value.ToString() + "; Норма на тонну: " + r.Cells[3].Value.ToString() + " Итого расход: " + r.Cells[4].Value.ToString();
+                    r.Cells[2].ToolTipText = "Количество: " + r.Cells[2].Value.ToString() + "; Норма на тонну: " + r.Cells[3].Value.ToString() + " Итого расход: " + r.Cells[4].Value.ToString();
+                    r.Cells[3].ToolTipText = "Количество: " + r.Cells[2].Value.ToString() + "; Норма на тонну: " + r.Cells[3].Value.ToString() + " Итого расход: " + r.Cells[4].Value.ToString();
+                    r.Cells[4].ToolTipText = "Количество: " + r.Cells[2].Value.ToString() + "; Норма на тонну: " + r.Cells[3].Value.ToString() + " Итого расход: " + r.Cells[4].Value.ToString();
+                }
+            }
+
+            Cursor = Cursors.Default;
+            GC.Collect();
+        }
+
+        private void UsingComponentFact(string ProductCode, List<DateTime> DDList)
+        {
+            Cursor = Cursors.WaitCursor;
+            string[] dataString = new string[] { "", "", "", "", "", "", "Данный компонент используется в:" };
+
+            DateTime StartDate1;
+            DateTime EndDate1;
+
+            dgvFactis.Rows.Add(dataString);
+            {
+                try
+                {
+                    StartDate1 = DDList.Min();
+                    EndDate1 = DDList.Max();
+                }
+                catch (Exception xx)
+                {
+                    StartDate1 = DateTime.Today.Date;
+                    EndDate1 = StartDate1.AddDays(1);
+                }
+
+              bool  fl = dataGridViewMain.CurrentRow.Cells[2].Value.ToString().ToLower() == "тара" ? true : false;
+                //  var MuaSection = fm.MUAList.Where(x => (x.DateTime >= DateStart) && (x.DateTime < DateEnd)).ToList();    
+
+                var FactData = fm.tdb.fn_select_ProductionByCode(ProductCode, StartDate1).OrderBy(x => x.LotForErp).ToList();      //   DateTime.Today.Date.AddYears(-2)               //fm.edb.fn_select_MaterialUsingByProduct(StartDate1, EndDate1, ProductCode).OrderBy(x => x.DateStart).ToList();
+
+                List<string> LotForErp = FactData.Select(x => x.LotForErp).Distinct().ToList();
+                List<fn_select_ProductionByCode_Result> FactData1 = new List<fn_select_ProductionByCode_Result>();
+
+                foreach (string lfe in LotForErp)
+                {
+                    var fd = FactData.Where(x => x.LotForErp == lfe).ToList();
+
+                    if (fd.Count > 0)
+                    {
+                        var fd1 = fd[0];
+
+                        for (int i = 1; i < fd.Count; i++)
+                        {
+                            fd1.Quantity = fd1.Quantity + fd[i].Quantity;
+                            fd1.RawQuant = fd1.RawQuant + fd[i].RawQuant;
+                        }
+                        fd1.EndDate = fd[fd.Count - 1].EndDate;
+                    }
+                }
+
+                foreach (var f in FactData)
+                {
+                    // if (f.DateStart >= DateStart)
+                    {
+                        dataString = new string[]
+                        {
+                                    ((double)f.RawQuant).ToString("N3"),
+                                    ((DateTime)f.StartDate).ToString("dd.MM.yyyy HH;mm"),
+                                    ((DateTime)f.EndDate).ToString("dd.MM.yyyy HH:mm"),
+                                    f.LotForErp,
+                                    ((double)f.Quantity).ToString("N2"),
+                                    f.MaterialCode,
+                                    f.SystemName+" "+ f.MaterialName
+                        };
+
+                        dgvFactis.Rows.Add(dataString);
+                    }
+                }
+
+                if (dgvFactis.RowCount > 1)
+                {
+                    double Summ = FactData.Sum(x => (double)x.Quantity);
+                    double RSumm = FactData.Sum(x => (double)x.RawQuant);
+
+                    dataString = new string[]
+                    {
+                                    RSumm.ToString("N3"),
+                                    "",
+                                    "",
+                                    "",
+                                    Summ.ToString("N2"),
+                                    ""
+                    };
+
+                    dgvFactis.Rows.Add(dataString);
+                }
+
+                foreach (DataGridViewRow r in dgvFactis.Rows)
+                {
+                    if (r.Cells[0].Value.ToString() != "")
+                    {
+                        r.Cells[0].ToolTipText = "Произведено: " + r.Cells[4].Value.ToString() + "; Итого расход: " + r.Cells[0].Value.ToString();
+                        r.Cells[1].ToolTipText = "Произведено: " + r.Cells[4].Value.ToString() + "; Итого расход: " + r.Cells[0].Value.ToString();
+                        r.Cells[2].ToolTipText = "Произведено: " + r.Cells[4].Value.ToString() + "; Итого расход: " + r.Cells[0].Value.ToString();
+                        r.Cells[3].ToolTipText = "Произведено: " + r.Cells[4].Value.ToString() + "; Итого расход: " + r.Cells[0].Value.ToString();
+                    }
+                }
+
+                FactData = null;
+            }  //fact
+
+            Cursor = Cursors.Default;
+            GC.Collect();
+        }
+
+        private void dtpPlan1_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpPlan1.Value > dtpPlan2.Value)
+            {
+                dtpPlan2.Value = dtpPlan1.Value.Date.AddDays(1);
+            }
+        }
+
+        private void dtpPlan2_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpPlan2.Value < dtpPlan1.Value)
+            {
+                dtpPlan1.Value = dtpPlan2.Value.Date.AddDays(-1);
+            }
+        }
+
+        private void dtpFact1_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpFact1.Value > dtpFact2.Value)
+            {
+                dtpFact2.Value = dtpFact1.Value.Date.AddDays(1);
+            }
+        }
+
+        private void dtpFact2_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpFact2.Value < dtpFact1.Value)
+            {
+                dtpFact1.Value = dtpFact2.Value.Date.AddDays(-1);
+            }
+        }
+
+        private void cbRawEnterprise_CheckedChanged(object sender, EventArgs e)
+        {
+            panel4.Enabled = false;
+            ShowData();
+            DrawDGV();
+            panel4.Enabled = true;
+        }
+
+        private void button1_d_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

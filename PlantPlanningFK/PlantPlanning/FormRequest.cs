@@ -43,11 +43,13 @@ namespace PlantPlanning
                 if (Quant > 0)
                 {
                     fm.tdb.Pr_InsertUserAppData1(dateTimePicker1.Value.Date, dateTimePicker2.Value.Date, label2.Text, Quant);
+                    fm.tdb.SaveChanges();
                 }
 
                 cf.button2.Enabled = true;
                 cf.button3.Enabled = true;
-                cf.UpdateApplication(USC.RowIndex, USC.ColIndex, Quant);
+                cf.Enabled = true;
+                cf.UpdateApplication(USC.RowIndex, USC.ColIndex, Quant);            
 
                 this.Close();
             }

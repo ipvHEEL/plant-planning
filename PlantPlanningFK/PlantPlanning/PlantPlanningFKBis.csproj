@@ -133,6 +133,12 @@
     <Compile Include="Context\fn_select_LatinStorageNames_Result.cs">
       <DependentUpon>FKData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Context\fn_select_LinkedCombo_Result.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\fn_select_PlannedMainData1_Result.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Context\fn_select_PlannedMainData_Result.cs">
       <DependentUpon>FKData.tt</DependentUpon>
     </Compile>
@@ -142,7 +148,13 @@
     <Compile Include="Context\fn_select_ProductionByCode_Result.cs">
       <DependentUpon>FKData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Context\fn_select_RecipesBisView1_Result.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Context\fn_select_RecipesBisView_Result.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\fn_select_RecipesView1_Result.cs">
       <DependentUpon>FKData.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\fn_select_RecipesView_Result.cs">
@@ -157,6 +169,9 @@
     <Compile Include="Context\fn_select_StockBalancesWithComments_Result.cs">
       <DependentUpon>FKData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Context\GetNavPurchData_Result.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Context\MesAreas.cs">
       <DependentUpon>FKData.tt</DependentUpon>
     </Compile>
@@ -166,13 +181,38 @@
     <Compile Include="Context\NavPurchaseTable.cs">
       <DependentUpon>FKData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Context\NavPurchaseView.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Context\PlanOPZList.cs">
       <DependentUpon>FKData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Context\PlantAreas.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\PropertyCompare.cs" />
     <Compile Include="Context\pr_GetAlarmWaste_Result.cs">
       <DependentUpon>FKData.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\pr_GetOPZ_Result.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\PR_GetRecipesDataMainProductBis_Result.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\PR_GetRecipesDataMainProduct_Result.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\PR_GetRecipesDataSemiProductBis_Result.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\PR_GetRecipesDataSemiProduct_Result.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\PR_GetRecipesListMainProduct_Result.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\PR_GetRecipesListSemiProduct_Result.cs">
       <DependentUpon>FKData.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\RPSettings.cs">
@@ -184,7 +224,23 @@
     <Compile Include="Context\SelectStockBalancesMes1_Result.cs">
       <DependentUpon>FKData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Context\SelectStockBalancesMes2_Result.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\SelectStockBalancesMesBis_Result.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Context\SelectStockBalancesPlant2_Result.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\SelectStockBalancesPlant3_Result.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\SelectStockBalancesPlantBis_Result.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\SortableBindingList.cs" />
+    <Compile Include="Context\StockBalanceMesView.cs">
       <DependentUpon>FKData.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\StockBalances.cs">
@@ -194,6 +250,12 @@
       <DependentUpon>FKData.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\StockBalancesPlant.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\StockBalancesPlantView.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\StockBalancesView.cs">
       <DependentUpon>FKData.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\StockBalancesWithComments.cs">
@@ -220,6 +282,9 @@
     <Compile Include="Context\tConsurptionData.cs">
       <DependentUpon>FKData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Context\tHeadersNames.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Context\tLines.cs">
       <DependentUpon>FKData.tt</DependentUpon>
     </Compile>
@@ -229,7 +294,16 @@
     <Compile Include="Context\tMercuryRecordSelected.cs">
       <DependentUpon>FKData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Context\tMesPlantRelations.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Context\tPlannedMeatContainers.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\tPropertyTable.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\tStorageTask.cs">
       <DependentUpon>FKData.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\tUserRecordSelected.cs">
@@ -298,6 +372,12 @@
     <Compile Include="FormNavData.Designer.cs">
       <DependentUpon>FormNavData.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReport.Designer.cs">
+      <DependentUpon>FormReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormRequest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -316,11 +396,23 @@
     <Compile Include="FormSettings.designer.cs">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormTask.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTask.Designer.cs">
+      <DependentUpon>FormTask.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormTaskClear.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormTaskClear.Designer.cs">
       <DependentUpon>FormTaskClear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTransfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTransfer.Designer.cs">
+      <DependentUpon>FormTransfer.cs</DependentUpon>
     </Compile>
     <Compile Include="FormUnliquid.cs">
       <SubType>Form</SubType>
@@ -333,6 +425,9 @@
     </Compile>
     <Compile Include="Form_OPR.Designer.cs">
       <DependentUpon>Form_OPR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InputBox.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="MercuryForm.cs">
       <SubType>Form</SubType>
@@ -365,6 +460,12 @@
     </Compile>
     <Compile Include="StorageForm.Designer.cs">
       <DependentUpon>StorageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateWindow.Designer.cs">
+      <DependentUpon>UpdateWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="WaitWindow.cs">
       <SubType>Form</SubType>
@@ -408,6 +509,9 @@
     <EmbeddedResource Include="FormNavdata.resx">
       <DependentUpon>FormNavData.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormReport.resx">
+      <DependentUpon>FormReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormRequest.resx">
       <DependentUpon>FormRequest.cs</DependentUpon>
     </EmbeddedResource>
@@ -417,8 +521,14 @@
     <EmbeddedResource Include="FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormTask.resx">
+      <DependentUpon>FormTask.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormTaskClear.resx">
       <DependentUpon>FormTaskClear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTransfer.resx">
+      <DependentUpon>FormTransfer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUnliquid.resx">
       <DependentUpon>FormUnliquid.cs</DependentUpon>
@@ -449,6 +559,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StorageForm.resx">
       <DependentUpon>StorageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateWindow.resx">
+      <DependentUpon>UpdateWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitWindow.resx">
       <DependentUpon>WaitWindow.cs</DependentUpon>

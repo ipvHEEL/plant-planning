@@ -51,11 +51,38 @@ namespace PlantPlanning
 
             dataGridView1.DataSource = ADList;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            dataGridView2.DataSource = null;
+            dataGridView2.Columns.Clear();
+
+            var Stor = fm.tdb.tStorageTask.ToList();
+            List<TransferData> StorList = new List<TransferData>();
+
+            foreach (var s in Stor)
+            {
+                TransferData td = new TransferData();
+
+                td.id = s.id;
+                td.DateWork = s.DateWork;
+                td.AlterDate = (DateTime)s.AlterDate;
+                td.MaterialCode = s.MaterialCode;
+                td.MaterialName = cf.CFMList.Where(x => x.MaterialCode == s.MaterialCode).Select(x => x.MaterialName).FirstOrDefault();
+                td.Quantity = s.Quantity;
+                td.SourceID = (int)s.Source;
+                td.MesStorageName = fm.tdb.MesAreas.Where(x => x.AreaID == (int)s.Source).Select(x => x.AreaName).FirstOrDefault();
+                td.DestID = (int)s.Dest;
+                td.PlantStorageName = fm.tdb.PlantAreas.Where(x => x.AreaID == (int)s.Dest).Select(x => x.AreaName).FirstOrDefault();                
+
+                StorList.Add(td);
+            }
+
+            dataGridView2.DataSource =StorList;
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
         private void FormTaskClear_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            cf.Enabled = true;
+        { 
+            cf.Enabled = true; 
             
             GC.Collect();
             GC.WaitForPendingFinalizers();
@@ -77,7 +104,7 @@ namespace PlantPlanning
 
             cf.ShowData();
             Cursor = Cursors.Default;
-            this.Close();
+        //    this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -92,15 +119,62 @@ namespace PlantPlanning
                     var res = fm.tdb.Pr_DeleteAppRecord(ID);
                 }
 
+                fm.tdb.SaveChanges();
+
                 GC.Collect();
-                cf.ShowData();
                 LoadData();
+                cf.ShowData();
+               
                 Cursor = Cursors.Default;
             }
             else
             {
                 MessageBox.Show("Выделите одну или несколько строк!", "Сообщение системы");
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (dataGridView2.SelectedRows.Count > 0)
+            {
+                Cursor = Cursors.WaitCursor;
+
+                foreach (DataGridViewRow r in dataGridView2.SelectedRows)
+                {
+                    Int64 ID = Convert.ToInt64(r.Cells["id"].Value);
+                    var res = fm.tdb.Pr_DeleteStorageTaskRecord(ID);
+                }
+
+                fm.tdb.SaveChanges();
+
+                GC.Collect();
+                LoadData();
+                cf.ShowData();
+                
+                Cursor = Cursors.Default;
+            }
+            else
+            {
+                MessageBox.Show("Выделите одну или несколько строк!", "Сообщение системы");
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var data = fm.tdb.tStorageTask;
+
+            Cursor = Cursors.WaitCursor;
+            data.RemoveRange(data);
+            fm.tdb.SaveChanges();
+
+            cf.ShowData();
+            Cursor = Cursors.Default;
+          //  this.Close();
         }
     }
 }

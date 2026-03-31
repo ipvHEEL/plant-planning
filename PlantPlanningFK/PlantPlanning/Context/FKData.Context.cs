@@ -20,6 +20,7 @@ namespace PlantPlanning.Context
         public WorkPlanDataRawFKEntities()
             : base("name=WorkPlanDataRawFKEntities")
         {
+            this.Database.CommandTimeout = 600;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -51,6 +52,15 @@ namespace PlantPlanning.Context
         public virtual DbSet<StockBalancesMes> StockBalancesMes { get; set; }
         public virtual DbSet<StockBalancesPlant> StockBalancesPlant { get; set; }
         public virtual DbSet<MesAreas> MesAreas { get; set; }
+        public virtual DbSet<tHeadersNames> tHeadersNames { get; set; }
+        public virtual DbSet<tMesPlantRelations> tMesPlantRelations { get; set; }
+        public virtual DbSet<tStorageTask> tStorageTask { get; set; }
+        public virtual DbSet<PlantAreas> PlantAreas { get; set; }
+        public virtual DbSet<NavPurchaseView> NavPurchaseView { get; set; }
+        public virtual DbSet<StockBalanceMesView> StockBalanceMesView { get; set; }
+        public virtual DbSet<StockBalancesPlantView> StockBalancesPlantView { get; set; }
+        public virtual DbSet<StockBalancesView> StockBalancesView { get; set; }
+        public virtual DbSet<tPropertyTable> tPropertyTable { get; set; }
     
         [DbFunction("WorkPlanDataRawFKEntities", "fn_Get_ConsurmptionData")]
         public virtual IQueryable<fn_Get_ConsurmptionData_Result> fn_Get_ConsurmptionData()
@@ -385,16 +395,6 @@ namespace PlantPlanning.Context
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<fn_select_RecipesView_Result>("[WorkPlanDataRawFKEntities].[fn_select_RecipesView]()");
         }
     
-        public virtual ObjectResult<SelectStockBalancesMes1_Result> SelectStockBalancesMes1()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectStockBalancesMes1_Result>("SelectStockBalancesMes1");
-        }
-    
-        public virtual ObjectResult<SelectStockBalancesPlant2_Result> SelectStockBalancesPlant2()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectStockBalancesPlant2_Result>("SelectStockBalancesPlant2");
-        }
-    
         [DbFunction("WorkPlanDataRawFKEntities", "fn_select_ProductionByCode")]
         public virtual IQueryable<fn_select_ProductionByCode_Result> fn_select_ProductionByCode(string productCode, Nullable<System.DateTime> dateStart)
         {
@@ -407,6 +407,137 @@ namespace PlantPlanning.Context
                 new ObjectParameter("dateStart", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<fn_select_ProductionByCode_Result>("[WorkPlanDataRawFKEntities].[fn_select_ProductionByCode](@ProductCode, @dateStart)", productCodeParameter, dateStartParameter);
+        }
+    
+        public virtual ObjectResult<SelectStockBalancesPlant2_Result> SelectStockBalancesPlant2()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectStockBalancesPlant2_Result>("SelectStockBalancesPlant2");
+        }
+    
+        public virtual ObjectResult<SelectStockBalancesMes1_Result> SelectStockBalancesMes1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectStockBalancesMes1_Result>("SelectStockBalancesMes1");
+        }
+    
+        public virtual ObjectResult<SelectStockBalancesMes2_Result> SelectStockBalancesMes2()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectStockBalancesMes2_Result>("SelectStockBalancesMes2");
+        }
+    
+        public virtual ObjectResult<SelectStockBalancesPlant3_Result> SelectStockBalancesPlant3()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectStockBalancesPlant3_Result>("SelectStockBalancesPlant3");
+        }
+    
+        [DbFunction("WorkPlanDataRawFKEntities", "fn_select_LinkedCombo")]
+        public virtual IQueryable<fn_select_LinkedCombo_Result> fn_select_LinkedCombo(Nullable<int> storageID)
+        {
+            var storageIDParameter = storageID.HasValue ?
+                new ObjectParameter("StorageID", storageID) :
+                new ObjectParameter("StorageID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<fn_select_LinkedCombo_Result>("[WorkPlanDataRawFKEntities].[fn_select_LinkedCombo](@StorageID)", storageIDParameter);
+        }
+    
+        public virtual int pr_InrestTransferData(string materialCode, Nullable<System.DateTime> dateWork, Nullable<double> quantity, Nullable<System.DateTime> alterDate, Nullable<int> source, Nullable<int> dest)
+        {
+            var materialCodeParameter = materialCode != null ?
+                new ObjectParameter("MaterialCode", materialCode) :
+                new ObjectParameter("MaterialCode", typeof(string));
+    
+            var dateWorkParameter = dateWork.HasValue ?
+                new ObjectParameter("DateWork", dateWork) :
+                new ObjectParameter("DateWork", typeof(System.DateTime));
+    
+            var quantityParameter = quantity.HasValue ?
+                new ObjectParameter("Quantity", quantity) :
+                new ObjectParameter("Quantity", typeof(double));
+    
+            var alterDateParameter = alterDate.HasValue ?
+                new ObjectParameter("AlterDate", alterDate) :
+                new ObjectParameter("AlterDate", typeof(System.DateTime));
+    
+            var sourceParameter = source.HasValue ?
+                new ObjectParameter("Source", source) :
+                new ObjectParameter("Source", typeof(int));
+    
+            var destParameter = dest.HasValue ?
+                new ObjectParameter("Dest", dest) :
+                new ObjectParameter("Dest", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pr_InrestTransferData", materialCodeParameter, dateWorkParameter, quantityParameter, alterDateParameter, sourceParameter, destParameter);
+        }
+    
+        public virtual int Pr_DeleteStorageTaskRecord(Nullable<long> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Pr_DeleteStorageTaskRecord", iDParameter);
+        }
+    
+        public virtual ObjectResult<GetNavPurchData_Result> GetNavPurchData()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetNavPurchData_Result>("GetNavPurchData");
+        }
+    
+        public virtual ObjectResult<SelectStockBalancesMesBis_Result> SelectStockBalancesMesBis()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectStockBalancesMesBis_Result>("SelectStockBalancesMesBis");
+        }
+    
+        public virtual ObjectResult<SelectStockBalancesPlantBis_Result> SelectStockBalancesPlantBis()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectStockBalancesPlantBis_Result>("SelectStockBalancesPlantBis");
+        }
+    
+        [DbFunction("WorkPlanDataRawFKEntities", "fn_select_RecipesView1")]
+        public virtual IQueryable<fn_select_RecipesView1_Result> fn_select_RecipesView1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<fn_select_RecipesView1_Result>("[WorkPlanDataRawFKEntities].[fn_select_RecipesView1]()");
+        }
+    
+        [DbFunction("WorkPlanDataRawFKEntities", "fn_select_RecipesBisView1")]
+        public virtual IQueryable<fn_select_RecipesBisView1_Result> fn_select_RecipesBisView1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<fn_select_RecipesBisView1_Result>("[WorkPlanDataRawFKEntities].[fn_select_RecipesBisView1]()");
+        }
+    
+        [DbFunction("WorkPlanDataRawFKEntities", "fn_select_PlannedMainData1")]
+        public virtual IQueryable<fn_select_PlannedMainData1_Result> fn_select_PlannedMainData1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<fn_select_PlannedMainData1_Result>("[WorkPlanDataRawFKEntities].[fn_select_PlannedMainData1]()");
+        }
+    
+        public virtual ObjectResult<PR_GetRecipesListMainProduct_Result> PR_GetRecipesListMainProduct()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PR_GetRecipesListMainProduct_Result>("PR_GetRecipesListMainProduct");
+        }
+    
+        public virtual ObjectResult<PR_GetRecipesListSemiProduct_Result> PR_GetRecipesListSemiProduct()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PR_GetRecipesListSemiProduct_Result>("PR_GetRecipesListSemiProduct");
+        }
+    
+        public virtual ObjectResult<PR_GetRecipesDataMainProduct_Result> PR_GetRecipesDataMainProduct()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PR_GetRecipesDataMainProduct_Result>("PR_GetRecipesDataMainProduct");
+        }
+    
+        public virtual ObjectResult<PR_GetRecipesDataSemiProduct_Result> PR_GetRecipesDataSemiProduct()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PR_GetRecipesDataSemiProduct_Result>("PR_GetRecipesDataSemiProduct");
+        }
+    
+        public virtual ObjectResult<PR_GetRecipesDataMainProductBis_Result> PR_GetRecipesDataMainProductBis()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PR_GetRecipesDataMainProductBis_Result>("PR_GetRecipesDataMainProductBis");
+        }
+    
+        public virtual ObjectResult<PR_GetRecipesDataSemiProductBis_Result> PR_GetRecipesDataSemiProductBis()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PR_GetRecipesDataSemiProductBis_Result>("PR_GetRecipesDataSemiProductBis");
         }
     }
 }

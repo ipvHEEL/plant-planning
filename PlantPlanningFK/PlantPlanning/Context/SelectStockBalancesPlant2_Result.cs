@@ -29,5 +29,6 @@ namespace PlantPlanning.Context
         public System.DateTime ValidTo { get; set; }
         public int MaterialGroupID { get; set; }
         public int MaterialTypeID { get; set; }
+        public string TestQuality { get; set; }
     }
 }

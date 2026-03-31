@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Data.SqlClient;
 using System.Threading;
-
+using System.IO;
 
 namespace PlantPlanning
 {
@@ -35,26 +35,33 @@ namespace PlantPlanning
         public List<lData> ExcelDataList;
         public List<PlantOperList> POList;
         public List<ProductRecipes> ProdRecipeList;
+        public List<ProductRecipes> SemiProdRecipeList;
         public List<ProductRecipes> ProdRecipeOPRList;
 
         public List<SelectStockBalances1_Result> StockBaklanceList;  //NAV
-        public List<SelectStockBalancesMes1_Result> StockBalancesMesList;
-        public List<SelectStockBalancesPlant2_Result> StockBalancesPlantList;
+        public List<SelectStockBalancesMesBis_Result> StockBalancesMesList;
+        public List<SelectStockBalancesPlantBis_Result> StockBalancesPlantList;
         public List<MesLocations> MesLocList;
         public List<NavPurchaseTable> StorageList;
         public List<tPlannedMeatContainers> ContList;
-        public List<Material> mList;
+    //    public List<Material> mList;
         public List<tLines> LineDataList;
         public List<PlanOPZList> OPRTableList;
         public string ErrorMainStr = "";
         public string ErrorStr = "";
-        public List<fn_select_RecipesView_Result> lRec;
-        public List<fn_select_RecipesView_Result> lRec1;
-        public List<fn_select_PlannedMainData_Result> MaterialDataList1;
+        public List<PR_GetRecipesDataMainProductBis_Result> lRec;
+        public List<PR_GetRecipesDataMainProductBis_Result> lRec1;
+        public List<PR_GetRecipesDataSemiProductBis_Result> NewRecList;
+        public List<fn_select_PlannedMainData1_Result> MaterialDataList1;
         public List<tConsurptionData> ConsDataList;
 
         public List<ErrorGrid> CommonEGrid;
         public List<ErrorGrid> MainEGrid;
+        public List<StatusesMaterials> SMList = new List<StatusesMaterials>();
+        public List<MatNameAndAlterName> MMNANList = new List<MatNameAndAlterName>();
+
+        public List<tPropertyTable> PTList = new List<tPropertyTable>();
+        public List<PR_GetRecipesDataSemiProductBis_Result> SDataList;
 
         BindingSource bs;
         DataTable dt1;
@@ -81,7 +88,7 @@ namespace PlantPlanning
         WaitWindow WW;
 
       //  public string ConnectionString = "Data Source=192.168.91.162;Initial Catalog=OLEG DB;Persist Security Info=True;User ID=mes;Password=fdjn[eq";
-        public string ConnectionStringTestData = "Data Source=192.168.91.162;Initial Catalog=TestData;Persist Security Info=True;User ID=mes;Password=fdjn[eq";              // "Data Source=11-vm-dwh01;Initial Catalog=CSB_FK_REP;Persist Security Info=True;User ID=LinkMTZ;Password=mtz!Link2fk";    
+        public string ConnectionStringTestData = "Data Source=192.168.91.162;Initial Catalog=WorkPlanDataRawFK;Persist Security Info=True;User ID=mes;Password=fdjn[eq";              // "Data Source=11-vm-dwh01;Initial Catalog=CSB_FK_REP;Persist Security Info=True;User ID=LinkMTZ;Password=mtz!Link2fk";    
         public SqlConnection connTest;
 
         private string FileName = "";
@@ -93,20 +100,16 @@ namespace PlantPlanning
             LoadFlag = true;
             System.Threading.Thread thread = new System.Threading.Thread(WaitingShowForm);
             thread.Start();
-           
+
+            string td = GetConnectionString();
+
+            if (!String.IsNullOrEmpty(td))
+            {
+                ConnectionStringTestData = td;
+            }
+
             UserName = System.Environment.UserName;
             tdb = new WorkPlanDataRawFKEntities();
-          //  edb = new EDBEntities();
-          //  eqp = new EquipPerfEntities();
-          //  helg = new OLEG_DBEntities();
-           /* conn1 = new SqlConnection(ConnectionString);
-            try
-            {
-                conn1.Open();
-                conn1.Close();
-            }
-            catch (Exception xx)
-            { }*/
 
             connTest = new SqlConnection(ConnectionStringTestData);
             try
@@ -119,21 +122,24 @@ namespace PlantPlanning
 
             POList = new List<PlantOperList>();
             ConsDataList = new List<tConsurptionData>();
-            MaterialDataList1 = new List<fn_select_PlannedMainData_Result>();
+            MaterialDataList1 = new List<fn_select_PlannedMainData1_Result>();
             ExcelDataList = new List<lData>();
             ExcelDatesList = new List<DateTime>();
-            lRec = new List<fn_select_RecipesView_Result>();
-            lRec1 = new List<fn_select_RecipesView_Result>();
+            lRec = new List<PR_GetRecipesDataMainProductBis_Result>();
+            lRec1 = new List<PR_GetRecipesDataMainProductBis_Result>();
+            NewRecList = new List<PR_GetRecipesDataSemiProductBis_Result>();
             LineList = new List<string>();
             logger.Info("WorkPlanning are started at " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss"));
+
             LoadRecipes();
             GetStorageList();
+            LoadStoragesData();
             LoadData();
 
             try
             {
                 LoadFlag = false;
-                Thread.Sleep(200);
+                Thread.Sleep(250);
                 thread.Abort();
             }
             catch (Exception xx)
@@ -143,11 +149,74 @@ namespace PlantPlanning
             this.BringToFront();
         }
 
+        private string GetConnectionString()
+        {
+            string res = "";
+            string FilePath = Application.StartupPath+@"\connection.udl";
+
+            FileInfo f = new FileInfo(FilePath);
+            string s = "";
+            string Pass = "";
+            string User = "";
+            string DS = "";
+            string IC = "";
+            int Index = 0;
+
+            if (f.Exists)
+            {
+                FileStream fs = new FileStream(FilePath, FileMode.Open);
+                StreamReader sr = new StreamReader(fs);
+
+                s = sr.ReadLine();
+                s = sr.ReadLine();
+                s = sr.ReadLine();
+
+                sr.Close();
+
+                Index = s.IndexOf("Password");
+                Pass = s.Substring(Index);
+                Index = Pass.IndexOf(";");
+                Pass = Pass.Substring(0, Index);
+
+                Index = s.IndexOf("User ID");
+                User = s.Substring(Index);
+                Index = User.IndexOf(";");
+                User = User.Substring(0, Index);
+
+                Index = s.IndexOf("Initial Catalog");
+                IC = s.Substring(Index);
+                Index = IC.IndexOf(";");
+                IC = IC.Substring(0, Index);
+
+                Index = s.IndexOf("Data Source");
+                DS = s.Substring(Index);
+                //    Index =DS.IndexOf(";");
+                //    DS = DS.Substring(0, Index);
+
+                res = DS + ";" + IC + ";Persist Security Info = True;" + User + ";" + Pass + ";";
+            }
+            
+            f = null;
+            GC.Collect();
+            return res;            
+        }
+
         private void WaitingShowFormWW()
         {
-            WW = new WaitWindow();
-            WW.ShowInTaskbar = false;
-            WW.ShowDialog();
+            try
+            {
+                WW = new WaitWindow();
+                WW.ShowInTaskbar = false;
+                WW.ShowDialog();
+            }
+            catch (Exception xx)
+            {
+                if (WW != null)
+                {
+                    WW.Close();
+                }
+                WW = null;
+            }  
 
             while (LoadFlag == true)
             {
@@ -190,30 +259,44 @@ namespace PlantPlanning
         
         private void WaitingShowForm()
         {
-            sFm = new ShowForm();
-            sFm.ShowInTaskbar = false;            
-            sFm.ShowDialog();
+            try
+            {
+                sFm = new ShowForm();
+                sFm.ShowInTaskbar = false;
+                sFm.ShowDialog();
+                //   sFm.ShowDialog();
+            }
+            catch (Exception xx)
+            {
+                if (sFm != null)
+                {
+                    sFm.Close();
+                }
+                sFm = null;
+            }
 
             while (LoadFlag == true)
-            { 
+            {
                 Thread.Sleep(100);
             }
-                     
+
             sFm.Close();
         }
 
         public void GetStorageList()
         {
-            var AList = tdb.MesAreas.Where(x => x.IsApproved == true).ToList();
-            MesLocList = new List<MesLocations>();
+            var AList = tdb.MesAreas.Where(x => x.IsApproved == true).OrderBy(x=>x.AreaName).ToList();
+            //MesLocList = new List<MesLocations>();
 
-            foreach (var al in AList)
-            {
-                var MList = tdb.MesLocations.Where(x => (x.AreaID == al.ID) && (x.IsApproved == true)).ToList();
-                MesLocList.AddRange(MList);
-            }
+            /*  foreach (var al in AList)
+              {
+                  var MList = tdb.MesLocations.Where(x => (x.AreaID == al.ID) && (x.IsApproved == true)).ToList();
+                  MesLocList.AddRange(MList);
+              }*/
 
-            StorageNamesList = MesLocList.Select(x => x.LocationName).Distinct().ToList();
+            StorageNamesList = AList.Select(x => x.AreaName).Distinct().ToList();
+            
+                //MesLocList.Select(x => x.LocationName).Distinct().ToList();
         }
 
         public void ControlAlarmWaste()
@@ -269,75 +352,79 @@ namespace PlantPlanning
             GC.Collect();
         }
 
-        public void LoadData()
+        public void LoadStoragesData()
         {
-            Cursor = Cursors.WaitCursor;
-            mList = new List<Material>();
-            OPRList = new List<string>();
-            Material mm;
-            string s;
+          //  Cursor = Cursors.WaitCursor;
+
 
             StockBaklanceList = new List<SelectStockBalances1_Result>(); //NAV!
             StockBaklanceList = tdb.SelectStockBalances1().ToList();
+            StockBaklanceList = StockBaklanceList.Where(x => x.WorkDate.Date == DateTime.Today.Date).ToList();
 
-            /*var D1 = StockBaklanceList.Where(x => x.MaterialCode == "8ТТ00001").ToList();
-            if (D1.Count > 0)
-            { }*/
-
-            //convert storageName!
-          /*  var NamesList = tdb.fn_select_LatinStorageNames().ToList();       //tdb.fn_select_LaterStorageNames().ToList();
-
-           foreach (var NL in NamesList)
-           {     
-                var StockBList = StockBaklanceList.Where(x => x.Storage == NL.CyrStorageName).ToList();
-
-                foreach (var sbl in StockBList)
-                {
-                    sbl.Storage = NL.LatStorageName;
-                }
-           }*/
-
-            StockBalancesMesList = new List<SelectStockBalancesMes1_Result>();
-            StockBalancesMesList = tdb.SelectStockBalancesMes1().ToList();
-
-           /* foreach (var NL in NamesList)
+            for (int i = 0; i < StockBaklanceList.Count; i++)
             {
-                var StockMList = StockBalancesMesList.Where(x=>x.Storage== NL.CyrStorageName).ToList();             
+                string s = StockBaklanceList[i].MaterialCode.Trim();
+                var M = MMNANList.Where(x => x.MaterialCode == s).ToList();
 
-                foreach (var sbm in StockMList)
+                if (M.Count >0)
                 {
-                    sbm.Storage = NL.LatStorageName;
+                    if (M[0].MaterialCode != M[0].AlterMaterialCode)
+                    {
+                        StockBaklanceList[i].MaterialCode = M[0].AlterMaterialCode;
+                    }
                 }
-            }*/
-
-            //filter!
-           // StockBalancesMesList = StockBalancesMesList.Where(x => StorageNamesList.Contains(x.Storage)).ToList();
-
-          //  var sdl = StockBalancesMesList.Where(x => x.Storage == "Oil Tanks 81").ToList();
-
-            StockBalancesPlantList = new List<SelectStockBalancesPlant2_Result>();
-            StockBalancesPlantList = tdb.SelectStockBalancesPlant2().ToList();
-
-         //   var data = StockBalancesPlantList.Where(x => x.MaterialCode == "3000101056").ToList();
-                
-            //filter!
-          //  StockBalancesPlantList = StockBalancesPlantList.Where(x => StorageNamesList.Contains(x.LineName)).ToList();
-
-         //   data= StockBalancesPlantList.Where(x => x.MaterialCode == "3000101056").ToList();
-
-            //var s1 = StockBalancesPlantList.Where(x => (x.MaterialCode == "ТТМ00464") && (x.WorkDate.Date==DateTime.Today.Date)).Select(x=>x.LineName).ToList();
-
-           // conn1.Open();
-
-            OPRList = tdb.PlanOPZList.Select(x => x.MatCode).ToList();
-
-           /* SqlCommand comm1 = new SqlCommand("select * from [OLEG DB].[dbo].[PlanOPZList]", conn1);
-            SqlDataReader MyDr = comm1.ExecuteReader();
-            while (MyDr.Read())
-            {               
-                OPRList.Add(MyDr["MatCode"].ToString());
             }
-            MyDr.Close();*/
+
+            DateTime DT = StockBaklanceList.Max(x => x.WorkDate);
+            DT = DT.AddMinutes(-20);
+
+            StockBaklanceList = StockBaklanceList.Where(x => x.WorkDate >= DT).ToList();
+
+            StockBalancesMesList = new List<SelectStockBalancesMesBis_Result>();
+            StockBalancesMesList = tdb.SelectStockBalancesMesBis().ToList();
+            StockBalancesMesList = StockBalancesMesList.Where(x => x.WorkDate.Date == DateTime.Today.Date).ToList();
+
+            DT = StockBalancesMesList.Max(x => x.WorkDate);
+            DT = DT.AddMinutes(-20);
+
+            StockBalancesMesList = StockBalancesMesList.Where(x => x.WorkDate >= DT).ToList();
+
+            for (int i = 0; i<StockBalancesMesList.Count; i++)
+            {
+                string s = StockBalancesMesList[i].MaterialCode.Trim();
+                var M = MMNANList.Where(x => x.MaterialCode == s).ToList();
+
+                if (M.Count > 0)
+                {
+                    if (M[0].MaterialCode != M[0].AlterMaterialCode)
+                    {
+                        StockBalancesMesList[i].MaterialCode = M[0].AlterMaterialCode;
+                    }
+                }
+            }
+
+            StockBalancesPlantList = new List<SelectStockBalancesPlantBis_Result>();
+            StockBalancesPlantList = tdb.SelectStockBalancesPlantBis().ToList();
+            StockBalancesPlantList = StockBalancesPlantList.Where(x => x.WorkDate.Date == DateTime.Today.Date).ToList();
+
+            DT = StockBalancesPlantList.Max(x => x.WorkDate);
+            DT = DT.AddMinutes(-20);
+
+            StockBalancesPlantList = StockBalancesPlantList.Where(x => x.WorkDate >= DT).ToList();
+
+            for (int i = 0; i < StockBalancesPlantList.Count; i++)
+            {
+                string s = StockBalancesPlantList[i].MaterialCode.Trim();
+                var M = MMNANList.Where(x => x.MaterialCode == s).ToList();
+
+                if (M.Count > 0)
+                {
+                    if (M[0].MaterialCode != M[0].AlterMaterialCode)
+                    {
+                        StockBalancesPlantList[i].MaterialCode = M[0].AlterMaterialCode;
+                    }
+                }
+            }
 
             try
             {
@@ -348,11 +435,31 @@ namespace PlantPlanning
                 StorageList = new List<NavPurchaseTable>();
             }
             StorageList = StorageList.Where(x => x.DateWork.Date == DateTime.Today.Date).ToList();
+
+            DT = StorageList.Max(x => x.DateWork);
+            DT = DT.AddMinutes(-20);
+
+            StorageList = StorageList.Where(x => x.DateWork >= DT).ToList();
             StorageList = StorageList.Where(x => x.StatusMZP.ToLower().Trim() != "тмц на складе").ToList();
             StorageList = StorageList.Where(x => x.StatusMZP.ToLower().Trim() != "отказ").ToList();
-                     
+
             StorageList = StorageList.Where(x => x.PlanQuantity != x.FactQuantity).ToList();    //(x => x.PlanQuantity > 0)
             //  StorageList = StorageList.Where(x => x.NessDateOrder >= DateTime.Today.Date).ToList();
+
+            GC.Collect();
+        //    Cursor = Cursors.Default;
+        }
+
+        public void LoadData()
+        {
+            Cursor = Cursors.WaitCursor;
+          //  mList = new List<Material>();
+            OPRList = new List<string>();
+            Material mm;
+            string s;
+
+            OPRList = tdb.PlanOPZList.Select(x => x.MatCode).ToList();
+
             try
             {
                 ContList = tdb.tPlannedMeatContainers.ToList();
@@ -368,7 +475,7 @@ namespace PlantPlanning
                 ContList = new List<tPlannedMeatContainers>();
             }
 
-            MaterialDataList1 = tdb.fn_select_PlannedMainData().ToList();
+            MaterialDataList1 = tdb.fn_select_PlannedMainData1().ToList();
 
             var DataList = MaterialDataList1.ToList();     //.Where(x => x.LASTPRODUCER != "НЕЛИКВИД").ToList();
 
@@ -394,6 +501,22 @@ namespace PlantPlanning
                 mm.ListSQBD = new List<StorageQuantByDate>();
                 mm.ListUBD = new List<UsingByDate>();
 
+                var SM = SMList.Where(x => x.MaterialCode == mm.MaterialCode).ToList();
+
+                if (SM.Count>0)
+                {
+                    mm.BOM = SM[0].BOM;
+
+                    if (mm.BOM == "N/A")
+                    {
+                        mm.MaterialStatus = 9;
+                    }
+                    else
+                    {
+                        mm.MaterialStatus = 0;
+                    }
+                }
+
               /*  mm.RawEnterpriseList = new List<Raws>();
                 mm.RawStorageList = new List<Raws>();
                 mm.RawNav1List = new List<Raws>();
@@ -410,10 +533,10 @@ namespace PlantPlanning
                 mm.ListLine = new List<int>();
                 mm.ListPlus = new List<int>();*/
 
-                mList.Add(mm);
+             //   mList.Add(mm);
             }
 
-            DataList.Clear();
+            DataList = new List<fn_select_PlannedMainData1_Result>();
             GC.Collect();
             GC.WaitForPendingFinalizers();
             GC.Collect();
@@ -445,7 +568,7 @@ namespace PlantPlanning
             RecipeList rl;
             ProductLinesRecipes plr;
             ProductRecipes pr;
-            bool fl = false;  
+            bool fl = false;
 
             DateTime wDate;
             string lNumber;
@@ -454,11 +577,14 @@ namespace PlantPlanning
 
             int alfa;
             int bravo;
-            int charlie;
+            int charlie;            
 
             Cursor = Cursors.WaitCursor;
             ProdRecipeList = new List<ProductRecipes>();
+            SemiProdRecipeList = new List<ProductRecipes>();
             ProdRecipeOPRList = new List<ProductRecipes>();
+
+            PTList = tdb.tPropertyTable.ToList();
 
             ConsDataList = tdb.tConsurptionData.ToList();
             ConsDataList = ConsDataList.Where(x => x.WorkDate.Date == DateTime.Today.Date).ToList();
@@ -466,26 +592,112 @@ namespace PlantPlanning
             OPRTableList = tdb.PlanOPZList.Where(x => (bool)x.IsBase == true).ToList();  //empty!!!!!!!
             List<string> OprComp = OPRTableList.Select(x => x.MatCode).ToList();
 
-            List<fn_select_RecipesView_Result> OPRRec = new List<fn_select_RecipesView_Result>();
+            List<PR_GetRecipesDataMainProductBis_Result> OPRRec = new List<PR_GetRecipesDataMainProductBis_Result>();
+            List<PR_GetRecipesDataMainProductBis_Result> RDataList = new List<PR_GetRecipesDataMainProductBis_Result>();
+            SDataList = new List<PR_GetRecipesDataSemiProductBis_Result>();
 
             try
             {
-                OPRRec = tdb.fn_select_RecipesView().ToList();
-                OPRRec = OPRRec.OrderBy(x => x.ProductCode).ThenBy(x => x.LineNumber).ThenBy(x => x.WorkDate).ToList();
+                RDataList = tdb.PR_GetRecipesDataMainProductBis().ToList();
+                RDataList = RDataList.OrderBy(x => x.ProductCode).ThenBy(x => x.LineNumber).ThenBy(x => x.WorkDate).ToList();
+
+                SDataList = tdb.PR_GetRecipesDataSemiProductBis().ToList();
+                SDataList = SDataList.OrderBy(x => x.ProductCode).ThenBy(x => x.LineNumber).ThenBy(x => x.WorkDate).ToList();
             }
             catch (Exception xx)
             {
                 LoadFlag = false;
                 Thread.Sleep(200);
                 MessageBox.Show("Нет связи с сервером SQL80" + System.Environment.NewLine + "Приложение будет закрыто", "Собщение системы");
-                
+
                 this.Close();
             }
+
+            MMNANList = new List<MatNameAndAlterName>();
+            MMNANList =  RDataList.GroupBy(x => new { x.MaterialCode, x.AlterMaterialCode, x.IPG })
+                .Select(g => new MatNameAndAlterName
+                {
+                    AlterMaterialCode = g.Key.AlterMaterialCode,
+                    MaterialCode = g.Key.MaterialCode,
+                    MaterialGroup = g.Key.IPG
+                }).ToList();
+
+            var SDL = SDataList.GroupBy(x => new { x.MaterialCode, x.AlterMaterialCode, x.IPG })
+                .Select(g => new MatNameAndAlterName
+                {
+                    AlterMaterialCode = g.Key.AlterMaterialCode,
+                    MaterialCode = g.Key.MaterialCode,
+                    MaterialGroup = g.Key.IPG
+                }).ToList();
+
+            //   SDL = SDL.Where(x => x.MaterialCode == "1021000706").ToList();
+
+            MMNANList.AddRange(SDL);
+
+            //MatStatus
+            var RDL = RDataList.Where(x => x.Bom.Trim() != "").ToList();
+
+            SMList = RDL.GroupBy(x => new { x.Bom, x.AlterMaterialCode })
+                .Select(g => new StatusesMaterials {
+                    BOM = g.Key.Bom,
+                    MaterialCode = g.Key.AlterMaterialCode
+                }).ToList();
+
+           /* for (int zz =0; zz<RDL.Count; zz++)
+            {
+                StatusesMaterials sm = new StatusesMaterials();
+
+                sm.BOM = RDL[zz].Bom.Trim();
+                sm.MaterialCode = RDL[zz].MaterialCode;
+
+                SMList.Add(sm);
+            }*/
+
+            SMList = SMList.Distinct().ToList();
+            MMNANList = MMNANList.Distinct().ToList();
+
+            for (int zz =0; zz<RDataList.Count; zz++)
+            {
+                PR_GetRecipesDataMainProductBis_Result res = new PR_GetRecipesDataMainProductBis_Result();
+
+                res.AlterProductCode = RDataList[zz].AlterProductCode;
+                res.Bom = RDataList[zz].Bom;
+                res.IPG = RDataList[zz].IPG;
+                res.LineNumber = RDataList[zz].LineNumber;
+                res.MaterialCode = RDataList[zz].AlterMaterialCode;
+                res.MaterialName = RDataList[zz].MaterialName;
+                res.ProductCode = RDataList[zz].ProductCode;
+                res.ProductName = RDataList[zz].ProductName;
+                res.Quantity = RDataList[zz].Quantity;
+                res.UnitMeasure = RDataList[zz].UnitMeasure;
+                res.WorkDate = RDataList[zz].WorkDate;
+                res.IsSemiProd = RDataList[zz].IsSemiProd;
+                res.CreationDate = RDataList[zz].CreationDate;
+
+                OPRRec.Add(res);
+            }
+            OPRRec = OPRRec.OrderBy(x => x.ProductCode).ThenBy(x => x.LineNumber).ThenBy(x => x.WorkDate).ToList();
+
+
+            /*   try
+               {
+                   OPRRec = tdb.fn_select_RecipesView1().ToList();
+                   OPRRec = OPRRec.OrderBy(x => x.ProductCode).ThenBy(x => x.LineNumber).ThenBy(x => x.WorkDate).ToList();
+               }
+               catch (Exception xx)
+               {
+                   LoadFlag = false;
+                   Thread.Sleep(200);
+                   MessageBox.Show("Нет связи с сервером SQL80" + System.Environment.NewLine + "Приложение будет закрыто", "Собщение системы");
+
+                   this.Close();
+               }*/
+
             OPRRec = OPRRec.Where(x => OprComp.Contains(x.ProductCode)).ToList();
 
             RCode = "";
             wDate = Convert.ToDateTime("2000-01-01");
-            lNumber = "ZZZ";
+            lNumber = "ZZZZZ";
             MaterialCode = "";
 
             for (int i = 0; i < OPRRec.Count; i++)
@@ -505,7 +717,7 @@ namespace PlantPlanning
 
                     plr = new ProductLinesRecipes();
                     plr.RecList = new List<Recipe>();
-                    lNumber = OPRRec[i].LineNumber;
+                    lNumber =  OPRRec[i].LineNumber;
                     plr.LineNumber = OPRRec[i].LineNumber;
 
                     alfa = ProdRecipeOPRList.Count - 1;
@@ -524,7 +736,9 @@ namespace PlantPlanning
                     MaterialCode = rl.MaterialCode;
                     rl.MaterialName = OPRRec[i].MaterialName;
                     rl.MaterialQuantity = (double)OPRRec[i].Quantity;
+                    rl.IsSemiProd =(int) OPRRec[i].IsSemiProd;
                     rl.UMC = OPRRec[i].UnitMeasure;
+                    rl.BOM = OPRRec[i].Bom;
                     charlie = ProdRecipeOPRList[alfa].RecLineList[bravo].RecList.Count - 1;
                     ProdRecipeOPRList[alfa].RecLineList[bravo].RecList[charlie].rList.Add(rl);
                 }
@@ -550,7 +764,9 @@ namespace PlantPlanning
                     MaterialCode = rl.MaterialCode;
                     rl.MaterialName = OPRRec[i].MaterialName;
                     rl.MaterialQuantity = (double)OPRRec[i].Quantity;
+                    rl.IsSemiProd = (int)OPRRec[i].IsSemiProd;
                     rl.UMC = OPRRec[i].UnitMeasure;
+                    rl.BOM = OPRRec[i].Bom;
                     charlie = ProdRecipeOPRList[alfa].RecLineList[bravo].RecList.Count - 1;
                     ProdRecipeOPRList[alfa].RecLineList[bravo].RecList[charlie].rList.Add(rl);
                 }
@@ -569,8 +785,10 @@ namespace PlantPlanning
                     rl.MaterialCode = OPRRec[i].MaterialCode;
                     MaterialCode = rl.MaterialCode;
                     rl.MaterialName = OPRRec[i].MaterialName;
+                    rl.IsSemiProd = (int)OPRRec[i].IsSemiProd;
                     rl.MaterialQuantity = (double)OPRRec[i].Quantity;
                     rl.UMC = OPRRec[i].UnitMeasure;
+                    rl.BOM = OPRRec[i].Bom;
                     charlie = ProdRecipeOPRList[alfa].RecLineList[bravo].RecList.Count - 1;
                     ProdRecipeOPRList[alfa].RecLineList[bravo].RecList[charlie].rList.Add(rl);
                 }
@@ -583,7 +801,9 @@ namespace PlantPlanning
                     MaterialCode = rl.MaterialCode;
                     rl.MaterialName = OPRRec[i].MaterialName;
                     rl.MaterialQuantity = (double)OPRRec[i].Quantity;
+                    rl.IsSemiProd = (int)OPRRec[i].IsSemiProd;
                     rl.UMC = OPRRec[i].UnitMeasure;
+                    rl.BOM = OPRRec[i].Bom;
 
                     alfa = ProdRecipeOPRList.Count - 1;
                     bravo = ProdRecipeOPRList[alfa].RecLineList.Count - 1;
@@ -613,29 +833,94 @@ namespace PlantPlanning
             }
 
             LineDataList = tdb.tLines.ToList();               //tdb.tMappingTable.ToList();
+            lRec = new List<PR_GetRecipesDataMainProductBis_Result>();
 
-            try
+            for (int zz = 0; zz < RDataList.Count; zz++)
             {
-                lRec = tdb.fn_select_RecipesView().ToList();
-                lRec = lRec.OrderBy(x => x.ProductCode).ThenBy(x => x.LineNumber).ThenBy(x => x.WorkDate).ToList();                
+                PR_GetRecipesDataMainProductBis_Result res = new PR_GetRecipesDataMainProductBis_Result();
 
-                //    lRec = lRec.Where(x => x.ProductCode == "1010012017").ToList();
+                res.AlterProductCode = RDataList[zz].AlterProductCode.Trim();
+                res.Bom = RDataList[zz].Bom.Trim();
+                res.IPG = RDataList[zz].IPG.Trim();
+                res.LineNumber = RDataList[zz].LineNumber.Trim();
+                res.MaterialCode = RDataList[zz].AlterMaterialCode.Trim();
+                res.MaterialName = RDataList[zz].MaterialName.Trim();
+                res.ProductCode = RDataList[zz].ProductCode.Trim();
+                res.ProductName = RDataList[zz].ProductName.Trim();
+                res.Quantity = (decimal)RDataList[zz].Quantity;
+                res.IsSemiProd = RDataList[zz].IsSemiProd;
+                res.UnitMeasure = RDataList[zz].UnitMeasure;
+                res.WorkDate = RDataList[zz].WorkDate;
+                res.CreationDate = RDataList[zz].CreationDate;
+
+                lRec.Add(res);
             }
-            catch (Exception xx)
+
+            lRec = lRec.OrderBy(x => x.ProductCode).ThenBy(x => x.LineNumber).ThenBy(x => x.WorkDate).ToList();
+
+      //      var lll = lRec.Where(x => x.ProductCode == "1010031627").ToList();  //    1031018925
+
+            lRec1 = new List<PR_GetRecipesDataMainProductBis_Result>();
+
+            for (int zz = 0; zz < SDataList.Count; zz++)
             {
-                LoadFlag = false;
-                Thread.Sleep(200);
-                MessageBox.Show("Нет связи с сервером SQL80" + System.Environment.NewLine + "Приложение будет закрыто", "Собщение системы");
-                this.Close();
+                PR_GetRecipesDataMainProductBis_Result res = new PR_GetRecipesDataMainProductBis_Result();
+
+                res.AlterProductCode = SDataList[zz].AlterProductCode.Trim();
+                res.Bom = SDataList[zz].Bom.Trim();
+                res.IPG = SDataList[zz].IPG.Trim();
+                res.LineNumber = SDataList[zz].LineNumber.Trim();
+                res.MaterialCode = SDataList[zz].AlterMaterialCode.Trim();
+                res.MaterialName = SDataList[zz].MaterialName.Trim();
+                res.ProductCode = SDataList[zz].ProductCode.Trim();
+                res.ProductName = SDataList[zz].ProductName.Trim();
+                res.Quantity = (decimal)SDataList[zz].Quantity;
+                res.IsSemiProd = SDataList[zz].IsSemiProd;
+                res.UnitMeasure = SDataList[zz].UnitMeasure;
+                res.WorkDate = SDataList[zz].WorkDate;
+                res.CreationDate = SDataList[zz].CreationDate;
+
+                lRec1.Add(res);
             }
-      
-         //   lRec = lRec.Where(x => x.ProductCode == "8ПФ00798").ToList();
+
+            lRec1 = lRec1.OrderBy(x => x.ProductCode).ThenBy(x => x.LineNumber).ThenBy(x => x.WorkDate).ToList();
+
+        //    var lll2 = lRec1.Where(x => x.MaterialCode == "4500000461").ToList();
+
+        //    lRec1 = lRec1.Where(x => x.ProductCode == "1021000706").ToList();
+
+            /*  try
+              {
+                  lRec = tdb.fn_select_RecipesView1().ToList();
+                  lRec = lRec.OrderBy(x => x.ProductCode).ThenBy(x => x.LineNumber).ThenBy(x => x.WorkDate).ToList();                
+
+                  //    lRec = lRec.Where(x => x.ProductCode == "1010012017").ToList();
+              }
+              catch (Exception xx)
+              {
+                  LoadFlag = false;
+                  Thread.Sleep(200);
+                  MessageBox.Show("Нет связи с сервером SQL80" + System.Environment.NewLine + "Приложение будет закрыто", "Собщение системы");
+                  this.Close();
+              }*/
+
+            //   lRec = lRec.Where(x => x.ProductCode == "8ПФ00798").ToList();
             foreach (var l in lRec)
             {
-                l.LineNumber = ReplaceLineName(l.LineNumber);
+                l.LineNumber = ReplaceLineName(l.LineNumber.Trim());
             }
 
-            LineList = lRec.Select(x => x.LineNumber).Distinct().ToList();
+            foreach (var l in lRec1)
+            {
+             //   if (l.MaterialCode =="1021002325" || l.ProductCode == "1021002325" )
+             //   { }
+
+                l.LineNumber = ReplaceLineName(l.LineNumber.Trim());
+            }
+
+            LineList = lRec.Select(x => x.LineNumber).ToList();
+            LineList.AddRange(lRec1.Select(x => x.LineNumber).ToList());
+            LineList = LineList.Distinct().ToList();
             LineList = LineList.OrderBy(x => x).ToList();
             
           /* for (int i=0; i<LineList.Count; i++)
@@ -654,6 +939,8 @@ namespace PlantPlanning
             wDate = Convert.ToDateTime("2000-01-01");
             lNumber = "ZZZ";
             MaterialCode = "";
+
+          //  var LLRec = lRec.Where(x => x.MaterialCode == "1031014495").ToList();
 
             for (int i = 0; i < lRec.Count; i++)
             {
@@ -691,7 +978,10 @@ namespace PlantPlanning
                     MaterialCode = rl.MaterialCode;
                     rl.MaterialName = lRec[i].MaterialName;
                     rl.MaterialQuantity = (double)lRec[i].Quantity;
+                    rl.IsSemiProd = (int)lRec[i].IsSemiProd;
                     rl.UMC = lRec[i].UnitMeasure;
+                    rl.BOM = lRec[i].Bom;
+
                     charlie = ProdRecipeList[alfa].RecLineList[bravo].RecList.Count - 1;
                     ProdRecipeList[alfa].RecLineList[bravo].RecList[charlie].rList.Add(rl);
                 }
@@ -717,7 +1007,10 @@ namespace PlantPlanning
                     MaterialCode = rl.MaterialCode;
                     rl.MaterialName = lRec[i].MaterialName;
                     rl.MaterialQuantity = (double)lRec[i].Quantity;
+                    rl.IsSemiProd = (int)lRec[i].IsSemiProd;
                     rl.UMC = lRec[i].UnitMeasure;
+                    rl.BOM = lRec[i].Bom;
+
                     charlie = ProdRecipeList[alfa].RecLineList[bravo].RecList.Count - 1;
                     ProdRecipeList[alfa].RecLineList[bravo].RecList[charlie].rList.Add(rl);
                 }
@@ -737,7 +1030,10 @@ namespace PlantPlanning
                     MaterialCode = rl.MaterialCode;
                     rl.MaterialName = lRec[i].MaterialName;
                     rl.MaterialQuantity = (double)lRec[i].Quantity;
+                    rl.IsSemiProd = (int)lRec[i].IsSemiProd;
                     rl.UMC = lRec[i].UnitMeasure;
+                    rl.BOM = lRec[i].Bom;
+
                     charlie = ProdRecipeList[alfa].RecLineList[bravo].RecList.Count - 1;
                     ProdRecipeList[alfa].RecLineList[bravo].RecList[charlie].rList.Add(rl);
                 }
@@ -750,7 +1046,9 @@ namespace PlantPlanning
                     MaterialCode = rl.MaterialCode;
                     rl.MaterialName = lRec[i].MaterialName;
                     rl.MaterialQuantity = (double)lRec[i].Quantity;
+                    rl.IsSemiProd = (int)lRec[i].IsSemiProd;
                     rl.UMC = lRec[i].UnitMeasure;
+                    rl.BOM = lRec[i].Bom;
 
                     alfa = ProdRecipeList.Count - 1;
                     bravo = ProdRecipeList[alfa].RecLineList.Count - 1;
@@ -781,6 +1079,145 @@ namespace PlantPlanning
                 }
             }
 
+            //SemiProducts
+            RCode = "";
+            wDate = Convert.ToDateTime("2000-01-01");
+            lNumber = "ZZZ";
+            MaterialCode = "";
+
+            for (int i = 0; i < lRec1.Count; i++)
+            {
+                if (RCode != lRec1[i].ProductCode)
+                {
+                    pr = new ProductRecipes();
+
+                    pr.RecLineList = new List<ProductLinesRecipes>();
+                    pr.ProductCode = lRec1[i].ProductCode;
+                    pr.AlterProductCode = lRec1[i].AlterProductCode;
+                    pr.ProductCodeString = pr.ProductCode;
+                    pr.ProductName = lRec1[i].ProductName;
+                    RCode = pr.ProductCode;
+
+                    SemiProdRecipeList.Add(pr);
+
+                    plr = new ProductLinesRecipes();
+                    plr.RecList = new List<Recipe>();
+                    lNumber = lRec1[i].LineNumber; // ReplaceLineName(lRec[i].LineNumber);                    
+                    plr.LineNumber = lNumber;
+
+                    alfa = SemiProdRecipeList.Count - 1;
+                    SemiProdRecipeList[alfa].RecLineList.Add(plr);
+
+                    rr = new Recipe();
+                    rr.rList = new List<RecipeList>();
+                    rr.WorkDateStart = (DateTime)lRec1[i].WorkDate;
+                    wDate = rr.WorkDateStart;
+                    bravo = SemiProdRecipeList[alfa].RecLineList.Count - 1;
+                    SemiProdRecipeList[alfa].RecLineList[bravo].RecList.Add(rr);
+
+                    rl = new RecipeList();
+                    rl.IPG = lRec1[i].IPG;
+                    rl.MaterialCode = lRec1[i].MaterialCode;
+                    MaterialCode = rl.MaterialCode;
+                    rl.MaterialName = lRec1[i].MaterialName;
+                    rl.MaterialQuantity = (double)lRec1[i].Quantity;
+                    rl.IsSemiProd = (int)lRec1[i].IsSemiProd;
+                    rl.UMC = lRec1[i].UnitMeasure;
+                    rl.BOM = lRec1[i].Bom;
+
+                    charlie = SemiProdRecipeList[alfa].RecLineList[bravo].RecList.Count - 1;
+                    SemiProdRecipeList[alfa].RecLineList[bravo].RecList[charlie].rList.Add(rl);
+                }
+                if (lRec1[i].LineNumber != lNumber)      // (ReplaceLineName(lRec[i].LineNumber) != lNumber)
+                {
+                    plr = new ProductLinesRecipes();
+                    plr.RecList = new List<Recipe>();
+                    lNumber = lRec1[i].LineNumber;    // ReplaceLineName(lRec[i].LineNumber);
+                    plr.LineNumber = lNumber;
+                    alfa = SemiProdRecipeList.Count - 1;
+                    SemiProdRecipeList[alfa].RecLineList.Add(plr);
+
+                    rr = new Recipe();
+                    rr.rList = new List<RecipeList>();
+                    rr.WorkDateStart = (DateTime)lRec1[i].WorkDate;
+                    wDate = rr.WorkDateStart;
+                    bravo = SemiProdRecipeList[alfa].RecLineList.Count - 1;
+                    SemiProdRecipeList[alfa].RecLineList[bravo].RecList.Add(rr);
+
+                    rl = new RecipeList();
+                    rl.IPG = lRec1[i].IPG;
+                    rl.MaterialCode = lRec1[i].MaterialCode;
+                    MaterialCode = rl.MaterialCode;
+                    rl.MaterialName = lRec1[i].MaterialName;
+                    rl.MaterialQuantity = (double)lRec1[i].Quantity;
+                    rl.IsSemiProd = (int)lRec1[i].IsSemiProd;
+                    rl.UMC = lRec1[i].UnitMeasure;
+                    rl.BOM = lRec1[i].Bom;
+
+                    charlie = SemiProdRecipeList[alfa].RecLineList[bravo].RecList.Count - 1;
+                    SemiProdRecipeList[alfa].RecLineList[bravo].RecList[charlie].rList.Add(rl);
+                }
+                if (wDate.Date != lRec1[i].WorkDate.Value.Date)
+                {
+                    rr = new Recipe();
+                    rr.rList = new List<RecipeList>();
+                    rr.WorkDateStart = (DateTime)lRec1[i].WorkDate;
+                    wDate = rr.WorkDateStart;
+                    alfa = SemiProdRecipeList.Count - 1;
+                    bravo = SemiProdRecipeList[alfa].RecLineList.Count - 1;
+                    SemiProdRecipeList[alfa].RecLineList[bravo].RecList.Add(rr);
+
+                    rl = new RecipeList();
+                    rl.IPG = lRec1[i].IPG;
+                    rl.MaterialCode = lRec1[i].MaterialCode;
+                    MaterialCode = rl.MaterialCode;
+                    rl.MaterialName = lRec1[i].MaterialName;
+                    rl.MaterialQuantity = (double)lRec1[i].Quantity;
+                    rl.IsSemiProd = (int)lRec1[i].IsSemiProd;
+                    rl.UMC = lRec1[i].UnitMeasure;
+                    rl.BOM = lRec1[i].Bom;
+
+                    charlie = SemiProdRecipeList[alfa].RecLineList[bravo].RecList.Count - 1;
+                    SemiProdRecipeList[alfa].RecLineList[bravo].RecList[charlie].rList.Add(rl);
+                }
+                if (MaterialCode != lRec1[i].MaterialCode)
+                {
+                    rl = new RecipeList();
+
+                    rl.IPG = lRec1[i].IPG;
+                    rl.MaterialCode = lRec1[i].MaterialCode;
+                    MaterialCode = rl.MaterialCode;
+                    rl.MaterialName = lRec1[i].MaterialName;
+                    rl.MaterialQuantity = (double)lRec1[i].Quantity;
+                    rl.IsSemiProd = (int)lRec1[i].IsSemiProd;
+                    rl.UMC = lRec1[i].UnitMeasure;
+                    rl.BOM = lRec1[i].Bom;
+
+                    alfa = SemiProdRecipeList.Count - 1;
+                    bravo = SemiProdRecipeList[alfa].RecLineList.Count - 1;
+                    charlie = SemiProdRecipeList[alfa].RecLineList[bravo].RecList.Count - 1;
+
+                    SemiProdRecipeList[alfa].RecLineList[bravo].RecList[charlie].rList.Add(rl);
+                    //  ProdRecipeList[ProdRecipeList.Count - 1].recList[ProdRecipeList[ProdRecipeList.Count - 1].recList.Count - 1].rList.Add(rl);
+                }
+            }
+
+            for (int i = 0; i < SemiProdRecipeList.Count; i++)
+            {
+                for (int j = 0; j < SemiProdRecipeList[i].RecLineList.Count; j++)
+                {
+                    for (int k = 0; k < SemiProdRecipeList[i].RecLineList[j].RecList.Count - 1; k++)
+                    {
+                        try
+                        {
+                            SemiProdRecipeList[i].RecLineList[j].RecList[k].WorkDateEnd = ProdRecipeList[i].RecLineList[j].RecList[k + 1].WorkDateStart.AddDays(-1);
+                        }
+                        catch (Exception xx)
+                        { }
+                    }
+                }
+            }
+
             List<ProductRecipes> TBP =    tdb.tBlockedProduct.Where(x=>x.Using==false)
                 .Select(x=> new ProductRecipes
                 {
@@ -803,12 +1240,89 @@ namespace PlantPlanning
                 }
             }
 
+            for (int i = SemiProdRecipeList.Count - 1; i >= 0; i--)
+            {
+                foreach (var t in TBP)
+                {
+                    if (SemiProdRecipeList.Count > 0)
+                    {
+                        if (SemiProdRecipeList[i].ProductCode == t.ProductCode)
+                        {
+                            SemiProdRecipeList.RemoveAt(i);
+                        }
+                    }
+                }
+            }
+
+            ProdRecipeList.AddRange(SemiProdRecipeList);
+
+            for (int i = 0; i<RDataList.Count; i++)
+            {
+                PR_GetRecipesDataSemiProductBis_Result sp = new PR_GetRecipesDataSemiProductBis_Result();
+
+                sp.AlterMaterialCode = RDataList[i].AlterMaterialCode;
+                sp.AlterProductCode = RDataList[i].AlterProductCode;
+                sp.Bom = RDataList[i].Bom;
+                sp.IsSemiProd= RDataList[i].IsSemiProd;
+                sp.IPG = RDataList[i].IPG;
+                sp.LineNumber = RDataList[i].LineNumber;
+                sp.MaterialCode = RDataList[i].MaterialCode;
+                sp.MaterialName = RDataList[i].MaterialName;
+                sp.ProductCode = RDataList[i].ProductCode;
+                sp.ProductName = RDataList[i].ProductName;
+                sp.UnitMeasure = RDataList[i].UnitMeasure;
+                sp.CreationDate = RDataList[i].CreationDate;
+
+                SDataList.Add(sp);
+            }
+
+            DateTime FrontDate = DateTime.Today.Date.AddDays(-30);
+
+            var DDT1 = PTList.Where(x => x.PropertyName == "DayIntervalToNewRecipies").ToList();
+
+            if (DDT1.Count > 0)
+            {
+                try
+                {
+                    FrontDate = DateTime.Today.Date.AddDays(-1 * Convert.ToInt32(DDT1[0].PropertyValue));
+                }
+                catch (Exception xx)
+                { }
+            }
+
+            NewRecList = SDataList.Where(x => x.CreationDate > FrontDate).ToList();
+
+            //    ProdRecipeList = ProdRecipeList.Where(x => x.ProductCode == "1021000706").ToList();
+
+            //Export
+            /*    Excel1.Application xlApp = new Excel1.Application();
+                xlApp.Visible = true;
+                object misValue = System.Reflection.Missing.Value;
+
+                Excel1.Workbook wBook = xlApp.Workbooks.Add(misValue);
+                xlApp.DisplayAlerts = false;
+                Excel1.Worksheet wSheet = (Excel1.Worksheet)wBook.Sheets[1];
+
+                Excel1.Range range1;
+
+
+
+                for (int i = 0; i<ProdRecipeList.Count; i++)
+                {
+                    wSheet.Cells[i+ 1, 1] = ProdRecipeList[i].ProductCodeString;
+                    wSheet.Cells[i + 1, 2] = ProdRecipeList[i].ProductName;
+                }*/
+
             //spises
 
-           // SpisesCodeList = new List<string>();
+            // SpisesCodeList = new List<string>();
 
-           // var sData = tdb.fn_select_SpicesData().ToList();
-           // SpisesCodeList = sData.Select(x => x.ProductCode).Distinct().ToList();
+            // var sData = tdb.fn_select_SpicesData().ToList();
+            // SpisesCodeList = sData.Select(x => x.ProductCode).Distinct().ToList();
+
+           // var a1 = ProdRecipeList.Where(x => x.ProductCode == "1021001476").ToList();
+           // var a2 = ProdRecipeList.Where(x => x.ProductCode == "4500000034").ToList();
+           // var a3 = ProdRecipeList.Where(x => x.ProductCode == "4500000033").ToList();
 
 
             GC.Collect();
@@ -849,7 +1363,6 @@ namespace PlantPlanning
             }*/
             try
             {
-
                 dd = s.Substring(0, 2);
 
                 if (dd.Length == 1)
@@ -1029,6 +1542,9 @@ namespace PlantPlanning
                                             lData ld = new lData
                                             {
                                                 DateWork = DateWork,
+                                                WorkDay = DateWork.Day,
+                                                WorkMonth = DateWork.Month,
+                                                WorkYear = DateWork.Year,
                                                 ProdCode = ProductCode.Replace("_П/УП", ""),
                                                 ProdCodeStr = ProductCode,
                                                 Quantity = Quantity,
@@ -1089,10 +1605,18 @@ namespace PlantPlanning
                         fl = true;
                     }
                 }
-
+                //MOnthly graphic
                 Invoke(new Action(() =>
                 {
                     label1.Text = "Формирование списка дат";
+                    progressBar1.Value = 65;
+
+                    CorrectDataList();
+                }));
+
+                Invoke(new Action(() =>
+                {
+                    label1.Text = "Коррекция списка дат";
                     progressBar1.Value = 70;
 
                     ExcelDatesList = ExcelDatesList.Distinct().ToList();
@@ -1219,6 +1743,7 @@ namespace PlantPlanning
                     {
 
                         MessageBox.Show("Данные успешно приняты!", "Сообщение системы");
+                        this.BringToFront();
                     }
                 }));
 
@@ -1249,6 +1774,14 @@ namespace PlantPlanning
 
             Invoke(new Action(() =>
             {
+                for (int i = 0; i<dataGridView1.ColumnCount; i++)
+                {
+                    dataGridView1.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+                }
+            }));
+
+            Invoke(new Action(() =>
+            {
                 label1.Text = "";
                 label1.Visible = false;
                 progressBar1.Visible = false;
@@ -1258,6 +1791,176 @@ namespace PlantPlanning
                 panel3.Enabled = true;
 
             }));
+        }
+
+        private void CorrectDataList()
+        {
+            int CurrMonth = DateTime.Today.Month;
+            int CurrYear = DateTime.Today.Year;
+            int DayCount = System.DateTime.DaysInMonth(CurrYear, CurrMonth);
+            DateTime DDT;
+            DateTime DStart;
+            DateTime DEnd;
+
+            var CurrDataList = ExcelDataList.Where(x => x.WorkMonth == CurrMonth && x.WorkYear == CurrYear).ToList();
+         //   CurrDataList = CurrDataList.OrderBy(x => x.DateWork).ToList();
+            List<DateTime> CurrDList = CurrDataList.Select(x => x.DateWork).Distinct().ToList();
+            CurrDList.Sort();
+
+            if (CurrDList.Count > 0)
+            {
+                if (CurrDList.Count < DayCount)
+                {
+                    if (CurrDList[0].Day != 1)
+                    {
+                        DDT = CurrDList[0];
+
+                        CurrDataList = ExcelDataList.Where(x => x.DateWork < DDT).ToList();
+                        
+                        if (CurrDataList.Count>0)
+                        {
+                            DDT = CurrDataList.Max(x => x.DateWork);
+                            CurrDList.Add(DDT);
+                            CurrDList.Sort();
+
+                            DStart = CurrDList[0];
+                            DEnd = CurrDList.Last();
+
+                            CurrDataList = ExcelDataList.Where(x => x.DateWork >= DStart && x.DateWork <= DEnd).ToList();
+                        }
+                    }
+
+                    if (CurrDList.Last().Day < DayCount)
+                    {
+                        DDT = new DateTime(CurrYear, CurrMonth, DayCount);
+                        CurrDataList = ExcelDataList.Where(x => x.DateWork > DDT).ToList();
+
+                        if (CurrDataList.Count > 0)
+                        {
+                            DDT = CurrDataList.Min(x => x.DateWork);
+
+                            CurrDList.Add(DDT);
+
+                            DStart = CurrDList[0];
+                            DEnd = CurrDList.Last();
+
+                            CurrDataList = ExcelDataList.Where(x => x.DateWork >= DStart && x.DateWork < DEnd).ToList();
+                        }
+                    }
+
+                    for (int i = 0; i < CurrDList.Count - 1; i++)
+                    {
+                         DStart = CurrDList[i];
+                         DEnd = CurrDList[i + 1];
+
+                        var X = (DEnd - DStart).TotalDays;
+
+                        if (X > 1)
+                        {
+                            while (DStart < DEnd)
+                            {
+                                if (DStart == CurrDList[i])
+                                {
+                                    var CDL = CurrDataList.Where(x => x.DateWork == DStart).ToList();
+
+                                    for (int j = 0; j<CDL.Count; j++)
+                                    {
+                                        CDL[j].Quantity = Math.Round(CDL[j].Quantity / X, 3);
+                                    }
+                                }
+                                else
+                                {
+                                    var CDL = CurrDataList.Where(x => x.DateWork == DStart).ToList();
+
+                                    for (int j = 0; j < CDL.Count; j++)
+                                    {
+                                        lData LD = new lData();
+
+                                        LD.AlterProdName = CDL[j].AlterProdName;
+                                        LD.DateWork = DStart;
+                                        LD.IPG = CDL[j].IPG;
+                                        LD.BOM = CDL[j].BOM;
+                                      
+                                        LD.Line = CDL[j].Line;
+                                        LD.ProdCode = CDL[j].ProdCode;
+                                        LD.ProdCodeStr = CDL[j].ProdCodeStr;
+                                        LD.ProdName = CDL[j].ProdName;
+                                        LD.Quantity = CDL[j].Quantity;
+                                        LD.RePack = CDL[j].RePack;
+                                        LD.Spices = CDL[j].Spices;
+                                        LD.WorkDay = DStart.Day;
+                                        LD.WorkMonth = DStart.Month;
+                                        LD.WorkYear = DStart.Year;
+
+                                        ExcelDataList.Add(LD);
+                                    }
+                                }
+
+                                DStart = DStart.AddDays(1);
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            /*
+            if (CurrDList.Count == 1)
+            {
+                if (CurrDList[0].Day == 1)
+                {
+                    DateTime DateStart = new DateTime(CurrYear, CurrMonth, 1, 0, 0, 0);
+                    DateTime DateEnd = DateStart.Date.AddMonths(1).AddDays(-1);
+
+                    double DayCount = (DateEnd - DateStart).TotalDays;
+                    if (DayCount > 0)
+                    {
+                      //  DayCount = 1 / DayCount;
+
+                        while (DateStart <= DateEnd)
+                        {
+                            int CurrDay = DateStart.Day;
+                            
+                            if (CurrDay == 1)
+                            {
+                                for (int i = 0; i<CurrDataList.Count; i++)
+                                {
+                                    CurrDataList[i].Quantity = Math.Round(CurrDataList[i].Quantity / DayCount, 3);
+                                }
+                            }
+                            else
+                            {
+                                for (int i = 0; i<CurrDataList.Count; i++)
+                                {
+                                    lData LD = new lData();
+                                                                        
+                                    LD.AlterProdName = CurrDataList[i].AlterProdName;
+                                    LD.DateWork = DateStart;
+                                    LD.IPG = CurrDataList[i].IPG;
+                                    LD.Line = CurrDataList[i].Line;
+                                    LD.ProdCode = CurrDataList[i].ProdCode;
+                                    LD.ProdCodeStr = CurrDataList[i].ProdCodeStr;
+                                    LD.ProdName = CurrDataList[i].ProdName;
+                                    LD.Quantity = CurrDataList[i].Quantity;
+                                    LD.RePack = CurrDataList[i].RePack;
+                                    LD.Spices = CurrDataList[i].Spices;
+                                    LD.WorkDay = DateStart.Day;
+                                    LD.WorkMonth = DateStart.Month;
+                                    LD.WorkYear = DateStart.Year;
+
+                                    ExcelDataList.Add(LD);
+                                }                                
+                            }
+
+                            ExcelDatesList.Add(DateStart);
+                            DateStart = DateStart.AddDays(1);
+                        }
+                    }
+                }
+            }
+            */
+
+            GC.Collect();
         }
 
         private void SaveRecordToDB()
@@ -1321,7 +2024,7 @@ namespace PlantPlanning
                 }
             }
 
-            this.Text = "Планирование производства фабрика-кухня" + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss") + " " + FileName;
+            this.Text = "Планирование производства фабрика-кухня; Верс.1.0.2.15; Загружено " + DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss") + " " + FileName;
         }
 
         public string GetPecipesNotes()
@@ -1338,8 +2041,7 @@ namespace PlantPlanning
 
            ErrorStr = "";
 
-            var RData = tdb.fn_select_RecipesBisView().ToList();  //рецепты без линий!
-
+            var RData = tdb.fn_select_RecipesBisView1().ToList();  //рецепты без линий!
 
             foreach (var xl in ExcelDataList) //.Where(x => (!x.ProdName.ToLower().Contains("тест")) && (x.DateWork >= DateTime.Today.Date)).ToList())
             {
@@ -1386,10 +2088,11 @@ namespace PlantPlanning
                             rl.MaterialName = dd.MaterialName;
                             rl.MaterialQuantity = (double)dd.Quantity;
                             rl.UMC = dd.UnitMeasure;
+                            rl.BOM = dd.BOM;
                             charlie = ProdRecipeList[alfa].RecLineList[bravo].RecList.Count - 1;
                             ProdRecipeList[alfa].RecLineList[bravo].RecList[charlie].rList.Add(rl);
 
-                            fn_select_RecipesView_Result RVR = new fn_select_RecipesView_Result
+                            PR_GetRecipesDataMainProductBis_Result RVR = new PR_GetRecipesDataMainProductBis_Result
                             {
                                 ProductCode= data[0].ProductCode,
                                 AlterProductCode=data[0].ProductCode,
@@ -1398,8 +2101,9 @@ namespace PlantPlanning
                                 MaterialCode= dd.MaterialCode,
                                 MaterialName=dd.MaterialName,
                                 UnitMeasure= dd.UnitMeasure,
-                                Quantity= (double)dd.Quantity,
-                                IPG=dd.IPG
+                                Quantity= (decimal)dd.Quantity,
+                                IPG=dd.IPG,
+                                Bom = dd.BOM
                             };
 
                             lRec.Add(RVR);
@@ -1473,7 +2177,7 @@ namespace PlantPlanning
                                 foreach (var RL in RLL.rList)
                                 {
 
-                                    fn_select_RecipesView_Result RVR = new fn_select_RecipesView_Result
+                                    PR_GetRecipesDataMainProductBis_Result RVR = new PR_GetRecipesDataMainProductBis_Result
                                     {
                                         ProductCode = xl.ProdCode,
                                         AlterProductCode = xl.ProdCode,
@@ -1482,8 +2186,9 @@ namespace PlantPlanning
                                         MaterialCode = RL.MaterialCode,
                                         MaterialName = RL.MaterialName,
                                         UnitMeasure = RL.UMC,
-                                        Quantity = RL.MaterialQuantity,
-                                        IPG = RL.IPG
+                                        Quantity =(decimal) RL.MaterialQuantity,
+                                        IPG = RL.IPG,
+                                        Bom = RL.BOM
                                     };
 
                                     lRec.Add(RVR);
@@ -2114,6 +2819,7 @@ namespace PlantPlanning
              var Result = DataList.GroupBy(x => x).Where(g => g.Count() > 1).Select(g => g.Key).ToList();
              Result = Result.Distinct().ToList();
              if (Result.Count>0)*/
+
             bool Res = false;
              ErrorStr ="";
             ErrorMainStr = "";
@@ -2594,7 +3300,7 @@ namespace PlantPlanning
             }
         }
 
-        public StockBalancesPlant NewStockBalancesPlant(Context.SelectStockBalancesPlant2_Result ssbpr)
+        public StockBalancesPlant NewStockBalancesPlant(Context.SelectStockBalancesPlantBis_Result ssbpr)
         {
             StockBalancesPlant sbp = new StockBalancesPlant();
 
@@ -2607,6 +3313,8 @@ namespace PlantPlanning
             sbp.ValidTo = ssbpr.ValidTo;
             sbp.Quantity =(double) ssbpr.Quantity;
             sbp.AlterLotName = ssbpr.AlterLotName;
+            sbp.TestQuality = ssbpr.TestQuality;
+            sbp.TestQualityGr = ssbpr.TestQualityGr;
 
             if (ssbpr.AlterLineName.Trim() != "")
             {
@@ -2629,7 +3337,7 @@ namespace PlantPlanning
             return sbp;
         }
 
-        public StockBalancesMes NewStockBalancesMes(Context.SelectStockBalancesMes1_Result ssbmr)
+        public StockBalancesMes NewStockBalancesMes(Context.SelectStockBalancesMesBis_Result ssbmr)
         {
             StockBalancesMes sbm = new StockBalancesMes();
 
@@ -2644,6 +3352,7 @@ namespace PlantPlanning
             sbm.ProdDate = ssbmr.ProdDate;
             sbm.BBFDate = ssbmr.BBFDate;
             sbm.TestQuality = ssbmr.TestQuality;
+            sbm.TestQualityGr = ssbmr.TestQualityGr;
 
             return sbm;
         }
@@ -2721,9 +3430,249 @@ namespace PlantPlanning
 
         private void button18_Click(object sender, EventArgs e)
         {
-            DateTime dt1 = DateTime.Today.Date;
+            /*DateTime dt1 = DateTime.Today.Date;
             DateTime dt2 = new DateTime(2022, 5, 1);
-            MessageBox.Show(dt2.Subtract(dt1).Days.ToString());
+            MessageBox.Show(dt2.Subtract(dt1).Days.ToString());*/
+
+            lData LD;
+            List<lData> DataListTempNew = new List<lData>();
+            List<lData> DataListTempOld = new List<lData>();
+
+            string Code = "1010033633";
+
+            var Recipe = ProdRecipeList.Where(x => x.ProductCode.Trim() == Code).ToList();
+            if (Recipe.Count > 0)
+            {
+                var RecLine = Recipe[0].RecLineList;
+                if (RecLine.Count > 0)
+                {
+                    var RecLineDate = RecLine[0].RecList;
+                    if (RecLineDate.Count > 0)
+                    {
+                        var RList = RecLineDate[0].rList;
+
+                        foreach (var RL in RList)
+                        {
+                            LD = new lData();
+
+                            LD.ProdCode = RL.MaterialCode.Trim();
+                           // LD.ParentCode = RL.p
+                            LD.ProdCodeStr = RL.MaterialCode.Trim();
+                            LD.DateWork = RecLineDate[0].WorkDateStart;
+                            LD.ProdName = RL.MaterialName.Trim();
+                            LD.Quantity = 1000 * RL.MaterialQuantity;
+                            LD.Line = RecLine[0].LineNumber;
+                            LD.IPG = RL.IPG;
+                            LD.Spices = false;   //control: split 1-st level only!!!!!!!!!
+                            LD.BOM = RL.BOM;
+
+                          bool  fl = false;
+
+                            for (int i = 0; i < DataListTempNew.Count; i++)
+                            {
+                                if (DataListTempNew[i].ProdCode.Trim() == LD.ProdCode.Trim())
+                                {
+                                    if (DataListTempNew[i].Line.Trim() == LD.Line.Trim())
+                                    {
+                                        if (DataListTempNew[i].DateWork == LD.DateWork)
+                                        {
+                                            if (DataListTempNew[i].Spices == LD.Spices)
+                                            {
+                                                DataListTempNew[i].Quantity = DataListTempNew[i].Quantity + LD.Quantity;
+                                                fl = true;
+                                                i = DataListTempNew.Count;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (fl == false)
+                            {
+                                DataListTempNew.Add(LD);
+                            }
+                        }
+                    }
+                }
+            }
+
+           int  Iteration = 0;
+            var XLDataList = new List<lData>();
+
+            //create Excel
+
+            Excel1.Application xlApp = new Excel1.Application();
+            xlApp.Visible = true;
+            object misValue = System.Reflection.Missing.Value;
+
+            Excel1.Workbook wBook = xlApp.Workbooks.Add(misValue);
+            xlApp.DisplayAlerts = false;
+            Excel1.Worksheet wSheet = (Excel1.Worksheet)wBook.Sheets[1];
+
+            wSheet.Cells[1, 1] = "Передел";
+            wSheet.Cells[1, 2] = "Код ГП Родитель";
+            wSheet.Cells[1, 3] = "Код материала/ПФ";
+            wSheet.Cells[1, 4] = "Наименование";
+            wSheet.Cells[1, 5] = "Количество родитель";
+            wSheet.Cells[1, 6] = "Норма";
+            wSheet.Cells[1, 7] = "Количество материал";
+
+
+            int CurrRow = 2;
+
+            while (DataListTempNew.Count > 0)
+            {
+                Iteration = Iteration + 1;
+
+                
+             
+             //   CurrRow = CurrRow + 1;
+
+                for (int i = DataListTempNew.Count; i > 0; i--)
+                {
+                    if (DataListTempNew[i - 1].ProdCode == "1031016659")
+                    { }
+
+                     bool  fl = false;
+                    for (int j = 0; j < XLDataList.Count; j++)
+                    {
+                        if (XLDataList[j].ProdCode.Trim() == DataListTempNew[i - 1].ProdCode.Trim())
+                        {
+                            if (XLDataList[j].DateWork == DataListTempNew[i - 1].DateWork)
+                            {
+                                if (XLDataList[j].Line.Trim() == DataListTempNew[i - 1].Line.Trim())
+                                {
+                                    if (XLDataList[j].Spices == DataListTempNew[i - 1].Spices)
+                                    {
+                                        fl = true;
+                                        XLDataList[j].Quantity = XLDataList[j].Quantity + DataListTempNew[i - 1].Quantity;
+                                        j = XLDataList.Count;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    wSheet.Cells[CurrRow, 1] = Iteration;
+                    wSheet.Cells[CurrRow, 2] = DataListTempNew[i - 1].ProdCode;
+                    wSheet.Cells[CurrRow, 3] = DataListTempNew[i - 1].ProdName;
+                    wSheet.Cells[CurrRow, 4] = DataListTempNew[i - 1].Quantity;
+                    wSheet.Cells[CurrRow, 5] = DataListTempNew[i - 1].IPG;
+                    CurrRow = CurrRow + 1;
+
+                    if (fl == false)
+                    {
+                        LD = new lData
+                        {
+                            ProdCode = DataListTempNew[i - 1].ProdCode.Trim(),
+                            ProdName = DataListTempNew[i - 1].ProdName.Trim(),
+                            DateWork = DataListTempNew[i - 1].DateWork,
+                            Quantity = DataListTempNew[i - 1].Quantity,
+                            IPG = DataListTempNew[i - 1].IPG,
+                            Line = DataListTempNew[i - 1].Line.Trim(),
+                            Spices = DataListTempNew[i - 1].Spices,
+                            BOM = DataListTempNew[i - 1].BOM
+                        };
+
+                        if (LD.Quantity > 0)         // ((LD.IPG != "ГП") && (LD.Quantity > 0))
+                        {
+                            XLDataList.Add(LD);
+                        }
+                    }
+
+                    if (!DataListTempNew[i - 1].IPG.ToLower().Contains(@"п/ф"))         //(DataListTempNew[i - 1].IPG.ToLower() != "полуфабрикат")
+                    {
+                        DataListTempNew.RemoveAt(i - 1);
+                    }
+                    else
+                    {
+                        /*if (DataListTempNew[i - 1].Quantity == 0)
+                        {
+                            DataListTempNew.RemoveAt(i - 1);
+                        }*/
+                    }
+                }
+
+                ///
+                DataListTempOld.Clear();
+                DataListTempOld.AddRange(DataListTempNew);
+
+
+             /*   wSheet.Cells[CurrRow, 1] = Iteration;
+                CurrRow = CurrRow + 1;
+                //iteration export
+                for (int i = 0; i< DataListTempNew.Count; i++)
+                {
+                    wSheet.Cells[CurrRow, 1] = DataListTempNew[i].ProdCode;
+                    wSheet.Cells[CurrRow, 2] = DataListTempNew[i].ProdName;
+                    wSheet.Cells[CurrRow, 3] = DataListTempNew[i].Quantity;
+
+                    CurrRow = CurrRow + 1;
+                }*/
+
+                DataListTempNew.Clear();
+
+                ////
+
+                for (int i = 0; i < DataListTempOld.Count; i++)
+                {
+                    var RecList = ProdRecipeList.Where(x => x.ProductCode.Trim() == DataListTempOld[i].ProdCode.Trim()).ToList();
+
+                    if (RecList.Count > 0)
+                    {
+                        var RecLineList = RecList[0].RecLineList;
+                        {
+                            if (RecLineList.Count > 0)
+                            {
+                                var RecLineDateList = RecLineList[0].RecList;
+
+                                if (RecLineDateList.Count > 0)
+                                {
+                                    var RList = RecLineDateList[0].rList;
+
+                                    foreach (var RR in RList)
+                                    {
+                                        LD = new lData
+                                        {
+                                            ProdCode = RR.MaterialCode.Trim(),
+                                            ProdCodeStr = RR.MaterialCode.Trim(),
+                                            DateWork = DataListTempOld[i].DateWork,
+                                            ProdName = RR.MaterialName.Trim(),
+                                            Quantity = RR.MaterialQuantity * DataListTempOld[i].Quantity,
+                                            Line = RecLineList[0].LineNumber.Trim(),    //DataListTempOld[i].Line.Trim(),
+                                            IPG = RR.IPG,
+                                            BOM = RR.BOM
+                                        };
+
+                                      bool fl = false;
+                                        for (int j = 0; j < DataListTempNew.Count; j++)
+                                        {
+                                            if (DataListTempNew[j].ProdCode == LD.ProdCode)
+                                            {
+                                                if (DataListTempNew[j].Line == LD.Line)
+                                                {
+                                                    if (DataListTempNew[j].DateWork == LD.DateWork)
+                                                    {
+                                                        DataListTempNew[j].Quantity = DataListTempNew[j].Quantity + LD.Quantity;
+                                                        fl = true;
+                                                        j = DataListTempNew.Count;
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        if (fl == false)
+                                        {
+                                            DataListTempNew.Add(LD);
+                                            //  if ((LD.ProdCode == "1031008522") || (LD.ProdCodeStr == "1031008522"))
+                                            //  { }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void button19_Click(object sender, EventArgs e)
@@ -2878,6 +3827,19 @@ namespace PlantPlanning
             }
 
             this.Enabled = false;
+        }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+          /*  if (e.KeyCode.ToString() == "Add" || e.KeyCode.ToString() == "Oemplus")
+            {
+                MessageBox.Show("let`s OK");
+            }*/
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 

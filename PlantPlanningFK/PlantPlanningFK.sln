@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantPlanningFK", "PlantPlanning\PlantPlanningFK.csproj", "{8E80EBD5-B749-4D7F-82E0-B7892AA42200}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlantPlanningFKBis", "PlantPlanning\PlantPlanningFKBis.csproj", "{8E80EBD5-B749-4D7F-82E0-B7892AA42200}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

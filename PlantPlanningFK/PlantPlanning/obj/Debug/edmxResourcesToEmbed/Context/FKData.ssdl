@@ -97,6 +97,20 @@ warning 6002: The table/view 'WorkPlanDataRawFK.dbo.PlanOPZList' does not have a
     <Property Name="MatName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="IsBase" Type="bit" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'WorkPlanDataRawFK.dbo.PlantAreas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="PlantAreas">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="AreaID" />
+      <PropertyRef Name="AreaName" />
+      <PropertyRef Name="IsApproved" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AreaID" Type="int" Nullable="false" />
+    <Property Name="AreaName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="IsApproved" Type="bit" Nullable="false" />
+  </EntityType>
   <EntityType Name="RPSettings">
     <Key>
       <PropertyRef Name="Id" />
@@ -318,6 +332,14 @@ warning 6002: The table/view 'WorkPlanDataRawFK.dbo.tBlockedProduct' does not ha
     <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="WorkDate" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="tHeadersNames">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'WorkPlanDataRawFK.dbo.tLines' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="tLines">
@@ -360,6 +382,15 @@ warning 6002: The table/view 'WorkPlanDataRawFK.dbo.tLines' does not have a prim
     <Property Name="DateWork" Type="datetime" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
   </EntityType>
+  <EntityType Name="tMesPlantRelations">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MesID" Type="int" Nullable="false" />
+    <Property Name="PlantID" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
   <EntityType Name="tPlannedMeatContainers">
     <Key>
       <PropertyRef Name="id" />
@@ -378,6 +409,27 @@ warning 6002: The table/view 'WorkPlanDataRawFK.dbo.tLines' does not have a prim
     <Property Name="DateWork" Type="datetime" Nullable="false" />
     <Property Name="AlterDate" Type="datetime" />
     <Property Name="DT" Type="date" />
+  </EntityType>
+  <EntityType Name="tPropertyTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PropertyName" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="PropertyValue" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="tStorageTask">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateWork" Type="datetime" Nullable="false" />
+    <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Quantity" Type="float" Nullable="false" />
+    <Property Name="AlterDate" Type="datetime" />
+    <Property Name="Source" Type="int" />
+    <Property Name="Dest" Type="int" />
   </EntityType>
   <EntityType Name="tUserRecordSelected">
     <Key>
@@ -416,6 +468,228 @@ warning 6002: The table/view 'WorkPlanDataRawFK.dbo.tLines' does not have a prim
     <Property Name="IsRePack" Type="bit" Nullable="false" />
     <Property Name="ProdQuantity" Type="float" Nullable="false" />
     <Property Name="ProdName" Type="nvarchar" MaxLength="1000" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'WorkPlanDataRawFK.dbo.NavPurchaseView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="NavPurchaseView">
+    <Key>
+      <PropertyRef Name="WorkDate" />
+      <PropertyRef Name="Executor" />
+      <PropertyRef Name="OrderType" />
+      <PropertyRef Name="Status" />
+      <PropertyRef Name="Comment" />
+      <PropertyRef Name="OrderNymber" />
+      <PropertyRef Name="MaterialCode" />
+      <PropertyRef Name="MaterialName" />
+      <PropertyRef Name="Comment1" />
+      <PropertyRef Name="EdIzm" />
+      <PropertyRef Name="CFO" />
+      <PropertyRef Name="Initiator" />
+      <PropertyRef Name="NumberRowMZZ" />
+      <PropertyRef Name="MZP" />
+      <PropertyRef Name="StatusMZP" />
+      <PropertyRef Name="NumberRowMZP" />
+      <PropertyRef Name="ContrAgent" />
+      <PropertyRef Name="MZPCode" />
+      <PropertyRef Name="MZPNaim" />
+      <PropertyRef Name="MZPEdIzm" />
+      <PropertyRef Name="ENSGroupCode" />
+      <PropertyRef Name="ENSGroup" />
+      <PropertyRef Name="ContrAgentCode" />
+      <PropertyRef Name="CurrPrice" />
+      <PropertyRef Name="CurrencyCode" />
+      <PropertyRef Name="CFOCode" />
+    </Key>
+    <Property Name="WorkDate" Type="datetime" Nullable="false" />
+    <Property Name="Executor" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="OrderType" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="19" Nullable="false" />
+    <Property Name="NextStatus" Type="varchar" MaxLength="50" />
+    <Property Name="NessDateOrder" Type="date" />
+    <Property Name="Comment" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="OrderNymber" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="MaterialCode" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="MaterialName" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Comment1" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Quantity" Type="numeric" Precision="15" Scale="3" />
+    <Property Name="FromBalanses" Type="numeric" Precision="15" Scale="3" />
+    <Property Name="EdIzm" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="CFO" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Initiator" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="NumberRowMZZ" Type="int" Nullable="false" />
+    <Property Name="MZP" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="StatusMZP" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="NumberRowMZP" Type="int" Nullable="false" />
+    <Property Name="ContrAgent" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="MZPCode" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="MZPNaim" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="MZPQuantity" Type="numeric" Precision="15" Scale="3" />
+    <Property Name="MZPEdIzm" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="PlanDate" Type="date" />
+    <Property Name="PlanOperDate" Type="date" />
+    <Property Name="ENSGroupCode" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ENSGroup" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PlanQuantity" Type="numeric" Precision="15" Scale="3" />
+    <Property Name="FactQuantity" Type="numeric" Precision="15" Scale="3" />
+    <Property Name="ContrAgentCode" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DayToSend" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="CurrPrice" Type="numeric" Precision="38" Scale="20" Nullable="false" />
+    <Property Name="CurrencyCode" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="DateCreateMZP" Type="datetime" />
+    <Property Name="CFOCode" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CurrStatusCode" Type="int" />
+    <Property Name="CurrStatus" Type="varchar" MaxLength="50" />
+    <Property Name="NextStatusCode" Type="int" />
+    <Property Name="LastStatusDate" Type="datetime" />
+    <Property Name="LastStatusTime" Type="datetime" />
+    <Property Name="DateCreateZZ" Type="datetime" />
+    <Property Name="Address" Type="varchar" MaxLength="240" />
+    <Property Name="QuantityKey" Type="varchar" MaxLength="8000" />
+    <Property Name="DT" Type="date" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'WorkPlanDataRawFK.dbo.StockBalanceMesView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="StockBalanceMesView">
+    <Key>
+      <PropertyRef Name="StorageID" />
+      <PropertyRef Name="LotName" />
+      <PropertyRef Name="LotDescription" />
+      <PropertyRef Name="MaterialOwner" />
+      <PropertyRef Name="TestQuality" />
+      <PropertyRef Name="StorageType" />
+      <PropertyRef Name="TestOnStorage" />
+      <PropertyRef Name="dpr" />
+      <PropertyRef Name="bbf" />
+      <PropertyRef Name="st" />
+      <PropertyRef Name="WorkDate" />
+      <PropertyRef Name="DayPeriod" />
+    </Key>
+    <Property Name="StorageID" Type="bigint" Nullable="false" />
+    <Property Name="Storage" Type="nvarchar" MaxLength="70" />
+    <Property Name="MaterialCode" Type="varchar" MaxLength="24" />
+    <Property Name="MaterialName" Type="nvarchar" MaxLength="100" />
+    <Property Name="MatGroup" Type="nvarchar" MaxLength="50" />
+    <Property Name="MatGroupName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MatGroupAlter" Type="varchar" MaxLength="100" />
+    <Property Name="LotName" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="LotDescription" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Quantity" Type="decimal" Precision="38" Scale="3" />
+    <Property Name="Unit" Type="nchar" MaxLength="2" />
+    <Property Name="MaterialOwner" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="TestQuality" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="StorageType" Type="nvarchar" MaxLength="6" Nullable="false" />
+    <Property Name="TestQualityGr" Type="nvarchar" MaxLength="20" />
+    <Property Name="TestOnStorage" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="ProdDate" Type="nvarchar" MaxLength="25" />
+    <Property Name="BBFDate" Type="nvarchar" MaxLength="25" />
+    <Property Name="dpr" Type="int" Nullable="false" />
+    <Property Name="bbf" Type="int" Nullable="false" />
+    <Property Name="difdates" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="difcurdates" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="st" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="WorkDate" Type="datetime" Nullable="false" />
+    <Property Name="DayPeriod" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="DT" Type="nvarchar" MaxLength="12" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'WorkPlanDataRawFK.dbo.StockBalancesPlantView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="StockBalancesPlantView">
+    <Key>
+      <PropertyRef Name="StorageID" />
+      <PropertyRef Name="LotName" />
+      <PropertyRef Name="LotDescription" />
+      <PropertyRef Name="MaterialOwner" />
+      <PropertyRef Name="TestQuality" />
+      <PropertyRef Name="StorageType" />
+      <PropertyRef Name="TestOnStorage" />
+      <PropertyRef Name="dpr" />
+      <PropertyRef Name="bbf" />
+      <PropertyRef Name="st" />
+      <PropertyRef Name="WorkDate" />
+      <PropertyRef Name="DayPeriod" />
+    </Key>
+    <Property Name="StorageID" Type="bigint" Nullable="false" />
+    <Property Name="Storage" Type="nvarchar" MaxLength="70" />
+    <Property Name="MaterialCode" Type="varchar" MaxLength="24" />
+    <Property Name="MaterialName" Type="nvarchar" MaxLength="100" />
+    <Property Name="MatGroup" Type="nvarchar" MaxLength="50" />
+    <Property Name="MatGroupName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MatGroupAlter" Type="varchar" MaxLength="100" />
+    <Property Name="LotName" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="LotDescription" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Quantity" Type="decimal" Precision="38" Scale="3" />
+    <Property Name="Unit" Type="nchar" MaxLength="2" />
+    <Property Name="MaterialOwner" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="TestQuality" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="StorageType" Type="nvarchar" MaxLength="6" Nullable="false" />
+    <Property Name="TestQualityGr" Type="nvarchar" MaxLength="20" />
+    <Property Name="TestOnStorage" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="ProdDate" Type="nvarchar" MaxLength="25" />
+    <Property Name="BBFDate" Type="nvarchar" MaxLength="25" />
+    <Property Name="dpr" Type="int" Nullable="false" />
+    <Property Name="bbf" Type="int" Nullable="false" />
+    <Property Name="difdates" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="difcurdates" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="st" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="WorkDate" Type="datetime" Nullable="false" />
+    <Property Name="DayPeriod" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="DT" Type="nvarchar" MaxLength="12" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'WorkPlanDataRawFK.dbo.StockBalancesView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="StockBalancesView">
+    <Key>
+      <PropertyRef Name="StorageID" />
+      <PropertyRef Name="Storage" />
+      <PropertyRef Name="MaterialCode" />
+      <PropertyRef Name="MaterialName" />
+      <PropertyRef Name="MatGroup" />
+      <PropertyRef Name="MatGroupName" />
+      <PropertyRef Name="MatGroupAlter" />
+      <PropertyRef Name="LotName" />
+      <PropertyRef Name="LotDescription" />
+      <PropertyRef Name="Unit" />
+      <PropertyRef Name="MaterialOwner" />
+      <PropertyRef Name="TestQuality" />
+      <PropertyRef Name="StorageType" />
+      <PropertyRef Name="TestQualityGr" />
+      <PropertyRef Name="TestOnStorage" />
+      <PropertyRef Name="ProdDate" />
+      <PropertyRef Name="BBFDate" />
+      <PropertyRef Name="dpr" />
+      <PropertyRef Name="bbf" />
+      <PropertyRef Name="difdates" />
+      <PropertyRef Name="difcurdates" />
+      <PropertyRef Name="st" />
+      <PropertyRef Name="WorkDate" />
+      <PropertyRef Name="Smeene" />
+    </Key>
+    <Property Name="StorageID" Type="int" Nullable="false" />
+    <Property Name="Storage" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaterialCode" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="MaterialName" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="MatGroup" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="MatGroupName" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MatGroupAlter" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="LotName" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="LotDescription" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="Quantity" Type="numeric" Precision="15" Scale="5" />
+    <Property Name="Unit" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="MaterialOwner" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="TestQuality" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="StorageType" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TestQualityGr" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="TestOnStorage" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="ProdDate" Type="datetime" Nullable="false" />
+    <Property Name="BBFDate" Type="datetime" Nullable="false" />
+    <Property Name="dpr" Type="int" Nullable="false" />
+    <Property Name="bbf" Type="int" Nullable="false" />
+    <Property Name="difdates" Type="int" Nullable="false" />
+    <Property Name="difcurdates" Type="int" Nullable="false" />
+    <Property Name="st" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="WorkDate" Type="datetime" Nullable="false" />
+    <Property Name="Smeene" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="DT" Type="date" />
   </EntityType>
   <Function Name="fn_Get_ConsurmptionData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <ReturnType>
@@ -461,6 +735,17 @@ warning 6002: The table/view 'WorkPlanDataRawFK.dbo.tLines' does not have a prim
       </CollectionType>
     </ReturnType>
   </Function>
+  <Function Name="fn_select_LinkedCombo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="StorageID" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="AreaID" Type="int" />
+          <Property Name="AreaName" Type="nvarchar" MaxLength="1000" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
   <Function Name="fn_select_PlannedMainData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <ReturnType>
       <CollectionType>
@@ -479,6 +764,29 @@ warning 6002: The table/view 'WorkPlanDataRawFK.dbo.tLines' does not have a prim
           <Property Name="MinTransferDays" Type="int" />
           <Property Name="SafetyStock" Type="int" />
           <Property Name="LASTPRODUCER" Type="nvarchar(max)" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_select_PlannedMainData1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="MaterialCode" Type="nvarchar" MaxLength="25" />
+          <Property Name="NavMaterialName" Type="nvarchar(max)" />
+          <Property Name="MesMaterialName" Type="nvarchar(max)" />
+          <Property Name="MaterialGroup" Type="nvarchar" MaxLength="100" />
+          <Property Name="ItemGroup" Type="nvarchar" MaxLength="100" />
+          <Property Name="SIGname" Type="nvarchar" MaxLength="100" />
+          <Property Name="BaseUnitMeasure" Type="nvarchar" MaxLength="100" />
+          <Property Name="ZZ" Type="nvarchar" MaxLength="100" />
+          <Property Name="SIGresp" Type="nvarchar" MaxLength="100" />
+          <Property Name="Blocked" Type="bit" />
+          <Property Name="Multiplicity" Type="int" />
+          <Property Name="MinTransferDays" Type="int" />
+          <Property Name="SafetyStock" Type="int" />
+          <Property Name="LASTPRODUCER" Type="nvarchar(max)" />
+          <Property Name="Bom" Type="nvarchar" MaxLength="100" />
         </RowType>
       </CollectionType>
     </ReturnType>
@@ -519,6 +827,25 @@ warning 6002: The table/view 'WorkPlanDataRawFK.dbo.tLines' does not have a prim
       </CollectionType>
     </ReturnType>
   </Function>
+  <Function Name="fn_select_RecipesBisView1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="ProductCode" Type="nvarchar" MaxLength="1000" />
+          <Property Name="AlterproductCode" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="LineNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="WorkDate" Type="datetime" />
+          <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="MaterialName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="UnitMeasure" Type="nvarchar" MaxLength="25" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="IPG" Type="nvarchar" MaxLength="100" />
+          <Property Name="BOM" Type="nvarchar" MaxLength="100" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
   <Function Name="fn_select_RecipesView" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <ReturnType>
       <CollectionType>
@@ -533,6 +860,25 @@ warning 6002: The table/view 'WorkPlanDataRawFK.dbo.tLines' does not have a prim
           <Property Name="UnitMeasure" Type="nvarchar" MaxLength="25" />
           <Property Name="Quantity" Type="float" />
           <Property Name="IPG" Type="nvarchar" MaxLength="100" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_select_RecipesView1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="ProductCode" Type="nvarchar" MaxLength="1000" />
+          <Property Name="AlterProductCode" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="LineNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="WorkDate" Type="datetime" />
+          <Property Name="MaterialCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="MaterialName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="UnitMeasure" Type="nvarchar" MaxLength="25" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="IPG" Type="nvarchar" MaxLength="100" />
+          <Property Name="Bom" Type="nvarchar" MaxLength="100" />
         </RowType>
       </CollectionType>
     </ReturnType>
@@ -595,6 +941,7 @@ warning 6002: The table/view 'WorkPlanDataRawFK.dbo.tLines' does not have a prim
       </CollectionType>
     </ReturnType>
   </Function>
+  <Function Name="GetNavPurchData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="Insert_WorkPlanTableRecord1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="datework" Type="datetime" Mode="In" />
     <Parameter Name="LineName" Type="nvarchar" Mode="In" />
@@ -608,6 +955,9 @@ warning 6002: The table/view 'WorkPlanDataRawFK.dbo.tLines' does not have a prim
   <Function Name="Pr_DeleteMercuryRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="MaterialCode" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="Pr_DeleteStorageTaskRecord" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="bigint" Mode="In" />
+  </Function>
   <Function Name="pr_DeleteTestData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ID" Type="bigint" Mode="In" />
   </Function>
@@ -618,6 +968,20 @@ warning 6002: The table/view 'WorkPlanDataRawFK.dbo.tLines' does not have a prim
   <Function Name="pr_GetOPZ" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="start" Type="datetime" Mode="In" />
     <Parameter Name="end" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="PR_GetRecipesDataMainProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PR_GetRecipesDataMainProductBis" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PR_GetRecipesDataSemiProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PR_GetRecipesDataSemiProductBis" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PR_GetRecipesListMainProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="PR_GetRecipesListSemiProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="pr_InrestTransferData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaterialCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="DateWork" Type="datetime" Mode="In" />
+    <Parameter Name="Quantity" Type="float" Mode="In" />
+    <Parameter Name="AlterDate" Type="datetime" Mode="In" />
+    <Parameter Name="Source" Type="int" Mode="In" />
+    <Parameter Name="Dest" Type="int" Mode="In" />
   </Function>
   <Function Name="pr_InsertCommentData1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="ID" Type="bigint" Mode="In" />
@@ -665,7 +1029,11 @@ warning 6002: The table/view 'WorkPlanDataRawFK.dbo.tLines' does not have a prim
   </Function>
   <Function Name="SelectStockBalances1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SelectStockBalancesMes1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SelectStockBalancesMes2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SelectStockBalancesMesBis" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SelectStockBalancesPlant2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SelectStockBalancesPlant3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SelectStockBalancesPlantBis" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="Update_WorkPlanTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="WorkPlanDataRawFKModelStoreContainer">
     <EntitySet Name="NavPurchaseTable" EntityType="Self.NavPurchaseTable" Schema="dbo" store:Type="Tables" />
@@ -679,9 +1047,13 @@ warning 6002: The table/view 'WorkPlanDataRawFK.dbo.tLines' does not have a prim
     <EntitySet Name="tColorSelection" EntityType="Self.tColorSelection" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tComponentException" EntityType="Self.tComponentException" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tConsurptionData" EntityType="Self.tConsurptionData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tHeadersNames" EntityType="Self.tHeadersNames" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tMaterial" EntityType="Self.tMaterial" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tMercuryRecordSelected" EntityType="Self.tMercuryRecordSelected" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tMesPlantRelations" EntityType="Self.tMesPlantRelations" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tPlannedMeatContainers" EntityType="Self.tPlannedMeatContainers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tPropertyTable" EntityType="Self.tPropertyTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tStorageTask" EntityType="Self.tStorageTask" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tUserRecordSelected" EntityType="Self.tUserRecordSelected" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tWorkPlan" EntityType="Self.tWorkPlan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tWorkPlanDates" EntityType="Self.tWorkPlanDates" Schema="dbo" store:Type="Tables" />
@@ -714,6 +1086,14 @@ warning 6002: The table/view 'WorkPlanDataRawFK.dbo.tLines' does not have a prim
     [PlanOPZList].[IsBase] AS [IsBase]
     FROM [dbo].[PlanOPZList] AS [PlanOPZList]</DefiningQuery>
     </EntitySet>
+    <EntitySet Name="PlantAreas" EntityType="Self.PlantAreas" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [PlantAreas].[ID] AS [ID], 
+    [PlantAreas].[AreaID] AS [AreaID], 
+    [PlantAreas].[AreaName] AS [AreaName], 
+    [PlantAreas].[IsApproved] AS [IsApproved]
+    FROM [dbo].[PlantAreas] AS [PlantAreas]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="tBlockedMaterial" EntityType="Self.tBlockedMaterial" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [tBlockedMaterial].[id] AS [id], 
@@ -737,6 +1117,146 @@ warning 6002: The table/view 'WorkPlanDataRawFK.dbo.tLines' does not have a prim
     [tLines].[LineName] AS [LineName], 
     [tLines].[Comment] AS [Comment]
     FROM [dbo].[tLines] AS [tLines]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="NavPurchaseView" EntityType="Self.NavPurchaseView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [NavPurchaseView].[WorkDate] AS [WorkDate], 
+    [NavPurchaseView].[Executor] AS [Executor], 
+    [NavPurchaseView].[OrderType] AS [OrderType], 
+    [NavPurchaseView].[Status] AS [Status], 
+    [NavPurchaseView].[NextStatus] AS [NextStatus], 
+    [NavPurchaseView].[NessDateOrder] AS [NessDateOrder], 
+    [NavPurchaseView].[Comment] AS [Comment], 
+    [NavPurchaseView].[OrderNymber] AS [OrderNymber], 
+    [NavPurchaseView].[MaterialCode] AS [MaterialCode], 
+    [NavPurchaseView].[MaterialName] AS [MaterialName], 
+    [NavPurchaseView].[Comment1] AS [Comment1], 
+    [NavPurchaseView].[Quantity] AS [Quantity], 
+    [NavPurchaseView].[FromBalanses] AS [FromBalanses], 
+    [NavPurchaseView].[EdIzm] AS [EdIzm], 
+    [NavPurchaseView].[CFO] AS [CFO], 
+    [NavPurchaseView].[Initiator] AS [Initiator], 
+    [NavPurchaseView].[NumberRowMZZ] AS [NumberRowMZZ], 
+    [NavPurchaseView].[MZP] AS [MZP], 
+    [NavPurchaseView].[StatusMZP] AS [StatusMZP], 
+    [NavPurchaseView].[NumberRowMZP] AS [NumberRowMZP], 
+    [NavPurchaseView].[ContrAgent] AS [ContrAgent], 
+    [NavPurchaseView].[MZPCode] AS [MZPCode], 
+    [NavPurchaseView].[MZPNaim] AS [MZPNaim], 
+    [NavPurchaseView].[MZPQuantity] AS [MZPQuantity], 
+    [NavPurchaseView].[MZPEdIzm] AS [MZPEdIzm], 
+    [NavPurchaseView].[PlanDate] AS [PlanDate], 
+    [NavPurchaseView].[PlanOperDate] AS [PlanOperDate], 
+    [NavPurchaseView].[ENSGroupCode] AS [ENSGroupCode], 
+    [NavPurchaseView].[ENSGroup] AS [ENSGroup], 
+    [NavPurchaseView].[PlanQuantity] AS [PlanQuantity], 
+    [NavPurchaseView].[FactQuantity] AS [FactQuantity], 
+    [NavPurchaseView].[ContrAgentCode] AS [ContrAgentCode], 
+    [NavPurchaseView].[DayToSend] AS [DayToSend], 
+    [NavPurchaseView].[CurrPrice] AS [CurrPrice], 
+    [NavPurchaseView].[CurrencyCode] AS [CurrencyCode], 
+    [NavPurchaseView].[DateCreateMZP] AS [DateCreateMZP], 
+    [NavPurchaseView].[CFOCode] AS [CFOCode], 
+    [NavPurchaseView].[CurrStatusCode] AS [CurrStatusCode], 
+    [NavPurchaseView].[CurrStatus] AS [CurrStatus], 
+    [NavPurchaseView].[NextStatusCode] AS [NextStatusCode], 
+    [NavPurchaseView].[LastStatusDate] AS [LastStatusDate], 
+    [NavPurchaseView].[LastStatusTime] AS [LastStatusTime], 
+    [NavPurchaseView].[DateCreateZZ] AS [DateCreateZZ], 
+    [NavPurchaseView].[Address] AS [Address], 
+    [NavPurchaseView].[QuantityKey] AS [QuantityKey], 
+    [NavPurchaseView].[DT] AS [DT]
+    FROM [dbo].[NavPurchaseView] AS [NavPurchaseView]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="StockBalanceMesView" EntityType="Self.StockBalanceMesView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [StockBalanceMesView].[StorageID] AS [StorageID], 
+    [StockBalanceMesView].[Storage] AS [Storage], 
+    [StockBalanceMesView].[MaterialCode] AS [MaterialCode], 
+    [StockBalanceMesView].[MaterialName] AS [MaterialName], 
+    [StockBalanceMesView].[MatGroup] AS [MatGroup], 
+    [StockBalanceMesView].[MatGroupName] AS [MatGroupName], 
+    [StockBalanceMesView].[MatGroupAlter] AS [MatGroupAlter], 
+    [StockBalanceMesView].[LotName] AS [LotName], 
+    [StockBalanceMesView].[LotDescription] AS [LotDescription], 
+    [StockBalanceMesView].[Quantity] AS [Quantity], 
+    [StockBalanceMesView].[Unit] AS [Unit], 
+    [StockBalanceMesView].[MaterialOwner] AS [MaterialOwner], 
+    [StockBalanceMesView].[TestQuality] AS [TestQuality], 
+    [StockBalanceMesView].[StorageType] AS [StorageType], 
+    [StockBalanceMesView].[TestQualityGr] AS [TestQualityGr], 
+    [StockBalanceMesView].[TestOnStorage] AS [TestOnStorage], 
+    [StockBalanceMesView].[ProdDate] AS [ProdDate], 
+    [StockBalanceMesView].[BBFDate] AS [BBFDate], 
+    [StockBalanceMesView].[dpr] AS [dpr], 
+    [StockBalanceMesView].[bbf] AS [bbf], 
+    [StockBalanceMesView].[difdates] AS [difdates], 
+    [StockBalanceMesView].[difcurdates] AS [difcurdates], 
+    [StockBalanceMesView].[st] AS [st], 
+    [StockBalanceMesView].[WorkDate] AS [WorkDate], 
+    [StockBalanceMesView].[DayPeriod] AS [DayPeriod], 
+    [StockBalanceMesView].[DT] AS [DT]
+    FROM [dbo].[StockBalanceMesView] AS [StockBalanceMesView]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="StockBalancesPlantView" EntityType="Self.StockBalancesPlantView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [StockBalancesPlantView].[StorageID] AS [StorageID], 
+    [StockBalancesPlantView].[Storage] AS [Storage], 
+    [StockBalancesPlantView].[MaterialCode] AS [MaterialCode], 
+    [StockBalancesPlantView].[MaterialName] AS [MaterialName], 
+    [StockBalancesPlantView].[MatGroup] AS [MatGroup], 
+    [StockBalancesPlantView].[MatGroupName] AS [MatGroupName], 
+    [StockBalancesPlantView].[MatGroupAlter] AS [MatGroupAlter], 
+    [StockBalancesPlantView].[LotName] AS [LotName], 
+    [StockBalancesPlantView].[LotDescription] AS [LotDescription], 
+    [StockBalancesPlantView].[Quantity] AS [Quantity], 
+    [StockBalancesPlantView].[Unit] AS [Unit], 
+    [StockBalancesPlantView].[MaterialOwner] AS [MaterialOwner], 
+    [StockBalancesPlantView].[TestQuality] AS [TestQuality], 
+    [StockBalancesPlantView].[StorageType] AS [StorageType], 
+    [StockBalancesPlantView].[TestQualityGr] AS [TestQualityGr], 
+    [StockBalancesPlantView].[TestOnStorage] AS [TestOnStorage], 
+    [StockBalancesPlantView].[ProdDate] AS [ProdDate], 
+    [StockBalancesPlantView].[BBFDate] AS [BBFDate], 
+    [StockBalancesPlantView].[dpr] AS [dpr], 
+    [StockBalancesPlantView].[bbf] AS [bbf], 
+    [StockBalancesPlantView].[difdates] AS [difdates], 
+    [StockBalancesPlantView].[difcurdates] AS [difcurdates], 
+    [StockBalancesPlantView].[st] AS [st], 
+    [StockBalancesPlantView].[WorkDate] AS [WorkDate], 
+    [StockBalancesPlantView].[DayPeriod] AS [DayPeriod], 
+    [StockBalancesPlantView].[DT] AS [DT]
+    FROM [dbo].[StockBalancesPlantView] AS [StockBalancesPlantView]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="StockBalancesView" EntityType="Self.StockBalancesView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [StockBalancesView].[StorageID] AS [StorageID], 
+    [StockBalancesView].[Storage] AS [Storage], 
+    [StockBalancesView].[MaterialCode] AS [MaterialCode], 
+    [StockBalancesView].[MaterialName] AS [MaterialName], 
+    [StockBalancesView].[MatGroup] AS [MatGroup], 
+    [StockBalancesView].[MatGroupName] AS [MatGroupName], 
+    [StockBalancesView].[MatGroupAlter] AS [MatGroupAlter], 
+    [StockBalancesView].[LotName] AS [LotName], 
+    [StockBalancesView].[LotDescription] AS [LotDescription], 
+    [StockBalancesView].[Quantity] AS [Quantity], 
+    [StockBalancesView].[Unit] AS [Unit], 
+    [StockBalancesView].[MaterialOwner] AS [MaterialOwner], 
+    [StockBalancesView].[TestQuality] AS [TestQuality], 
+    [StockBalancesView].[StorageType] AS [StorageType], 
+    [StockBalancesView].[TestQualityGr] AS [TestQualityGr], 
+    [StockBalancesView].[TestOnStorage] AS [TestOnStorage], 
+    [StockBalancesView].[ProdDate] AS [ProdDate], 
+    [StockBalancesView].[BBFDate] AS [BBFDate], 
+    [StockBalancesView].[dpr] AS [dpr], 
+    [StockBalancesView].[bbf] AS [bbf], 
+    [StockBalancesView].[difdates] AS [difdates], 
+    [StockBalancesView].[difcurdates] AS [difcurdates], 
+    [StockBalancesView].[st] AS [st], 
+    [StockBalancesView].[WorkDate] AS [WorkDate], 
+    [StockBalancesView].[Smeene] AS [Smeene], 
+    [StockBalancesView].[DT] AS [DT]
+    FROM [dbo].[StockBalancesView] AS [StockBalancesView]</DefiningQuery>
     </EntitySet>
   </EntityContainer>
 </Schema>

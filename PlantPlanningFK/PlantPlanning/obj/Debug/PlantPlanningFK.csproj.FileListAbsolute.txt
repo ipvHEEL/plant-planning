@@ -43,4 +43,8 @@ E:\MyProgramms\PlantPlanningFK\PlantPlanningFK\PlantPlanning\bin\Debug\NLog.Web.
 E:\MyProgramms\PlantPlanningFK\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanning.exe.manifest
 E:\MyProgramms\PlantPlanningFK\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanning.application
 E:\MyProgramms\PlantPlanningFK\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanningFK.csproj.CopyComplete
+E:\MyProgramms\PlantPlanningFK\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanning.FormTransfer.resources
+E:\MyProgramms\PlantPlanningFK\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanning.FormReport.resources
 E:\MyProgramms\PlantPlanningFK\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanningFK.csprojAssemblyReference.cache
+E:\MyProgramms\PlantPlanningFK\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanning.UpdateWindow.resources
+E:\MyProgramms\PlantPlanningFK\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanning.FormTask.resources

@@ -6,29 +6,38 @@
     <edmx:Diagrams>
       <Diagram DiagramId="2cfbb889b77c473db0303f0d85ed7b49" Name="Diagram1" ZoomLevel="95">
         <EntityTypeShape EntityType="WorkPlanDataRawFKModel.RPSettings" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.StockBalancesWithComments" Width="1.5" PointX="15.5" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.MesLocations" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.PlanOPZList" Width="1.5" PointX="8.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tApplication" Width="1.5" PointX="17.375" PointY="1" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tColorSelection" Width="1.5" PointX="11.375" PointY="0.75" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tMaterial" Width="1.5" PointX="11.375" PointY="3.75" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tMercuryRecordSelected" Width="1.5" PointX="19.5" PointY="1.125" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tUserRecordSelected" Width="1.5" PointX="11.375" PointY="7.75" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tPlannedMeatContainers" Width="1.5" PointX="13.375" PointY="0.75" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tConsurptionData" Width="1.5" PointX="13.375" PointY="5.75" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tBlockedMaterial" Width="1.5" PointX="17.125" PointY="6.375" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tBlockedProduct" Width="1.5" PointX="21.625" PointY="0.5" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.SystemTable" Width="1.5" PointX="4.875" PointY="7.5" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tComponentException" Width="1.5" PointX="21.625" PointY="6.5" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tWorkPlan" Width="1.5" PointX="22" PointY="4" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tWorkPlanDates" Width="1.5" PointX="19.625" PointY="3.75" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tWorkPlanElement" Width="1.5" PointX="19.125" PointY="6.375" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tLines" Width="1.5" PointX="17.375" PointY="3.875" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.StockBalancesWithComments" Width="1.5" PointX="11.75" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.MesLocations" Width="1.5" PointX="8.125" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.PlanOPZList" Width="1.5" PointX="6.125" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tApplication" Width="1.5" PointX="15.375" PointY="0.625" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tColorSelection" Width="1.5" PointX="9.875" PointY="0.5" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tMaterial" Width="1.5" PointX="8.125" PointY="5.625" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tMercuryRecordSelected" Width="1.5" PointX="15.625" PointY="7.375" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tUserRecordSelected" Width="1.5" PointX="9.875" PointY="2.625" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tPlannedMeatContainers" Width="1.5" PointX="9.75" PointY="5.625" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tConsurptionData" Width="1.5" PointX="11.75" PointY="7" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tBlockedMaterial" Width="1.5" PointX="15.5" PointY="3" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tBlockedProduct" Width="1.5" PointX="17.375" PointY="0.5" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.SystemTable" Width="1.5" PointX="4.375" PointY="7.5" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tComponentException" Width="1.5" PointX="17.375" PointY="5.125" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tWorkPlan" Width="1.5" PointX="17.5" PointY="2.875" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tWorkPlanDates" Width="1.5" PointX="15.5" PointY="5.25" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tWorkPlanElement" Width="1.5" PointX="13.875" PointY="7" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tLines" Width="1.5" PointX="13.625" PointY="4.625" />
         <EntityTypeShape EntityType="WorkPlanDataRawFKModel.NavPurchaseTable" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.StockBalances" Width="1.5" PointX="3" PointY="4.625" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.StockBalancesMes" Width="1.5" PointX="5" PointY="0.5" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.StockBalancesPlant" Width="1.5" PointX="7" PointY="1" />
-        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.MesAreas" Width="1.5" PointX="9.25" PointY="0.5" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.StockBalances" Width="1.5" PointX="2.625" PointY="4.75" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.StockBalancesMes" Width="1.5" PointX="4.625" PointY="0.5" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.StockBalancesPlant" Width="1.5" PointX="6.375" PointY="0.625" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.MesAreas" Width="1.5" PointX="8" PointY="0.5" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tHeadersNames" Width="1.5" PointX="13.75" PointY="2.625" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tMesPlantRelations" Width="1.5" PointX="13.625" PointY="0.5" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tStorageTask" Width="1.5" PointX="19.25" PointY="0.625" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.PlantAreas" Width="1.5" PointX="17.5" PointY="7.375" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.NavPurchaseView" Width="1.5" PointX="5.75" PointY="10.75" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.StockBalanceMesView" Width="1.5" PointX="7.75" PointY="10.75" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.StockBalancesPlantView" Width="1.5" PointX="9.75" PointY="10.75" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.StockBalancesView" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="WorkPlanDataRawFKModel.tPropertyTable" Width="1.5" PointX="12.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

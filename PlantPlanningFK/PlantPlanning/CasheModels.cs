@@ -18,10 +18,57 @@ namespace PlantPlanning
             set { base.DoubleBuffered = value; }
         }
 
-        public DBDataGridView()
+       public DBDataGridView()
         {
             DoubleBuffered = true;
         }
+    }
+
+    public class TaskViewData
+    {
+        public string Executor { get; set; }
+        public string Status { get; set; }
+        public string NextStatus { get; set; }
+        public DateTime NessDateOrder { get; set; }
+        public string OrderNymber { get; set; }
+        public string MaterialCode { get; set; }
+        public string MaterialName { get; set; }
+        public double Quantity { get; set; }
+        public double FromBalanses { get; set; }
+        public string EdIzm { get; set; }
+        public string Initiator { get; set; }
+        public string MZP { get; set; }
+        public string StatusMZP { get; set; }
+        public double NumberRowMZP { get; set; }
+        public string ContrAgent { get; set; }
+        public string MZPCode { get; set; }
+        public string MZPNaim { get; set; }
+        public double MZPQuantity { get; set; }
+        public string MZPEdIzm { get; set; }
+        public DateTime PlanDate { get; set; }
+        public DateTime PlanOperDate { get; set; }
+        public string ENSGroupCode { get; set; }
+        public string ENSGroup { get; set; }
+        public double PlanQuantity { get; set; }
+        public double FactQuantity { get; set; }
+        public string ContrAgentCode { get; set; }
+        public int DayToSend { get; set; }
+        public double CurrPrice { get; set; }
+        public string CurrencyCode { get; set; }
+        public DateTime DateCreateMZP { get; set; }
+        public string CurrStatusCode { get; set; }
+        public string CurrStatus { get; set; }
+        public DateTime LastStatusDate { get; set; }
+        public DateTime DateCreateZZ { get; set; }
+        public string Address { get; set; }
+        public string QuantityKey { get; set; }
+    }
+
+    public class ComboData
+    {
+        public int StorageID { get; set; }
+        public string StorageName { get; set; }
+        public double StorageQuant { get; set; }
     }
 
     public class ErrorGrid
@@ -31,6 +78,20 @@ namespace PlantPlanning
         public string ProdName { get; set; }
         public string LineName { get; set; }
         public string Comment { get; set; }
+    }
+
+    public class TransferData
+    {
+        public long id { get; set; }
+        public System.DateTime DateWork { get; set; }
+        public Nullable<System.DateTime> AlterDate { get; set; }
+        public string MaterialCode { get; set; }
+        public string MaterialName { get; set; }
+        public double Quantity { get; set; }
+        public int SourceID { get; set; }
+        public string MesStorageName { get; set; }
+        public int DestID { get; set; }
+        public string PlantStorageName { get; set; }
     }
 
     public class AppData
@@ -167,6 +228,7 @@ namespace PlantPlanning
         public DateTime ProdDate { get; set; }
         public DateTime BBFDate { get; set; }
         public string TestQuality { get; set; }
+        public string TestQualityGr { get; set; }
     }
 
     public class StockBalancesPlant
@@ -183,6 +245,8 @@ namespace PlantPlanning
         public string DayPeriod { get; set; }
         public string AlterLotName { get; set; }
         public string Status { get; set; }
+        public string TestQuality { get; set; }
+        public string TestQualityGr { get; set; }
     }
 
     public class PlantOperList
@@ -211,15 +275,24 @@ namespace PlantPlanning
     public class lData
     {
         public DateTime DateWork { get; set; }
+        public int WorkDay { get; set; }
+        public int WorkMonth { get; set; }
+        public int WorkYear { get; set; }
+
         public string Line { get; set; }
+        public string ParentCode { get; set; }
         public string ProdCode { get; set; }
         public string ProdCodeStr { get; set; }
         public string ProdName { get; set; }
         public string AlterProdName { get; set; }
         public double Quantity { get; set; }
+        public double ParentQuant { get; set; }
+        public double ResValue { get; set; }
         public bool RePack { get; set; }
         public bool Spices { get; set; } = false;
         public string IPG { get; set; }
+        public string BOM { get; set; }
+        public int IsSemoProd { get; set; }
     }
 
     public class CommentData_Result
@@ -231,6 +304,18 @@ namespace PlantPlanning
         public Nullable<bool> IsActual { get; set; }
         public string UserName { get; set; }
         public string Comment { get; set; }
+    }
+
+    public class AbsentMaterial
+    {
+        public string MaterialCode { get; set; }
+        public string MaterialName { get; set; }
+        public string MaterialGroup { get; set; } //сырье/упаковка/ГП
+        public string MaterialMultiplyString { get; set; }
+        public string WaitingDaysString { get; set; }
+        public string StorageQuantityString { get; set; }
+        public string Responsible { get; set; }
+        public string Sender { get; set; }
     }
 
     public class Material
@@ -296,8 +381,16 @@ namespace PlantPlanning
         public string AlterValueS { get; set; }
         public string AlterValueUDS { get; set; }
 
+        public string ValueS_RE { get; set; }
+        public string ValueUDS_RE { get; set; }
+        public string AlterValueS_RE { get; set; }
+        public string AlterValueUDS_RE { get; set; }
+
         public double Value_ { get; set; }
         public double ValueUD { get; set; }
+
+        public double ValueEnterp { get; set; }
+        public double ValueEnterpUD { get; set; }
 
         public string Color1 { get; set; } = "Black";   //остатки склады
         public string Color2 { get; set; } = "Black";//остатки производство
@@ -324,6 +417,9 @@ namespace PlantPlanning
         public List<Raws> ListC { get; set; }
         public List<Raws> ListD { get; set; }
 
+        public List<RawsAlter> RawStorageListAlter { get; set; }
+        public List<RawsAlter> RawEnterpriseListAlter { get; set; }
+
         public bool DontShow { get; set; } = false;
 
         public double Month1 { get; set; } //потребление за 3 прошлых месяца
@@ -335,6 +431,11 @@ namespace PlantPlanning
 
         public List<int> ListPlus { get; set; }
         public List<int> ListLine { get; set; }
+
+        public int MaterialStatus { get; set; } = 10;
+        public string BOM { get; set;}
+        public int IsSemiProduct { get; set; }
+
     }
 
     //потр на дату. для сырья...
@@ -393,6 +494,7 @@ namespace PlantPlanning
     public class Raws
     {
         public string Storage { get; set; } //Склад/Линия/№ заявки
+        public int StorageID { get; set; }
         public string LotName { get; set; } //Lot
         public string LotDescr { get; set; }  //in StorageQuantList - результирующая запись
         public string MaterialCode { get; set; } = "";
@@ -409,6 +511,28 @@ namespace PlantPlanning
         public string MZP { get; set; }
     }
 
+    public class RawsAlter
+    {
+        public string Storage { get; set; } //Склад/Линия/№ заявки
+        public int StorageID { get; set; }
+        public string LotName { get; set; } //Lot
+        public string LotDescr { get; set; }  //in StorageQuantList - результирующая запись
+        public string MaterialCode { get; set; } = "";
+        public string MaterialName { get; set; } = "";
+        public double Quantity { get; set; }
+
+        public DateTime ProdDate { get; set; }
+        public DateTime BBFDate { get; set; }  //PlanOperDate
+        public DateTime AlterDate { get; set; }
+        public DateTime AddDate { get; set; }
+        public string Color { get; set; }
+
+        public string Initiator { get; set; }
+        public string StatusMZP { get; set; }
+        public string MZP { get; set; }
+        public string TestQuality { get; set; }
+    }
+
     public class DailyResult
     {
         public string LineName { get; set; }
@@ -416,6 +540,28 @@ namespace PlantPlanning
         public double Quantity { get; set; }
         public string MaterialType { get; set; }
         public int Location { get; set; }
+    }
+
+    public class StatusesMaterials   //Using as both MatCde - AlterMatCode
+    {
+        public string MaterialCode { get; set; }
+        public string BOM { get; set; }
+    }
+
+    public class MatNameAndAlterName
+    {
+        public string MaterialCode { get; set; }
+        public string AlterMaterialCode { get; set; }
+        public string MaterialGroup { get; set; }
+    }
+
+    public class MaterialBaseData
+    {
+        public string MaterialCode { get; set; }
+        public string MaterialName { get; set; }
+        public string IPG { get; set; }
+        public string BOM { get; set; }
+     //   public int IsSemiProduct { get; set; }
     }
 
     //список рецептов. заголовки 
@@ -426,6 +572,7 @@ namespace PlantPlanning
         public string ProductCodeString { get; set; }
         public string ProductName { get; set; }
         public bool RePack { get; set; } = false;
+      //  public string IPG { get; set; }  //TypeOfMaterial
         public DateTime DStart { get; set; }
         public List<ProductLinesRecipes> RecLineList { get; set; }
     }
@@ -448,23 +595,20 @@ namespace PlantPlanning
     public class RecipeList
     {
         public string MaterialCode { get; set; }
+        public string AlterMaterialCode { get; set; }
         public string MaterialName { get; set; }
         public double MaterialQuantity { get; set; }
         public string UMC { get; set; }
-        public string IPG { get; set; }
+        public int IsSemiProd { get; set; }
+        public string IPG { get; set; }  //TypeOfMaterial
+        public string BOM { get; set; }
     }
-
-
-
-
 
     public interface IDataPageRetriever
     {
         DataTable SupplyPageOfData(int lowerPageBoundary, int rowsPerPage , int ColumnIndex);
         int GetRowCount();
     }
-
-
 
     public class DataRetriever : IDataPageRetriever
     {
@@ -1360,8 +1504,6 @@ namespace PlantPlanning
             return table;
         }
     }
-
-
 
     public class Cache
     {

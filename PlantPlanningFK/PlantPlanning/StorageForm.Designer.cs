@@ -51,7 +51,7 @@
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Storage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new PlantPlanning.DBDataGridView();        //System.Windows.Forms.DataGridView();
             this.TestQuality = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -341,7 +341,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn Storage;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private /*System.Windows.Forms.DataGridView*/  PlantPlanning.DBDataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn TestQuality;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;

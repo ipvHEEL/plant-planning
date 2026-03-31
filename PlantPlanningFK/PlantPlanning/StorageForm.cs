@@ -56,10 +56,11 @@ namespace PlantPlanning
             dt1.Columns.Add("difdates");
             dt1.Columns.Add("difcurdates");
 
-          //  List<string> StorageNames = fm.MesLocList.Select(x => x.LocationName).Distinct().ToList();
+            List<string> StorageNames = fm.StorageNamesList;        // fm.MesLocList.Select(x => x.LocationName).Distinct().ToList();
+            var StockList = fm.tdb.StockBalancesMes.Where(x => x.DT == DateTime.Today.Date && (x.WorkDate.Hour >= 6 || x.WorkDate.Hour <= 10)).ToList();
 
          //   var StockList = fm.edb.f_spMaterialLot_GetAllByWarehouseAndZoneFromNav_IT6WithoutCommentMody().ToList();
-         //   StockList = StockList.Where(x => fm.StorageNamesList.Contains(x.Склад)).ToList();
+            StockList = StockList.Where(x => fm.StorageNamesList.Contains(x.Storage)).ToList();
 
             string[] NewRow;
             string ProductCode = "";
@@ -73,9 +74,9 @@ namespace PlantPlanning
             Int64 difdates;
             Int64 difcurdates;
 
-          /*  for (int i = 0; i < StockList.Count; i++)
+            for (int i = 0; i < StockList.Count; i++)
             {
-                if (ProductCode != StockList[i].Код)
+                if (ProductCode != StockList[i].MaterialCode)
                 {//insert row
 
                     if (ProductCode != "")
@@ -93,11 +94,11 @@ namespace PlantPlanning
                     }
 
                     TotalQuantity = 0;
-                    ProductCode = StockList[i].Код;
-                    ProductName = StockList[i].Наименование;
+                    ProductCode = StockList[i].MaterialCode;
+                    ProductName = StockList[i].MaterialName;
                 }
 
-                Quantity = (double)StockList[i].Количество;
+                Quantity = (double)StockList[i].Quantity;
                 TotalQuantity = TotalQuantity + Quantity;
                 ProdDate = (DateTime)StockList[i].ProdDate;
                 BBFDate = (DateTime)StockList[i].BBFDate;
@@ -107,18 +108,18 @@ namespace PlantPlanning
                 difcurdates = (Int64)StockList[i].difcurdates;
 
                 NewRow = new string[]
-                { StockList[i].Склад,
-                  StockList[i].Код,
-                  StockList[i].Наименование,
+                { StockList[i].Storage,
+                  StockList[i].MaterialCode,
+                  StockList[i].MaterialName,
                   StockList[i].MatGroup,
-                  StockList[i].Лот,
+                  StockList[i].LotName,
                   StockList[i].LotDescription,
                   Quantity.ToString("0.0"),
-                  StockList[i].Владелец,
-                  StockList[i].ТестКачества,
-                  StockList[i].ТипСклада,
-                  StockList[i].ТестКачестваГр,
-                  StockList[i].ТестНаСкладе,
+                  StockList[i].MaterialOwner,
+                  StockList[i].TestQuality,
+                  StockList[i].StorageType,
+                  StockList[i].TestQualityGr,
+                  StockList[i].TestOnStorage,
                   ProdDate.ToString("dd.MM.yyyy"),
                   BBFDate.ToString("dd.MM.yyyy"),
                   dpr.ToString(),
@@ -127,7 +128,21 @@ namespace PlantPlanning
                   difcurdates.ToString()
                 };
                 dt1.Rows.Add(NewRow);
-            }*/
+            }
+
+            if (ProductCode != "")
+            {
+                NewRow = new string[]
+                {"Итого",
+                        ProductCode,
+                        ProductName,
+                        "",
+                        "",
+                        "",
+                        TotalQuantity.ToString("0")
+                };
+                dt1.Rows.Add(NewRow);
+            }
 
             bs = new BindingSource();
             bs.DataSource = dt1;

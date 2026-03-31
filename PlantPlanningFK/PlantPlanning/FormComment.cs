@@ -33,6 +33,9 @@ namespace PlantPlanning
             dataGridView1.DataSource = null;
             dataGridView1.Rows.Clear();
 
+            textBoxCode.Text = cf.UserSelectedCode;
+            textBoxNaim.Text = cf.UserSelectedProdName;
+
             string SqlString = "SELECT * from fn_select_CommentData()";  // "select * from tPartyDeclaration";
             bs = fm.ConnectionSource(fm.connTest, SqlString, "TComment");
             dataGridView1.DataSource = bs;
@@ -41,8 +44,7 @@ namespace PlantPlanning
             dataGridView1.Columns[6].Width = 500;
 
             dataGridView1.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-          
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;          
         }     
 
         private void button2_Click(object sender, EventArgs e)
@@ -61,8 +63,8 @@ namespace PlantPlanning
         private void button1_Click(object sender, EventArgs e)
         {
             ID = 0;
-            textBoxCode.Text = "";
-            textBoxNaim.Text = "";
+            textBoxCode.Text = cf.UserSelectedCode;
+            textBoxNaim.Text = cf.UserSelectedProdName;
             textBoxComment.Text = "";
             checkBox1.Checked = false;
 

@@ -528,7 +528,7 @@ namespace PlantPlanning
             var sbmDataList = fm.StockBalancesMesList.Where(x => (x.WorkDate.Date == LocalStartDate.Date) && (x.WorkDate.Hour >= 18) && (x.WorkDate.Hour <= 22)).ToList();
             sbmDataList = sbmDataList.Where(x => fm.StorageNamesList.Contains(x.Storage)).ToList();
             sbmDataList = sbmDataList.Where(x => MaterialNamesList.Contains(x.MaterialCode)).ToList();
-            foreach (SelectStockBalancesMes1_Result ssm in sbmDataList)
+            foreach (SelectStockBalancesMesBis_Result ssm in sbmDataList)
             {
                 SBMList.Add(fm.NewStockBalancesMes(ssm));
             }
@@ -536,7 +536,7 @@ namespace PlantPlanning
             sbmDataList = fm.StockBalancesMesList.Where(x => (x.WorkDate.Date == LocalEndDate.Date) && (x.WorkDate.Hour >= 6) && (x.WorkDate.Hour <= 10)).ToList();
             sbmDataList = sbmDataList.Where(x => fm.StorageNamesList.Contains(x.Storage)).ToList();
             sbmDataList = sbmDataList.Where(x => MaterialNamesList.Contains(x.MaterialCode)).ToList();
-            foreach (SelectStockBalancesMes1_Result ssm in sbmDataList)
+            foreach (SelectStockBalancesMesBis_Result ssm in sbmDataList)
             {
                 SBMList.Add(fm.NewStockBalancesMes(ssm));
             }
@@ -1996,7 +1996,7 @@ namespace PlantPlanning
                         foreach (var ELD in ELDListDate)
                         {
                             var CP = CurProduct.Where(x => (x.ProductCode == ELD.ProdCode) && (x.LineNumber == ELD.Line) && (x.WorkDate <= dt1)).ToList();  //(x.Prod_No == ELD.ProdCode) && (x.WorkCenter == ELD.Line)
-                            fn_select_RecipesView_Result SRR;
+                            PR_GetRecipesDataMainProductBis_Result SRR;
                             try
                             {
                                 //  CP = CP.Where(x => x.WorkDate <= dt1).OrderByDescending(x => x.WorkDate).ToList();
