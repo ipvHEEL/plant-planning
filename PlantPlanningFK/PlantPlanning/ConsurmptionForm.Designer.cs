@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsurmptionForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel5 = new System.Windows.Forms.Panel();
             this.dgvStorages = new System.Windows.Forms.DataGridView();
             this.ColumnStorages1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,7 +46,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.button1_k = new System.Windows.Forms.Button();
             this.cbShortReport = new System.Windows.Forms.CheckBox();
-            this.button1_j = new System.Windows.Forms.Button();
             this.button1_i = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.cbViews = new System.Windows.Forms.ComboBox();
@@ -159,6 +158,19 @@
             this.IsActualC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CommentC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tbName = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tb_Code = new System.Windows.Forms.TextBox();
+            this.cbLineList = new System.Windows.Forms.ComboBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.button1_j = new System.Windows.Forms.Button();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorages)).BeginInit();
             this.panel4.SuspendLayout();
@@ -181,6 +193,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsing)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvComment)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.tabPage7.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel5
@@ -263,30 +278,21 @@
             // panel4
             // 
             this.panel4.Controls.Add(this.button1_k);
-            this.panel4.Controls.Add(this.cbShortReport);
+            this.panel4.Controls.Add(this.tabControl1);
             this.panel4.Controls.Add(this.button1_j);
             this.panel4.Controls.Add(this.button1_i);
-            this.panel4.Controls.Add(this.label4);
-            this.panel4.Controls.Add(this.cbViews);
-            this.panel4.Controls.Add(this.cbRawEnterprise);
             this.panel4.Controls.Add(this.button1_h);
             this.panel4.Controls.Add(this.button11);
             this.panel4.Controls.Add(this.button1_g);
             this.panel4.Controls.Add(this.button1_f);
             this.panel4.Controls.Add(this.button1_e);
-            this.panel4.Controls.Add(this.comboBoxFiltering);
             this.panel4.Controls.Add(this.button7);
             this.panel4.Controls.Add(this.button1_a);
             this.panel4.Controls.Add(this.button1_d);
             this.panel4.Controls.Add(this.button1_c);
             this.panel4.Controls.Add(this.button1_b);
-            this.panel4.Controls.Add(this.cbFilter);
             this.panel4.Controls.Add(this.button3);
             this.panel4.Controls.Add(this.button2);
-            this.panel4.Controls.Add(this.cbAddDay);
-            this.panel4.Controls.Add(this.cbUsingMaterial);
-            this.panel4.Controls.Add(this.cbUseMaterialPlanning);
-            this.panel4.Controls.Add(this.cbMaterialDelay);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel4.Location = new System.Drawing.Point(1317, 0);
             this.panel4.Name = "panel4";
@@ -296,9 +302,9 @@
             // button1_k
             // 
             this.button1_k.BackColor = System.Drawing.Color.Aqua;
-            this.button1_k.Location = new System.Drawing.Point(7, 71);
+            this.button1_k.Location = new System.Drawing.Point(7, 101);
             this.button1_k.Name = "button1_k";
-            this.button1_k.Size = new System.Drawing.Size(140, 26);
+            this.button1_k.Size = new System.Drawing.Size(140, 21);
             this.button1_k.TabIndex = 25;
             this.button1_k.Text = "Новый рецепт";
             this.button1_k.UseVisualStyleBackColor = false;
@@ -307,23 +313,12 @@
             // cbShortReport
             // 
             this.cbShortReport.AutoSize = true;
-            this.cbShortReport.Location = new System.Drawing.Point(7, 49);
+            this.cbShortReport.Location = new System.Drawing.Point(4, 53);
             this.cbShortReport.Name = "cbShortReport";
             this.cbShortReport.Size = new System.Drawing.Size(142, 17);
             this.cbShortReport.TabIndex = 24;
             this.cbShortReport.Text = "Потребность в СЫРЬЕ";
             this.cbShortReport.UseVisualStyleBackColor = true;
-            // 
-            // button1_j
-            // 
-            this.button1_j.BackColor = System.Drawing.Color.Lavender;
-            this.button1_j.Location = new System.Drawing.Point(7, 97);
-            this.button1_j.Name = "button1_j";
-            this.button1_j.Size = new System.Drawing.Size(140, 26);
-            this.button1_j.TabIndex = 23;
-            this.button1_j.Text = "ВЫВОД";
-            this.button1_j.UseVisualStyleBackColor = false;
-            this.button1_j.Click += new System.EventHandler(this.button1_j_Click);
             // 
             // button1_i
             // 
@@ -340,7 +335,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(237, 48);
+            this.label4.Location = new System.Drawing.Point(234, 52);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(79, 13);
             this.label4.TabIndex = 8;
@@ -353,7 +348,7 @@
             "Остаток",
             "Потребление",
             "Дефицит"});
-            this.cbViews.Location = new System.Drawing.Point(322, 45);
+            this.cbViews.Location = new System.Drawing.Point(343, 49);
             this.cbViews.Name = "cbViews";
             this.cbViews.Size = new System.Drawing.Size(149, 21);
             this.cbViews.TabIndex = 7;
@@ -363,7 +358,7 @@
             // cbRawEnterprise
             // 
             this.cbRawEnterprise.AutoSize = true;
-            this.cbRawEnterprise.Location = new System.Drawing.Point(320, 25);
+            this.cbRawEnterprise.Location = new System.Drawing.Point(317, 29);
             this.cbRawEnterprise.Name = "cbRawEnterprise";
             this.cbRawEnterprise.Size = new System.Drawing.Size(198, 17);
             this.cbRawEnterprise.TabIndex = 19;
@@ -409,9 +404,9 @@
             // button1_f
             // 
             this.button1_f.BackColor = System.Drawing.Color.RosyBrown;
-            this.button1_f.Location = new System.Drawing.Point(6, 123);
+            this.button1_f.Location = new System.Drawing.Point(6, 143);
             this.button1_f.Name = "button1_f";
-            this.button1_f.Size = new System.Drawing.Size(140, 26);
+            this.button1_f.Size = new System.Drawing.Size(140, 21);
             this.button1_f.TabIndex = 19;
             this.button1_f.Text = "СГ по Меркурию";
             this.button1_f.UseVisualStyleBackColor = false;
@@ -432,11 +427,11 @@
             // 
             this.comboBoxFiltering.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxFiltering.FormattingEnabled = true;
-            this.comboBoxFiltering.Location = new System.Drawing.Point(151, 72);
+            this.comboBoxFiltering.Location = new System.Drawing.Point(2, 50);
             this.comboBoxFiltering.Name = "comboBoxFiltering";
-            this.comboBoxFiltering.Size = new System.Drawing.Size(359, 21);
+            this.comboBoxFiltering.Size = new System.Drawing.Size(495, 21);
             this.comboBoxFiltering.TabIndex = 17;
-            this.comboBoxFiltering.Text = "Фильтр по плану";
+            this.comboBoxFiltering.Text = "Выберите план";
             this.comboBoxFiltering.SelectedIndexChanged += new System.EventHandler(this.comboBoxFiltering_SelectedIndexChanged);
             // 
             // button7
@@ -455,9 +450,9 @@
             // button1_a
             // 
             this.button1_a.BackColor = System.Drawing.Color.DarkGray;
-            this.button1_a.Location = new System.Drawing.Point(6, 149);
+            this.button1_a.Location = new System.Drawing.Point(6, 164);
             this.button1_a.Name = "button1_a";
-            this.button1_a.Size = new System.Drawing.Size(140, 26);
+            this.button1_a.Size = new System.Drawing.Size(140, 21);
             this.button1_a.TabIndex = 14;
             this.button1_a.Text = "Не заданы пар-ры пос-к";
             this.button1_a.UseVisualStyleBackColor = false;
@@ -466,9 +461,9 @@
             // button1_d
             // 
             this.button1_d.BackColor = System.Drawing.Color.LightCyan;
-            this.button1_d.Location = new System.Drawing.Point(6, 201);
+            this.button1_d.Location = new System.Drawing.Point(6, 206);
             this.button1_d.Name = "button1_d";
-            this.button1_d.Size = new System.Drawing.Size(140, 26);
+            this.button1_d.Size = new System.Drawing.Size(140, 21);
             this.button1_d.TabIndex = 13;
             this.button1_d.Text = "Материал ОПР";
             this.button1_d.UseVisualStyleBackColor = false;
@@ -477,9 +472,9 @@
             // button1_c
             // 
             this.button1_c.BackColor = System.Drawing.Color.Gold;
-            this.button1_c.Location = new System.Drawing.Point(6, 175);
+            this.button1_c.Location = new System.Drawing.Point(6, 185);
             this.button1_c.Name = "button1_c";
-            this.button1_c.Size = new System.Drawing.Size(140, 26);
+            this.button1_c.Size = new System.Drawing.Size(140, 21);
             this.button1_c.TabIndex = 12;
             this.button1_c.Text = "Нет заявки, будет деф-т";
             this.button1_c.UseVisualStyleBackColor = false;
@@ -499,7 +494,7 @@
             // cbFilter
             // 
             this.cbFilter.AutoSize = true;
-            this.cbFilter.Location = new System.Drawing.Point(165, 25);
+            this.cbFilter.Location = new System.Drawing.Point(162, 29);
             this.cbFilter.Name = "cbFilter";
             this.cbFilter.Size = new System.Drawing.Size(139, 17);
             this.cbFilter.TabIndex = 4;
@@ -538,7 +533,7 @@
             // cbAddDay
             // 
             this.cbAddDay.AutoSize = true;
-            this.cbAddDay.Location = new System.Drawing.Point(320, 4);
+            this.cbAddDay.Location = new System.Drawing.Point(317, 8);
             this.cbAddDay.Name = "cbAddDay";
             this.cbAddDay.Size = new System.Drawing.Size(194, 17);
             this.cbAddDay.TabIndex = 4;
@@ -551,7 +546,7 @@
             this.cbUsingMaterial.AutoSize = true;
             this.cbUsingMaterial.Checked = true;
             this.cbUsingMaterial.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbUsingMaterial.Location = new System.Drawing.Point(165, 4);
+            this.cbUsingMaterial.Location = new System.Drawing.Point(162, 8);
             this.cbUsingMaterial.Name = "cbUsingMaterial";
             this.cbUsingMaterial.Size = new System.Drawing.Size(149, 17);
             this.cbUsingMaterial.TabIndex = 3;
@@ -564,7 +559,7 @@
             this.cbUseMaterialPlanning.AutoSize = true;
             this.cbUseMaterialPlanning.Checked = true;
             this.cbUseMaterialPlanning.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbUseMaterialPlanning.Location = new System.Drawing.Point(7, 25);
+            this.cbUseMaterialPlanning.Location = new System.Drawing.Point(4, 29);
             this.cbUseMaterialPlanning.Name = "cbUseMaterialPlanning";
             this.cbUseMaterialPlanning.Size = new System.Drawing.Size(143, 17);
             this.cbUseMaterialPlanning.TabIndex = 1;
@@ -575,7 +570,7 @@
             // cbMaterialDelay
             // 
             this.cbMaterialDelay.AutoSize = true;
-            this.cbMaterialDelay.Location = new System.Drawing.Point(7, 4);
+            this.cbMaterialDelay.Location = new System.Drawing.Point(4, 8);
             this.cbMaterialDelay.Name = "cbMaterialDelay";
             this.cbMaterialDelay.Size = new System.Drawing.Size(137, 17);
             this.cbMaterialDelay.TabIndex = 0;
@@ -1059,8 +1054,8 @@
             // 
             // DataGridViewTextBoxColumn11
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DataGridViewTextBoxColumn11.DefaultCellStyle = dataGridViewCellStyle6;
             this.DataGridViewTextBoxColumn11.HeaderText = "Потребление (кг)";
             this.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11";
             this.DataGridViewTextBoxColumn11.ReadOnly = true;
@@ -1093,8 +1088,8 @@
             // 
             // dataGridViewTextBoxColumn10
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn10.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridViewTextBoxColumn10.HeaderText = "Количество (кг)";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             this.dataGridViewTextBoxColumn10.ReadOnly = true;
@@ -1239,8 +1234,8 @@
             // 
             // dataGridViewTextBoxColumn3
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewTextBoxColumn3.HeaderText = "Количество (кг)";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
@@ -1249,8 +1244,8 @@
             // 
             // dataGridViewTextBoxColumn4
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridViewTextBoxColumn4.HeaderText = "Норма на тонну";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
@@ -1259,8 +1254,8 @@
             // 
             // dataGridViewTextBoxColumn9
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridViewTextBoxColumn9.HeaderText = "Расход (кг)";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             this.dataGridViewTextBoxColumn9.ReadOnly = true;
@@ -1510,6 +1505,150 @@
             this.CommentC.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.CommentC.Width = 500;
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Controls.Add(this.tabPage7);
+            this.tabControl1.Location = new System.Drawing.Point(3, 3);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(510, 100);
+            this.tabControl1.TabIndex = 20;
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.cbRawEnterprise);
+            this.tabPage6.Controls.Add(this.cbShortReport);
+            this.tabPage6.Controls.Add(this.cbMaterialDelay);
+            this.tabPage6.Controls.Add(this.cbViews);
+            this.tabPage6.Controls.Add(this.cbUseMaterialPlanning);
+            this.tabPage6.Controls.Add(this.cbUsingMaterial);
+            this.tabPage6.Controls.Add(this.label4);
+            this.tabPage6.Controls.Add(this.cbAddDay);
+            this.tabPage6.Controls.Add(this.cbFilter);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(498, 74);
+            this.tabPage6.TabIndex = 0;
+            this.tabPage6.Text = "Настройки";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.button15);
+            this.tabPage7.Controls.Add(this.button14);
+            this.tabPage7.Controls.Add(this.label12);
+            this.tabPage7.Controls.Add(this.tbName);
+            this.tabPage7.Controls.Add(this.label13);
+            this.tabPage7.Controls.Add(this.tb_Code);
+            this.tabPage7.Controls.Add(this.cbLineList);
+            this.tabPage7.Controls.Add(this.checkBox6);
+            this.tabPage7.Controls.Add(this.comboBoxFiltering);
+            this.tabPage7.Controls.Add(this.dateTimePicker2);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(502, 74);
+            this.tabPage7.TabIndex = 1;
+            this.tabPage7.Text = "Фильтр по плану";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // button14
+            // 
+            this.button14.Image = ((System.Drawing.Image)(resources.GetObject("button14.Image")));
+            this.button14.Location = new System.Drawing.Point(-1, -3);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(53, 53);
+            this.button14.TabIndex = 26;
+            this.button14.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
+            // button15
+            // 
+            this.button15.Image = ((System.Drawing.Image)(resources.GetObject("button15.Image")));
+            this.button15.Location = new System.Drawing.Point(450, -3);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(53, 53);
+            this.button15.TabIndex = 25;
+            this.button15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(179, 32);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(44, 13);
+            this.label12.TabIndex = 24;
+            this.label12.Text = "Наим-е";
+            // 
+            // tbName
+            // 
+            this.tbName.Location = new System.Drawing.Point(232, 28);
+            this.tbName.Name = "tbName";
+            this.tbName.Size = new System.Drawing.Size(212, 20);
+            this.tbName.TabIndex = 23;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(293, 6);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(43, 13);
+            this.label13.TabIndex = 22;
+            this.label13.Text = "Код ГП";
+            // 
+            // tb_Code
+            // 
+            this.tb_Code.Location = new System.Drawing.Point(344, 4);
+            this.tb_Code.Name = "tb_Code";
+            this.tb_Code.Size = new System.Drawing.Size(100, 20);
+            this.tb_Code.TabIndex = 21;
+            // 
+            // cbLineList
+            // 
+            this.cbLineList.FormattingEnabled = true;
+            this.cbLineList.Location = new System.Drawing.Point(177, 3);
+            this.cbLineList.Name = "cbLineList";
+            this.cbLineList.Size = new System.Drawing.Size(104, 21);
+            this.cbLineList.TabIndex = 20;
+            this.cbLineList.Text = "Линия";
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Location = new System.Drawing.Point(58, 3);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(107, 17);
+            this.checkBox6.TabIndex = 19;
+            this.checkBox6.Text = "Фильтр по дате";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkBox6.CheckedChanged += new System.EventHandler(this.checkBox6_CheckedChanged);
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Enabled = false;
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker2.Location = new System.Drawing.Point(58, 24);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(107, 20);
+            this.dateTimePicker2.TabIndex = 18;
+            this.dateTimePicker2.Visible = false;
+            // 
+            // button1_j
+            // 
+            this.button1_j.BackColor = System.Drawing.Color.Lavender;
+            this.button1_j.Location = new System.Drawing.Point(7, 122);
+            this.button1_j.Name = "button1_j";
+            this.button1_j.Size = new System.Drawing.Size(140, 21);
+            this.button1_j.TabIndex = 23;
+            this.button1_j.Text = "ВЫВОД";
+            this.button1_j.UseVisualStyleBackColor = false;
+            this.button1_j.Click += new System.EventHandler(this.button1_j_Click);
+            // 
             // ConsurmptionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1529,7 +1668,6 @@
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorages)).EndInit();
             this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.contextMenuStripSel.ResumeLayout(false);
             this.contextMenuStripDrop.ResumeLayout(false);
             this.contextMenuStripRequest.ResumeLayout(false);
@@ -1553,6 +1691,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsing)).EndInit();
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvComment)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1670,7 +1813,6 @@
         public System.Windows.Forms.Button button11;
         public System.Windows.Forms.Button button12;
         private System.Windows.Forms.CheckBox cbRawEnterprise;
-        private System.Windows.Forms.Button button1_j;
         private System.Windows.Forms.Button button1_i;
         private System.Windows.Forms.CheckBox cbShortReport;
         private System.Windows.Forms.Button button13;
@@ -1682,6 +1824,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.Button button1_k;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.TabPage tabPage7;
+        public System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox tbName;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox tb_Code;
+        private System.Windows.Forms.ComboBox cbLineList;
+        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Button button1_j;
         //  public System.Windows.Forms.DataGridView dataGridViewMain;
     }
 }

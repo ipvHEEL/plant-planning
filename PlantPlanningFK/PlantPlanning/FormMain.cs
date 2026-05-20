@@ -1621,6 +1621,11 @@ namespace PlantPlanning
 
                     ExcelDatesList = ExcelDatesList.Distinct().ToList();
                     ExcelDataList = ExcelDataList.OrderBy(x => x.DateWork).ThenBy(x => x.Line).ToList();
+
+                    for (int i = 0; i < ExcelDataList.Count; i++)
+                    {
+                        ExcelDataList[i].RowIndex = i + 1;
+                    }
                 }));
 
                 Invoke(new Action(() =>

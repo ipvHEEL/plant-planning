@@ -44,6 +44,7 @@ namespace PlantPlanning
         public List<string> ProductNamesList;
         public List<string> MaterialNamesList;
         public List<lData> XLDataList;
+        public List<lData> XLDataListFilter;
         public List<DailyResult> MaterialData;
         public List<DailyResult> FilteredMaterialDataIn;
         public List<DailyResult> FilteredMaterialDataOut;
@@ -5317,7 +5318,10 @@ namespace PlantPlanning
             button1_j.BackColor = Color.Lavender;
             button1_k.BackColor = Color.Aqua;
 
+            dateTimePicker2.Value = DateTime.Today.Date;
+
             comboBoxFiltering.Items.Clear();
+            comboBoxFiltering.Items.Add("Выберите план");
 
             TBP = fm.tdb.tBlockedMaterial.Where(x => x.Using == false)
                     .Select(x => new ProductRecipes
@@ -5327,10 +5331,33 @@ namespace PlantPlanning
                     })
                     .ToList();
 
-            foreach (var XLD in fm.ExcelDataList)  //.OrderBy(x => x.DateWork).ThenBy(x => x.Line).ToList()
+            XLDataListFilter = fm.ExcelDataList;
+
+            foreach (var XL in XLDataListFilter)  //.OrderBy(x => x.DateWork).ThenBy(x => x.Line).ToList()
+            {
+                comboBoxFiltering.Items.Add(/*XL.RowIndex.ToString() + " " +*/ XL.DateWork.ToString("dd.MM.yyyy") + " " + XL.Line + " " + XL.ProdCodeStr + " " + XL.ProdName + " " + XL.Quantity.ToString("N0") + " кг");
+            }
+
+            /*foreach (var XLD in fm.ExcelDataList)  //.OrderBy(x => x.DateWork).ThenBy(x => x.Line).ToList()
             {
                 comboBoxFiltering.Items.Add(XLD.DateWork.ToString("dd.MM.yyyy") + " " + XLD.Line + " " + XLD.ProdCodeStr + " " + XLD.AlterProdName + " " + XLD.Quantity.ToString("N0") + " кг");
+            }*/
+
+            comboBoxFiltering.Text = "Выберите план";
+
+            cbLineList.Items.Clear();
+            cbLineList.Items.Add("Линия");
+
+            List<string> LL = fm.ExcelDataList.Select(x => x.Line).ToList();
+            LL = LL.Distinct().ToList();
+            LL.Sort();
+
+            for (int i = 0; i < LL.Count; i++)
+            {
+                cbLineList.Items.Add(LL[i]);
             }
+
+            cbLineList.Text = "Линия";
 
             Int32 Iteration = 0;
             MaterialNamesList = new List<string>();
@@ -9780,9 +9807,14 @@ namespace PlantPlanning
                 List<string> OprComp = fm.OPRTableList.Select(x => x.MatCode).ToList();
 
                 Cursor = Cursors.WaitCursor;
-                if (comboBoxFiltering.Text.Trim() != "" && comboBoxFiltering.SelectedIndex > -1)
+                if ((comboBoxFiltering.Text.Trim() != "" || comboBoxFiltering.Text.Trim() != "Выберите план") && comboBoxFiltering.SelectedIndex > 0)
                 {
-                    var XLD = fm.ExcelDataList[comboBoxFiltering.SelectedIndex];
+                    var XLF = XLDataListFilter[comboBoxFiltering.SelectedIndex - 1];
+                    int RowInd = XLF.RowIndex;
+
+                    var XLD = fm.ExcelDataList.Where(x => x.RowIndex == RowInd).FirstOrDefault();
+
+                    //var XLD = fm.ExcelDataList[comboBoxFiltering.SelectedIndex];
                     //contol spices!!!!!
                     var tdata = fm.tdb.tComponentException.Where(x => x.IsActive == true).ToList();
                     List<string> ExceptNames = tdata.Select(x => x.ProductCode).ToList();
@@ -10163,8 +10195,11 @@ namespace PlantPlanning
                         button5.Visible = false;
                         button6.Visible = false;
                     }
-                    FilteredMaterialData1.Clear();
+
+                    FilteredMaterialData1.Clear();                 
                 }
+
+                comboBoxFiltering.Text = "Выберите план";
                 Cursor = Cursors.Default;
             }
         }
@@ -12803,6 +12838,60 @@ namespace PlantPlanning
 
             GC.Collect();
 
+        }
+
+        private void checkBox6_CheckedChanged(object sender, EventArgs e)
+        {
+            dateTimePicker2.Visible = checkBox6.Checked;
+            dateTimePicker2.Enabled = checkBox6.Checked;
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            XLDataListFilter = fm.ExcelDataList;
+
+            if (checkBox6.Checked == true)
+            {
+                DateTime DT = dateTimePicker2.Value.Date;
+                XLDataListFilter = XLDataListFilter.Where(x => x.DateWork == DT).ToList();
+            }
+
+            if (tb_Code.Text.Trim() != "")
+            {
+                XLDataListFilter = XLDataListFilter.Where(x => x.ProdCodeStr.ToLower().Contains(tb_Code.Text.ToLower().Trim())).ToList();
+            }
+
+            if (tbName.Text.Trim() != "")
+            {
+                XLDataListFilter = XLDataListFilter.Where(x => x.ProdName.ToLower().Contains(tbName.Text.ToLower().Trim())).ToList();
+            }
+
+            if (cbLineList.Text != "Линия")
+            {
+                string L = cbLineList.Text;
+                XLDataListFilter = XLDataListFilter.Where(x => x.Line == L).ToList();
+            }
+
+            comboBoxFiltering.Items.Clear();
+            comboBoxFiltering.Items.Add("Выберите план");
+
+
+            foreach (var XL in XLDataListFilter)  //.OrderBy(x => x.DateWork).ThenBy(x => x.Line).ToList()
+            {
+                comboBoxFiltering.Items.Add(/*XL.RowIndex.ToString()+ " " +*/ XL.DateWork.ToString("dd.MM.yyyy") + " " + XL.Line + " " + XL.ProdCodeStr + " " + XL.ProdName + " " + XL.Quantity.ToString("N0") + " кг");
+            }
+
+            comboBoxFiltering.Text = "Выберите план";
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            checkBox6.Checked = false;
+            cbLineList.Text = "Линия";
+            tb_Code.Text = "";
+            tbName.Text = "";
+
+            button15_Click(sender, e);
         }
     }
 }

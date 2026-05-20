@@ -293,6 +293,7 @@ namespace PlantPlanning
         public string IPG { get; set; }
         public string BOM { get; set; }
         public int IsSemoProd { get; set; }
+        public int RowIndex { get; set; }
     }
 
     public class CommentData_Result
