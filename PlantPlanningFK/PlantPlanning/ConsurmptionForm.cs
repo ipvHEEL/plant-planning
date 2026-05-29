@@ -6369,24 +6369,7 @@ namespace PlantPlanning
 
         private void cbViews_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Cursor = Cursors.WaitCursor;
-            panel4.Enabled = false;
-            ClearDGV();
-             RecalculateData();
-            //ShowLocalData();
-            //  DGV_UpdateColumnZero();
-
-            /*LowPageIndex = memoryCache.GetLowIndex();
-            HighPageIndex = memoryCache.GetHihgIndex();
-            OldLowPageIndex = LowPageIndex;
-            OldHighPageIndex = HighPageIndex;*/
-
-            DGV_Get_CellColor();
-
-
-
-            panel4.Enabled = true;
-            Cursor = Cursors.Default;
+            UpdateFilters();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -9740,22 +9723,7 @@ namespace PlantPlanning
 
         private void cbUseMaterialPlanning_CheckedChanged(object sender, EventArgs e)
         {
-            Cursor = Cursors.WaitCursor;
-            panel4.Enabled = false;
-            ClearDGV();
-             RecalculateData();
-            //ShowLocalData();
-            //  DGV_UpdateColumnZero();
-            /*LowPageIndex = memoryCache.GetLowIndex();
-            HighPageIndex = memoryCache.GetHihgIndex();
-            OldLowPageIndex = LowPageIndex;
-            OldHighPageIndex = HighPageIndex;*/
-
-            DGV_Get_CellColor();
-
-
-            panel4.Enabled = true;
-            Cursor = Cursors.Default;
+            UpdateFilters();
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -10206,22 +10174,7 @@ namespace PlantPlanning
 
         private void cbMaterialDelay_CheckedChanged(object sender, EventArgs e)
         {
-            Cursor = Cursors.WaitCursor;
-            panel4.Enabled = false;
-            ClearDGV();
-             RecalculateData();
-          //  ShowLocalData();
-            //  DGV_UpdateColumnZero();
-
-            /*LowPageIndex = memoryCache.GetLowIndex();
-            HighPageIndex = memoryCache.GetHihgIndex();
-            OldLowPageIndex = LowPageIndex;
-            OldHighPageIndex = HighPageIndex;*/
-
-            DGV_Get_CellColor();
-
-            panel4.Enabled = true;
-            Cursor = Cursors.Default;
+            UpdateFilters();
         }
 
         private void ClearDGV()
@@ -10244,21 +10197,7 @@ namespace PlantPlanning
 
         private void cbAddDay_CheckedChanged(object sender, EventArgs e)
         {
-            Cursor = Cursors.WaitCursor;
-            panel4.Enabled = false;
-            ClearDGV();
-             RecalculateData();
-            //ShowLocalData();
-            //  DGV_UpdateColumnZero();
-            DGV_Get_CellColor();
-
-         //   LowPageIndex = memoryCache.GetLowIndex();
-         //   HighPageIndex = memoryCache.GetHihgIndex();
-         //   OldLowPageIndex = LowPageIndex;
-         //   OldHighPageIndex = HighPageIndex;
-
-            panel4.Enabled = true;
-            Cursor = Cursors.Default;
+            UpdateFilters();
         }
 
         private void cbDontShowAfter_CheckedChanged(object sender, EventArgs e)
@@ -12274,7 +12213,7 @@ namespace PlantPlanning
             this.Enabled = false;
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        private void UpdateFilters()
         {
             Cursor = Cursors.WaitCursor;
             panel1.Enabled = false;
@@ -12291,6 +12230,12 @@ namespace PlantPlanning
 
             panel1.Enabled = true;
             Cursor = Cursors.Default;
+
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateFilters();
         }
 
         private void button1_j_Click(object sender, EventArgs e)
@@ -12892,6 +12837,11 @@ namespace PlantPlanning
             tbName.Text = "";
 
             button15_Click(sender, e);
+        }
+
+        private void cbShortReport_CheckedChanged(object sender, EventArgs e)
+        {
+            //
         }
     }
 }

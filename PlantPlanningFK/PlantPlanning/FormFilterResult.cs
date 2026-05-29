@@ -215,6 +215,9 @@ namespace PlantPlanning
 
             for (int i = 0; i < CFMList.Count; i++)
             {
+                /*if (CFMList[i].MaterialCode == "1030100714")
+                { }*/
+
                 sVal = CFMList[i].MaterialCode + RowSplitter + CFMList[i].MaterialName + RowSplitter +
                          CFMList[i].MaterialGroup + RowSplitter + CFMList[i].MaterialMultiplyString + RowSplitter +
                          CFMList[i].WaitingDaysString + RowSplitter + CFMList[i].StorageQuantityString + RowSplitter +
@@ -505,7 +508,7 @@ namespace PlantPlanning
                     {
                         sVal = sVal + CFMList[i].RawStorageUD.ToString("N1") + RowSplitter;
                     }
-                    if (Math.Abs(CFMList[i].RawStorageUD) >= 1 && Math.Abs(CFMList[i].RawStorageUD) < 10)
+                    else if (Math.Abs(CFMList[i].RawStorageUD) >= 1 && Math.Abs(CFMList[i].RawStorageUD) < 10)
                     {
                         sVal = sVal + CFMList[i].RawStorageUD.ToString("N2") + RowSplitter;
                     }

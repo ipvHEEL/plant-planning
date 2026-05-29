@@ -47,4 +47,3 @@ E:\MyProgramms\PlantPlanningFKBis\PlantPlanningFK\PlantPlanning\obj\Debug\PlantP
 E:\MyProgramms\PlantPlanningFKBis\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanningFKBis.csproj.CopyComplete
 E:\MyProgramms\PlantPlanningFKBis\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanning.exe
 E:\MyProgramms\PlantPlanningFKBis\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanning.pdb
-E:\MyProgramms\PlantPlanningFKBis\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanningFKBis.csprojAssemblyReference.cache

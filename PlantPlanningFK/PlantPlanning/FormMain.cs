@@ -88,7 +88,10 @@ namespace PlantPlanning
         WaitWindow WW;
 
       //  public string ConnectionString = "Data Source=192.168.91.162;Initial Catalog=OLEG DB;Persist Security Info=True;User ID=mes;Password=fdjn[eq";
-        public string ConnectionStringTestData = "Data Source=192.168.91.162;Initial Catalog=WorkPlanDataRawFK;Persist Security Info=True;User ID=mes;Password=fdjn[eq";              // "Data Source=11-vm-dwh01;Initial Catalog=CSB_FK_REP;Persist Security Info=True;User ID=LinkMTZ;Password=mtz!Link2fk";    
+        public string ConnectionStringTestData = "data source=10.10.66.65;initial catalog=WorkPlanDataRawFK;persist security info=True;user id=CSBFK;password=!RfhgfnsqHfr2024";
+        // "Data Source=11-vm-dwh01;Initial Catalog=CSB_FK_REP;Persist Security Info=True;User ID=LinkMTZ;Password=mtz!Link2fk";    
+        //data source=10.10.66.65;initial catalog=WorkPlanDataRawFK;persist security info=True;user id=CSBFK;password=!RfhgfnsqHfr2024
+
         public SqlConnection connTest;
 
         private string FileName = "";
@@ -194,6 +197,10 @@ namespace PlantPlanning
                 //    DS = DS.Substring(0, Index);
 
                 res = DS + ";" + IC + ";Persist Security Info = True;" + User + ";" + Pass + ";";
+            }
+            else
+            {
+                MessageBox.Show("Отсутствует файл connection.udl"+Environment.NewLine+"Обратитесь к системеному администратору!");
             }
             
             f = null;
