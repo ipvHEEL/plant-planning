@@ -61,6 +61,7 @@ namespace PlantPlanning.Context
         public virtual DbSet<StockBalancesPlantView> StockBalancesPlantView { get; set; }
         public virtual DbSet<StockBalancesView> StockBalancesView { get; set; }
         public virtual DbSet<tPropertyTable> tPropertyTable { get; set; }
+        public virtual DbSet<tParamTable> tParamTable { get; set; }
     
         [DbFunction("WorkPlanDataRawFKEntities", "fn_Get_ConsurmptionData")]
         public virtual IQueryable<fn_Get_ConsurmptionData_Result> fn_Get_ConsurmptionData()

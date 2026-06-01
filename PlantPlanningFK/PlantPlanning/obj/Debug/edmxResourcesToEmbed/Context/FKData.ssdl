@@ -391,6 +391,15 @@ warning 6002: The table/view 'WorkPlanDataRawFK.dbo.tLines' does not have a prim
     <Property Name="PlantID" Type="int" Nullable="false" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="tParamTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ParamName" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="ParamValue" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
   <EntityType Name="tPlannedMeatContainers">
     <Key>
       <PropertyRef Name="id" />
@@ -1051,6 +1060,7 @@ warning 6002: The table/view 'WorkPlanDataRawFK.dbo.StockBalancesView' does not 
     <EntitySet Name="tMaterial" EntityType="Self.tMaterial" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tMercuryRecordSelected" EntityType="Self.tMercuryRecordSelected" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tMesPlantRelations" EntityType="Self.tMesPlantRelations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tParamTable" EntityType="Self.tParamTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tPlannedMeatContainers" EntityType="Self.tPlannedMeatContainers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tPropertyTable" EntityType="Self.tPropertyTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tStorageTask" EntityType="Self.tStorageTask" Schema="dbo" store:Type="Tables" />

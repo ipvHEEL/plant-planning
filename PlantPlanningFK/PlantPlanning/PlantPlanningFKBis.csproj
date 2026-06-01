@@ -297,6 +297,9 @@
     <Compile Include="Context\tMesPlantRelations.cs">
       <DependentUpon>FKData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Context\tParamTable.cs">
+      <DependentUpon>FKData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Context\tPlannedMeatContainers.cs">
       <DependentUpon>FKData.tt</DependentUpon>
     </Compile>

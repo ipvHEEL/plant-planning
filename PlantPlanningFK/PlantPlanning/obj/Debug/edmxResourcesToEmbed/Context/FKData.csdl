@@ -234,6 +234,7 @@
     <FunctionImport Name="PR_GetRecipesDataSemiProduct" ReturnType="Collection(WorkPlanDataRawFKModel.PR_GetRecipesDataSemiProduct_Result)" />
     <FunctionImport Name="PR_GetRecipesDataMainProductBis" ReturnType="Collection(WorkPlanDataRawFKModel.PR_GetRecipesDataMainProductBis_Result)" />
     <FunctionImport Name="PR_GetRecipesDataSemiProductBis" ReturnType="Collection(WorkPlanDataRawFKModel.PR_GetRecipesDataSemiProductBis_Result)" />
+    <EntitySet Name="tParamTable" EntityType="WorkPlanDataRawFKModel.tParamTable" />
   </EntityContainer>
   <EntityType Name="tApplication">
     <Key>
@@ -1290,4 +1291,13 @@
     <Property Type="String" Name="Bom" Nullable="true" MaxLength="20" />
     <Property Type="DateTime" Name="CreationDate" Nullable="true" Precision="23" />
   </ComplexType>
+  <EntityType Name="tParamTable">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ParamName" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ParamValue" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

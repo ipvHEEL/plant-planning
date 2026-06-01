@@ -104,15 +104,15 @@ namespace PlantPlanning
             System.Threading.Thread thread = new System.Threading.Thread(WaitingShowForm);
             thread.Start();
 
+            UserName = System.Environment.UserName;
+            tdb = new WorkPlanDataRawFKEntities();
+
             string td = GetConnectionString();
 
             if (!String.IsNullOrEmpty(td))
             {
                 ConnectionStringTestData = td;
             }
-
-            UserName = System.Environment.UserName;
-            tdb = new WorkPlanDataRawFKEntities();
 
             connTest = new SqlConnection(ConnectionStringTestData);
             try
@@ -121,7 +121,10 @@ namespace PlantPlanning
                 connTest.Close();
             }
             catch (Exception xx)
-            { }
+            {
+                MessageBox.Show("Не удалось соединиться с базой данных MS SQL!"+Environment.NewLine+"Обратитесь к системному администратору");
+                Process.GetCurrentProcess().Kill();
+            }
 
             POList = new List<PlantOperList>();
             ConsDataList = new List<tConsurptionData>();
@@ -155,7 +158,20 @@ namespace PlantPlanning
         private string GetConnectionString()
         {
             string res = "";
-            string FilePath = Application.StartupPath+@"\connection.udl";
+
+            var Data = tdb.tParamTable.ToList();
+
+            if (Data.Count >0)
+            {
+                var D = Data.Where(x => x.ParamName == "ConnectionString").FirstOrDefault();
+
+                if (D != null)
+                {
+                    res = D.ParamValue;
+                }
+            }
+
+           /* string FilePath = Application.StartupPath+@"\connection.udl";
 
             FileInfo f = new FileInfo(FilePath);
             string s = "";
@@ -203,7 +219,7 @@ namespace PlantPlanning
                 MessageBox.Show("Отсутствует файл connection.udl"+Environment.NewLine+"Обратитесь к системеному администратору!");
             }
             
-            f = null;
+            f = null;*/
             GC.Collect();
             return res;            
         }

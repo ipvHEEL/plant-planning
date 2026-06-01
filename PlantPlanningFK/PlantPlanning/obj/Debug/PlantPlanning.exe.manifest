@@ -91,14 +91,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PlantPlanning.exe" size="1567744">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PlantPlanning.exe" size="1569792">
       <assemblyIdentity name="PlantPlanning" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>553KaSHXicONlwfWHmM+072C9QhBYmcO0BeWkGlX8b8=</dsig:DigestValue>
+        <dsig:DigestValue>U2DWN+4pTrLsELhgbRWrofUzsRToifhFf1LZ4t/jucI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
