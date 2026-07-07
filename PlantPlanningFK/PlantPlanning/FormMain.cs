@@ -1,20 +1,21 @@
-﻿using System;
+﻿using NLog;
+using PlantPlanning.Context;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
+using System.IO;
 using System.Linq;
-using NLog;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel1 = Microsoft.Office.Interop.Excel;
-using PlantPlanning.Context;
-using System.Runtime.InteropServices;
-using System.Diagnostics;
-using System.Data.SqlClient;
-using System.Threading;
-using System.IO;
 
 namespace PlantPlanning
 {
@@ -1416,9 +1417,13 @@ namespace PlantPlanning
             string s = VV;
             double res = 0;
             s = s.Replace(".", ",");
+            Console.WriteLine(CultureInfo.CurrentCulture);
             try
             {
-                res = Convert.ToDouble(s);
+                res = double.Parse(
+                s,
+                new System.Globalization.CultureInfo("ru-RU")
+);
             }
             catch (Exception xx)
             {
@@ -1891,10 +1896,10 @@ namespace PlantPlanning
                                 {
                                     var CDL = CurrDataList.Where(x => x.DateWork == DStart).ToList();
 
-                                    for (int j = 0; j<CDL.Count; j++)
-                                    {
-                                        CDL[j].Quantity = Math.Round(CDL[j].Quantity / X, 3);
-                                    }
+                                    //for (int j = 0; j<CDL.Count; j++)
+                                    //{
+                                    //    CDL[j].Quantity = Math.Round(CDL[j].Quantity / X, 3);
+                                    //}
                                 }
                                 else
                                 {

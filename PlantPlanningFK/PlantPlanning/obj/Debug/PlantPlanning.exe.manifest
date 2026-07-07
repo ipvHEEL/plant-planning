@@ -15,16 +15,16 @@
       </applicationRequestMinimum>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
         <!--
-          UAC Manifest Options
-          If you want to change the Windows User Account Control level replace the 
-          requestedExecutionLevel node with one of the following.
+          Параметры манифеста UAC
+          Если нужно изменить уровень контроля учетных записей Windows, замените 
+          узел requestedExecutionLevel одним из следующих значений.
 
         <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
         <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
         <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
 
-         If you want to utilize File and Registry Virtualization for backward 
-         compatibility then delete the requestedExecutionLevel node.
+        Если нужно использовать виртуализацию файлов и реестра для обратной
+             совместимости, удалите узел requestedExecutionLevel.
     -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
@@ -91,14 +91,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PlantPlanning.exe" size="1569792">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PlantPlanning.exe" size="1568768">
       <assemblyIdentity name="PlantPlanning" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>U2DWN+4pTrLsELhgbRWrofUzsRToifhFf1LZ4t/jucI=</dsig:DigestValue>
+        <dsig:DigestValue>XdAriqqwEIcWD9Cp8kmrNJ+deV+9cl5MWUswDKtfhE0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -435,13 +435,13 @@
       <dsig:DigestValue>ZeGE2JCoOWPlWEFt5DbJS9VBR/8dzovGRIqGS9LQb6o=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="PlantPlanning.exe.config" size="1502">
+  <file name="PlantPlanning.exe.config" size="1496">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>8uci3Bb0b5ftH4gssM4PRwuVmF/SVNhOYJdrqqO9IaU=</dsig:DigestValue>
+      <dsig:DigestValue>F1UjlG9bYBPOEBzEXpXbTxQgM9czv4fhyPrCk5YNGRw=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
