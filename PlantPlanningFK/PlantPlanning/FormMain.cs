@@ -22,9 +22,9 @@ namespace PlantPlanning
     public partial class FormMain : Form
     {
         public WorkPlanDataRawFKEntities tdb;
-   //     public EDBEntities edb;
-      //  public EquipPerfEntities eqp;
-      //  public OLEG_DBEntities helg;
+        //     public EDBEntities edb;
+        //  public EquipPerfEntities eqp;
+        //  public OLEG_DBEntities helg;
         public static Logger logger = LogManager.GetCurrentClassLogger();
 
         public List<string> LineList;
@@ -45,7 +45,7 @@ namespace PlantPlanning
         public List<MesLocations> MesLocList;
         public List<NavPurchaseTable> StorageList;
         public List<tPlannedMeatContainers> ContList;
-    //    public List<Material> mList;
+        //    public List<Material> mList;
         public List<tLines> LineDataList;
         public List<PlanOPZList> OPRTableList;
         public string ErrorMainStr = "";
@@ -88,7 +88,7 @@ namespace PlantPlanning
         ConsurmptionForm cf;
         WaitWindow WW;
 
-      //  public string ConnectionString = "Data Source=192.168.91.162;Initial Catalog=OLEG DB;Persist Security Info=True;User ID=mes;Password=fdjn[eq";
+        //  public string ConnectionString = "Data Source=192.168.91.162;Initial Catalog=OLEG DB;Persist Security Info=True;User ID=mes;Password=fdjn[eq";
         public string ConnectionStringTestData = "data source=10.10.66.65;initial catalog=WorkPlanDataRawFK;persist security info=True;user id=CSBFK;password=!RfhgfnsqHfr2024";
         // "Data Source=11-vm-dwh01;Initial Catalog=CSB_FK_REP;Persist Security Info=True;User ID=LinkMTZ;Password=mtz!Link2fk";    
         //data source=10.10.66.65;initial catalog=WorkPlanDataRawFK;persist security info=True;user id=CSBFK;password=!RfhgfnsqHfr2024
@@ -96,7 +96,7 @@ namespace PlantPlanning
         public SqlConnection connTest;
 
         private string FileName = "";
-        private bool LoadFlag; 
+        private bool LoadFlag;
 
         public FormMain()
         {
@@ -123,7 +123,7 @@ namespace PlantPlanning
             }
             catch (Exception xx)
             {
-                MessageBox.Show("Не удалось соединиться с базой данных MS SQL!"+Environment.NewLine+"Обратитесь к системному администратору");
+                MessageBox.Show("Не удалось соединиться с базой данных MS SQL!" + Environment.NewLine + "Обратитесь к системному администратору");
                 Process.GetCurrentProcess().Kill();
             }
 
@@ -162,7 +162,7 @@ namespace PlantPlanning
 
             var Data = tdb.tParamTable.ToList();
 
-            if (Data.Count >0)
+            if (Data.Count > 0)
             {
                 var D = Data.Where(x => x.ParamName == "ConnectionString").FirstOrDefault();
 
@@ -172,57 +172,57 @@ namespace PlantPlanning
                 }
             }
 
-           /* string FilePath = Application.StartupPath+@"\connection.udl";
+            /* string FilePath = Application.StartupPath+@"\connection.udl";
 
-            FileInfo f = new FileInfo(FilePath);
-            string s = "";
-            string Pass = "";
-            string User = "";
-            string DS = "";
-            string IC = "";
-            int Index = 0;
+             FileInfo f = new FileInfo(FilePath);
+             string s = "";
+             string Pass = "";
+             string User = "";
+             string DS = "";
+             string IC = "";
+             int Index = 0;
 
-            if (f.Exists)
-            {
-                FileStream fs = new FileStream(FilePath, FileMode.Open);
-                StreamReader sr = new StreamReader(fs);
+             if (f.Exists)
+             {
+                 FileStream fs = new FileStream(FilePath, FileMode.Open);
+                 StreamReader sr = new StreamReader(fs);
 
-                s = sr.ReadLine();
-                s = sr.ReadLine();
-                s = sr.ReadLine();
+                 s = sr.ReadLine();
+                 s = sr.ReadLine();
+                 s = sr.ReadLine();
 
-                sr.Close();
+                 sr.Close();
 
-                Index = s.IndexOf("Password");
-                Pass = s.Substring(Index);
-                Index = Pass.IndexOf(";");
-                Pass = Pass.Substring(0, Index);
+                 Index = s.IndexOf("Password");
+                 Pass = s.Substring(Index);
+                 Index = Pass.IndexOf(";");
+                 Pass = Pass.Substring(0, Index);
 
-                Index = s.IndexOf("User ID");
-                User = s.Substring(Index);
-                Index = User.IndexOf(";");
-                User = User.Substring(0, Index);
+                 Index = s.IndexOf("User ID");
+                 User = s.Substring(Index);
+                 Index = User.IndexOf(";");
+                 User = User.Substring(0, Index);
 
-                Index = s.IndexOf("Initial Catalog");
-                IC = s.Substring(Index);
-                Index = IC.IndexOf(";");
-                IC = IC.Substring(0, Index);
+                 Index = s.IndexOf("Initial Catalog");
+                 IC = s.Substring(Index);
+                 Index = IC.IndexOf(";");
+                 IC = IC.Substring(0, Index);
 
-                Index = s.IndexOf("Data Source");
-                DS = s.Substring(Index);
-                //    Index =DS.IndexOf(";");
-                //    DS = DS.Substring(0, Index);
+                 Index = s.IndexOf("Data Source");
+                 DS = s.Substring(Index);
+                 //    Index =DS.IndexOf(";");
+                 //    DS = DS.Substring(0, Index);
 
-                res = DS + ";" + IC + ";Persist Security Info = True;" + User + ";" + Pass + ";";
-            }
-            else
-            {
-                MessageBox.Show("Отсутствует файл connection.udl"+Environment.NewLine+"Обратитесь к системеному администратору!");
-            }
-            
-            f = null;*/
+                 res = DS + ";" + IC + ";Persist Security Info = True;" + User + ";" + Pass + ";";
+             }
+             else
+             {
+                 MessageBox.Show("Отсутствует файл connection.udl"+Environment.NewLine+"Обратитесь к системеному администратору!");
+             }
+
+             f = null;*/
             GC.Collect();
-            return res;            
+            return res;
         }
 
         private void WaitingShowFormWW()
@@ -240,7 +240,7 @@ namespace PlantPlanning
                     WW.Close();
                 }
                 WW = null;
-            }  
+            }
 
             while (LoadFlag == true)
             {
@@ -280,7 +280,7 @@ namespace PlantPlanning
                 return null;
             }
         }
-        
+
         private void WaitingShowForm()
         {
             try
@@ -309,7 +309,7 @@ namespace PlantPlanning
 
         public void GetStorageList()
         {
-            var AList = tdb.MesAreas.Where(x => x.IsApproved == true).OrderBy(x=>x.AreaName).ToList();
+            var AList = tdb.MesAreas.Where(x => x.IsApproved == true).OrderBy(x => x.AreaName).ToList();
             //MesLocList = new List<MesLocations>();
 
             /*  foreach (var al in AList)
@@ -319,15 +319,15 @@ namespace PlantPlanning
               }*/
 
             StorageNamesList = AList.Select(x => x.AreaName).Distinct().ToList();
-            
-                //MesLocList.Select(x => x.LocationName).Distinct().ToList();
+
+            //MesLocList.Select(x => x.LocationName).Distinct().ToList();
         }
 
         public void ControlAlarmWaste()
         {
             var WList = tdb.pr_GetAlarmWaste().ToList();
 
-            if (WList!=null)
+            if (WList != null)
             {
                 if (WList.Count > 0)
                 {
@@ -338,15 +338,15 @@ namespace PlantPlanning
 
                     dataGridView1.Columns.Add("MaterialCode", "Код материала");
                     dataGridView1.Columns.Add("Name", "Наименование");
-               //     dataGridView1.Columns.Add("Quantity", "Количество");
-               //     dataGridView1.Columns.Add("L4Name", "Лот материала");
-               //     dataGridView1.Columns.Add("MaterialLotName", "Альт.лот материала");
+                    //     dataGridView1.Columns.Add("Quantity", "Количество");
+                    //     dataGridView1.Columns.Add("L4Name", "Лот материала");
+                    //     dataGridView1.Columns.Add("MaterialLotName", "Альт.лот материала");
 
                     dataGridView1.EnableHeadersVisualStyles = false;
                     dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridView1.ColumnHeadersDefaultCellStyle.Font.FontFamily, 16f, FontStyle.Bold | FontStyle.Italic);
                     dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                    for (int i=0; i<WList.Count; i++)
+                    for (int i = 0; i < WList.Count; i++)
                     {
                         string[] s = new string[] { WList[i].MaterialCode,
                                                     WList[i].MaterialName/*,
@@ -357,7 +357,7 @@ namespace PlantPlanning
                         dataGridView1.Rows.Add(s);
                     }
 
-                   Font f1 = new Font(dataGridView1.DefaultCellStyle.Font.FontFamily, 14f, FontStyle.Bold);
+                    Font f1 = new Font(dataGridView1.DefaultCellStyle.Font.FontFamily, 14f, FontStyle.Bold);
 
 
                     foreach (DataGridViewRow r in dataGridView1.Rows)
@@ -366,10 +366,10 @@ namespace PlantPlanning
                         r.DefaultCellStyle.BackColor = Color.Violet;
                     }
 
-                   dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
-                  //  panel1.Enabled = false;
-                  //  panel3.Enabled = false;
+                    //  panel1.Enabled = false;
+                    //  panel3.Enabled = false;
                 }
             }
 
@@ -378,7 +378,7 @@ namespace PlantPlanning
 
         public void LoadStoragesData()
         {
-          //  Cursor = Cursors.WaitCursor;
+            //  Cursor = Cursors.WaitCursor;
 
 
             StockBaklanceList = new List<SelectStockBalances1_Result>(); //NAV!
@@ -390,7 +390,7 @@ namespace PlantPlanning
                 string s = StockBaklanceList[i].MaterialCode.Trim();
                 var M = MMNANList.Where(x => x.MaterialCode == s).ToList();
 
-                if (M.Count >0)
+                if (M.Count > 0)
                 {
                     if (M[0].MaterialCode != M[0].AlterMaterialCode)
                     {
@@ -413,7 +413,7 @@ namespace PlantPlanning
 
             StockBalancesMesList = StockBalancesMesList.Where(x => x.WorkDate >= DT).ToList();
 
-            for (int i = 0; i<StockBalancesMesList.Count; i++)
+            for (int i = 0; i < StockBalancesMesList.Count; i++)
             {
                 string s = StockBalancesMesList[i].MaterialCode.Trim();
                 var M = MMNANList.Where(x => x.MaterialCode == s).ToList();
@@ -471,13 +471,13 @@ namespace PlantPlanning
             //  StorageList = StorageList.Where(x => x.NessDateOrder >= DateTime.Today.Date).ToList();
 
             GC.Collect();
-        //    Cursor = Cursors.Default;
+            //    Cursor = Cursors.Default;
         }
 
         public void LoadData()
         {
             Cursor = Cursors.WaitCursor;
-          //  mList = new List<Material>();
+            //  mList = new List<Material>();
             OPRList = new List<string>();
             Material mm;
             string s;
@@ -527,7 +527,7 @@ namespace PlantPlanning
 
                 var SM = SMList.Where(x => x.MaterialCode == mm.MaterialCode).ToList();
 
-                if (SM.Count>0)
+                if (SM.Count > 0)
                 {
                     mm.BOM = SM[0].BOM;
 
@@ -541,23 +541,23 @@ namespace PlantPlanning
                     }
                 }
 
-              /*  mm.RawEnterpriseList = new List<Raws>();
-                mm.RawStorageList = new List<Raws>();
-                mm.RawNav1List = new List<Raws>();
-                mm.RawNav2List = new List<Raws>();
-                mm.RawMesOut1List = new List<Raws>();
-                mm.RawMesOut2List = new List<Raws>();
-                mm.OldTaskNavList = new List<Raws>();
-                mm.TaskNavList1 = new List<Raws>();
-                mm.TaskNavList2 = new List<Raws>();
-                mm.StorageQuantList = new List<Raws>();
-                mm.OutList = new List<Raws>();
-                mm.ConsurmptionList = new List<Raws>();
+                /*  mm.RawEnterpriseList = new List<Raws>();
+                  mm.RawStorageList = new List<Raws>();
+                  mm.RawNav1List = new List<Raws>();
+                  mm.RawNav2List = new List<Raws>();
+                  mm.RawMesOut1List = new List<Raws>();
+                  mm.RawMesOut2List = new List<Raws>();
+                  mm.OldTaskNavList = new List<Raws>();
+                  mm.TaskNavList1 = new List<Raws>();
+                  mm.TaskNavList2 = new List<Raws>();
+                  mm.StorageQuantList = new List<Raws>();
+                  mm.OutList = new List<Raws>();
+                  mm.ConsurmptionList = new List<Raws>();
 
-                mm.ListLine = new List<int>();
-                mm.ListPlus = new List<int>();*/
+                  mm.ListLine = new List<int>();
+                  mm.ListPlus = new List<int>();*/
 
-             //   mList.Add(mm);
+                //   mList.Add(mm);
             }
 
             DataList = new List<fn_select_PlannedMainData1_Result>();
@@ -568,20 +568,20 @@ namespace PlantPlanning
             Cursor = Cursors.Default;
         }
 
-        public string  ReplaceLineName(string OldName)
+        public string ReplaceLineName(string OldName)
         {
             string NewName = "";
 
-             try
-             {
-                 NewName = LineDataList.Where(x => x.LineCode.ToString() == OldName).First().LineName;
-             }
-             catch (Exception xx)
-             {
-                 NewName = OldName;
-             }
+            try
+            {
+                NewName = LineDataList.Where(x => x.LineCode.ToString() == OldName).First().LineName;
+            }
+            catch (Exception xx)
+            {
+                NewName = OldName;
+            }
 
-           // NewName = OldName;
+            // NewName = OldName;
 
             return NewName;
         }
@@ -601,7 +601,7 @@ namespace PlantPlanning
 
             int alfa;
             int bravo;
-            int charlie;            
+            int charlie;
 
             Cursor = Cursors.WaitCursor;
             ProdRecipeList = new List<ProductRecipes>();
@@ -638,7 +638,7 @@ namespace PlantPlanning
             }
 
             MMNANList = new List<MatNameAndAlterName>();
-            MMNANList =  RDataList.GroupBy(x => new { x.MaterialCode, x.AlterMaterialCode, x.IPG })
+            MMNANList = RDataList.GroupBy(x => new { x.MaterialCode, x.AlterMaterialCode, x.IPG })
                 .Select(g => new MatNameAndAlterName
                 {
                     AlterMaterialCode = g.Key.AlterMaterialCode,
@@ -662,25 +662,26 @@ namespace PlantPlanning
             var RDL = RDataList.Where(x => x.Bom.Trim() != "").ToList();
 
             SMList = RDL.GroupBy(x => new { x.Bom, x.AlterMaterialCode })
-                .Select(g => new StatusesMaterials {
+                .Select(g => new StatusesMaterials
+                {
                     BOM = g.Key.Bom,
                     MaterialCode = g.Key.AlterMaterialCode
                 }).ToList();
 
-           /* for (int zz =0; zz<RDL.Count; zz++)
-            {
-                StatusesMaterials sm = new StatusesMaterials();
+            /* for (int zz =0; zz<RDL.Count; zz++)
+             {
+                 StatusesMaterials sm = new StatusesMaterials();
 
-                sm.BOM = RDL[zz].Bom.Trim();
-                sm.MaterialCode = RDL[zz].MaterialCode;
+                 sm.BOM = RDL[zz].Bom.Trim();
+                 sm.MaterialCode = RDL[zz].MaterialCode;
 
-                SMList.Add(sm);
-            }*/
+                 SMList.Add(sm);
+             }*/
 
             SMList = SMList.Distinct().ToList();
             MMNANList = MMNANList.Distinct().ToList();
 
-            for (int zz =0; zz<RDataList.Count; zz++)
+            for (int zz = 0; zz < RDataList.Count; zz++)
             {
                 PR_GetRecipesDataMainProductBis_Result res = new PR_GetRecipesDataMainProductBis_Result();
 
@@ -741,7 +742,7 @@ namespace PlantPlanning
 
                     plr = new ProductLinesRecipes();
                     plr.RecList = new List<Recipe>();
-                    lNumber =  OPRRec[i].LineNumber;
+                    lNumber = OPRRec[i].LineNumber;
                     plr.LineNumber = OPRRec[i].LineNumber;
 
                     alfa = ProdRecipeOPRList.Count - 1;
@@ -760,7 +761,7 @@ namespace PlantPlanning
                     MaterialCode = rl.MaterialCode;
                     rl.MaterialName = OPRRec[i].MaterialName;
                     rl.MaterialQuantity = (double)OPRRec[i].Quantity;
-                    rl.IsSemiProd =(int) OPRRec[i].IsSemiProd;
+                    rl.IsSemiProd = (int)OPRRec[i].IsSemiProd;
                     rl.UMC = OPRRec[i].UnitMeasure;
                     rl.BOM = OPRRec[i].Bom;
                     charlie = ProdRecipeOPRList[alfa].RecLineList[bravo].RecList.Count - 1;
@@ -882,7 +883,7 @@ namespace PlantPlanning
 
             lRec = lRec.OrderBy(x => x.ProductCode).ThenBy(x => x.LineNumber).ThenBy(x => x.WorkDate).ToList();
 
-      //      var lll = lRec.Where(x => x.ProductCode == "1010031627").ToList();  //    1031018925
+            //      var lll = lRec.Where(x => x.ProductCode == "1010031627").ToList();  //    1031018925
 
             lRec1 = new List<PR_GetRecipesDataMainProductBis_Result>();
 
@@ -909,9 +910,9 @@ namespace PlantPlanning
 
             lRec1 = lRec1.OrderBy(x => x.ProductCode).ThenBy(x => x.LineNumber).ThenBy(x => x.WorkDate).ToList();
 
-        //    var lll2 = lRec1.Where(x => x.MaterialCode == "4500000461").ToList();
+            //    var lll2 = lRec1.Where(x => x.MaterialCode == "4500000461").ToList();
 
-        //    lRec1 = lRec1.Where(x => x.ProductCode == "1021000706").ToList();
+            //    lRec1 = lRec1.Where(x => x.ProductCode == "1021000706").ToList();
 
             /*  try
               {
@@ -936,8 +937,8 @@ namespace PlantPlanning
 
             foreach (var l in lRec1)
             {
-             //   if (l.MaterialCode =="1021002325" || l.ProductCode == "1021002325" )
-             //   { }
+                //   if (l.MaterialCode =="1021002325" || l.ProductCode == "1021002325" )
+                //   { }
 
                 l.LineNumber = ReplaceLineName(l.LineNumber.Trim());
             }
@@ -946,17 +947,17 @@ namespace PlantPlanning
             LineList.AddRange(lRec1.Select(x => x.LineNumber).ToList());
             LineList = LineList.Distinct().ToList();
             LineList = LineList.OrderBy(x => x).ToList();
-            
-          /* for (int i=0; i<LineList.Count; i++)
-            {
-                try
-                {
-                    var Listdata = LineDataList.Where(x => x.LineName == LineList[i]).First();
-                    LineList[i] = Listdata.ResultName;
-                }
-                catch (Exception xx)
-                { }
-            }*/
+
+            /* for (int i=0; i<LineList.Count; i++)
+              {
+                  try
+                  {
+                      var Listdata = LineDataList.Where(x => x.LineName == LineList[i]).First();
+                      LineList[i] = Listdata.ResultName;
+                  }
+                  catch (Exception xx)
+                  { }
+              }*/
             LineList = LineList.Distinct().ToList();
 
             RCode = "";
@@ -964,7 +965,7 @@ namespace PlantPlanning
             lNumber = "ZZZ";
             MaterialCode = "";
 
-          //  var LLRec = lRec.Where(x => x.MaterialCode == "1031014495").ToList();
+            //  var LLRec = lRec.Where(x => x.MaterialCode == "1031014495").ToList();
 
             for (int i = 0; i < lRec.Count; i++)
             {
@@ -984,8 +985,8 @@ namespace PlantPlanning
                     plr = new ProductLinesRecipes();
                     plr.RecList = new List<Recipe>();
                     lNumber = lRec[i].LineNumber; // ReplaceLineName(lRec[i].LineNumber);                    
-                    plr.LineNumber = lNumber;                    
-                  
+                    plr.LineNumber = lNumber;
+
                     alfa = ProdRecipeList.Count - 1;
                     ProdRecipeList[alfa].RecLineList.Add(plr);
 
@@ -1082,10 +1083,10 @@ namespace PlantPlanning
                     //  ProdRecipeList[ProdRecipeList.Count - 1].recList[ProdRecipeList[ProdRecipeList.Count - 1].recList.Count - 1].rList.Add(rl);
                 }
             }
-          //  lRec.Clear();
+            //  lRec.Clear();
             //set dateend in RecipeList
 
-         //   var PR11List = ProdRecipeList.Where(x => x.ProductCode == "1010025786").ToList();
+            //   var PR11List = ProdRecipeList.Where(x => x.ProductCode == "1010025786").ToList();
 
             for (int i = 0; i < ProdRecipeList.Count; i++)
             {
@@ -1095,7 +1096,7 @@ namespace PlantPlanning
                     {
                         try
                         {
-                            ProdRecipeList[i].RecLineList[j].RecList[k].WorkDateEnd = ProdRecipeList[i].RecLineList[j].RecList[k+1].WorkDateStart.AddDays(-1);
+                            ProdRecipeList[i].RecLineList[j].RecList[k].WorkDateEnd = ProdRecipeList[i].RecLineList[j].RecList[k + 1].WorkDateStart.AddDays(-1);
                         }
                         catch (Exception xx)
                         { }
@@ -1242,15 +1243,15 @@ namespace PlantPlanning
                 }
             }
 
-            List<ProductRecipes> TBP =    tdb.tBlockedProduct.Where(x=>x.Using==false)
-                .Select(x=> new ProductRecipes
+            List<ProductRecipes> TBP = tdb.tBlockedProduct.Where(x => x.Using == false)
+                .Select(x => new ProductRecipes
                 {
-                    ProductCode=x.ProductCode,
-                    ProductName=x.ProductName
+                    ProductCode = x.ProductCode,
+                    ProductName = x.ProductName
                 })
                 .ToList();
 
-            for (int i = ProdRecipeList.Count-1; i>=0; i--)
+            for (int i = ProdRecipeList.Count - 1; i >= 0; i--)
             {
                 foreach (var t in TBP)
                 {
@@ -1280,14 +1281,14 @@ namespace PlantPlanning
 
             ProdRecipeList.AddRange(SemiProdRecipeList);
 
-            for (int i = 0; i<RDataList.Count; i++)
+            for (int i = 0; i < RDataList.Count; i++)
             {
                 PR_GetRecipesDataSemiProductBis_Result sp = new PR_GetRecipesDataSemiProductBis_Result();
 
                 sp.AlterMaterialCode = RDataList[i].AlterMaterialCode;
                 sp.AlterProductCode = RDataList[i].AlterProductCode;
                 sp.Bom = RDataList[i].Bom;
-                sp.IsSemiProd= RDataList[i].IsSemiProd;
+                sp.IsSemiProd = RDataList[i].IsSemiProd;
                 sp.IPG = RDataList[i].IPG;
                 sp.LineNumber = RDataList[i].LineNumber;
                 sp.MaterialCode = RDataList[i].MaterialCode;
@@ -1344,9 +1345,9 @@ namespace PlantPlanning
             // var sData = tdb.fn_select_SpicesData().ToList();
             // SpisesCodeList = sData.Select(x => x.ProductCode).Distinct().ToList();
 
-           // var a1 = ProdRecipeList.Where(x => x.ProductCode == "1021001476").ToList();
-           // var a2 = ProdRecipeList.Where(x => x.ProductCode == "4500000034").ToList();
-           // var a3 = ProdRecipeList.Where(x => x.ProductCode == "4500000033").ToList();
+            // var a1 = ProdRecipeList.Where(x => x.ProductCode == "1021001476").ToList();
+            // var a2 = ProdRecipeList.Where(x => x.ProductCode == "4500000034").ToList();
+            // var a3 = ProdRecipeList.Where(x => x.ProductCode == "4500000033").ToList();
 
 
             GC.Collect();
@@ -1499,140 +1500,225 @@ namespace PlantPlanning
                 string ProductCode = "";
                 string ProdName = "";
                 double Quantity = 0;
+                Excel1.Range lastCell = wSheet.Cells.Find(
+                What: "*",
+                After: wSheet.Range["A1"],
+                LookIn: Excel1.XlFindLookIn.xlValues,
+                SearchOrder: Excel1.XlSearchOrder.xlByRows,
+                SearchDirection: Excel1.XlSearchDirection.xlPrevious
+                );
+                int lastRow = lastCell.Row;
 
-                while (fl == false)
+
+                var tempList = new List<lData>();
+                object[,] data = (object[,])wSheet.Range[
+                wSheet.Cells[2, 1],
+                wSheet.Cells[lastRow, 5]
+                ].Value2;
+                for (int i = 1; i <= data.GetLength(0); i++)
                 {
-                    range1 = (Excel1.Range)wSheet.Cells[CurRec, 1];
+
+                    string lineRaw = data[i, 1]?.ToString()?.Trim();
+                    string dateRaw = data[i, 2]?.ToString()?.Trim();
+                    string codeRaw = data[i, 3]?.ToString()?.Trim();
+                    string nameRaw = data[i, 4]?.ToString()?.Trim();
+                    string qtyRaw = data[i, 5]?.ToString()?.Trim();
+
+
+
+
+                    string LineName1 = string.IsNullOrEmpty(lineRaw) ? "" : ReplaceLineName(lineRaw);
+
+
+                    string ProductCode1 = string.IsNullOrEmpty(codeRaw) ? "0" : codeRaw;
+
+
+                    string ProdName1 = string.IsNullOrEmpty(nameRaw) ? "" : nameRaw;
+                    ProdName = ProdName.Replace(ProductCode1, "");
+
+
+
+                    double Quantity1 = 0;
+                    if (!string.IsNullOrEmpty(qtyRaw))
+                    {
+                        double.TryParse(qtyRaw, out Quantity1);
+                    }
+
+
+                    DateTime DateWork1 = DateTime.Today;
                     try
                     {
+                        if (!string.IsNullOrEmpty(dateRaw))
+                            DateWork1 = ConvertDataToDate(dateRaw);
+                    }
+                    catch { }
+
+
+                    if ((ProductCode1 != "0000_00") && (ProductCode1 != "0") && (Quantity1 != 0))
+                    {
+
+                        var ld = new lData
+                        {
+                            DateWork = DateWork1,
+                            WorkDay = DateWork1.Day,
+                            WorkMonth = DateWork1.Month,
+                            WorkYear = DateWork1.Year,
+                            ProdCode = ProductCode1.Replace("_П/УП", ""),
+                            ProdCodeStr = ProductCode1,
+                            Quantity = Quantity1,
+                            ProdName = ProdName1,
+                            AlterProdName = ProdName1,
+                            RePack = ProductCode1.Contains("_П/УП"),
+                            Line = LineName1,
+                            Spices = LineName1.Contains("специй")
+                        };
+
+
+                        tempList.Add(ld);
                         Invoke(new Action(() =>
                         {
-                            LineName = range1.Value.ToString().Trim();
-                            LineName = ReplaceLineName(LineName);
+                            ExcelDataList.Add(ld);
+
+                            DateWork1 = new DateTime(DateWork1.Year, DateWork1.Month, 1);
+                            ExcelDatesList.Add(DateWork1);
                         }));
-
-                        range1 = (Excel1.Range)wSheet.Cells[CurRec, 2];
-                        try
-                        {
-                            Invoke(new Action(() =>
-                            {
-                                DateWork = ConvertDataToDate(range1.Value.ToString().Trim());
-                            }));
-                            range1 = (Excel1.Range)wSheet.Cells[CurRec, 3];
-                            try
-                            {
-                                Invoke(new Action(() =>
-                                {
-                                    if (!String.IsNullOrEmpty(range1.Value.ToString()))
-                                    {
-                                        ProductCode = range1.Value.ToString().Trim();
-                                    }
-                                    else
-                                    {
-                                        ProductCode = "0";
-                                    }
-                                }));
-
-                                range1 = (Excel1.Range)wSheet.Cells[CurRec, 4];
-                                try
-                                {
-                                    Invoke(new Action(() =>
-                                    {
-                                        if (!String.IsNullOrEmpty(range1.Value.ToString()))
-                                        {
-                                            ProdName = range1.Value.ToString().Trim();
-                                        }
-                                        else
-                                        {
-                                            ProdName = "";
-                                        }
-                                        ProdName = ProdName.Replace(ProductCode, "");
-                                    }));
-
-                                    range1 = (Excel1.Range)wSheet.Cells[CurRec, 5];
-
-                                    try
-                                    {
-                                        Invoke(new Action(() =>
-                                        {
-                                            try
-                                            {
-                                                Quantity = ConvertStringToDouble(range1.Value.ToString().Trim());
-                                            }
-                                            catch (Exception xxx4)
-                                            {
-                                                Quantity = 0;
-                                            }
-                                        }));
-
-                                        if ((ProductCode != "0000_00") && (ProductCode != "0") && (Quantity != 0))
-                                        {
-                                            lData ld = new lData
-                                            {
-                                                DateWork = DateWork,
-                                                WorkDay = DateWork.Day,
-                                                WorkMonth = DateWork.Month,
-                                                WorkYear = DateWork.Year,
-                                                ProdCode = ProductCode.Replace("_П/УП", ""),
-                                                ProdCodeStr = ProductCode,
-                                                Quantity = Quantity,
-                                                ProdName = ProdName,
-                                                AlterProdName = ProdName,
-                                                RePack = ProductCode.Contains("_П/УП") ? true : false,
-                                                Line = LineName,
-                                                Spices = LineName.Contains("специй") ? true : false
-                                            };
-
-                                            Invoke(new Action(() =>
-                                            {
-                                                ExcelDataList.Add(ld);
-
-                                                DateWork = new DateTime(DateWork.Year, DateWork.Month, 1);
-                                                ExcelDatesList.Add(DateWork);
-                                            }));
-                                        }
-                                        CurRec = CurRec + 1;
-
-                                        Invoke(new Action(() =>
-                                        {
-                                            if (CurRec % 100 == 0)
-                                            {
-                                                label1.Text = "Загружено " + CurRec.ToString() + " записей";
-                                                progressBar1.Value = progressBar1.Value + 1;
-                                                if (progressBar1.Value >= 60)
-                                                {
-                                                    progressBar1.Value = 10;
-                                                }
-                                            }
-                                        }));
-                                    }
-                                    catch (Exception xx3)
-                                    {
-                                        fl = true;
-                                    }
-
-                                }
-                                catch (Exception xxx2)
-                                {
-                                    fl = true;
-                                }
-                            }
-                            catch (Exception xx2)
-                            {
-                                fl = true;
-                            }
-                        }
-                        catch (Exception xx1)
-                        {
-                            CurRec = CurRec + 1;
-                            //fl = true;
-                        }
                     }
-                    catch (Exception xx)
-                    {
-                        fl = true;
-                    }
+
                 }
+                //while (fl == false)
+                //{
+                //    range1 = (Excel1.Range)wSheet.Cells[CurRec, 1];
+                //    try
+                //    {
+                //        Invoke(new Action(() =>
+                //        {
+                //            LineName = range1.Value.ToString().Trim();
+                //            LineName = ReplaceLineName(LineName);
+                //        }));
+
+                //        range1 = (Excel1.Range)wSheet.Cells[CurRec, 2];
+                //        try
+                //        {
+                //            Invoke(new Action(() =>
+                //            {
+                //                DateWork = ConvertDataToDate(range1.Value.ToString().Trim());
+                //            }));
+                //            range1 = (Excel1.Range)wSheet.Cells[CurRec, 3];
+                //            try
+                //            {
+                //                Invoke(new Action(() =>
+                //                {
+                //                    if (!String.IsNullOrEmpty(range1.Value.ToString()))
+                //                    {
+                //                        ProductCode = range1.Value.ToString().Trim();
+                //                    }
+                //                    else
+                //                    {
+                //                        ProductCode = "0";
+                //                    }
+                //                }));
+
+                //                range1 = (Excel1.Range)wSheet.Cells[CurRec, 4];
+                //                try
+                //                {
+                //                    Invoke(new Action(() =>
+                //                    {
+                //                        if (!String.IsNullOrEmpty(range1.Value.ToString()))
+                //                        {
+                //                            ProdName = range1.Value.ToString().Trim();
+                //                        }
+                //                        else
+                //                        {
+                //                            ProdName = "";
+                //                        }
+                //                        ProdName = ProdName.Replace(ProductCode, "");
+                //                    }));
+
+                //                    range1 = (Excel1.Range)wSheet.Cells[CurRec, 5];
+
+                //                    try
+                //                    {
+                //                        Invoke(new Action(() =>
+                //                        {
+                //                            try
+                //                            {
+                //                                Quantity = ConvertStringToDouble(range1.Value.ToString().Trim());
+                //                            }
+                //                            catch (Exception xxx4)
+                //                            {
+                //                                Quantity = 0;
+                //                            }
+                //                        }));
+
+                //                        if ((ProductCode != "0000_00") && (ProductCode != "0") && (Quantity != 0))
+                //                        {
+                //                            lData ld = new lData
+                //                            {
+                //                                DateWork = DateWork,
+                //                                WorkDay = DateWork.Day,
+                //                                WorkMonth = DateWork.Month,
+                //                                WorkYear = DateWork.Year,
+                //                                ProdCode = ProductCode.Replace("_П/УП", ""),
+                //                                ProdCodeStr = ProductCode,
+                //                                Quantity = Quantity,
+                //                                ProdName = ProdName,
+                //                                AlterProdName = ProdName,
+                //                                RePack = ProductCode.Contains("_П/УП") ? true : false,
+                //                                Line = LineName,
+                //                                Spices = LineName.Contains("специй") ? true : false
+                //                            };
+
+                //                            Invoke(new Action(() =>
+                //                            {
+                //                                ExcelDataList.Add(ld);
+
+                //                                DateWork = new DateTime(DateWork.Year, DateWork.Month, 1);
+                //                                ExcelDatesList.Add(DateWork);
+                //                            }));
+                //                        }
+                //                        CurRec = CurRec + 1;
+
+                //                        Invoke(new Action(() =>
+                //                        {
+                //                            if (CurRec % 100 == 0)
+                //                            {
+                //                                label1.Text = "Загружено " + CurRec.ToString() + " записей";
+                //                                progressBar1.Value = progressBar1.Value + 1;
+                //                                if (progressBar1.Value >= 60)
+                //                                {
+                //                                    progressBar1.Value = 10;
+                //                                }
+                //                            }
+                //                        }));
+                //                    }
+                //                    catch (Exception xx3)
+                //                    {
+                //                        fl = true;
+                //                    }
+
+                //                }
+                //                catch (Exception xxx2)
+                //                {
+                //                    fl = true;
+                //                }
+                //            }
+                //            catch (Exception xx2)
+                //            {
+                //                fl = true;
+                //            }
+                //        }
+                //        catch (Exception xx1)
+                //        {
+                //            CurRec = CurRec + 1;
+                //            //fl = true;
+                //        }
+                //    }
+                //    catch (Exception xx)
+                //    {
+                //        fl = true;
+                //    }
+                //}
+
                 //MOnthly graphic
                 Invoke(new Action(() =>
                 {
@@ -1719,8 +1805,8 @@ namespace PlantPlanning
 
                 Invoke(new Action(() =>
                 {
-                //  SaveRecordToDB();
-            }));
+                    //  SaveRecordToDB();
+                }));
 
                 Invoke(new Action(() =>
                 {
@@ -1729,13 +1815,13 @@ namespace PlantPlanning
                 }));
 
                 Invoke(new Action(() =>
-                 {
-                     xlApp.Quit();
-                     xlApp = null;
-                     wBook = null;
-                     wSheet = null;
-                     range1 = null;
-                 }));
+                {
+                    xlApp.Quit();
+                    xlApp = null;
+                    wBook = null;
+                    wSheet = null;
+                    range1 = null;
+                }));
 
                 try
                 {
@@ -1754,22 +1840,22 @@ namespace PlantPlanning
 
                     if ((ErrorMainStr.Length > 0) || (ErrorStr.Length > 0))
                     {
-                    //  ErrorMainStr = ErrorMainStr + " " + RowSplitter + " " + RowSplitter + System.Environment.NewLine + " " + RowSplitter + " " + RowSplitter + System.Environment.NewLine + ErrorStr;
-                    if (Application.OpenForms["Warning1"] == null)
+                        //  ErrorMainStr = ErrorMainStr + " " + RowSplitter + " " + RowSplitter + System.Environment.NewLine + " " + RowSplitter + " " + RowSplitter + System.Environment.NewLine + ErrorStr;
+                        if (Application.OpenForms["Warning1"] == null)
                         {
                             Cursor = Cursors.WaitCursor;
                             w1 = new Warning1(this);
                             w1.Visible = true;
-                        //   fs.MdiParent = this;
-                        w1.WindowState = FormWindowState.Normal;
+                            //   fs.MdiParent = this;
+                            w1.WindowState = FormWindowState.Normal;
                             Cursor = Cursors.Default;
                         }
                         else
                         {
                             w1.BringToFront();
                             w1.Visible = true;
-                        //   cf.UpdateData();
-                    }
+                            //   cf.UpdateData();
+                        }
                         this.Enabled = false;
                     }
                     else
@@ -1807,7 +1893,7 @@ namespace PlantPlanning
 
             Invoke(new Action(() =>
             {
-                for (int i = 0; i<dataGridView1.ColumnCount; i++)
+                for (int i = 0; i < dataGridView1.ColumnCount; i++)
                 {
                     dataGridView1.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
                 }
@@ -1836,7 +1922,7 @@ namespace PlantPlanning
             DateTime DEnd;
 
             var CurrDataList = ExcelDataList.Where(x => x.WorkMonth == CurrMonth && x.WorkYear == CurrYear).ToList();
-         //   CurrDataList = CurrDataList.OrderBy(x => x.DateWork).ToList();
+            //   CurrDataList = CurrDataList.OrderBy(x => x.DateWork).ToList();
             List<DateTime> CurrDList = CurrDataList.Select(x => x.DateWork).Distinct().ToList();
             CurrDList.Sort();
 
@@ -1849,8 +1935,8 @@ namespace PlantPlanning
                         DDT = CurrDList[0];
 
                         CurrDataList = ExcelDataList.Where(x => x.DateWork < DDT).ToList();
-                        
-                        if (CurrDataList.Count>0)
+
+                        if (CurrDataList.Count > 0)
                         {
                             DDT = CurrDataList.Max(x => x.DateWork);
                             CurrDList.Add(DDT);
@@ -1883,8 +1969,8 @@ namespace PlantPlanning
 
                     for (int i = 0; i < CurrDList.Count - 1; i++)
                     {
-                         DStart = CurrDList[i];
-                         DEnd = CurrDList[i + 1];
+                        DStart = CurrDList[i];
+                        DEnd = CurrDList[i + 1];
 
                         var X = (DEnd - DStart).TotalDays;
 
@@ -1913,7 +1999,7 @@ namespace PlantPlanning
                                         LD.DateWork = DStart;
                                         LD.IPG = CDL[j].IPG;
                                         LD.BOM = CDL[j].BOM;
-                                      
+
                                         LD.Line = CDL[j].Line;
                                         LD.ProdCode = CDL[j].ProdCode;
                                         LD.ProdCodeStr = CDL[j].ProdCodeStr;
@@ -2000,11 +2086,11 @@ namespace PlantPlanning
         {
             tdb.Update_WorkPlanTable();
 
-            for (int i=0; i<ExcelDataList.Count; i++)
+            for (int i = 0; i < ExcelDataList.Count; i++)
             {
-                if (ExcelDataList[i].Quantity>0)
+                if (ExcelDataList[i].Quantity > 0)
                 {
-                    if (ExcelDataList[i].RePack==false)
+                    if (ExcelDataList[i].RePack == false)
                     {
                         string code = ExcelDataList[i].ProdCode;
                         string Group = "";
@@ -2017,7 +2103,7 @@ namespace PlantPlanning
                             Group = "NoData";
                         }
 
-                        if ((ExcelDataList[i].DateWork > DateTime.Today.Date.AddDays(-20))&&(ExcelDataList[i].DateWork < DateTime.Today.Date.AddDays(20)))
+                        if ((ExcelDataList[i].DateWork > DateTime.Today.Date.AddDays(-20)) && (ExcelDataList[i].DateWork < DateTime.Today.Date.AddDays(20)))
                         {
                             tdb.Insert_WorkPlanTableRecord1(ExcelDataList[i].DateWork, ExcelDataList[i].Line, ExcelDataList[i].ProdCode, Group, ExcelDataList[i].Quantity);
                         }
@@ -2025,7 +2111,7 @@ namespace PlantPlanning
                 }
             }
 
-          //  tdb.Modify_WorkPlanTable();
+            //  tdb.Modify_WorkPlanTable();
             tdb.SaveChanges();
 
             GC.Collect();
@@ -2037,7 +2123,7 @@ namespace PlantPlanning
 
             /*bool Res = false;
             string ErrorStr = "";*/
-    
+
             if (dr == DialogResult.OK)
             {
                 if (openFileDialog1.ShowDialog() == DialogResult.OK)
@@ -2072,7 +2158,7 @@ namespace PlantPlanning
             int bravo;
             int charlie;
 
-           ErrorStr = "";
+            ErrorStr = "";
 
             var RData = tdb.fn_select_RecipesBisView1().ToList();  //рецепты без линий!
 
@@ -2080,7 +2166,7 @@ namespace PlantPlanning
             {
                 /*if ((xl.ProdCode == "1022001105") || (xl.ProdCode == "1022001106"))
                 { }*/
-                var PRList = ProdRecipeList.Where(x => ( x.ProductCode == xl.ProdCode)).ToList();
+                var PRList = ProdRecipeList.Where(x => (x.ProductCode == xl.ProdCode)).ToList();
 
                 if (PRList.Count == 0)
                 {
@@ -2097,7 +2183,7 @@ namespace PlantPlanning
                         pr.ProductCode = data[0].ProductCode;
                         pr.ProductCodeString = pr.ProductCode;
                         pr.ProductName = data[0].ProductName;
-                        pr.AlterProductCode= data[0].ProductCode;
+                        pr.AlterProductCode = data[0].ProductCode;
 
                         ProdRecipeList.Add(pr);
 
@@ -2113,7 +2199,7 @@ namespace PlantPlanning
                         bravo = 0;
                         ProdRecipeList[alfa].RecLineList[bravo].RecList.Add(rr);
 
-                        foreach (var dd in data.Where(x => x.WorkDate==ddt).ToList())   //(x.LineName.Trim() == "") && (x.StartingDate == ddt)
+                        foreach (var dd in data.Where(x => x.WorkDate == ddt).ToList())   //(x.LineName.Trim() == "") && (x.StartingDate == ddt)
                         {
                             RecipeList rl = new RecipeList();
                             rl.IPG = dd.IPG;
@@ -2127,15 +2213,15 @@ namespace PlantPlanning
 
                             PR_GetRecipesDataMainProductBis_Result RVR = new PR_GetRecipesDataMainProductBis_Result
                             {
-                                ProductCode= data[0].ProductCode,
-                                AlterProductCode=data[0].ProductCode,
-                                LineNumber= "Линия 1",
-                                WorkDate=ddt,
-                                MaterialCode= dd.MaterialCode,
-                                MaterialName=dd.MaterialName,
-                                UnitMeasure= dd.UnitMeasure,
-                                Quantity= (decimal)dd.Quantity,
-                                IPG=dd.IPG,
+                                ProductCode = data[0].ProductCode,
+                                AlterProductCode = data[0].ProductCode,
+                                LineNumber = "Линия 1",
+                                WorkDate = ddt,
+                                MaterialCode = dd.MaterialCode,
+                                MaterialName = dd.MaterialName,
+                                UnitMeasure = dd.UnitMeasure,
+                                Quantity = (decimal)dd.Quantity,
+                                IPG = dd.IPG,
                                 Bom = dd.BOM
                             };
 
@@ -2165,7 +2251,7 @@ namespace PlantPlanning
                     {
                         Res = true;
 
-                        if (ErrorMainStr.Length==0)
+                        if (ErrorMainStr.Length == 0)
                         {
                             ErrorMainStr = ErrorMainStr + " " + RowSplitter + "" + RowSplitter + "Не указан КодВерсии рецепта либо отсутствует версия спецификации рецепта: " + RowSplitter + System.Environment.NewLine;
                         }
@@ -2219,7 +2305,7 @@ namespace PlantPlanning
                                         MaterialCode = RL.MaterialCode,
                                         MaterialName = RL.MaterialName,
                                         UnitMeasure = RL.UMC,
-                                        Quantity =(decimal) RL.MaterialQuantity,
+                                        Quantity = (decimal)RL.MaterialQuantity,
                                         IPG = RL.IPG,
                                         Bom = RL.BOM
                                     };
@@ -2332,7 +2418,7 @@ namespace PlantPlanning
                             ProdCode = xl.ProdCode,
                             ProdName = xl.ProdName,
                             LineName = xl.Line,
-                            Comment =  " Отсутствует рецепт для линии!" 
+                            Comment = " Отсутствует рецепт для линии!"
                         });
                     }
                 }
@@ -2348,7 +2434,7 @@ namespace PlantPlanning
             foreach (var XL in ExcelDataList)
             {
                 var r = RPS.Where(x => x.MaterialCode == XL.ProdCode).ToList();
-                if (r.Count>0)
+                if (r.Count > 0)
                 {
                     if (r[0].Name.Length > 70)
                     {
@@ -2372,7 +2458,7 @@ namespace PlantPlanning
         public void GreateOperList()
         {
             POList = new List<PlantOperList>();
-            List<DateTime> DTList = ExcelDataList.Select(x=>x.DateWork).Distinct().ToList();
+            List<DateTime> DTList = ExcelDataList.Select(x => x.DateWork).Distinct().ToList();
 
             foreach (DateTime dt in DTList)
             {
@@ -2430,7 +2516,7 @@ namespace PlantPlanning
                     if (pol.DL.Count > RowCount)
                     {
                         RowCount = pol.DL.Count;
-                      //  MessageBox.Show(RowCount.ToString());
+                        //  MessageBox.Show(RowCount.ToString());
                     }
 
                     TotQuant = 0;
@@ -2470,14 +2556,14 @@ namespace PlantPlanning
                     pol.DL.Add(ddd);
                     dt1.Columns.Add(pol.DateWork.ToString("dd.MM.yyyy"));
                 }
-                dt1.Columns.Add("Zero");               
+                dt1.Columns.Add("Zero");
 
                 RowCount = RowCount + 1;
 
-                for (int i=0; i<RowCount; i++)
+                for (int i = 0; i < RowCount; i++)
                 {
                     sVal = "";
-                    for (int j=0; j<ColCount; j++)
+                    for (int j = 0; j < ColCount; j++)
                     {
                         if (i < POList[j].DL.Count)
                         {
@@ -2532,29 +2618,29 @@ namespace PlantPlanning
                 dataGridView1.DataSource = bs;
 
                 Font f1 = new Font(dataGridView1.DefaultCellStyle.Font, FontStyle.Bold);
-            //    Font f2 = new Font(dataGridView1.DefaultCellStyle.Font, Color.LightSeaGreen);
-                for (int i=0; i<POList.Count; i++)
+                //    Font f2 = new Font(dataGridView1.DefaultCellStyle.Font, Color.LightSeaGreen);
+                for (int i = 0; i < POList.Count; i++)
                 {
-                    for (int j=0; j< POList[i].DL.Count-1; j++)
+                    for (int j = 0; j < POList[i].DL.Count - 1; j++)
                     {
                         if (POList[i].DL[j].RePack == true)
                         {
                             dataGridView1.Rows[j].Cells[i].Style.ForeColor = Color.MediumSeaGreen;
-                          //  dataGridView1.Rows[j].Cells[i].Style.BackColor = Color.DarkRed;
+                            //  dataGridView1.Rows[j].Cells[i].Style.BackColor = Color.DarkRed;
                         }
                         else if (POList[i].DL[j].Line.Contains("специй"))
                         {
                             dataGridView1.Rows[j].Cells[i].Style.ForeColor = Color.DodgerBlue;
-                           // dataGridView1.Rows[j].Cells[i].Style.BackColor = Color.Gold;
+                            // dataGridView1.Rows[j].Cells[i].Style.BackColor = Color.Gold;
 
                         }
                     }
-                  
-                    if (POList[i].DL[POList[i].DL.Count-1].LastRec==true)
+
+                    if (POList[i].DL[POList[i].DL.Count - 1].LastRec == true)
                     {
                         dataGridView1.Rows[POList[i].DL.Count - 1].Cells[i].Style.BackColor = Color.LightYellow;
                         //  dataGridView1.Rows[POList[i].DL.Count - 1].Cells[i].Style.Font = new Font(dataGridView1.DefaultCellStyle.Font, FontStyle.Bold);    //f1;
-                    } 
+                    }
                 }
 
                 dataGridView1.Columns[dataGridView1.Columns.Count - 1].Visible = false;
@@ -2580,7 +2666,7 @@ namespace PlantPlanning
                 Cursor = Cursors.WaitCursor;
                 fs = new FormSettings(this);
                 fs.Visible = true;
-             //   fs.MdiParent = this;
+                //   fs.MdiParent = this;
                 fs.WindowState = FormWindowState.Normal;
                 Cursor = Cursors.Default;
             }
@@ -2637,13 +2723,13 @@ namespace PlantPlanning
 
                 range1 = wSheet.Range[wSheet.Cells[1, 1], wSheet.Cells[1, 5]];
                 range1.Font.Bold = true;
-                range1.HorizontalAlignment = HorizontalAlignment.Center;           
+                range1.HorizontalAlignment = HorizontalAlignment.Center;
 
-                foreach (var pol in POList.OrderBy(x=>x.DateWork).ToList())
+                foreach (var pol in POList.OrderBy(x => x.DateWork).ToList())
                 {
                     foreach (var ddl in pol.DL)
                     {
-                        if (ddl.LastRec==false)
+                        if (ddl.LastRec == false)
                         {
                             wSheet.Cells[CurRow, 1] = ddl.Line;
                             wSheet.Cells[CurRow, 2] = pol.DateWork.Date;
@@ -2663,8 +2749,8 @@ namespace PlantPlanning
 
                 wSheet = null;
                 wBook = null;
-             //   xlApp.Quit();
-                xlApp = null;          
+                //   xlApp.Quit();
+                xlApp = null;
             }
 
             Cursor = Cursors.Default;
@@ -2769,11 +2855,11 @@ namespace PlantPlanning
 
         private void FormMain_Resize(object sender, EventArgs e)
         {
-            if (this.Width<1700)
+            if (this.Width < 1700)
             {
                 this.Width = 1700;
             }
-            if (this.Height<900)
+            if (this.Height < 900)
             {
                 this.Height = 900;
             }
@@ -2795,7 +2881,7 @@ namespace PlantPlanning
         private void button3_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("Подтверждаете очистку карты?", "Сообщение системы", MessageBoxButtons.OKCancel);
-            if (dr==DialogResult.OK)
+            if (dr == DialogResult.OK)
             {
                 ExcelDataList = new List<lData>();
                 POList.Clear();
@@ -2828,12 +2914,12 @@ namespace PlantPlanning
 
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            tdb.Dispose( );
-        //    edb.Dispose();
-         //   eqp.Dispose();
-           
-          //  conn1.Close();
-          //  conn1 = null;
+            tdb.Dispose();
+            //    edb.Dispose();
+            //   eqp.Dispose();
+
+            //  conn1.Close();
+            //  conn1 = null;
 
             GC.Collect();
             GC.WaitForPendingFinalizers();
@@ -2854,7 +2940,7 @@ namespace PlantPlanning
              if (Result.Count>0)*/
 
             bool Res = false;
-             ErrorStr ="";
+            ErrorStr = "";
             ErrorMainStr = "";
             CommonEGrid = new List<ErrorGrid>();
             MainEGrid = new List<ErrorGrid>();
@@ -2948,7 +3034,7 @@ namespace PlantPlanning
                  }
              }*/
 
-            if  (CommonEGrid.Count>0)     //(ErrorStr.Length>0)
+            if (CommonEGrid.Count > 0)     //(ErrorStr.Length>0)
             {
                 ErrorStr = " " + RowSplitter + " " + RowSplitter + "Задвоенные рецепты по состоянию на " + DateTime.Today.Date.ToString("dd.MM.yyyy") + RowSplitter + System.Environment.NewLine; // + " " + RowSplitter + " " + RowSplitter + System.Environment.NewLine;  + ErrorString;
                 if (Application.OpenForms["Warning1"] == null)
@@ -2983,20 +3069,20 @@ namespace PlantPlanning
 
         private void dataGridView1_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-           /* foreach (DataGridViewRow r in dataGridView1.Rows)
-            {
-                foreach (DataGridViewCell c in r.Cells)
-                {
-                     if (c.Value.ToString().Contains("специй"))
-                    {
-                        c.Style.ForeColor = Color.MediumSeaGreen;
-                    }
-                    else if (c.Value.ToString().Contains("П/УП"))
-                    {
-                        c.Style.ForeColor = Color.DodgerBlue;
-                    }
-                }
-            }*/
+            /* foreach (DataGridViewRow r in dataGridView1.Rows)
+             {
+                 foreach (DataGridViewCell c in r.Cells)
+                 {
+                      if (c.Value.ToString().Contains("специй"))
+                     {
+                         c.Style.ForeColor = Color.MediumSeaGreen;
+                     }
+                     else if (c.Value.ToString().Contains("П/УП"))
+                     {
+                         c.Style.ForeColor = Color.DodgerBlue;
+                     }
+                 }
+             }*/
         }
 
         private void button10_Click(object sender, EventArgs e)
@@ -3231,7 +3317,7 @@ namespace PlantPlanning
                     }
                 }
             }
-            
+
             CurRow = CurRow - 1;
             Invoke(new Action(() =>
             {
@@ -3249,20 +3335,20 @@ namespace PlantPlanning
             }));
 
             Invoke(new Action(() =>
-                {
-                    range1 = wSheet.Range[wSheet.Cells[2, 7], wSheet.Cells[CurRow, 7]];
-                    range1.ColumnWidth = 20;
+            {
+                range1 = wSheet.Range[wSheet.Cells[2, 7], wSheet.Cells[CurRow, 7]];
+                range1.ColumnWidth = 20;
 
-                    range1 = wSheet.Range[wSheet.Cells[2, 4], wSheet.Cells[CurRow, 4]];
-                    range1.ColumnWidth = 100;
-                    range1.WrapText = true;
+                range1 = wSheet.Range[wSheet.Cells[2, 4], wSheet.Cells[CurRow, 4]];
+                range1.ColumnWidth = 100;
+                range1.WrapText = true;
 
-                    range1 = wSheet.Range[wSheet.Cells[2, 1], wSheet.Cells[CurRow, 9]];
-                    SetBorders(range1, 1, true);
+                range1 = wSheet.Range[wSheet.Cells[2, 1], wSheet.Cells[CurRow, 9]];
+                SetBorders(range1, 1, true);
 
-                    label1.Text = "Bсе почти готово";
-                    progressBar1.Value = 99;
-                }));
+                label1.Text = "Bсе почти готово";
+                progressBar1.Value = 99;
+            }));
 
             Invoke(new Action(() =>
             {
@@ -3306,9 +3392,9 @@ namespace PlantPlanning
             string s = "";
             ErrorMainStr = "";
 
-            if (ExcelDataList.Count>0)
+            if (ExcelDataList.Count > 0)
             {
-                 s= GetPecipesNotes();
+                s = GetPecipesNotes();
             }
 
             if ((ErrorMainStr.Length > 0) || (s.Length > 0))
@@ -3341,10 +3427,10 @@ namespace PlantPlanning
             sbp.WorkDate = ssbpr.WorkDate;
             sbp.MaterialCode = ssbpr.MaterialCode;
             sbp.MaterialName = ssbpr.MaterialName;
-         //   sbp.MaterialLotName = ssbpr.MaterialLotName;
+            //   sbp.MaterialLotName = ssbpr.MaterialLotName;
             sbp.ValidFrom = ssbpr.ValidFrom;
             sbp.ValidTo = ssbpr.ValidTo;
-            sbp.Quantity =(double) ssbpr.Quantity;
+            sbp.Quantity = (double)ssbpr.Quantity;
             sbp.AlterLotName = ssbpr.AlterLotName;
             sbp.TestQuality = ssbpr.TestQuality;
             sbp.TestQualityGr = ssbpr.TestQualityGr;
@@ -3358,7 +3444,7 @@ namespace PlantPlanning
                 sbp.LineName = ssbpr.LineName;
             }
 
-            if (ssbpr.AlterLotName.Trim()!="")
+            if (ssbpr.AlterLotName.Trim() != "")
             {
                 sbp.MaterialLotName = ssbpr.AlterLotName;
             }
@@ -3489,7 +3575,7 @@ namespace PlantPlanning
                             LD = new lData();
 
                             LD.ProdCode = RL.MaterialCode.Trim();
-                           // LD.ParentCode = RL.p
+                            // LD.ParentCode = RL.p
                             LD.ProdCodeStr = RL.MaterialCode.Trim();
                             LD.DateWork = RecLineDate[0].WorkDateStart;
                             LD.ProdName = RL.MaterialName.Trim();
@@ -3499,7 +3585,7 @@ namespace PlantPlanning
                             LD.Spices = false;   //control: split 1-st level only!!!!!!!!!
                             LD.BOM = RL.BOM;
 
-                          bool  fl = false;
+                            bool fl = false;
 
                             for (int i = 0; i < DataListTempNew.Count; i++)
                             {
@@ -3528,7 +3614,7 @@ namespace PlantPlanning
                 }
             }
 
-           int  Iteration = 0;
+            int Iteration = 0;
             var XLDataList = new List<lData>();
 
             //create Excel
@@ -3556,16 +3642,16 @@ namespace PlantPlanning
             {
                 Iteration = Iteration + 1;
 
-                
-             
-             //   CurrRow = CurrRow + 1;
+
+
+                //   CurrRow = CurrRow + 1;
 
                 for (int i = DataListTempNew.Count; i > 0; i--)
                 {
                     if (DataListTempNew[i - 1].ProdCode == "1031016659")
                     { }
 
-                     bool  fl = false;
+                    bool fl = false;
                     for (int j = 0; j < XLDataList.Count; j++)
                     {
                         if (XLDataList[j].ProdCode.Trim() == DataListTempNew[i - 1].ProdCode.Trim())
@@ -3630,17 +3716,17 @@ namespace PlantPlanning
                 DataListTempOld.AddRange(DataListTempNew);
 
 
-             /*   wSheet.Cells[CurrRow, 1] = Iteration;
-                CurrRow = CurrRow + 1;
-                //iteration export
-                for (int i = 0; i< DataListTempNew.Count; i++)
-                {
-                    wSheet.Cells[CurrRow, 1] = DataListTempNew[i].ProdCode;
-                    wSheet.Cells[CurrRow, 2] = DataListTempNew[i].ProdName;
-                    wSheet.Cells[CurrRow, 3] = DataListTempNew[i].Quantity;
+                /*   wSheet.Cells[CurrRow, 1] = Iteration;
+                   CurrRow = CurrRow + 1;
+                   //iteration export
+                   for (int i = 0; i< DataListTempNew.Count; i++)
+                   {
+                       wSheet.Cells[CurrRow, 1] = DataListTempNew[i].ProdCode;
+                       wSheet.Cells[CurrRow, 2] = DataListTempNew[i].ProdName;
+                       wSheet.Cells[CurrRow, 3] = DataListTempNew[i].Quantity;
 
-                    CurrRow = CurrRow + 1;
-                }*/
+                       CurrRow = CurrRow + 1;
+                   }*/
 
                 DataListTempNew.Clear();
 
@@ -3676,7 +3762,7 @@ namespace PlantPlanning
                                             BOM = RR.BOM
                                         };
 
-                                      bool fl = false;
+                                        bool fl = false;
                                         for (int j = 0; j < DataListTempNew.Count; j++)
                                         {
                                             if (DataListTempNew[j].ProdCode == LD.ProdCode)
@@ -3806,40 +3892,40 @@ namespace PlantPlanning
             this.Enabled = false;
         }
 
-      /*  public void SetBorders(Microsoft.Office.Interop.Excel.Range r, int width = 1, bool insideVert = false)
-        {
-            if (width == 1)
-            {
-                r.Borders.Item[Excel1.XlBordersIndex.xlEdgeTop].LineStyle = Excel1.XlLineStyle.xlContinuous;
-                r.Borders.Item[Excel1.XlBordersIndex.xlEdgeRight].LineStyle = Excel1.XlLineStyle.xlContinuous;
-                r.Borders.Item[Excel1.XlBordersIndex.xlEdgeLeft].LineStyle = Excel1.XlLineStyle.xlContinuous;
-                r.Borders.Item[Excel1.XlBordersIndex.xlEdgeBottom].LineStyle = Excel1.XlLineStyle.xlContinuous;
+        /*  public void SetBorders(Microsoft.Office.Interop.Excel.Range r, int width = 1, bool insideVert = false)
+          {
+              if (width == 1)
+              {
+                  r.Borders.Item[Excel1.XlBordersIndex.xlEdgeTop].LineStyle = Excel1.XlLineStyle.xlContinuous;
+                  r.Borders.Item[Excel1.XlBordersIndex.xlEdgeRight].LineStyle = Excel1.XlLineStyle.xlContinuous;
+                  r.Borders.Item[Excel1.XlBordersIndex.xlEdgeLeft].LineStyle = Excel1.XlLineStyle.xlContinuous;
+                  r.Borders.Item[Excel1.XlBordersIndex.xlEdgeBottom].LineStyle = Excel1.XlLineStyle.xlContinuous;
 
-                if (insideVert == true)
-                {
-                    r.Borders.Item[Excel1.XlBordersIndex.xlInsideVertical].LineStyle = Excel1.XlLineStyle.xlContinuous;
-                    r.Borders.Item[Excel1.XlBordersIndex.xlInsideHorizontal].LineStyle = Excel1.XlLineStyle.xlContinuous;
-                }
-            }
-            else
-            {
-                r.Borders.Item[Excel1.XlBordersIndex.xlEdgeTop].LineStyle = Excel1.XlLineStyle.xlContinuous;
-                r.Borders.Item[Excel1.XlBordersIndex.xlEdgeTop].Weight = width;
-                r.Borders.Item[Excel1.XlBordersIndex.xlEdgeRight].LineStyle = Excel1.XlLineStyle.xlContinuous;
-                r.Borders.Item[Excel1.XlBordersIndex.xlEdgeRight].Weight = width;
-                r.Borders.Item[Excel1.XlBordersIndex.xlEdgeLeft].LineStyle = Excel1.XlLineStyle.xlContinuous;
-                r.Borders.Item[Excel1.XlBordersIndex.xlEdgeLeft].Weight = width;
-                r.Borders.Item[Excel1.XlBordersIndex.xlEdgeBottom].LineStyle = Excel1.XlLineStyle.xlContinuous;
-                r.Borders.Item[Excel1.XlBordersIndex.xlEdgeBottom].Weight = width;
-                if (insideVert == true)
-                {
-                    r.Borders.Item[Excel1.XlBordersIndex.xlInsideVertical].LineStyle = Excel1.XlLineStyle.xlContinuous;
-                    r.Borders.Item[Excel1.XlBordersIndex.xlInsideVertical].Weight = width;
-                    r.Borders.Item[Excel1.XlBordersIndex.xlInsideHorizontal].LineStyle = Excel1.XlLineStyle.xlContinuous;
-                    r.Borders.Item[Excel1.XlBordersIndex.xlInsideHorizontal].Weight = width;
-                }
-            }
-        }*/
+                  if (insideVert == true)
+                  {
+                      r.Borders.Item[Excel1.XlBordersIndex.xlInsideVertical].LineStyle = Excel1.XlLineStyle.xlContinuous;
+                      r.Borders.Item[Excel1.XlBordersIndex.xlInsideHorizontal].LineStyle = Excel1.XlLineStyle.xlContinuous;
+                  }
+              }
+              else
+              {
+                  r.Borders.Item[Excel1.XlBordersIndex.xlEdgeTop].LineStyle = Excel1.XlLineStyle.xlContinuous;
+                  r.Borders.Item[Excel1.XlBordersIndex.xlEdgeTop].Weight = width;
+                  r.Borders.Item[Excel1.XlBordersIndex.xlEdgeRight].LineStyle = Excel1.XlLineStyle.xlContinuous;
+                  r.Borders.Item[Excel1.XlBordersIndex.xlEdgeRight].Weight = width;
+                  r.Borders.Item[Excel1.XlBordersIndex.xlEdgeLeft].LineStyle = Excel1.XlLineStyle.xlContinuous;
+                  r.Borders.Item[Excel1.XlBordersIndex.xlEdgeLeft].Weight = width;
+                  r.Borders.Item[Excel1.XlBordersIndex.xlEdgeBottom].LineStyle = Excel1.XlLineStyle.xlContinuous;
+                  r.Borders.Item[Excel1.XlBordersIndex.xlEdgeBottom].Weight = width;
+                  if (insideVert == true)
+                  {
+                      r.Borders.Item[Excel1.XlBordersIndex.xlInsideVertical].LineStyle = Excel1.XlLineStyle.xlContinuous;
+                      r.Borders.Item[Excel1.XlBordersIndex.xlInsideVertical].Weight = width;
+                      r.Borders.Item[Excel1.XlBordersIndex.xlInsideHorizontal].LineStyle = Excel1.XlLineStyle.xlContinuous;
+                      r.Borders.Item[Excel1.XlBordersIndex.xlInsideHorizontal].Weight = width;
+                  }
+              }
+          }*/
 
         private void button22_Click(object sender, EventArgs e)
         {
@@ -3864,10 +3950,10 @@ namespace PlantPlanning
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
-          /*  if (e.KeyCode.ToString() == "Add" || e.KeyCode.ToString() == "Oemplus")
-            {
-                MessageBox.Show("let`s OK");
-            }*/
+            /*  if (e.KeyCode.ToString() == "Add" || e.KeyCode.ToString() == "Oemplus")
+              {
+                  MessageBox.Show("let`s OK");
+              }*/
         }
 
         private void button23_Click(object sender, EventArgs e)

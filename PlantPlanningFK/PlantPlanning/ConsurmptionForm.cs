@@ -3873,7 +3873,7 @@ namespace PlantPlanning
             dt1.Columns.Add("Код материала");  //0
             dt1.Columns.Add("Наименование");  //1
             dt1.Columns.Add("Класс материала"); //2
-            dt1.Columns.Add("Кратность поставки");  //3
+            //dt1.Columns.Add("Кратность поставки");  //3
             dt1.Columns.Add("Мин срок пост. дней");//4
             dt1.Columns.Add("Страховой запас");//5
             dt1.Columns.Add("Исполнитель");//6

@@ -57,7 +57,7 @@ namespace PlantPlanning
             dt1.Columns.Add("difcurdates");
 
             List<string> StorageNames = fm.StorageNamesList;        // fm.MesLocList.Select(x => x.LocationName).Distinct().ToList();
-            var StockList = fm.tdb.StockBalancesMes.Where(x => x.DT == DateTime.Today.Date && (x.WorkDate.Hour >= 6 || x.WorkDate.Hour <= 10)).ToList();
+            var StockList = fm.tdb.StockBalancesMes.Where(x => x.DT == DateTime.Today.Date && (x.WorkDate.Hour >= 6 || x.WorkDate.Hour <= 10) && x.MaterialCode == "1031004635").ToList();
 
          //   var StockList = fm.edb.f_spMaterialLot_GetAllByWarehouseAndZoneFromNav_IT6WithoutCommentMody().ToList();
             StockList = StockList.Where(x => fm.StorageNamesList.Contains(x.Storage)).ToList();
