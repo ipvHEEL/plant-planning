@@ -1663,8 +1663,7 @@ namespace PlantPlanning
 
                 sVal = ml.MaterialCode + RowSplitter + ml.MaterialName + RowSplitter +
                       ml.MaterialGroup + RowSplitter + ml.MaterialMultiplyString + RowSplitter +
-                      ml.WaitingDaysString + RowSplitter + ml.StorageQuantityString + RowSplitter +
-                      ml.Responsible + RowSplitter + ml.Sender + RowSplitter;
+                      ml.WaitingDaysString + RowSplitter + ml.StorageQuantityString + RowSplitter;
 
                 for (int j = 0; j < WorkMonthList.Count; j++)
                 {
@@ -3876,8 +3875,6 @@ namespace PlantPlanning
             dt1.Columns.Add("Кратность поставки");  //3
             dt1.Columns.Add("Мин срок пост. дней");//4
             dt1.Columns.Add("Страховой запас");//5
-            dt1.Columns.Add("Исполнитель");//6
-            dt1.Columns.Add("Поставщик");//7
                                          //Month need insert
             foreach (var ddd in WorkMonthList)
             {
@@ -3991,7 +3988,7 @@ namespace PlantPlanning
 
                 if (cbViews.Text == "Остаток")
                 {
-                    Cols = 16 + WorkMonthList.Count;  //14
+                    Cols = 14 + WorkMonthList.Count;  //14
 
                     if (cfm1.DontShow == true)
                     {
@@ -4706,7 +4703,7 @@ namespace PlantPlanning
 
                     var xlData = XLDataList.Where(x => x.ProdCode == cfm1.MaterialCode).ToList();
                     var cListData = fm.ContList.Where(x => (x.MaterialCode == cfm1.MaterialCode)).ToList();
-                    Cols = 16 + WorkMonthList.Count;  //14
+                    Cols = 14 + WorkMonthList.Count;  //14
                                                       //   foreach (DateTime dt in DTList)
                     for (int j = 0; j < DTList.Count; j++)
                     {
@@ -5040,19 +5037,17 @@ namespace PlantPlanning
             dataGridViewMain.Columns[3].Width = 50;
             dataGridViewMain.Columns[4].Width = 50;
             dataGridViewMain.Columns[5].Width = 50;
-            dataGridViewMain.Columns[6].Width = 100;
-            dataGridViewMain.Columns[7].Width = 100;
             dataGridViewMain.Columns[dataGridViewMain.ColumnCount - 1].Visible = false;
             dataGridViewMain.Columns[dataGridViewMain.ColumnCount - 2].Visible = false;
             //   dataGridViewMain.VirtualMode = true;
 
-            for (int i = 8; i < 15; i++)
+            for (int i = 6; i < 13; i++)
             {
                 dataGridViewMain.Columns[i + WorkMonthList.Count].DefaultCellStyle.BackColor = Color.Gainsboro;
                 dataGridViewMain.Columns[i + WorkMonthList.Count].HeaderCell.Style.Font = new Font(dataGridViewMain.ColumnHeadersDefaultCellStyle.Font.FontFamily, 9f, FontStyle.Bold);
             }
 
-            dataGridViewMain.Columns[15 + WorkMonthList.Count].HeaderCell.Style.Font = new Font(dataGridViewMain.ColumnHeadersDefaultCellStyle.Font.FontFamily, 9f, FontStyle.Bold);
+            dataGridViewMain.Columns[13 + WorkMonthList.Count].HeaderCell.Style.Font = new Font(dataGridViewMain.ColumnHeadersDefaultCellStyle.Font.FontFamily, 9f, FontStyle.Bold);
 
             //   DGV_UpdateColumnZero();
             //   DGV_Get_CellColor();
