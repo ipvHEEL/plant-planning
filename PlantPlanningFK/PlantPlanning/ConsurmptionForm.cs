@@ -3869,7 +3869,7 @@ namespace PlantPlanning
          //   dt1.Columns.Clear();
          //   dt1.Rows.Clear();
 
-            dt1.Columns.Add("Код материала");  //0
+            dt1.Columns.Add("Код материалаs");  //0
             dt1.Columns.Add("Наименование");  //1
             dt1.Columns.Add("Класс материала"); //2
             dt1.Columns.Add("Кратность поставки");  //3
@@ -10516,8 +10516,8 @@ namespace PlantPlanning
                     {
                         try
                         {
-                            dataGridViewMain.Rows[j].Cells[9 + Offset].Style.ForeColor = Color.FromName(cfm.Color1);
-                            dataGridViewMain.Rows[j].Cells[10 + Offset].Style.ForeColor = Color.FromName(cfm.Color2);
+                            dataGridViewMain.Rows[j].Cells[7 + Offset].Style.ForeColor = Color.FromName(cfm.Color1);
+                            dataGridViewMain.Rows[j].Cells[8 + Offset].Style.ForeColor = Color.FromName(cfm.Color2);
                         }
                         catch (Exception xx)
                         { }
