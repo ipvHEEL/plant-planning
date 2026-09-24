@@ -10516,8 +10516,8 @@ namespace PlantPlanning
                     {
                         try
                         {
-                            dataGridViewMain.Rows[j].Cells[9 + Offset].Style.ForeColor = Color.FromName(cfm.Color1);
-                            dataGridViewMain.Rows[j].Cells[10 + Offset].Style.ForeColor = Color.FromName(cfm.Color2);
+                            dataGridViewMain.Rows[j].Cells[7 + Offset].Style.ForeColor = Color.FromName(cfm.Color1);
+                            dataGridViewMain.Rows[j].Cells[8 + Offset].Style.ForeColor = Color.FromName(cfm.Color2);
                         }
                         catch (Exception xx)
                         { }
