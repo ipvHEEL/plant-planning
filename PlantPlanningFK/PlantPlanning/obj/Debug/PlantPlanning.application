@@ -7,14 +7,14 @@
     <framework targetVersion="4.8" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="PlantPlanning.exe.manifest" size="21321">
+    <dependentAssembly dependencyType="install" codebase="PlantPlanning.exe.manifest" size="22005">
       <assemblyIdentity name="PlantPlanning.exe" version="1.0.2.13" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>TXjT8KyO990GV0R3Cku576ujZAeYJlHN2Mbg2naQELk=</dsig:DigestValue>
+        <dsig:DigestValue>XcQTTWzPjz0cpzzytt2sROq2RQ4cIMmupgaQZBpesX4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

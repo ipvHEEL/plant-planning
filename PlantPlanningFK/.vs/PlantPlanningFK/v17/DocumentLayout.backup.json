@@ -39,14 +39,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ConsurmptionForm.cs [Design]",
+              "Title": "ConsurmptionForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "DocumentMoniker": "C:\\Users\\a.d.rogov\\source\\repos\\dev\\plant-planning\\PlantPlanningFK\\PlantPlanning\\ConsurmptionForm.cs",
               "RelativeDocumentMoniker": "PlantPlanning\\ConsurmptionForm.cs",
-              "ToolTip": "C:\\Users\\a.d.rogov\\source\\repos\\dev\\plant-planning\\PlantPlanningFK\\PlantPlanning\\ConsurmptionForm.cs [Design]*",
-              "RelativeToolTip": "PlantPlanning\\ConsurmptionForm.cs [Design]*",
+              "ToolTip": "C:\\Users\\a.d.rogov\\source\\repos\\dev\\plant-planning\\PlantPlanningFK\\PlantPlanning\\ConsurmptionForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]*",
+              "RelativeToolTip": "PlantPlanning\\ConsurmptionForm.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-07T12:12:49.775Z",
-              "EditorCaption": " [Design]"
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
             },
             {
               "$type": "Document",
@@ -56,9 +56,10 @@
               "RelativeDocumentMoniker": "PlantPlanning\\FormMain.cs",
               "ToolTip": "C:\\Users\\a.d.rogov\\source\\repos\\dev\\plant-planning\\PlantPlanningFK\\PlantPlanning\\FormMain.cs",
               "RelativeToolTip": "PlantPlanning\\FormMain.cs",
-              "ViewState": "AgIAAAgCAAAAAAAAAAAowA8CAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAEMIAAAAAAAAAAArwFUIAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-07T05:51:51.66Z"
+              "WhenOpened": "2026-09-07T05:51:51.66Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -69,7 +70,8 @@
               "ToolTip": "C:\\Users\\a.d.rogov\\source\\repos\\dev\\plant-planning\\PlantPlanningFK\\PlantPlanning\\FormMain.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "RelativeToolTip": "PlantPlanning\\FormMain.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-07T05:50:37.194Z"
+              "WhenOpened": "2026-09-07T05:50:37.194Z",
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
             },
             {
               "$type": "Document",
@@ -79,7 +81,7 @@
               "RelativeDocumentMoniker": "PlantPlanning\\ConsurmptionForm.cs",
               "ToolTip": "C:\\Users\\a.d.rogov\\source\\repos\\dev\\plant-planning\\PlantPlanningFK\\PlantPlanning\\ConsurmptionForm.cs*",
               "RelativeToolTip": "PlantPlanning\\ConsurmptionForm.cs*",
-              "ViewState": "AgIAAP8oAAAAAAAAAAAAABcpAAA8AAAAAAAAAA==",
+              "ViewState": "AgIAAAsPAAAAAAAAAADgvyQPAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-31T13:54:41.119Z",
               "EditorCaption": ""

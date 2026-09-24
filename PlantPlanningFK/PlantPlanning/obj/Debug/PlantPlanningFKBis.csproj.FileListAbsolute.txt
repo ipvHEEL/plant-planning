@@ -149,3 +149,5 @@ C:\Users\a.d.rogov\Source\Repos\dev\plant-planning\PlantPlanningFK\PlantPlanning
 C:\Users\a.d.rogov\Source\Repos\dev\plant-planning\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanning.exe
 C:\Users\a.d.rogov\Source\Repos\dev\plant-planning\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanning.pdb
 C:\Users\a.d.rogov\Source\Repos\dev\plant-planning\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanning.exe.config
+C:\Users\a.d.rogov\Source\Repos\dev\plant-planning\PlantPlanningFK\PlantPlanning\bin\Debug\Newtonsoft.Json.dll
+C:\Users\a.d.rogov\Source\Repos\dev\plant-planning\PlantPlanningFK\PlantPlanning\bin\Debug\Newtonsoft.Json.xml

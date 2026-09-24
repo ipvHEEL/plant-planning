@@ -1,5 +1,6 @@
 ﻿using NLog;
 using PlantPlanning.Context;
+using PlantPlanningFKBis.Context;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -2117,9 +2118,19 @@ namespace PlantPlanning
             GC.Collect();
         }
 
+        private readonly JsonDeliveryRepository _repo = new JsonDeliveryRepository();
         private void InsertFromExcel(bool flag)
         {
+
+
+
             DialogResult dr = MessageBox.Show("Подтверждаете загрузку данных из файла?", "Сообщение системы", MessageBoxButtons.OKCancel);
+
+            _repo.AddOrUpdate(new DeliveryDayItem
+            {
+                Article = 1234567890,
+                DaysForDelivery = 14
+            });
 
             /*bool Res = false;
             string ErrorStr = "";*/
