@@ -112,7 +112,6 @@ C:\Users\a.d.rogov\Source\Repos\dev\plant-planning\PlantPlanningFK\PlantPlanning
 C:\Users\a.d.rogov\Source\Repos\dev\plant-planning\PlantPlanningFK\PlantPlanning\bin\Debug\NLog.xml
 C:\Users\a.d.rogov\Source\Repos\dev\plant-planning\PlantPlanningFK\PlantPlanning\bin\Debug\NLog.Web.xml
 C:\Users\a.d.rogov\Source\Repos\dev\plant-planning\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanningFKBis.csproj.AssemblyReference.cache
-C:\Users\a.d.rogov\Source\Repos\dev\plant-planning\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanning.exe.config
 C:\Users\a.d.rogov\Source\Repos\dev\plant-planning\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanningFKBis.csproj.ResolveComReference.cache
 C:\Users\a.d.rogov\Source\Repos\dev\plant-planning\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanning.ConsurmptionForm.resources
 C:\Users\a.d.rogov\Source\Repos\dev\plant-planning\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanning.FormAddCard.resources
@@ -149,3 +148,4 @@ C:\Users\a.d.rogov\Source\Repos\dev\plant-planning\PlantPlanningFK\PlantPlanning
 C:\Users\a.d.rogov\Source\Repos\dev\plant-planning\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPla.01C91CE6.Up2Date
 C:\Users\a.d.rogov\Source\Repos\dev\plant-planning\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanning.exe
 C:\Users\a.d.rogov\Source\Repos\dev\plant-planning\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanning.pdb
+C:\Users\a.d.rogov\Source\Repos\dev\plant-planning\PlantPlanningFK\PlantPlanning\obj\Debug\PlantPlanning.exe.config
